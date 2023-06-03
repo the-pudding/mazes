@@ -46,7 +46,7 @@
 
 <style>
 	svg {
-		background: white;
+		/* background: white; */
 	}
 	.container {
 		width: 100%;

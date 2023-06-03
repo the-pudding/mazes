@@ -1,61 +1,41 @@
 <script>
-	import Scrolly from "$components/helpers/Scrolly.svelte";
-	import Maze from "$components/Maze/Maze.svelte";
-	import data from "$data/iowa.json";
-	import _ from "lodash";
+	import copy from "$data/copy.json";
 
-	let value;
+	const { intro } = copy;
 
-	const steps = [0, 1, 2, 3, 4];
-
-	const groups = _.chunk(
-		_.shuffle(_.flatten(data)),
-		Math.ceil(data.length ** 2 / steps.length)
-	);
-	$: currentWalls = groups.slice(0, value + 1) || [];
+	const lines = intro.map((d) => d.value);
+	const groups = [lines.slice(0, 1), lines.slice(1, 4), lines.slice(4)];
 </script>
 
-<section id="scrolly">
-	<div class="sticky">
-		<Maze
-			wallData={currentWalls}
-			size={data.length}
-			playable={false}
-			animated={true}
-		/>
-	</div>
-	<div class="spacer" />
-
-	<Scrolly bind:value>
-		{#each steps as text, i}
-			{@const active = value === i}
-			<div class="step" class:active>
-				<p>{text}</p>
-			</div>
-		{/each}
-	</Scrolly>
-	<div class="spacer" />
+<section class="intro">
+	{#each groups as group, i}
+		<div class="group">
+			{#each group as line, j}
+				{@const emphasis = i === groups.length - 1 && j === group.length - 1}
+				<p class:emphasis>{@html line}</p>
+			{/each}
+		</div>
+	{/each}
 </section>
 
 <style>
-	.sticky {
-		position: sticky;
-		width: 60%;
+	section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-evenly;
+		max-width: 700px;
 		margin: auto;
-		top: 50%;
-		transform: translate(0, -50%);
-		z-index: -1;
+		padding: 0 1rem;
+		height: calc(100vh - 3rem);
 	}
-	.spacer {
-		height: 75vh;
-	}
-	.step {
-		height: 300px;
-		margin: 70vh 0;
-		background: var(--color-gray-100);
+	p {
+		font-size: 2rem;
 		text-align: center;
 	}
-	.step p {
-		padding: 1rem;
+	.emphasis {
+		color: var(--color-pp-magenta);
+		text-transform: uppercase;
+		font-size: 4rem;
 	}
 </style>

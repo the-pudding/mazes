@@ -95,7 +95,7 @@
 		stroke: black;
 	}
 	rect {
-		fill: white;
+		fill: none;
 		stroke: none;
 	}
 	rect.start {

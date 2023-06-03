@@ -37,10 +37,10 @@
 		font-weight: bold;
 	}
 	.title {
-		font-size: var(--24px);
+		font-size: 1.3rem;
 	}
 	.about {
-		font-size: var(--16px);
+		font-size: 1rem;
 	}
 
 	.btn-open {
@@ -60,7 +60,7 @@
 
 	@media (max-width: 600px) {
 		.title {
-			font-size: var(--16px);
+			font-size: 1rem;
 			text-align: left;
 			margin-right: 1em;
 		}
