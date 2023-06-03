@@ -1,21 +1,28 @@
 <script>
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Maze from "$components/Maze/Maze.svelte";
-	import { scaleLinear } from "d3";
+	import data from "$data/iowa.json";
+	import _ from "lodash";
 
 	let value;
 
 	const steps = [0, 1, 2, 3, 4];
 
-	const wallsScale = scaleLinear()
-		.domain([0, steps.length - 1])
-		.range([0, 100]);
-	$: percentOfWallsShowing = wallsScale(value) || 0;
+	const groups = _.chunk(
+		_.shuffle(_.flatten(data)),
+		Math.ceil(data.length ** 2 / steps.length)
+	);
+	$: currentWalls = groups.slice(0, value + 1) || [];
 </script>
 
 <section id="scrolly">
 	<div class="sticky">
-		<Maze playable={false} {percentOfWallsShowing} />
+		<Maze
+			wallData={currentWalls}
+			size={data.length}
+			playable={false}
+			animated={true}
+		/>
 	</div>
 	<div class="spacer" />
 

@@ -1,46 +1,47 @@
 <script>
 	import Walls from "$components/Maze/Walls.svelte";
 	import Path from "$components/Modal/Path.svelte";
-	import data from "$data/iowa.json";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
 
+	export let wallData;
+	export let size;
 	export let playable;
-	export let percentOfWallsShowing;
+	export let animated;
 
+	const data = writable(wallData);
 	const width = writable(0);
 	const cellSize = writable(0);
 	const padding = writable(0);
-	const percentWalls = writable(0);
 	const location = writable({ row: 0, col: 0 });
 	const wallWidth = 10;
 
+	$: console.log($cellSize);
+
 	setContext("maze", {
-		data,
+		size,
 		wallWidth,
 		playable,
-		getPercentWalls: () => percentWalls,
+		animated,
+		getData: () => data,
 		getCellSize: () => cellSize,
 		getWidth: () => width,
 		getPadding: () => padding,
 		getLocation: () => location
 	});
 
+	$: $data = wallData;
 	$: $padding = wallWidth / 2;
-	$: $cellSize = ($width - $padding * 2) / data.length;
-	$: $percentWalls = percentOfWallsShowing || 100;
-
-	// pass to walls the filtered data it should use if percentWalls < 100
-	// bin cells into n groups, have n be passed in as a prop
-	// keep track of which groups are visible
-	// animate in new ones / animate out old ones (probably handled in walls.svelte)
+	$: $cellSize = size ? ($width - $padding * 2) / size : 0;
 </script>
 
 <div class="container" bind:clientWidth={$width}>
 	{#if $width}
 		<svg width={$width} height={$width}>
 			<Walls />
-			{#if playable}<Path />{/if}
+			{#if playable}
+				<Path />
+			{/if}
 		</svg>
 	{/if}
 </div>

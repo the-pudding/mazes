@@ -1,21 +1,29 @@
 <script>
 	import { getContext } from "svelte";
+	import { draw } from "svelte/transition";
+	import mq from "$stores/mq.js";
 
-	// instead of using data, use what's passed in based on percent walls
-
-	const { data, wallWidth, playable, getCellSize, getPadding } =
-		getContext("maze");
+	const {
+		size,
+		animated,
+		wallWidth,
+		playable,
+		getData,
+		getCellSize,
+		getPadding
+	} = getContext("maze");
+	const data = getData();
 	const cellSize = getCellSize();
 	const padding = getPadding();
 </script>
 
 <g style:transform={`translate(${$padding}px, ${$padding}px)`}>
 	{#if playable}
-		{#each data as d}
+		{#each $data as d}
 			<!-- TODO: unclear if we need all of these rects -->
 			{#each d as { row, col }}
 				{@const start = row === 0 && col === 0}
-				{@const finish = row === data.length - 1 && col === data.length - 1}
+				{@const finish = row === size - 1 && col === size - 1}
 				<rect
 					x={col * $cellSize}
 					y={row * $cellSize}
@@ -28,9 +36,13 @@
 		{/each}
 	{/if}
 
-	{#each data as d}
-		{#each d as { row, col, walls }, j}
+	{#each $data as d}
+		{#each d as { row, col, walls }}
 			{@const [top, right, bottom, left] = walls}
+			{@const lineDraw = {
+				duration: animated && !$mq.reducedMotion ? 800 : 0,
+				delay: $mq.reducedMotion ? 0 : Math.random() * 400
+			}}
 			{#if top}
 				<line
 					x1={col * $cellSize - wallWidth / 2}
@@ -38,6 +50,7 @@
 					y1={row * $cellSize}
 					y2={row * $cellSize}
 					stroke-width={wallWidth}
+					transition:draw={lineDraw}
 				/>
 			{/if}
 
@@ -48,6 +61,7 @@
 					y1={row * $cellSize - wallWidth / 2}
 					y2={row * $cellSize + $cellSize + wallWidth / 2}
 					stroke-width={wallWidth}
+					transition:draw={lineDraw}
 				/>
 			{/if}
 
@@ -58,6 +72,7 @@
 					y1={row * $cellSize + $cellSize}
 					y2={row * $cellSize + $cellSize}
 					stroke-width={wallWidth}
+					transition:draw={lineDraw}
 				/>
 			{/if}
 
@@ -68,6 +83,7 @@
 					y1={row * $cellSize + $cellSize + wallWidth / 2}
 					y2={row * $cellSize - wallWidth / 2}
 					stroke-width={wallWidth}
+					transition:draw={lineDraw}
 				/>
 			{/if}
 		{/each}
@@ -78,8 +94,12 @@
 	line {
 		stroke: black;
 	}
+	path {
+		stroke: black;
+		fill: none;
+	}
 	rect {
-		fill: white;
+		fill: cornflowerblue;
 		stroke: none;
 	}
 	rect.start {
