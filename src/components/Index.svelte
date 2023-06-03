@@ -1,5 +1,5 @@
 <script>
-	import Dashboard from "$components/Dashboard.svelte";
+	import Modal from "$components/Modal.svelte";
 </script>
 
-<Dashboard />
+<Modal />
