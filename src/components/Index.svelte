@@ -1,5 +1,5 @@
 <script>
-	import Modal from "$components/Modal.svelte";
+	import Intro from "$components/Intro.svelte";
 </script>
 
-<Modal />
+<Intro />

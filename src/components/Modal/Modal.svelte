@@ -1,5 +1,5 @@
 <script>
-	import Maze from "$components/Modal/Maze.svelte";
+	import Maze from "$components/Maze/Maze.svelte";
 
 	const state = "Iowa";
 </script>
@@ -9,7 +9,7 @@
 
 	<div class="play">
 		<div>Info tk</div>
-		<Maze />
+		<Maze playable={true} />
 	</div>
 </div>
 

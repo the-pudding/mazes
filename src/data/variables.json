@@ -22,11 +22,18 @@
     "gray-800": "rgb(55, 55, 55)",
     "gray-900": "rgb(38, 38, 38)",
     "gray-1000": "rgb(25, 25, 25)",
-    "purple": "#a239ca",
-    "blue": "#4717f6",
-    "green": "#34a29e",
-    "red": "#ff533d",
-    "yellow": "#e5e338"
+    "pp-dark": "#34373E",
+    "pp-navy": "#0C296A",
+    "pp-dark-purple": "#4541C9",
+    "pp-magenta": "#EC008C",
+    "pp-text-gray": "#7C7373",
+    "pp-gray-3": "#BBB5AD",
+    "pp-gray-2": "#D3CDC3",
+    "pp-gray-1": "#E8E5E1",
+    "pp-light-navy": "#6C7DA2",
+    "pp-light-purple": "#D1C7EF",
+    "pp-peach": "#F4CDB3",
+    "pp-tan": "#F2E6D4"
   },
   "": {
     "12px": "0.75rem",

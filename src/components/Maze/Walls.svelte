@@ -1,26 +1,32 @@
 <script>
 	import { getContext } from "svelte";
 
-	const { data, wallWidth, getCellSize, getPadding } = getContext("maze");
+	// instead of using data, use what's passed in based on percent walls
+
+	const { data, wallWidth, playable, getCellSize, getPadding } =
+		getContext("maze");
 	const cellSize = getCellSize();
 	const padding = getPadding();
 </script>
 
 <g style:transform={`translate(${$padding}px, ${$padding}px)`}>
-	{#each data as d}
-		{#each d as { row, col }}
-			{@const start = row === 0 && col === 0}
-			{@const finish = row === data.length - 1 && col === data.length - 1}
-			<rect
-				x={col * $cellSize}
-				y={row * $cellSize}
-				width={$cellSize}
-				height={$cellSize}
-				class:start
-				class:finish
-			/>
+	{#if playable}
+		{#each data as d}
+			<!-- TODO: unclear if we need all of these rects -->
+			{#each d as { row, col }}
+				{@const start = row === 0 && col === 0}
+				{@const finish = row === data.length - 1 && col === data.length - 1}
+				<rect
+					x={col * $cellSize}
+					y={row * $cellSize}
+					width={$cellSize}
+					height={$cellSize}
+					class:start
+					class:finish
+				/>
+			{/each}
 		{/each}
-	{/each}
+	{/if}
 
 	{#each data as d}
 		{#each d as { row, col, walls }, j}
