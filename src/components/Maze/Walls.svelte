@@ -41,7 +41,7 @@
 			{@const [top, right, bottom, left] = walls}
 			{@const lineDraw = {
 				duration: animated && !$mq.reducedMotion ? 800 : 0,
-				delay: $mq.reducedMotion ? 0 : Math.random() * 400
+				delay: animated && !$mq.reducedMotion ? Math.random() * 400 : 0
 			}}
 			{#if top}
 				<line
@@ -94,12 +94,8 @@
 	line {
 		stroke: black;
 	}
-	path {
-		stroke: black;
-		fill: none;
-	}
 	rect {
-		fill: cornflowerblue;
+		fill: white;
 		stroke: none;
 	}
 	rect.start {

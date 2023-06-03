@@ -16,8 +16,6 @@
 	const location = writable({ row: 0, col: 0 });
 	const wallWidth = 10;
 
-	$: console.log($cellSize);
-
 	setContext("maze", {
 		size,
 		wallWidth,

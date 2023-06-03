@@ -1,11 +1,16 @@
 export default [
 	{
-		id: "1Ig9XgP-3Pn5SMYv5mHp3O87ValybQKK7-jgvbnkBuCo",
+		id: "1IIz7WxlBzW4ZOaOejWWj_Mc5oB_4CoO0jA1zLIcEliA",
 		filepath: "src/data/copy.json"
+	},
+	{
+		id: "14teXEbh75YW7-AIFzR5IbuhES1AHx5u4p4y0d9IW60o",
+		gid: "0",
+		filepath: "src/data/facts.csv"
+	},
+	{
+		id: "14teXEbh75YW7-AIFzR5IbuhES1AHx5u4p4y0d9IW60o",
+		gid: "17185765",
+		filepath: "src/data/states.csv"
 	}
-	// {
-	// 	"id": "1te65h_nywgXVAzvV-9E5fmHGblcKvctf_cNZgeam9Tk",
-	// 	"gid": "0",
-	// 	"filepath": "src/data/test.csv"
-	// }
 ];

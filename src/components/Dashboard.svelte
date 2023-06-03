@@ -1,5 +1,5 @@
 <script>
-	import states from "$data/states.json";
+	import states from "$data/states.csv";
 </script>
 
 <figure>
