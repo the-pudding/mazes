@@ -1,5 +1,57 @@
-id,name,thumb,text
-TN,Tennessee,down,Bans abortion at conception
-TN,Tennessee,down,"Has 8.1 clinics per 100,000 women"
-TN,Tennessee,down,Requires 2 counseling sessions
-TN,Tennessee,up,Something good goes here
+id,pos-neg-split,name,thumb,text
+AL,0,Alabama,down,Completely bans abortion with very limited exceptions
+AL,,Alabama,down,State constitution explicitly excludes abortion
+AL,,Alabama,down,Does not mandate sex-ed
+AL,,Alabama,down,"Has a materal mortality rate of 41.4 per 100,000 births"
+AL,,Alabama,up,More than half (55%) of Alabamans want abortion to be legal
+AL,,Alabama,up,"Two bills have been introduced (H17, S34) to repeal abortion restrictions"
+,4,,,
+,1,,,
+,0,,,
+,5,,,
+,4,,,
+,4,,,
+,4,,,
+,3,,,
+,2,,,
+,1,,,
+,4,,,
+,0,,,
+,4,,,
+,2,,,
+,2,,,
+,2,,,
+,0,,,
+,0,,,
+,4,,,
+,4,,,
+,4,,,
+,3,,,
+,4,,,
+,0,,,
+,0,,,
+,3,,,
+,1,,,
+,3,,,
+,3,,,
+,5,,,
+,5,,,
+,5,,,
+,2,,,
+,0,,,
+,2,,,
+,0,,,
+,6,,,
+,2,,,
+,3,,,
+,2,,,
+,0,,,
+,0,,,
+,0,,,
+,2,,,
+,5,,,
+,3,,,
+,4,,,
+,0,,,
+,2,,,
+,3,,,

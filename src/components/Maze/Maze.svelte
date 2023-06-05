@@ -45,9 +45,6 @@
 </div>
 
 <style>
-	svg {
-		/* background: white; */
-	}
 	.container {
 		width: 100%;
 	}

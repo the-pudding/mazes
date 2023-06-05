@@ -1,52 +1,52 @@
-id,name,row,col,level,guttmacher link
-AL,Alabama,7,8,,
-AK,Alaska,1,1,,
-AZ,Arizona,6,3,,
-AR,Arkansas,7,6,,
-CA,California,5,2,,
-CO,Colorado,5,4,,
-CT,Connecticut,4,11,,
-DC,District of Columbia,6,11,,
-DE,Delaware,5,11,,
-FL,Florida,8,10,,
-GA,Georgia,7,9,,
-HI,Hawaii,7,1,,
-ID,Idaho,3,3,,
-IL,Illinois,5,6,,
-IN,Indiana,5,7,,
-IA,Iowa,4,6,most restrictive,https://www.guttmacher.org/regions/northern-america/united-states/iowa
-KS,Kansas,6,5,,
-KY,Kentucky,6,7,,
-LA,Louisiana,7,5,,
-ME,Maine,1,12,,
-MD,Maryland,5,10,,
-MA,Massachusetts,3,11,,
-MI,Michigan,3,8,,
-MN,Minnesota,3,6,,
-MS,Mississippi,7,7,,
-MO,Missouri,6,6,,
-MT,Montana,3,4,,
-NE,Nebraska,5,5,,
-NV,Nevada,5,3,,
-NH,New Hampshire,2,12,,
-NJ,New Jersey,4,10,,
-NM,New Mexico,6,4,,
-NY,New York,3,10,,
-NC,North Carolina,6,10,,
-ND,North Dakota,3,5,,
-OH,Ohio,4,8,,
-OK,Oklahoma,7,4,,
-OR,Oregon,4,2,,
-PA,Pennsylvania,4,9,,
-RI,Rhode Island,3,12,,
-SC,South Carolina,6,9,,
-SD,South Dakota,4,5,,
-TN,Tennessee,6,8,,
-TX,Texas,8,5,,
-UT,Utah,4,3,,
-VT,Vermont,2,11,,
-VA,Virginia,5,9,,
-WA,Washington,3,2,,
-WV,West Virginia,5,8,,
-WI,Wisconsin,4,7,,
-WY,Wyoming,4,4,,
+id,name,row,col,level,guttmacher link,pos-neg-split
+AL,Alabama,7,8,most restrictive,https://states.guttmacher.org/policies/alabama/abortion-policies,0
+AK,Alaska,1,1,protective,https://states.guttmacher.org/policies/alaska/abortion-policies,4
+AZ,Arizona,6,3,very restrictive,https://states.guttmacher.org/policies/arizona/abortion-policies,1
+AR,Arkansas,7,6,most restrictive,https://states.guttmacher.org/policies/arkansas/abortion-policies,0
+CA,California,5,2,very protective,https://states.guttmacher.org/policies/california/abortion-policies,5
+CO,Colorado,5,4,protective,https://states.guttmacher.org/policies/colorado/abortion-policies,4
+CT,Connecticut,4,11,protective,https://states.guttmacher.org/policies/connecticut/abortion-policies,4
+DC,District of Columbia,6,11,protective,https://states.guttmacher.org/policies/dc/abortion-policies,4
+DE,Delaware,5,11,some restrictions/protections,https://states.guttmacher.org/policies/delaware/abortion-policies,3
+FL,Florida,8,10,restrictive,https://states.guttmacher.org/policies/florida/abortion-policies,2
+GA,Georgia,7,9,very restrictive,https://states.guttmacher.org/policies/georgia/abortion-policies,1
+HI,Hawaii,7,1,protective,https://states.guttmacher.org/policies/hawaii/abortion-policies,4
+ID,Idaho,3,3,most restrictive,https://states.guttmacher.org/policies/idaho/abortion-policies,0
+IL,Illinois,5,6,protective,https://states.guttmacher.org/policies/illinois/abortion-policies,4
+IN,Indiana,5,7,restrictive,https://states.guttmacher.org/policies/indiana/abortion-policies,2
+IA,Iowa,4,6,restrictive,https://states.guttmacher.org/policies/iowa/abortion-policies,2
+KS,Kansas,6,5,restrictive,https://states.guttmacher.org/policies/kansas/abortion-policies,2
+KY,Kentucky,6,7,most restrictive,https://states.guttmacher.org/policies/kentucky/abortion-policies,0
+LA,Louisiana,7,5,most restrictive,https://states.guttmacher.org/policies/louisiana/abortion-policies,0
+ME,Maine,1,12,protective,https://states.guttmacher.org/policies/maine/abortion-policies,4
+MD,Maryland,5,10,protective,https://states.guttmacher.org/policies/maryland/abortion-policies,4
+MA,Massachusetts,3,11,protective,https://states.guttmacher.org/policies/massachusetts/abortion-policies,4
+MI,Michigan,3,8,some restrictions/protections,https://states.guttmacher.org/policies/michigan/abortion-policies,3
+MN,Minnesota,3,6,protective,https://states.guttmacher.org/policies/minnesota/abortion-policies,4
+MS,Mississippi,7,7,most restrictive,https://states.guttmacher.org/policies/mississippi/abortion-policies,0
+MO,Missouri,6,6,most restrictive,https://states.guttmacher.org/policies/missouri/abortion-policies,0
+MT,Montana,3,4,some restrictions/protections,https://states.guttmacher.org/policies/montana/abortion-policies,3
+NE,Nebraska,5,5,very restrictive,https://states.guttmacher.org/policies/nebraska/abortion-policies,1
+NV,Nevada,5,3,some restrictions/protections,https://states.guttmacher.org/policies/nevada/abortion-policies,3
+NH,New Hampshire,2,12,some restrictions/protections,https://states.guttmacher.org/policies/new-hampshire/abortion-policies,3
+NJ,New Jersey,4,10,very protective,https://states.guttmacher.org/policies/new-jersey/abortion-policies,5
+NM,New Mexico,6,4,very protective,https://states.guttmacher.org/policies/new-mexico/abortion-policies,5
+NY,New York,3,10,very protective,https://states.guttmacher.org/policies/new-york/abortion-policies,5
+NC,North Carolina,6,10,restrictive,https://states.guttmacher.org/policies/north-carolina/abortion-policies,2
+ND,North Dakota,3,5,most restrictive,https://states.guttmacher.org/policies/north-dakota/abortion-policies,0
+OH,Ohio,4,8,restrictive,https://states.guttmacher.org/policies/ohio/abortion-policies,2
+OK,Oklahoma,7,4,most restrictive,https://states.guttmacher.org/policies/oklahoma/abortion-policies,0
+OR,Oregon,4,2,most protective,https://states.guttmacher.org/policies/oregon/abortion-policies,6
+PA,Pennsylvania,4,9,restrictive,https://states.guttmacher.org/policies/pennsylvania/abortion-policies,2
+RI,Rhode Island,3,12,some restrictions/protections,https://states.guttmacher.org/policies/rhode-island/abortion-policies,3
+SC,South Carolina,6,9,restrictive,https://states.guttmacher.org/policies/south-carolina/abortion-policies,2
+SD,South Dakota,4,5,most restrictive,https://states.guttmacher.org/policies/south-dakota/abortion-policies,0
+TN,Tennessee,6,8,most restrictive,https://states.guttmacher.org/policies/tennessee/abortion-policies,0
+TX,Texas,8,5,most restrictive,https://states.guttmacher.org/policies/texas/abortion-policies,0
+UT,Utah,4,3,restrictive,https://states.guttmacher.org/policies/utah/abortion-policies,2
+VT,Vermont,2,11,very protective,https://states.guttmacher.org/policies/vermont/abortion-policies,5
+VA,Virginia,5,9,some restrictions/protections,https://states.guttmacher.org/policies/virginia/abortion-policies,3
+WA,Washington,3,2,protective,https://states.guttmacher.org/policies/washington/abortion-policies,4
+WV,West Virginia,5,8,most restrictive,https://states.guttmacher.org/policies/west-virginia/abortion-policies,0
+WI,Wisconsin,4,7,restrictive,https://states.guttmacher.org/policies/wisconsin/abortion-policies,2
+WY,Wyoming,4,4,some restrictions/protections,https://states.guttmacher.org/policies/wyoming/abortion-policies,3

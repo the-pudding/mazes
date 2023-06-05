@@ -7,11 +7,13 @@
 	<div class="above">
 		<Intro />
 		<Scroll />
+
+		<div style="height: 100vh;" />
 	</div>
 </article>
 
 <style>
 	.above {
-		background: #f9f7f4;
+		background: var(--upper-bg);
 	}
 </style>
