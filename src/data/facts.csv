@@ -1,57 +1,307 @@
-id,pos-neg-split,name,thumb,text
-AL,0,Alabama,down,Completely bans abortion with very limited exceptions
-AL,,Alabama,down,State constitution explicitly excludes abortion
-AL,,Alabama,down,Does not mandate sex-ed
-AL,,Alabama,down,"Has a materal mortality rate of 41.4 per 100,000 births"
-AL,,Alabama,up,More than half (55%) of Alabamans want abortion to be legal
-AL,,Alabama,up,"Two bills have been introduced (H17, S34) to repeal abortion restrictions"
-,4,,,
-,1,,,
-,0,,,
-,5,,,
-,4,,,
-,4,,,
-,4,,,
-,3,,,
-,2,,,
-,1,,,
-,4,,,
-,0,,,
-,4,,,
-,2,,,
-,2,,,
-,2,,,
-,0,,,
-,0,,,
-,4,,,
-,4,,,
-,4,,,
-,3,,,
-,4,,,
-,0,,,
-,0,,,
-,3,,,
-,1,,,
-,3,,,
-,3,,,
-,5,,,
-,5,,,
-,5,,,
-,2,,,
-,0,,,
-,2,,,
-,0,,,
-,6,,,
-,2,,,
-,3,,,
-,2,,,
-,0,,,
-,0,,,
-,0,,,
-,2,,,
-,5,,,
-,3,,,
-,4,,,
-,0,,,
-,2,,,
-,3,,,
+id,name,thumb,text
+AL,Alabama,down,Completely bans abortion with very limited exceptions
+AL,Alabama,down,Explicitly excludes abortion in state constitution
+AL,Alabama,down,Does not mandate sex-ed
+AL,Alabama,down,"Has a materal mortality rate of 41.4 per 100,000 births"
+AL,Alabama,down,Has a 48-hour waiting period
+AL,Alabama,up,55% of people Alabama want abortion to be legal
+AK,Alaska,up,Abortion is not restricted by gestational age
+AK,Alaska,up,Does not requires minors to have parental consent
+AK,Alaska,up,Does not have a waiting period
+AK,Alaska,up,Does not have medically unnecessary regulations for abortion providers
+AK,Alaska,down,86% of Alaska counties do not have an abortion provider
+AK,Alaska,down,"Has the nation's highest rate of rape per 100,000 women"
+AZ,Arizona,down,Bans abortion at 15 weeks and later
+AZ,Arizona,down,Requires at least 2 in-person counseling visits
+AZ,Arizona,down,Requires minors to have parental consent
+AZ,Arizona,down,Bans telehealth or mailing abortion pills
+AZ,Arizona,up,62% of people in Arizona want abortion to be legal
+AZ,Arizona,up,Has minimum wage above $12/hr
+AR,Arkansas,down,Completely bans abortion with very limited exceptions
+AR,Arkansas,down,Has a 72-hour waiting period
+AR,Arkansas,down,Bans telehealth or mailing abortion pills
+AR,Arkansas,down,Has the nation's highest maternal mortality rate
+AR,Arkansas,down,Has the nation's highest teen birth rate
+AR,Arkansas,up,A bill (HJR1008) to protect access to legal abortion was introduced in the state legislature
+CA,California,up,Bans abortion at viability
+CA,California,up,Explicitly protects abortion in state constitution
+CA,California,up,Requires private insurance to cover abortion
+CA,California,up,Has protections for abortion clinics
+CA,California,up,Has the nation's lowest maternal mortality rate
+CA,California,down,Allows individuals and religious institutions to refuse to provide abortion care
+CO,Colorado,up,Abortion is not restricted by gestational age
+CO,Colorado,up,Qualified health care professionals (in addition to doctors) can provide abortions
+CO,Colorado,up,"Has a ""shield law"" to protect patients and providers"
+CO,Colorado,up,Requires sex-ed to be inclusive of sexual orientation
+CO,Colorado,down,Requires minors to have parental consent
+CO,Colorado,down,Bans health insurance from covering abortion for public employees
+CT,Connecticut,up,Bans abortion at viability
+CT,Connecticut,up,Qualified health care professionals (in addition to doctors) can provide abortions
+CT,Connecticut,up,Does not Requires minors to have parental consent
+CT,Connecticut,up,Removes firearms from domestic violence abusers
+CT,Connecticut,down,Has medically unnecessary regulations for abortion providers
+CT,Connecticut,down,"Offers ""Choose Life"" license plate"
+DE,Delaware,up,Bans abortion at viability
+DE,Delaware,up,"Has a ""shield law"" to protect patients and providers"
+DE,Delaware,up,Does not have a waiting period
+DE,Delaware,down,Requires minors to have parental consent
+DE,Delaware,down,"Offers ""Choose Life"" license plate funding anti-choice groups"
+DE,Delaware,down,Bans most state Medicaid coverage of abortion
+DC,District of Columbia,up,Abortion is not restricted by gestational age
+DC,District of Columbia,up,Does not Requires minors to have parental consent
+DC,District of Columbia,up,"Has a ""shield law"" to protect patients and providers"
+DC,District of Columbia,up,Has protections for abortion clinics
+DC,District of Columbia,down,Has the nation's highest heath spending per capita
+DC,District of Columbia,down,US Congress can impose unwanted laws on DC
+FL,Florida,down,Bans abortion at 15 weeks and later
+FL,Florida,down,Requires minors to have parental consent
+FL,Florida,down,Requires at least 2 in-person counseling visits
+FL,Florida,down,Has medically unnecessary regulations for abortion providers
+FL,Florida,up,64% of people in Florida want abortion to be legal
+FL,Florida,up,Requires confidentiality for minors' STI treatment
+GA,Georgia,down,Bans abortion at 6 weeks and later
+GA,Georgia,down,Has a 24-hour waiting period
+GA,Georgia,down,Requires minors to have parental consent
+GA,Georgia,down,Pharmacists can refuse to dispense emergency contraception
+GA,Georgia,up,57% of people in Georgia want abortion to be legal
+GA,Georgia,up,Has ratified the Equal Rights Amendment
+HI,Hawaii,up,Bans abortion at viability
+HI,Hawaii,up,Qualified health care professionals (in addition to doctors) can provide abortions
+HI,Hawaii,up,"Has a ""shield law"" to protect patients and providers"
+HI,Hawaii,up,Has the nation's lowest child care costs as a percentage of mediun income
+HI,Hawaii,down,"Offers ""Choose Life"" license plate funding anti-choice groups"
+HI,Hawaii,down,Legislature introduced bill (H1275) to ban medication abortion
+ID,Idaho,down,Completely bans abortion with very limited exceptions
+ID,Idaho,down,Has a 24-hour waiting period
+ID,Idaho,down,Requires minors to have parental consent
+ID,Idaho,down,Bans private health insurance from covering abortions in most cases
+ID,Idaho,down,"Offers ""Choose Life"" license plate funding anti-choice groups"
+ID,Idaho,up,Enacted a law that expands telehealth
+IL,Illinois,up,Bans abortion at viability
+IL,Illinois,up,Requires private insurance to cover abortion
+IL,Illinois,up,"Has a ""shield law"" to protect patients and providers"
+IL,Illinois,up,Qualified health care professionals (in addition to doctors) can provide abortions
+IL,Illinois,down,Allows individual and institutions to refuse to provide abortion care
+IL,Illinois,down,Does not mandate sex-ed
+IN,Indiana,down,Bans abortion at 22 weeks and later
+IN,Indiana,down,Requires at least 2 in-person counseling visits
+IN,Indiana,down,Bans private health insurance from covering abortions in most cases
+IN,Indiana,down,Has medically unnecessary regulations for abortion providers
+IN,Indiana,up,61% of people in Indiana want abortion to be legal
+IN,Indiana,up,Has ratified the Equal Rights Amendment
+IA,Iowa,down,Bans abortion at 22 weeks and later
+IA,Iowa,down,Requires at least 2 in-person counseling visits
+IA,Iowa,down,Requires minors to have parental consent
+IA,Iowa,down,Bans abortion providers from receiving public funds
+IA,Iowa,up,61% of people in Iowa want abortion to be legal
+IA,Iowa,up,Has ratified the Equal Rights Amendment
+KS,Kansas,down,Bans abortion at 22 weeks and later
+KS,Kansas,down,Has a 24-hour waiting period
+KS,Kansas,down,Requires minors to have parental consent
+KS,Kansas,down,Bans private health insurance from covering abortions in most cases
+KS,Kansas,up,Has protections for abortion clinics
+KS,Kansas,up,Voters rejected a constitutional amendment that said there was no right to abortion 
+KY,Kentucky,down,Completely bans abortion with very limited exceptions
+KY,Kentucky,down,Requires at least 2 in-person counseling visits
+KY,Kentucky,down,Has medically unnecessary regulations for abortion providers
+KY,Kentucky,down,Bans telehealth or mailing abortion pills
+KY,Kentucky,down,Requires minors to have parental consent
+KY,Kentucky,up,Voters rejected a constitutional amendment to deny protections for abortions
+LA,Louisiana,down,Completely bans abortion with very limited exceptions
+LA,Louisiana,down,Explicitly excludes abortion in state constitution
+LA,Louisiana,down,Requires at least 2 in-person counseling visits
+LA,Louisiana,down,Has the nation's highest rate of poverty
+LA,Louisiana,down,Bans telehealth or mailing abortion pills
+LA,Louisiana,up,83% of Medicare patients surveyed said their doctor listened carefully
+ME,Maine,up,Bans abortion at viability
+ME,Maine,up,Requires private insurance to cover abortion
+ME,Maine,up,"Has a ""shield law"" to protect patients and providers"
+ME,Maine,up,Qualified health care professionals (in addition to doctors) can provide abortions
+ME,Maine,down,"Allows individual providers to refuse abortion, contreception, and sterilization care"
+ME,Maine,down,"Has the nation's highest number of ER visits per 1,000 people"
+MD,Maryland,up,Bans abortion at viability
+MD,Maryland,up,Requires private insurance to cover abortion
+MD,Maryland,up,"Has a ""shield law"" to protect patients and providers"
+MD,Maryland,up,Qualified health care professionals (in addition to doctors) can provide abortions
+MD,Maryland,down,Requires minors to have parental consent
+MD,Maryland,down,Has medically unnecessary regulations for abortion providers
+MA,Massachusetts,up,Bans abortion at 24 weeks and later
+MA,Massachusetts,up,"Has a ""shield law"" to protect patients and providers"
+MA,Massachusetts,up,Qualified health care professionals (in addition to doctors) can provide abortions
+MA,Massachusetts,up,Has the nation's lowest uninsured rate
+MA,Massachusetts,down,Requires minors to have parental consent
+MA,Massachusetts,down,"Offers ""Choose Life"" license plate funding anti-choice groups"
+MI,Michigan,up,Bans abortion at viability
+MI,Michigan,up,Explicitly protects abortion in state constitution
+MI,Michigan,up,"Has a ""shield law"" to protect patients and providers"
+MI,Michigan,down,Has a 24-hour waiting period
+MI,Michigan,down,Bans private health insurance from covering abortions in most cases
+MI,Michigan,down,Has medically unnecessary regulations for abortion providers
+MN,Minnesota,up,Bans abortion at viability
+MN,Minnesota,up,"Has a ""shield law"" to protect patients and providers"
+MN,Minnesota,up,Has protections for abortion clinics
+MN,Minnesota,up,Removes firearms from domestic violence abusers
+MN,Minnesota,down,"Legislature introduced 4 bills (H1889, H280, S483, S924) to restrict abortion coverage in Medicaid"
+MN,Minnesota,down,Allows individuals and private institutions to refuse to provide abortion care
+MS,Mississippi,down,Completely bans abortion with very limited exceptions
+MS,Mississippi,down,Requires at least 2 in-person counseling visits
+MS,Mississippi,down,Bans telehealth or mailing abortion pills
+MS,Mississippi,down,Has medically unnecessary regulations for abortion providers
+MS,Mississippi,up,Requires minors to have parental consent
+MS,Mississippi,up,"3 bills (H1385, H937, H938) to repeal abortion restrictions were introduced in the state legislature"
+MO,Missouri,down,Completely bans abortion with very limited exceptions
+MO,Missouri,down,Requires at least 2 in-person counseling visits
+MO,Missouri,down,Bans private health insurance from covering abortions in most cases
+MO,Missouri,down,Bans telehealth or mailing abortion pills
+MO,Missouri,down,Requires minors to have parental consent
+MO,Missouri,up,59% of people in Missouri want abortion to be legal
+MT,Montana,up,Bans abortion at viability
+MT,Montana,up,Qualified health care professionals (in addition to doctors) can provide abortions
+MT,Montana,up,Has protections for abortion clinics
+MT,Montana,down,Requires minors to have parental consent
+MT,Montana,down,Over 30 anti-abortion bills were introduced in the state legislature
+MT,Montana,down,"Offers ""Choose Life"" license plate funding anti-choice groups"
+NE,Nebraska,down,Completely bans abortion with very limited exceptions
+NE,Nebraska,down,Has a 24-hour waiting period
+NE,Nebraska,down,Bans private health insurance from covering abortions in most cases
+NE,Nebraska,down,Bans telehealth or mailing abortion pills
+NE,Nebraska,up,54% of people in Iowa want abortion to be legal
+NE,Nebraska,up,A bill (L256) to expand access to telehealth was introduced in the state legislature
+NV,Nevada,up,Bans abortion at 24 weeks and later
+NV,Nevada,up,Has protections for abortion clinics
+NV,Nevada,up,"Has a ""shield law"" to protect patients and providers"
+NV,Nevada,down,Allows individuals and institutions to refuse to provide abortion care
+NV,Nevada,down,Does not require sex-ed to be inclusive of sexual orientation
+NV,Nevada,down,88% of counties did not have an abortion provider in 2017
+NH,New Hampshire,up,Bans abortion at 24 weeks and later
+NH,New Hampshire,up,Qualified health care professionals (in addition to doctors) can provide abortions
+NH,New Hampshire,up,Has the nation's lowest teen birth rate
+NH,New Hampshire,down,Requires minors to have parental consent
+NH,New Hampshire,down,Bans abortion providers from receiving public funds
+NH,New Hampshire,down,60% of counties did not have an abortion provider in 2017
+NJ,New Jersey,up,Abortion is not restricted by gestational age
+NJ,New Jersey,up,Qualified health care professionals (in addition to doctors) can provide abortions
+NJ,New Jersey,up,"Has a ""shield law"" to protect patients and providers"
+NJ,New Jersey,up,Requires sex-ed to be inclusive of sexual orientation
+NJ,New Jersey,up,Does not have medically unnecessary regulations for abortion providers
+NJ,New Jersey,down,"Offers ""Choose Life"" license plate funding anti-choice groups"
+NM,New Mexico,up,Abortion is not restricted by gestational age
+NM,New Mexico,up,Qualified health care professionals (in addition to doctors) can provide abortions
+NM,New Mexico,up,"Has a ""shield law"" to protect patients and providers"
+NM,New Mexico,up,Mandates sex-ed
+NM,New Mexico,up,Has unemployment benefits for domestic and sexual violence victims
+NM,New Mexico,down,Has the nation's highest child poverty rate
+NY,New York,up,Bans abortion at viability
+NY,New York,up,Requires private insurance to cover abortion
+NY,New York,up,Qualified health care professionals (in addition to doctors) can provide abortions
+NY,New York,up,"Has a ""shield law"" to protect patients and providers"
+NY,New York,up,Has protections for abortion clinics
+NY,New York,down,Allows individuals and institutions to refuse to provide abortion care
+NC,North Carolina,down,Bans abortion at 20 weeks and later
+NC,North Carolina,down,Has a 72-hour waiting period
+NC,North Carolina,down,Bans telehealth or mailing abortion pills
+NC,North Carolina,down,Has medically unnecessary regulations for abortion providers
+NC,North Carolina,up,"Has a ""shield law"" to protect patients and providers"
+NC,North Carolina,up,Has protections for abortion clinics
+ND,North Dakota,down,Completely bans abortion with very limited exceptions
+ND,North Dakota,down,Has a 24-hour waiting period
+ND,North Dakota,down,Bans private health insurance from covering abortions in most cases
+ND,North Dakota,down,Bans telehealth or mailing abortion pills
+ND,North Dakota,down,Requires minors to have parental consent
+ND,North Dakota,up,56% of people in North Dakota want abortion to be legal
+OH,Ohio,down,Bans abortion at 22 weeks and later
+OH,Ohio,down,Requires at least 2 in-person counseling visits
+OH,Ohio,down,Requires minors to have parental consent
+OH,Ohio,down,Has medically unnecessary regulations for abortion providers
+OH,Ohio,up,66% of people in Ohio want abortion to be legal
+OH,Ohio,up,Mandates sex-ed
+OK,Oklahoma,down,Completely bans abortion with very limited exceptions
+OK,Oklahoma,down,Has a 72-hour waiting period
+OK,Oklahoma,down,Bans private health insurance from covering abortions in most cases
+OK,Oklahoma,down,Bans telehealth or mailing abortion pills
+OK,Oklahoma,down,Requires minors to have parental consent
+OK,Oklahoma,up,"2 bills (H2088, S834) to repeal abortion restrictions were introduced in the state legislature"
+OR,Oregon,up,Abortion is not restricted by gestational age
+OR,Oregon,up,Qualified health care professionals (in addition to doctors) can provide abortions
+OR,Oregon,up,Requires private insurance to cover abortion
+OR,Oregon,up,Has protections for abortion clinics
+OR,Oregon,up,Does not have medically unnecessary regulations for abortion providers
+OR,Oregon,up,Requires sex-ed to be inclusive of sexual orientation
+PA,Pennsylvania,down,Bans abortion at 24 weeks and later
+PA,Pennsylvania,down,Has a 24-hour waiting period
+PA,Pennsylvania,down,Requires minors to have parental consent
+PA,Pennsylvania,down,Has medically unnecessary regulations for abortion providers
+PA,Pennsylvania,up,"Has a ""shield law"" to protect patients and providers"
+PA,Pennsylvania,up,61% of people in Pennsylvania want abortion to be legal
+RI,Rhode Island,up,Bans abortion at viability
+RI,Rhode Island,up,"Has a ""shield law"" to protect patients and providers"
+RI,Rhode Island,up,Requires sex-ed to be inclusive of sexual orientation
+RI,Rhode Island,down,Requires minors to have parental consent
+RI,Rhode Island,down,Has medically unnecessary regulations for abortion providers
+RI,Rhode Island,down,60% of counties did not have an abortion provider in 2017
+SC,South Carolina,down,Bans abortion at 22 weeks and later
+SC,South Carolina,down,Has a 24-hour waiting period
+SC,South Carolina,down,Bans telehealth or mailing abortion pills
+SC,South Carolina,down,Requires minors to have parental consent
+SC,South Carolina,up,Requires sex-ed
+SC,South Carolina,up,"7 bills (S240, S29, S29a, H3552, S3911, H3911a, S683) to repeal abortion restrictions were introduced in the state legislature"
+SD,South Dakota,down,Completely bans abortion with very limited exceptions
+SD,South Dakota,down,Has a 72-hour waiting period
+SD,South Dakota,down,Has medically unnecessary regulations for abortion providers
+SD,South Dakota,down,Bans telehealth or mailing abortion pills
+SD,South Dakota,up,Has law that protects all workers from sexual harassment
+SD,South Dakota,up,84% of Medicare patients surveyed said their doctor listened carefully
+TN,Tennessee,down,Completely bans abortion with very limited exceptions
+TN,Tennessee,down,Explicitly excludes abortion in state constitution
+TN,Tennessee,down,Requires at least 2 in-person counseling visits
+TN,Tennessee,down,Bans telehealth or mailing abortion pills
+TN,Tennessee,down,Requires minors to have parental consent
+TN,Tennessee,up,Removes firearms from domestic violence abusers
+TX,Texas,down,Completely bans abortion with very limited exceptions
+TX,Texas,down,Requires at least 2 in-person counseling visits
+TX,Texas,down,Bans private health insurance from covering abortions in most cases
+TX,Texas,down,Has nation's highest uninsured rate
+TX,Texas,down,Requires minors to have parental consent
+TX,Texas,up,57% of people in Texas want abortion to be legal
+UT,Utah,down,Bans abortion at 18 weeks and later
+UT,Utah,down,Requires at least 2 in-person counseling visits
+UT,Utah,down,Bans private health insurance from covering abortions in most cases
+UT,Utah,down,Has medically unnecessary regulations for abortion providers
+UT,Utah,up,Has nation's lowest health spending per capita
+UT,Utah,up,A law was enacted to expand access to telehealth
+VT,Vermont,up,Abortion is not restricted by gestational age
+VT,Vermont,up,Explicitly protects abortion in state constitution
+VT,Vermont,up,Qualified health care professionals (in addition to doctors) can provide abortions
+VT,Vermont,up,"Has a ""shield law"" to protect patients and providers"
+VT,Vermont,up,Has unemployment benefits for domestic and sexual violence victims
+VT,Vermont,down,Has the nation's highest child care costs as a percentage of median income
+VA,Virginia,up,Bans abortion at the third trimester
+VA,Virginia,up,Qualified health care professionals (in addition to doctors) can provide abortions
+VA,Virginia,up,Has ratified the Equal Rights Amendment
+VA,Virginia,down,Requires minors to have parental consent
+VA,Virginia,down,"Offers ""Choose Life"" license plate funding anti-choice groups"
+VA,Virginia,down,Does not mandate sex-ed
+WA,Washington,up,Bans abortion at viability
+WA,Washington,up,Requires private insurance to cover abortion
+WA,Washington,up,Qualified health care professionals (in addition to doctors) can provide abortions
+WA,Washington,up,"Has a ""shield law"" to protect patients and providers"
+WA,Washington,down,Allows individual and institutions to refuse to provide abortion care
+WA,Washington,down,A bill (S5172) that would criminalize abortion for women or providers was introduced in the state legislature
+WV,West Virginia,down,Completely bans abortion with very limited exceptions
+WV,West Virginia,down,Explicitly excludes abortion in state constitution
+WV,West Virginia,down,Has a 24-hour waiting period
+WV,West Virginia,down,Bans telehealth or mailing abortion pills
+WV,West Virginia,down,Requires minors to have parental consent
+WV,West Virginia,up,57% of people in West Virginia want abortion to be legal
+WI,Wisconsin,down,Bans abortion at 22 weeks and later
+WI,Wisconsin,down,Requires at least 2 in-person counseling visits
+WI,Wisconsin,down,Bans telehealth or mailing abortion pills
+WI,Wisconsin,down,Has medically unnecessary regulations for abortion providers
+WI,Wisconsin,up,Has protections for abortion clinics
+WI,Wisconsin,up,64% of people in Wisconsin want abortion to be legal
+WY,Wyoming,up,Bans abortion at viability
+WY,Wyoming,up,Has ratified the Equal Rights Amendment
+WY,Wyoming,up,55% of people in Wyoming want abortion to be legal
+WY,Wyoming,down,Requires minors to have parental consent
+WY,Wyoming,down,Has the nation's lowest rate for pay parity
+WY,Wyoming,down,Bans medication abortion
