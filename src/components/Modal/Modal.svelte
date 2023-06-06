@@ -5,6 +5,7 @@
 	import states from "$data/states.csv";
 	import { browser } from "$app/environment";
 	import { onMount } from "svelte";
+	import data from "$data/iowa.json";
 
 	let modalEl;
 	let numFocusable;
@@ -35,8 +36,6 @@
 		}
 	};
 
-	$: console.log({ firstFocusable, lastFocusable, numFocusable });
-
 	onMount(() => {
 		const focusable = modalEl.querySelectorAll(
 			"a[href], button, textarea, input[type='text'], input[type='radio'], input[type='checkbox'], select"
@@ -55,12 +54,20 @@
 	on:keydown={trapFocus}
 >
 	<button class="close" on:click={close}><Icon name="x" /></button>
-	<h2>{state}</h2>
+	<div class="title">
+		<h2>{state}</h2>
+		<div>
+			...is one of the <strong>most restrictive</strong> states for abortion access.
+		</div>
+	</div>
 
-	<!-- <div class="play">
-		<div>Info tk</div>
-		<Maze playable={true} />
-	</div> -->
+	<div class="play">
+		<div class="facts">make this into a component</div>
+		<div class="maze" style="background: pink">
+			this is a maze
+			<!-- <Maze wallData={data} size={data.length} playable={true} /> -->
+		</div>
+	</div>
 </div>
 
 <svelte:body class:modal-open={true} />
@@ -73,6 +80,7 @@
 		display: none;
 		position: fixed;
 		width: 90%;
+		max-height: 90vh;
 		margin: 4em auto;
 		top: 0;
 		left: 50%;
@@ -83,15 +91,25 @@
 		padding: 2rem;
 	}
 	.modal.open {
-		display: block;
 		z-index: 10;
+		display: grid;
+		grid-template-rows: 1fr 3fr 1fr;
+		grid-template-columns: 1fr 2fr;
 	}
 	.play {
-		display: grid;
-		grid-template-columns: 200px 1fr;
+		/* display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: 3rem; */
+	}
+	.title {
+		background: cornflowerblue;
 	}
 	h2 {
 		font-weight: 900;
+		font-size: 3rem;
+	}
+	.title div {
+		font-size: 1.3rem;
 	}
 	.close {
 		display: flex;
