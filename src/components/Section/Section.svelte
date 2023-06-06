@@ -9,20 +9,17 @@
 	$: id = _.kebabCase(title);
 
 	const components = { Prose, Slide };
-
-	const titleWords = title.split(" ");
-	const titlePart1 = titleWords.slice(0, titleWords.length - 2).join(" ");
-	const titlePart2 = titleWords.slice(titleWords.length - 2).join(" ");
 </script>
 
 <section {id}>
-	<h2>{titlePart1}<br /><span>{titlePart2}</span></h2>
+	<h2>{@html title}</h2>
 
-	{#each chunks as { type, component, maze, text, before, after, panels }}
+	{#each chunks as { type, component, maze, align, text, before, after, panels }}
 		<svelte:element this={type}>
 			<svelte:component
 				this={components[component]}
 				{maze}
+				{align}
 				{text}
 				{before}
 				{after}
@@ -41,7 +38,7 @@
 		font-size: 4rem;
 		text-transform: uppercase;
 	}
-	h2 span {
+	:global(section h2 strong) {
 		color: var(--color-pp-magenta);
 		font-weight: 900;
 	}

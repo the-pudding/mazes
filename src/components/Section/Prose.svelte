@@ -7,12 +7,15 @@
 
 	export let maze;
 	export let text;
+	export let align;
 
 	const stateName = states.find((d) => d.id === maze).name;
+
+	$: reverse = align === "right";
 </script>
 
-<div class="container">
-	<div class="words">
+<div class="container" class:reverse>
+	<div class="words" class:reverse>
 		{#each text as { value }}
 			<p>{@html value}</p>
 		{/each}
@@ -42,6 +45,13 @@
 		grid-template-columns: 1fr 250px;
 		align-items: center;
 		gap: 3rem;
+	}
+	.container.reverse {
+		grid-template-columns: 250px 1fr;
+		grid-auto-flow: dense;
+	}
+	.words.reverse {
+		grid-column: 2;
 	}
 	.top {
 		display: flex;
