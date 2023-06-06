@@ -8,6 +8,8 @@
 	export let size;
 	export let playable;
 	export let animated;
+	export let entered;
+	export let percentDone;
 
 	const data = writable(wallData);
 	const width = writable(0);
@@ -15,6 +17,7 @@
 	const wallWidth = writable(0);
 	const padding = writable(0);
 	const location = writable({ row: 0, col: 0 });
+	const started = writable(false);
 
 	setContext("maze", {
 		size,
@@ -26,20 +29,22 @@
 		getWallWidth: () => wallWidth,
 		getWidth: () => width,
 		getPadding: () => padding,
-		getLocation: () => location
+		getLocation: () => location,
+		getStarted: () => started
 	});
 
 	$: $data = wallData;
 	$: $wallWidth = $width / 50;
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = size ? ($width - $padding * 2) / size : 0;
+	$: $started = entered;
 </script>
 
 <div class="container" bind:clientWidth={$width}>
 	{#if $width}
 		<svg width={$width} height={$width}>
 			<Walls />
-			{#if playable}
+			{#if playable && entered}
 				<Path />
 			{/if}
 		</svg>

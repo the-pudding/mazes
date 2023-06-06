@@ -10,16 +10,18 @@
 		getData,
 		getCellSize,
 		getWallWidth,
-		getPadding
+		getPadding,
+		getStarted
 	} = getContext("maze");
 	const data = getData();
 	const cellSize = getCellSize();
 	const wallWidth = getWallWidth();
 	const padding = getPadding();
+	const started = getStarted();
 </script>
 
 <g style:transform={`translate(${$padding}px, ${$padding}px)`}>
-	{#if playable}
+	{#if playable && $started}
 		{#each $data as d}
 			<!-- TODO: unclear if we need all of these rects -->
 			{#each d as { row, col }}

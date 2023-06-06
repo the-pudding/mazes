@@ -5,21 +5,24 @@
 	import { draw } from "svelte/transition";
 	import { quintOut } from "svelte/easing";
 
-	const { data, getCellSize, getLocation, wallWidth } = getContext("maze");
+	const { getData, getCellSize, getLocation, getWallWidth } =
+		getContext("maze");
+	const data = getData();
 	const cellSize = getCellSize();
 	const location = getLocation();
+	const wallWidth = getWallWidth();
 
 	const dur = 200;
 	let inProgress = { x: false, y: false };
-	const circleX = tweened(($cellSize + wallWidth) / 2, {
+	const circleX = tweened(($cellSize + $wallWidth) / 2, {
 		duration: $mq.reducedMotion ? 0 : dur
 	});
-	const circleY = tweened(($cellSize + wallWidth) / 2, {
+	const circleY = tweened(($cellSize + $wallWidth) / 2, {
 		duration: $mq.reducedMotion ? 0 : dur
 	});
 
-	$: currentCenterX = $location.col * $cellSize + ($cellSize + wallWidth) / 2;
-	$: currentCenterY = $location.row * $cellSize + ($cellSize + wallWidth) / 2;
+	$: currentCenterX = $location.col * $cellSize + ($cellSize + $wallWidth) / 2;
+	$: currentCenterY = $location.row * $cellSize + ($cellSize + $wallWidth) / 2;
 	$: {
 		circleX.set(currentCenterX).then(() => {
 			inProgress.x = false;
@@ -28,9 +31,9 @@
 			inProgress.y = false;
 		});
 	}
-	$: pathStr = `M ${($cellSize + wallWidth) / 2} ${
-		($cellSize + wallWidth) / 2
-	}`; // TODO make sure this doesn't get overwritten if size changes
+	$: pathStr = `M ${($cellSize + $wallWidth) / 2} ${
+		($cellSize + $wallWidth) / 2
+	}`;
 
 	let animatedPathStr;
 	let mostRecentMove;
@@ -38,7 +41,7 @@
 	const onKeyDown = (e) => {
 		if (inProgress.x || inProgress.y) return;
 
-		const current = data[$location.row][$location.col];
+		const current = $data[$location.row][$location.col];
 		const [top, right, bottom, left] = current.walls;
 
 		const validLeft = e.keyCode === 37 && !left;
@@ -70,7 +73,7 @@
 	};
 </script>
 
-<svelte:window on:keydown|preventDefault={onKeyDown} />
+<svelte:window on:keydown={onKeyDown} />
 <g class="path">
 	<circle cx={$circleX} cy={$circleY} r={$cellSize / 4} />
 

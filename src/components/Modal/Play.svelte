@@ -3,13 +3,27 @@
 	import Maze from "$components/Maze/Maze.svelte";
 	import data from "$data/iowa.json";
 	import Button from "$components/Button.svelte";
+
+	let entered = false;
+	let percentDone = 0;
+
+	const start = () => {
+		entered = true;
+	};
 </script>
 
 <div class="maze">
-	<Maze wallData={data} size={data.length} playable={false} animated={false} />
+	<Maze
+		wallData={data}
+		size={data.length}
+		playable={true}
+		animated={false}
+		{entered}
+		bind:percentDone
+	/>
 	<div class="bottom">
 		<div class="buttons">
-			<Button text="start maze" />
+			<Button text="start maze" onClick={start} />
 			<div class="text">Complete the maze</div>
 		</div>
 

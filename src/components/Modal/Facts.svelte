@@ -4,8 +4,6 @@
 	import { selectedState } from "$stores/misc.js";
 
 	$: list = facts.filter((d) => d.id === $selectedState);
-
-	$: console.log({ list });
 </script>
 
 {#each list as { thumb, text }}
