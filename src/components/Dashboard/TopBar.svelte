@@ -6,12 +6,13 @@
 	export let highlight;
 
 	const orderOptions = [
+		{ label: "alphabetically", value: "alpha" },
 		{ label: "geographically", value: "geo" },
 		{ label: "regionally", value: "region" },
 		{ label: "by more barriers", value: "barriers-desc" },
 		{ label: "by fewer barriers", value: "barriers-asc" }
 	];
-	const highlightOptions = states.map((d) => ({ label: d.id }));
+	const highlightOptions = states.map((d) => ({ label: d.name, value: d.id }));
 </script>
 
 <div class="top-bar">

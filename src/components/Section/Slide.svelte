@@ -34,6 +34,7 @@
 		flex-direction: column;
 		align-items: center;
 		font-size: 2rem;
+		overflow: hidden;
 	}
 	.panel {
 		padding: 2rem;

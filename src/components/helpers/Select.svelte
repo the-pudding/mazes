@@ -13,7 +13,7 @@
 	{/if}
 	<select {id} bind:value {disabled}>
 		{#each options as option}
-			<option>{option.label || option.value}</option>
+			<option value={option.value}>{option.label}</option>
 		{/each}
 	</select>
 </div>
@@ -41,7 +41,7 @@
 		cursor: pointer;
 		background: var(--color-white);
 		color: var(--color-gray-900);
-		border: 2px solid var(--color-gray-900);
+		/* border: 2px solid var(--color-gray-900); */
 		border-radius: 4px;
 		padding: 0.5em;
 		appearance: none;

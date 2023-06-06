@@ -3,6 +3,7 @@
 	import Scroll from "$components/Scroll.svelte";
 	import Section from "$components/Section/Section.svelte";
 	import Dashboard from "$components/Dashboard/Dashboard.svelte";
+	import Modal from "$components/Modal/Modal.svelte";
 	import copy from "$data/copy.json";
 
 	const { sections } = copy;
@@ -18,6 +19,7 @@
 		{/each}
 	</div>
 	<Dashboard />
+	<Modal />
 </article>
 
 <style>

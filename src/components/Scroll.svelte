@@ -1,6 +1,7 @@
 <script>
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Maze from "$components/Maze/Maze.svelte";
+	import Icon from "$components/helpers/Icon.svelte";
 	import data from "$data/iowa.json";
 	import copy from "$data/copy.json";
 	import scrollY from "$stores/scrollY.js";
@@ -23,17 +24,10 @@
 			: step === undefined && direction === "down"
 			? groups
 			: groups.slice(0, step + 1);
+	$: direction = $scrollY < 3000 ? "up" : "down";
 	$: zoom =
 		step === steps.length - 1 || (step === undefined && direction === "down");
 	$: zoomDuration = $mq.reducedMotion ? 0 : 3000;
-	$: step, scrollChange();
-
-	const scrollChange = () => {
-		if (step === undefined) {
-			if ($scrollY < 3000) direction = "up";
-			else direction = "down";
-		}
-	};
 </script>
 
 <section id="scrolly">
@@ -51,6 +45,14 @@
 			class:visible={zoom}
 			style={`--dur: ${zoomDuration}ms`}
 		/>
+
+		<div
+			class="label"
+			class:visible={zoom}
+			style={`--delay: ${zoomDuration ? zoomDuration - 500 : 0}ms`}
+		>
+			IL
+		</div>
 		<img src="assets/img/iowa-100.png" class="maze" class:shrunk={zoom} />
 
 		<div class="svg-maze" class:visible={!zoom}>
@@ -60,6 +62,15 @@
 				playable={false}
 				animated={true}
 			/>
+		</div>
+
+		<div
+			class="link"
+			class:visible={zoom}
+			style={`--delay: ${zoomDuration ? zoomDuration - 500 : 0}ms`}
+		>
+			See all mazes
+			<Icon name="arrow-right" />
 		</div>
 	</div>
 
@@ -80,12 +91,18 @@
 	.sticky {
 		position: sticky;
 		top: 0;
-		width: 60%;
+		width: 90%;
+		height: 100vh;
 		margin: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
 		transition: all var(--dur);
 	}
 	.sticky.zoom {
-		width: 90%;
+		z-index: 1;
 	}
 	.steps {
 		position: relative;
@@ -103,6 +120,7 @@
 	}
 	.step:last-of-type {
 		visibility: hidden;
+		margin-bottom: 10vh;
 	}
 	.step p {
 		font-size: 1.2rem;
@@ -113,44 +131,31 @@
 	}
 	.svg-maze {
 		position: absolute;
-		width: 100%;
+		top: 50%;
+		width: 60%;
+		max-width: 700px;
 		transition: none;
 		visibility: hidden;
-		transform: translate(4%, -87%) scale(0.1);
+		transform: translate(-7%, -39.7%) scale(0.118);
 	}
 	.svg-maze.visible {
 		transition: all 3s;
-		transform: translate(0, -50%);
 		visibility: visible;
+		transform: translate(0, -50%);
 	}
 	.map {
+		position: absolute;
 		width: 100%;
-		transform: translate(50%, 50%) scale(8);
+		transform: translate(35%, -41%) scale(8);
 		opacity: 0;
 		transition: all var(--dur);
 	}
 	.map.visible {
-		transform: translate(0, 0);
+		transform: translate(0, 0) scale(1);
 		opacity: 1;
 	}
-	.maze {
-		position: absolute;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 100%;
-		visibility: hidden;
-		transition: none;
-	}
-	img.maze.shrunk {
-		transition: all 3s;
-		visibility: visible;
-		width: 69px;
-		top: 57.8%;
-		left: 45.9%;
-	}
-
 	h1 {
-		font-size: 5rem;
+		font-size: 4rem;
 		position: absolute;
 		top: 50%;
 		transform: translate(0, -50%);
@@ -166,5 +171,60 @@
 	h1.visible {
 		transition: opacity var(--dur) var(--delay);
 		opacity: 1;
+	}
+	.maze {
+		position: absolute;
+		top: 50%;
+		width: 100%;
+		max-width: 700px;
+		transform: translate(0, -50%) scale(1);
+		width: 60%;
+		visibility: hidden;
+		transition: all 3s;
+	}
+	.maze.shrunk {
+		visibility: visible;
+		transform: translate(-7%, -39.7%) scale(0.118);
+	}
+	.label {
+		color: var(--color-pp-text-gray);
+		position: absolute;
+		top: 50.4%;
+		left: 45.4%;
+		opacity: 0;
+		transition: none;
+	}
+	.label.visible {
+		transition: opacity calc(var(--1s) * 0.5) var(--delay);
+		opacity: 1;
+	}
+	.link {
+		position: absolute;
+		bottom: 2rem;
+		right: 0;
+		opacity: 0;
+		color: var(--color-pp-text-gray);
+		display: flex;
+		align-items: center;
+	}
+	.link.visible {
+		transition: opacity calc(var(--1s) * 0.5) var(--delay);
+		opacity: 1;
+	}
+
+	@media (max-width: 800px) {
+		h1 {
+			font-size: 3rem;
+		}
+	}
+	@media (max-width: 600px) {
+		h1 {
+			font-size: 2rem;
+		}
+	}
+	@media (max-width: 350px) {
+		h1 {
+			font-size: 1.5rem;
+		}
 	}
 </style>

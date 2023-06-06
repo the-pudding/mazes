@@ -2,11 +2,18 @@
 	import TopBar from "$components/Dashboard/TopBar.svelte";
 	import states from "$data/states.csv";
 	import viewport from "$stores/viewport.js";
+	import { selectedState } from "$stores/misc.js";
 
 	$: mobile = $viewport.width < 600;
 
-	let order = "geographically";
-	let highlight = "KS";
+	let order = mobile ? "alpha" : "geo";
+	let highlight;
+
+	const onClick = (e) => {
+		const id = e.target.id;
+		$selectedState = id;
+		highlight = id;
+	};
 </script>
 
 <div class="full-page">
@@ -17,8 +24,10 @@
 			<div
 				class="state"
 				class:highlighted={highlight === id}
-				id={id.toLowerCase()}
+				{id}
 				style={`--row: ${row}; --col: ${col}`}
+				on:click={onClick}
+				role="button"
 			>
 				<div class="abbrev">{label}</div>
 				<img src={"assets/img/iowa-100.png"} />
@@ -50,9 +59,12 @@
 		grid-column: var(--col);
 		padding: 0.25rem;
 	}
+	.state:hover {
+		cursor: pointer;
+	}
 	.highlighted {
 		outline: 3px solid var(--color-pp-magenta);
-		border-radius: 5px;
+		border-radius: 3px;
 	}
 	.highlighted .abbrev {
 		font-weight: 900;
@@ -60,8 +72,12 @@
 	}
 	.abbrev {
 		font-family: var(--sans);
-		color: var(--color-gray-400);
+		color: var(--color-pp-text-gray);
 		text-align: center;
+		pointer-events: none;
+	}
+	img {
+		pointer-events: none;
 	}
 
 	@media (max-width: 800px) {
