@@ -25,8 +25,8 @@
 	--color-fg: var(--color-gray-900);
 	--color-primary: var(--color-black);
 	--color-link: var(--color-black);
-	--color-focus: var(--color-red);
-	--color-mark: var(--color-yellow);
+	--color-focus: var(--color-pp-magenta);
+	--color-mark: var(--color-pp-magenta);
 	--color-selection: var(--color-gray-300);
 	--color-border: var(--color-gray-300);
 	--color-button-bg: var(--color-gray-300);

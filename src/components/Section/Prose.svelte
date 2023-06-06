@@ -4,12 +4,16 @@
 	import Icon from "$components/helpers/Icon.svelte";
 	import data from "$data/iowa.json";
 	import states from "$data/states.csv";
+	import { selectedState } from "$stores/misc.js";
 
 	export let maze;
 	export let text;
 	export let align;
 
 	const stateName = states.find((d) => d.id === maze).name;
+	const goToMaze = () => {
+		$selectedState = maze;
+	};
 
 	$: reverse = align === "right";
 </script>
@@ -34,7 +38,7 @@
 			animated={false}
 		/>
 
-		<Button text="go to maze" margin={{ top: "0.5rem" }} />
+		<Button text="go to maze" margin={{ top: "0.5rem" }} onClick={goToMaze} />
 	</div>
 </div>
 
@@ -67,6 +71,7 @@
 		display: flex;
 		align-items: center;
 		color: var(--color-pp-text-gray);
+		font-size: 0.9rem;
 	}
 	:global(.words p strong) {
 		background: var(--color-pp-gray-1);

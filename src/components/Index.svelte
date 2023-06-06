@@ -5,12 +5,13 @@
 	import Dashboard from "$components/Dashboard/Dashboard.svelte";
 	import Modal from "$components/Modal/Modal.svelte";
 	import copy from "$data/copy.json";
+	import { selectedState } from "$stores/misc.js";
 
 	const { sections } = copy;
 </script>
 
 <article>
-	<div class="above">
+	<div class="above" class:faded={$selectedState}>
 		<Intro />
 		<Scroll />
 
@@ -18,12 +19,19 @@
 			<Section {title} {chunks} />
 		{/each}
 	</div>
-	<Dashboard />
+
+	<div class="below" class:faded={$selectedState}>
+		<Dashboard />
+	</div>
+
 	<Modal />
 </article>
 
 <style>
 	.above {
 		background: var(--upper-bg);
+	}
+	.faded {
+		opacity: 0.2;
 	}
 </style>
