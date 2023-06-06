@@ -25,6 +25,9 @@
 
 <style>
 	header {
+		position: fixed;
+		top: 0;
+		width: 100%;
 		height: 3rem;
 		color: white;
 		background: var(--color-pp-dark);

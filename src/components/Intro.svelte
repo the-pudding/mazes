@@ -27,7 +27,7 @@
 		max-width: 700px;
 		margin: auto;
 		padding: 0 1rem;
-		height: calc(100vh - 3rem);
+		height: 100vh;
 	}
 	p {
 		font-size: 2rem;

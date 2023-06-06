@@ -1,7 +1,7 @@
 <script>
 	export let text;
 	export let onClick;
-	export let margin;
+	export let margin = {};
 
 	$: marginStr = `${margin.top || 0} ${margin.right || 0} ${margin.left || 0} ${
 		margin.bottom || 0

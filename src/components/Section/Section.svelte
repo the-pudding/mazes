@@ -31,6 +31,7 @@
 
 <style>
 	section {
+		max-width: 1000px;
 		margin: 10rem auto;
 		padding: 0 4rem;
 	}

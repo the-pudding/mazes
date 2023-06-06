@@ -1,6 +1,6 @@
 <script>
 	import Walls from "$components/Maze/Walls.svelte";
-	import Path from "$components/Modal/Path.svelte";
+	import Path from "$components/Maze/Path.svelte";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
 

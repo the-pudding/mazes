@@ -1,4 +1,5 @@
 <script>
+	import WIP from "$components/helpers/WIP.svelte";
 	import Intro from "$components/Intro.svelte";
 	import Scroll from "$components/Scroll.svelte";
 	import Section from "$components/Section/Section.svelte";
@@ -10,6 +11,7 @@
 	const { sections } = copy;
 </script>
 
+<WIP />
 <article>
 	<div class="above" class:faded={$selectedState}>
 		<Intro />
