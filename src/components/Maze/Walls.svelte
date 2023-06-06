@@ -6,14 +6,15 @@
 	const {
 		size,
 		animated,
-		wallWidth,
 		playable,
 		getData,
 		getCellSize,
+		getWallWidth,
 		getPadding
 	} = getContext("maze");
 	const data = getData();
 	const cellSize = getCellSize();
+	const wallWidth = getWallWidth();
 	const padding = getPadding();
 </script>
 
@@ -45,11 +46,11 @@
 			}}
 			{#if top}
 				<line
-					x1={col * $cellSize - wallWidth / 2}
-					x2={col * $cellSize + $cellSize + wallWidth / 2}
+					x1={col * $cellSize - $wallWidth / 2}
+					x2={col * $cellSize + $cellSize + $wallWidth / 2}
 					y1={row * $cellSize}
 					y2={row * $cellSize}
-					stroke-width={wallWidth}
+					stroke-width={$wallWidth}
 					transition:draw={lineDraw}
 				/>
 			{/if}
@@ -58,20 +59,20 @@
 				<line
 					x1={col * $cellSize + $cellSize}
 					x2={col * $cellSize + $cellSize}
-					y1={row * $cellSize - wallWidth / 2}
-					y2={row * $cellSize + $cellSize + wallWidth / 2}
-					stroke-width={wallWidth}
+					y1={row * $cellSize - $wallWidth / 2}
+					y2={row * $cellSize + $cellSize + $wallWidth / 2}
+					stroke-width={$wallWidth}
 					transition:draw={lineDraw}
 				/>
 			{/if}
 
 			{#if bottom}
 				<line
-					x1={col * $cellSize + $cellSize + wallWidth / 2}
-					x2={col * $cellSize - wallWidth / 2}
+					x1={col * $cellSize + $cellSize + $wallWidth / 2}
+					x2={col * $cellSize - $wallWidth / 2}
 					y1={row * $cellSize + $cellSize}
 					y2={row * $cellSize + $cellSize}
-					stroke-width={wallWidth}
+					stroke-width={$wallWidth}
 					transition:draw={lineDraw}
 				/>
 			{/if}
@@ -80,9 +81,9 @@
 				<line
 					x1={col * $cellSize}
 					x2={col * $cellSize}
-					y1={row * $cellSize + $cellSize + wallWidth / 2}
-					y2={row * $cellSize - wallWidth / 2}
-					stroke-width={wallWidth}
+					y1={row * $cellSize + $cellSize + $wallWidth / 2}
+					y2={row * $cellSize - $wallWidth / 2}
+					stroke-width={$wallWidth}
 					transition:draw={lineDraw}
 				/>
 			{/if}

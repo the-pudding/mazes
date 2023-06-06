@@ -31,8 +31,8 @@
 
 <style>
 	section {
-		max-width: 90%;
 		margin: 10rem auto;
+		padding: 0 4rem;
 	}
 	h2 {
 		font-size: 4rem;

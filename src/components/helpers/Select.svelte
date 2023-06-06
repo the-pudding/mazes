@@ -21,6 +21,8 @@
 <style>
 	.select {
 		position: relative;
+		display: flex;
+		align-items: center;
 	}
 
 	label {
@@ -28,7 +30,7 @@
 		font-family: inherit;
 		font-weight: inherit;
 		font-size: 1em;
-		margin-bottom: 0.25em;
+		margin-right: 0.75em;
 	}
 
 	select {
@@ -54,7 +56,7 @@
 		display: block;
 		content: "";
 		position: absolute;
-		bottom: 1.25em;
+		bottom: 2.25em;
 		right: 0.75em;
 		width: 1em;
 		height: 1em;

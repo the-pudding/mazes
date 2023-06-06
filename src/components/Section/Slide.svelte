@@ -39,6 +39,7 @@
 		padding: 2rem;
 		margin: 1rem 0;
 		background: var(--color-pp-gray-1);
+		text-align: center;
 		visibility: hidden;
 		transition: all calc(var(--1s) * 2.5) var(--delay);
 	}

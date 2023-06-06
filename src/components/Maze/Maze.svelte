@@ -12,9 +12,9 @@
 	const data = writable(wallData);
 	const width = writable(0);
 	const cellSize = writable(0);
+	const wallWidth = writable(0);
 	const padding = writable(0);
 	const location = writable({ row: 0, col: 0 });
-	const wallWidth = 10;
 
 	setContext("maze", {
 		size,
@@ -23,13 +23,15 @@
 		animated,
 		getData: () => data,
 		getCellSize: () => cellSize,
+		getWallWidth: () => wallWidth,
 		getWidth: () => width,
 		getPadding: () => padding,
 		getLocation: () => location
 	});
 
 	$: $data = wallData;
-	$: $padding = wallWidth / 2;
+	$: $wallWidth = $width / 50;
+	$: $padding = $wallWidth / 2;
 	$: $cellSize = size ? ($width - $padding * 2) / size : 0;
 </script>
 
