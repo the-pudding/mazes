@@ -1,10 +1,7 @@
 <script>
-	import Play from "$components/Modal/Play.svelte";
-	import Facts from "$components/Modal/Facts.svelte";
+	import Contents from "$components/Modal/Contents.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
 	import { selectedState } from "$stores/misc.js";
-	import copy from "$data/copy.json";
-	import states from "$data/states.csv";
 	import { browser } from "$app/environment";
 	import { onMount } from "svelte";
 
@@ -13,12 +10,8 @@
 	let firstFocusable;
 	let lastFocusable;
 
-	const { modalNote } = copy;
-
 	$: open = $selectedState !== undefined;
 	$: if (browser) document.body.classList.toggle("noscroll", open);
-	$: state = states.find((d) => d.id === $selectedState)?.name;
-	$: guttmacherLink = states.find((d) => d.id === $selectedState)?.guttmacher;
 
 	const close = () => {
 		$selectedState = undefined;
@@ -50,6 +43,8 @@
 	});
 </script>
 
+<svelte:body class:modal-open={true} />
+
 <div
 	class="modal"
 	class:open
@@ -58,38 +53,9 @@
 	on:keydown={trapFocus}
 >
 	<button class="close" on:click={close}><Icon name="x" /></button>
-	<div class="title">
-		<h2>{state}</h2>
-		<div>
-			...is one of the <strong>most restrictive</strong> states for abortion access.
-		</div>
-	</div>
 
-	<div class="facts">
-		<Facts />
-	</div>
-	<div class="play">
-		<Play />
-	</div>
-
-	<div class="bottom">
-		<div class="left">
-			<a href={guttmacherLink} target="_blank"
-				>Read more about {state}'s abortion policies
-				<span><Icon name="external-link" /></span></a
-			>
-			<div class="note">
-				{@html modalNote}
-			</div>
-		</div>
-
-		<div class="share">
-			SHARE <button><Icon name="share" /></button>
-		</div>
-	</div>
+	<Contents />
 </div>
-
-<svelte:body class:modal-open={true} />
 
 <style>
 	:global(body.noscroll) {
@@ -121,47 +87,6 @@
 			"bottom bottom";
 		gap: 2rem 0.5rem;
 	}
-	.title {
-		grid-area: top;
-	}
-	.facts {
-		grid-area: side;
-	}
-	.play {
-		grid-area: main;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-	.bottom {
-		grid-area: bottom;
-		color: var(--color-pp-text-gray);
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	.left {
-		max-width: 600px;
-		margin-right: 3rem;
-	}
-	.left a {
-		color: var(--color-pp-text-gray);
-	}
-	.left a:hover {
-		color: black;
-	}
-	.left a span {
-		font-size: 0.65rem;
-	}
-	h2 {
-		font-weight: 900;
-		font-size: 3rem;
-		margin-bottom: 0;
-	}
-	.title div {
-		font-size: 1.3rem;
-	}
 	.close {
 		display: flex;
 		border-radius: 100%;
@@ -173,26 +98,5 @@
 	}
 	.close:hover {
 		background: var(--color-pp-gray-2);
-	}
-	.note {
-		margin-top: 1rem;
-	}
-	.share {
-		color: var(--color-pp-text-gray);
-		font-weight: 700;
-		display: flex;
-		align-items: center;
-	}
-	.share button {
-		background: var(--color-pp-light-navy);
-		color: white;
-		border-radius: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin-left: 0.5rem;
-	}
-	.share button:hover {
-		background: var(--color-pp-text-gray);
 	}
 </style>

@@ -5,15 +5,25 @@
 	import { draw } from "svelte/transition";
 	import { quintOut } from "svelte/easing";
 
-	const { getData, getCellSize, getLocation, getWallWidth } =
-		getContext("maze");
+	const {
+		getData,
+		getCellSize,
+		getLocation,
+		getPath,
+		getWallWidth,
+		getGameState
+	} = getContext("maze");
 	const data = getData();
 	const cellSize = getCellSize();
 	const location = getLocation();
+	const path = getPath();
 	const wallWidth = getWallWidth();
+	const gameState = getGameState();
 
-	const dur = 200;
+	let pathStr;
+	let animatedPathStr;
 	let inProgress = { x: false, y: false };
+	const dur = 200;
 	const circleX = tweened(($cellSize + $wallWidth) / 2, {
 		duration: $mq.reducedMotion ? 0 : dur
 	});
@@ -21,6 +31,10 @@
 		duration: $mq.reducedMotion ? 0 : dur
 	});
 
+	$: if ($location.row === 0 && $location.col === 0) {
+		$path = [{ row: 0, col: 0 }];
+		animatedPathStr = "";
+	}
 	$: currentCenterX = $location.col * $cellSize + ($cellSize + $wallWidth) / 2;
 	$: currentCenterY = $location.row * $cellSize + ($cellSize + $wallWidth) / 2;
 	$: {
@@ -31,15 +45,59 @@
 			inProgress.y = false;
 		});
 	}
-	$: pathStr = `M ${($cellSize + $wallWidth) / 2} ${
-		($cellSize + $wallWidth) / 2
-	}`;
 
-	let animatedPathStr;
-	let mostRecentMove;
+	$: $path, $cellSize, $wallWidth, updatePath();
+	const updatePath = () => {
+		pathStr = $path
+			.slice(0, $path.length - 1)
+			.reduce((acc, { row, col }, i) => {
+				if (i === 0) {
+					return acc;
+				}
+
+				const prev = $path[i - 1];
+				const [prevRow, prevCol] = [prev.row, prev.col];
+				const [rowDiff, colDiff] = [row - prevRow, col - prevCol];
+
+				if (rowDiff === 1) {
+					return `${acc} v ${$cellSize}`;
+				} else if (rowDiff === -1) {
+					return `${acc} v -${$cellSize}`;
+				} else if (colDiff === 1) {
+					return `${acc} h ${$cellSize}`;
+				} else if (colDiff === -1) {
+					return `${acc} h -${$cellSize}`;
+				}
+			}, `M ${($cellSize + $wallWidth) / 2} ${($cellSize + $wallWidth) / 2}`);
+
+		let mostRecentMove = "";
+		if ($path.length > 1) {
+			const prev = $path[$path.length - 2];
+			const [prevRow, prevCol] = [prev.row, prev.col];
+			const [rowDiff, colDiff] = [
+				$location.row - prevRow,
+				$location.col - prevCol
+			];
+
+			if (rowDiff === 1) {
+				mostRecentMove = `v ${$cellSize}`;
+			} else if (rowDiff === -1) {
+				mostRecentMove = `v -${$cellSize}`;
+			} else if (colDiff === 1) {
+				mostRecentMove = `h ${$cellSize}`;
+			} else if (colDiff === -1) {
+				mostRecentMove = `h -${$cellSize}`;
+			}
+
+			let prevCenterX = prevCol * $cellSize + ($cellSize + $wallWidth) / 2;
+			let prevCenterY = prevRow * $cellSize + ($cellSize + $wallWidth) / 2;
+
+			animatedPathStr = `M ${prevCenterX} ${prevCenterY} ${mostRecentMove}`;
+		}
+	};
 
 	const onKeyDown = (e) => {
-		if (inProgress.x || inProgress.y) return;
+		if ($gameState === "post" || inProgress.x || inProgress.y) return;
 
 		const current = $data[$location.row][$location.col];
 		const [top, right, bottom, left] = current.walls;
@@ -50,31 +108,23 @@
 		const validDown = e.keyCode === 40 && !bottom;
 
 		if (validLeft || validRight || validUp || validDown) {
-			animatedPathStr = `M ${currentCenterX} ${currentCenterY}`;
 			inProgress = { x: true, y: true };
-			if (mostRecentMove) pathStr += ` ${mostRecentMove}`;
-
 			if (validLeft) {
 				$location = { row: $location.row, col: $location.col - 1 };
-				mostRecentMove = `l -${$cellSize} 0`;
 			} else if (validUp) {
 				$location = { row: $location.row - 1, col: $location.col };
-				mostRecentMove = `l 0 -${$cellSize}`;
 			} else if (validRight) {
 				$location = { row: $location.row, col: $location.col + 1 };
-				mostRecentMove = `l ${$cellSize} 0`;
 			} else if (validDown) {
 				$location = { row: $location.row + 1, col: $location.col };
-				mostRecentMove = `l 0 ${$cellSize}`;
 			}
-
-			animatedPathStr += ` ${mostRecentMove}`;
+			$path = [...$path, $location];
 		}
 	};
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
-<g class="path">
+<g class="path" class:faded={$gameState === "post"}>
 	<circle cx={$circleX} cy={$circleY} r={$cellSize / 4} />
 
 	<path class="full" d={pathStr} />
@@ -101,5 +151,11 @@
 		stroke: magenta;
 		stroke-width: 10;
 		fill: none;
+	}
+	g {
+		transition: opacity calc(var(--1s) * 0.5);
+	}
+	.faded {
+		opacity: 0.2;
 	}
 </style>

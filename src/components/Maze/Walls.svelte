@@ -11,17 +11,20 @@
 		getCellSize,
 		getWallWidth,
 		getPadding,
-		getStarted
+		getGameState
 	} = getContext("maze");
 	const data = getData();
 	const cellSize = getCellSize();
 	const wallWidth = getWallWidth();
 	const padding = getPadding();
-	const started = getStarted();
+	const gameState = getGameState();
 </script>
 
-<g style:transform={`translate(${$padding}px, ${$padding}px)`}>
-	{#if playable && $started}
+<g
+	style:transform={`translate(${$padding}px, ${$padding}px)`}
+	class:faded={$gameState === "post"}
+>
+	{#if playable && $gameState !== "pre"}
 		{#each $data as d}
 			<!-- TODO: unclear if we need all of these rects -->
 			{#each d as { row, col }}
@@ -108,5 +111,11 @@
 	rect.finish {
 		fill: magenta;
 		opacity: 0.5;
+	}
+	g {
+		transition: opacity calc(var(--1s) * 0.5);
+	}
+	.faded {
+		opacity: 0.2;
 	}
 </style>
