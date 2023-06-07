@@ -40,7 +40,6 @@
 	$: $cellSize = size ? ($width - $padding * 2) / size : 0;
 
 	$: if ($location.row === size - 1 && $location.col === size - 1) {
-		// todo change back
 		$gameState = "post";
 	}
 </script>

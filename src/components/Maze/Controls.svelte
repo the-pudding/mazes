@@ -25,13 +25,18 @@
 		$gameState = "post";
 		$location = { row: size - 1, col: size - 1 };
 	};
+
+	$: buttonText = $gameState === "pre" ? "start maze" : "restart maze";
 </script>
 
 <div class="bottom">
 	<div class="buttons">
-		<Button text="start maze" onClick={start} />
-		<div class="text" on:click={solve}>Complete the maze</div>
-		<div class="text" on:click={reset}>Reset</div>
+		<Button text={buttonText} onClick={$gameState === "pre" ? start : reset} />
+		<button
+			class="complete text"
+			on:click={solve}
+			disabled={$gameState === "post"}>Complete the maze</button
+		>
 	</div>
 
 	<div class="instructions">
@@ -57,6 +62,11 @@
 		flex-direction: column;
 		align-items: center;
 	}
+	.buttons {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+	}
 	.text {
 		font-size: 0.9rem;
 		color: var(--color-pp-text-gray);
@@ -66,8 +76,10 @@
 		text-align: center;
 		max-width: 100px;
 	}
-	.text:not(.arrow):hover {
-		cursor: pointer;
+	button.complete {
+		background: none;
+	}
+	button.complete:hover {
 		color: black;
 	}
 	.keys {

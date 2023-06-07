@@ -23,13 +23,9 @@
 	let pathStr;
 	let animatedPathStr;
 	let inProgress = { x: false, y: false };
-	const dur = 200;
-	const circleX = tweened(($cellSize + $wallWidth) / 2, {
-		duration: $mq.reducedMotion ? 0 : dur
-	});
-	const circleY = tweened(($cellSize + $wallWidth) / 2, {
-		duration: $mq.reducedMotion ? 0 : dur
-	});
+	const dur = 0;
+	const circleX = tweened(($cellSize + $wallWidth) / 2);
+	const circleY = tweened(($cellSize + $wallWidth) / 2);
 
 	$: if ($location.row === 0 && $location.col === 0) {
 		$path = [{ row: 0, col: 0 }];
@@ -37,19 +33,27 @@
 	}
 	$: currentCenterX = $location.col * $cellSize + ($cellSize + $wallWidth) / 2;
 	$: currentCenterY = $location.row * $cellSize + ($cellSize + $wallWidth) / 2;
+	$: moveImmedietly =
+		$gameState === "post" ||
+		($location.col === 0 && $location.row === 0) ||
+		$mq.reducedMotion;
 	$: {
-		circleX.set(currentCenterX).then(() => {
-			inProgress.x = false;
-		});
-		circleY.set(currentCenterY).then(() => {
-			inProgress.y = false;
-		});
+		circleX
+			.set(currentCenterX, { duration: moveImmedietly ? 0 : dur })
+			.then(() => {
+				inProgress.x = false;
+			});
+		circleY
+			.set(currentCenterY, { duration: moveImmedietly ? 0 : dur })
+			.then(() => {
+				inProgress.y = false;
+			});
 	}
 
 	$: $path, $cellSize, $wallWidth, updatePath();
 	const updatePath = () => {
 		pathStr = $path
-			.slice(0, $path.length - 1)
+			.slice(0, $gameState === "post" ? $path.length : $path.length - 1)
 			.reduce((acc, { row, col }, i) => {
 				if (i === 0) {
 					return acc;
