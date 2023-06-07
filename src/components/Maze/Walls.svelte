@@ -22,7 +22,7 @@
 
 <g
 	style:transform={`translate(${$padding}px, ${$padding}px)`}
-	class:faded={$gameState === "post"}
+	class:faded={$gameState === "post" || $gameState === "pre"}
 >
 	{#if playable && $gameState !== "pre"}
 		{#each $data as d}
@@ -105,17 +105,14 @@
 		stroke: none;
 	}
 	rect.start {
-		fill: magenta;
+		fill: var(--color-pp-magenta);
 		opacity: 0.2;
 	}
 	rect.finish {
-		fill: magenta;
+		fill: var(--color-pp-magenta);
 		opacity: 0.5;
 	}
-	g {
-		transition: opacity calc(var(--1s) * 0.5);
-	}
 	.faded {
-		opacity: 0.2;
+		opacity: 0.1;
 	}
 </style>

@@ -2,8 +2,10 @@
 	import Controls from "$components/Maze/Controls.svelte";
 	import Walls from "$components/Maze/Walls.svelte";
 	import Path from "$components/Maze/Path.svelte";
+	import Overlay from "$components/Maze/Overlay.svelte";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
+	import { mazeLocation } from "$stores/misc.js";
 
 	export let wallData;
 	export let size;
@@ -38,6 +40,7 @@
 	$: $wallWidth = $width / 50;
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = size ? ($width - $padding * 2) / size : 0;
+	$: $mazeLocation = $location;
 
 	$: if ($location.row === size - 1 && $location.col === size - 1) {
 		$gameState = "post";
@@ -51,13 +54,10 @@
 			{#if playable && $gameState !== "pre"}
 				<Path />
 			{/if}
-
-			<text x={$width / 2} y={$width / 2} class:visible={$gameState === "post"}>
-				Maze completed!
-			</text>
 		</svg>
 
 		{#if playable}
+			<Overlay />
 			<Controls />
 		{/if}
 	{/if}
@@ -66,17 +66,5 @@
 <style>
 	.container {
 		width: 100%;
-	}
-	text {
-		dominant-baseline: middle;
-		text-anchor: middle;
-		font-size: 2rem;
-		font-weight: 700;
-		fill: var(--color-text);
-		opacity: 0;
-		transition: opacity calc(var(--1s) * 0.5);
-	}
-	text.visible {
-		opacity: 1;
 	}
 </style>

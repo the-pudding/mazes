@@ -128,7 +128,7 @@
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
-<g class="path" class:faded={$gameState === "post"}>
+<g class="path" class:faded={$gameState === "post" || $gameState === "pre"}>
 	<circle cx={$circleX} cy={$circleY} r={$cellSize / 4} />
 
 	<path class="full" d={pathStr} />
@@ -144,22 +144,19 @@
 
 <style>
 	circle {
-		fill: magenta;
+		fill: var(--color-pp-magenta);
 	}
 	path.full {
-		stroke: magenta;
+		stroke: var(--color-pp-magenta);
 		stroke-width: 10;
 		fill: none;
 	}
 	path.animated {
-		stroke: magenta;
+		stroke: var(--color-pp-magenta);
 		stroke-width: 10;
 		fill: none;
 	}
-	g {
-		transition: opacity calc(var(--1s) * 0.5);
-	}
 	.faded {
-		opacity: 0.2;
+		opacity: 0.1;
 	}
 </style>

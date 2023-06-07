@@ -21,7 +21,7 @@
 </div>
 
 <div class="facts">
-	<Facts />
+	<Facts mazeSize={data.length} />
 </div>
 <div class="play">
 	<div class="maze">
