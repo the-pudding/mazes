@@ -5,7 +5,7 @@
 	import Overlay from "$components/Maze/Overlay.svelte";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
-	import { mazeLocation } from "$stores/misc.js";
+	import { pathLength } from "$stores/misc.js";
 
 	export let wallData;
 	export let size;
@@ -40,7 +40,7 @@
 	$: $wallWidth = $width / 50;
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = size ? ($width - $padding * 2) / size : 0;
-	$: $mazeLocation = $location;
+	$: $pathLength = $path.length - 1;
 
 	$: if ($location.row === size - 1 && $location.col === size - 1) {
 		$gameState = "post";
