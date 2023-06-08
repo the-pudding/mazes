@@ -7,18 +7,28 @@
 	import data from "$data/iowa.json";
 	import states from "$data/states.csv";
 	import copy from "$data/copy.json";
+	import { scaleQuantize, extent } from "d3";
 
 	const { modalNote } = copy;
+	const scale = scaleQuantize()
+		.domain(extent(states, (d) => +d.score))
+		.range([
+			"one of the <strong>most complex</strong> states",
+			"a <strong>moderately complex</strong> state",
+			"one of the <strong>least complex</strong> states"
+		]);
 
-	$: state = states.find((d) => d.id === $selectedState)?.name;
-	$: guttmacherLink = states.find((d) => d.id === $selectedState)?.guttmacher;
-	$: level = states.find((d) => d.id === $selectedState)?.level;
+	$: stateData = states.find((d) => d.id === $selectedState);
+	$: name = stateData?.name;
+	$: guttmacherLink = stateData?.guttmacher;
+	$: score = stateData?.score;
+	$: level = scale(score);
 </script>
 
 <div class="title">
-	<h2>{state}</h2>
+	<h2>{name}</h2>
 	<div>
-		...is one of the <strong>{level}</strong> states for abortion access.
+		...is {@html level} for abortion access.
 	</div>
 </div>
 
@@ -34,7 +44,7 @@
 <div class="bottom">
 	<div class="left">
 		<a href={guttmacherLink} target="_blank"
-			>Read more about {state}'s abortion policies
+			>Read more about {name}'s abortion policies
 			<span><Icon name="external-link" /></span></a
 		>
 		<div class="note">
