@@ -1,16 +1,19 @@
 <script>
 	import Icon from "$components/helpers/Icon.svelte";
+	import { slide, fade } from "svelte/transition";
 
 	export let thumb;
 	export let text;
 	export let visible;
 </script>
 
-<div class="fact" class:visible>
-	<div class="thumb" class:good={thumb === "up"}>
-		<Icon name={`thumbs-${thumb}`} />
+<div class="fade" transition:fade>
+	<div class="fact" class:visible in:slide>
+		<div class="thumb" class:good={thumb === "up"}>
+			<Icon name={`thumbs-${thumb}`} />
+		</div>
+		{text}
 	</div>
-	{text}
 </div>
 
 <style>
@@ -21,13 +24,6 @@
 		padding: 1rem;
 		border: 1px solid #e8e5e1;
 		box-shadow: 0px 0px 5px rgba(124, 115, 115, 0.1);
-		opacity: 0;
-		transform: translateY(-1rem);
-		transition: all calc(var(--1s) * 0.8);
-	}
-	.fact.visible {
-		opacity: 1;
-		transform: translateY(0);
 	}
 	.thumb {
 		background: var(--color-pp-text-gray);

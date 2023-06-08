@@ -3,9 +3,13 @@
 	import facts from "$data/facts.csv";
 	import { selectedState, pathLength } from "$stores/misc.js";
 	import data from "$data/iowa.json";
+	import viewport from "$stores/viewport.js";
 	import _ from "lodash";
 
-	$: list = facts.filter((d) => d.id === $selectedState).slice(0, 4);
+	$: mobile = $viewport.width < 600;
+	$: fullList = facts.filter((d) => d.id === $selectedState);
+	$: filteredList = fullList.filter((d, i) => $pathLength >= thresholds[i]);
+	$: displayList = mobile ? _.reverse(filteredList) : filteredList;
 
 	const solution = _.orderBy(
 		_.flatten(data).filter((d) => d.solution),
@@ -15,11 +19,10 @@
 	$: thresholds = _.range(
 		1,
 		solution.length,
-		Math.floor(solution.length / list?.length)
+		Math.floor(solution.length / fullList?.length)
 	);
 </script>
 
-{#each list as { thumb, text }, i}
-	{@const visible = $pathLength >= thresholds[i]}
-	<Fact {thumb} {text} {visible} />
+{#each displayList as { thumb, text }, i (text)}
+	<Fact {thumb} {text} />
 {/each}
