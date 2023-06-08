@@ -85,7 +85,7 @@
 			"top top"
 			"side main"
 			"bottom bottom";
-		gap: 2rem 0.5rem;
+		gap: 2rem 1rem;
 	}
 	.close {
 		display: flex;
@@ -98,5 +98,13 @@
 	}
 	.close:hover {
 		background: var(--color-pp-gray-2);
+	}
+
+	@media (max-width: 600px) {
+		.modal.open {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
 	}
 </style>

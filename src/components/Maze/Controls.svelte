@@ -1,11 +1,21 @@
 <script>
-	import Keys from "$components/Maze/Keys.svelte";
+	import KeysDesktop from "$components/Maze/Keys.Desktop.svelte";
+	import KeysMobile from "$components/Maze/Keys.Mobile.svelte";
 	import Button from "$components/Button.svelte";
+	import Share from "$components/Modal/Share.svelte";
 	import { getContext } from "svelte";
+	import mq from "$stores/mq.js";
 	import _ from "lodash";
 
-	const { size, getData, getGameState, getLocation, getPath } =
-		getContext("maze");
+	const {
+		size,
+		getAvailableWidth,
+		getData,
+		getGameState,
+		getLocation,
+		getPath
+	} = getContext("maze");
+	const availableWidth = getAvailableWidth();
 	const data = getData();
 	const gameState = getGameState();
 	const location = getLocation();
@@ -39,15 +49,33 @@
 		>
 	</div>
 
-	<Keys />
+	{#if $mq.desktop}
+		<KeysDesktop />
+	{:else}
+		<Share />
+	{/if}
 </div>
+
+{#if !$mq.desktop}
+	<div
+		class="mobile-controls"
+		style:width={`${$availableWidth}px`}
+		style:height={`${$availableWidth}px`}
+	>
+		<KeysMobile />
+	</div>
+{/if}
 
 <style>
 	.bottom {
 		display: flex;
 		justify-content: space-between;
-		margin-top: 1rem;
+		margin-top: 3rem;
 		visibility: hidden;
+	}
+	.mobile-controls {
+		position: absolute;
+		top: 0;
 	}
 	.visible {
 		visibility: visible;
@@ -61,11 +89,18 @@
 		font-size: 0.9rem;
 		color: var(--color-pp-text-gray);
 		margin-top: 4px;
+		text-align: center;
 	}
 	button.complete {
 		background: none;
 	}
 	button.complete:hover {
 		color: black;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.bottom {
+			margin-top: 1rem;
+		}
 	}
 </style>

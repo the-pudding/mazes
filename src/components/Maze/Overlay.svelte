@@ -1,7 +1,8 @@
 <script>
-	import Keys from "$components/Maze/Keys.svelte";
+	import Keys from "$components/Maze/Keys.Desktop.svelte";
 	import Button from "$components/Button.svelte";
 	import { getContext } from "svelte";
+	import mq from "$stores/mq.js";
 
 	const { getGameState, getWidth } = getContext("maze");
 	const gameState = getGameState();
@@ -22,7 +23,9 @@
 		<div class="text">Take action tk</div>
 	{:else if $gameState === "pre"}
 		<Button text={"start maze"} onClick={start} />
-		<Keys />
+		{#if $mq.desktop}
+			<Keys />
+		{/if}
 	{/if}
 </div>
 
@@ -38,6 +41,7 @@
 		justify-content: space-evenly;
 		visibility: hidden;
 		font-size: 1.6rem;
+		z-index: 10;
 	}
 	.visible {
 		visibility: visible;
@@ -47,5 +51,10 @@
 		font-size: 2rem;
 		font-weight: 700;
 		color: var(--color-text);
+	}
+	@media (max-width: 600px) {
+		.overlay {
+			font-size: 1.2rem;
+		}
 	}
 </style>

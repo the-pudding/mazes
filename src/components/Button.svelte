@@ -24,4 +24,10 @@
 	button:hover {
 		background: #c5167f;
 	}
+
+	@media (max-width: 600px) {
+		button {
+			font-size: 0.8rem;
+		}
+	}
 </style>

@@ -1,24 +1,38 @@
 <script>
 	import Icon from "$components/helpers/Icon.svelte";
 	import { getContext } from "svelte";
+	import mq from "$stores/mq.js";
 
 	const { getGameState } = getContext("maze");
 	const gameState = getGameState();
 </script>
 
-<div class="instructions" class:background={$gameState === "pre"}>
-	<div class="keys">
-		{#each ["up", "left", "down", "right"] as direction}
-			<div class={`key ${direction}`}>
-				<Icon name={`arrow-${direction}`} />
-			</div>
+{#if $mq.desktop}
+	<div class="desktop" class:background={$gameState === "pre"}>
+		<div class="keys">
+			{#each ["up", "left", "down", "right"] as direction}
+				<span class={`key ${direction}`}>
+					<Icon name={`arrow-${direction}`} />
+				</span>
+			{/each}
+		</div>
+		<div class="text">Use arrow keys to navigate</div>
+	</div>
+{:else}
+	<div class="mobile">
+		{#each ["up", "right", "down", "left"] as direction}
+			<button class={direction} disabled={$gameState !== "mid"}
+				><Icon name={`arrow-${direction}`} /></button
+			>
+			{#if direction === "up"}
+				<div class="text">Tap arrow buttons to navigate</div>
+			{/if}
 		{/each}
 	</div>
-	<div class="text">Use arrow keys to navigate</div>
-</div>
+{/if}
 
 <style>
-	.instructions {
+	.desktop {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -28,11 +42,21 @@
 		padding: 0.5rem;
 	}
 	.text {
+		color: var(--color-pp-text-gray);
+	}
+	.desktop .text {
+		font-size: 0.9rem;
+		margin-top: 4px;
 		text-align: center;
 		max-width: 100px;
-		font-size: 0.9rem;
-		color: var(--color-pp-text-gray);
-		margin-top: 4px;
+	}
+	.mobile .text {
+		font-size: 0.7rem;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translate(1.6rem, -100%);
+		text-align: start;
 	}
 	.keys {
 		display: grid;
@@ -49,20 +73,50 @@
 		border-radius: 4px;
 		font-size: 0.7rem;
 	}
-	.up {
+	span.up {
 		grid-row: 1;
 		grid-column: 2;
 	}
-	.left {
+	span.left {
 		grid-row: 2;
 		grid-column: 1;
 	}
-	.down {
+	span.down {
 		grid-row: 2;
 		grid-column: 2;
 	}
-	.right {
+	span.right {
 		grid-row: 2;
 		grid-column: 3;
+	}
+	button {
+		position: absolute;
+		background: var(--color-pp-gray-1);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 0.8rem;
+	}
+	button.up {
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, -110%);
+		display: flex;
+		align-items: center;
+	}
+	button.down {
+		bottom: 0;
+		left: 50%;
+		transform: translate(-50%, 110%);
+	}
+	button.left {
+		top: 50%;
+		left: 0;
+		transform: translate(-110%, -50%);
+	}
+	button.right {
+		top: 50%;
+		right: 0;
+		transform: translate(110%, -50%);
 	}
 </style>

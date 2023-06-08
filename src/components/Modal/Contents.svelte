@@ -2,6 +2,7 @@
 	import Maze from "$components/Maze/Maze.svelte";
 	import Facts from "$components/Modal/Facts.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
+	import Share from "$components/Modal/Share.svelte";
 	import { selectedState } from "$stores/misc.js";
 	import data from "$data/iowa.json";
 	import states from "$data/states.csv";
@@ -20,13 +21,13 @@
 	</div>
 </div>
 
-<div class="facts">
-	<Facts mazeSize={data.length} />
-</div>
 <div class="play">
 	<div class="maze">
 		<Maze wallData={data} size={data.length} playable={true} animated={false} />
 	</div>
+</div>
+<div class="facts">
+	<Facts mazeSize={data.length} />
 </div>
 
 <div class="bottom">
@@ -40,9 +41,7 @@
 		</div>
 	</div>
 
-	<div class="share">
-		SHARE <button><Icon name="share" /></button>
-	</div>
+	<Share />
 </div>
 
 <style>
@@ -51,6 +50,7 @@
 	}
 	.facts {
 		grid-area: side;
+		overflow: scroll;
 	}
 	.play {
 		grid-area: main;
@@ -92,22 +92,20 @@
 	.note {
 		margin-top: 1rem;
 	}
-	.share {
-		color: var(--color-pp-text-gray);
-		font-weight: 700;
-		display: flex;
-		align-items: center;
-	}
-	.share button {
-		background: var(--color-pp-light-navy);
-		color: white;
-		border-radius: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin-left: 0.5rem;
-	}
-	.share button:hover {
-		background: var(--color-pp-text-gray);
+
+	@media (max-width: 600px) {
+		.play {
+			width: 100%;
+			margin-top: 2rem;
+		}
+		.bottom {
+			display: none;
+		}
+		h2 {
+			font-size: 2rem;
+		}
+		.title div {
+			font-size: 1rem;
+		}
 	}
 </style>

@@ -5,7 +5,7 @@
 	import data from "$data/iowa.json";
 	import _ from "lodash";
 
-	$: list = facts.filter((d) => d.id === $selectedState);
+	$: list = facts.filter((d) => d.id === $selectedState).slice(0, 4);
 
 	const solution = _.orderBy(
 		_.flatten(data).filter((d) => d.solution),
