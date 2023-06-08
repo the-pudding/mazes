@@ -12,12 +12,13 @@
 
 	$: state = states.find((d) => d.id === $selectedState)?.name;
 	$: guttmacherLink = states.find((d) => d.id === $selectedState)?.guttmacher;
+	$: level = states.find((d) => d.id === $selectedState)?.level;
 </script>
 
 <div class="title">
 	<h2>{state}</h2>
 	<div>
-		...is one of the <strong>most restrictive</strong> states for abortion access.
+		...is one of the <strong>{level}</strong> states for abortion access.
 	</div>
 </div>
 

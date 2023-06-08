@@ -41,7 +41,7 @@
 
 	$: $width = $mq.desktop ? $availableWidth : $availableWidth * 0.9;
 	$: $data = wallData;
-	$: $wallWidth = $width / 50;
+	$: $wallWidth = $width / 200;
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = size ? ($width - $padding * 2) / size : 0;
 	$: $pathLength = $path.length - 1;

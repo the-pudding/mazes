@@ -1,9 +1,10 @@
 <script>
 	import Select from "$components/helpers/Select.svelte";
 	import states from "$data/states.csv";
+	import { getContext } from "svelte";
 
-	export let order;
-	export let highlight;
+	const { getOrder } = getContext("dashboard");
+	const order = getOrder();
 
 	const orderOptions = [
 		{ label: "alphabetically", value: "alpha" },
@@ -16,8 +17,8 @@
 </script>
 
 <div class="top-bar">
-	<Select label="Order" options={orderOptions} bind:value={order} />
-	<Select label="Highlight" options={highlightOptions} bind:value={highlight} />
+	<Select label="Order" options={orderOptions} bind:value={$order} />
+	<!-- <Select label="Highlight" options={highlightOptions} bind:value={highlight} /> -->
 </div>
 
 <style>

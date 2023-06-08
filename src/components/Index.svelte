@@ -14,8 +14,8 @@
 <WIP />
 <article>
 	<div class="above" class:faded={$selectedState}>
-		<Intro />
-		<Scroll />
+		<!-- <Intro />
+		<Scroll /> -->
 
 		{#each sections as { title, chunks }}
 			<Section {title} {chunks} />

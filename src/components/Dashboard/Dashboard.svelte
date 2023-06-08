@@ -1,38 +1,64 @@
 <script>
+	import State from "$components/Dashboard/State.svelte";
 	import TopBar from "$components/Dashboard/TopBar.svelte";
 	import states from "$data/states.csv";
 	import viewport from "$stores/viewport.js";
-	import { selectedState } from "$stores/misc.js";
+	import _ from "lodash";
+	import { setContext } from "svelte";
+	import { writable } from "svelte/store";
+
+	setContext("dashboard", {
+		getOrder: () => order
+	});
+
+	const order = writable("alpha");
+	const sortFns = {
+		geo: (d) => `${d.row}-${d.col}`,
+		alpha: (d) => d.name,
+		region: (d) => d.region,
+		"barriers-desc": (d) => +d.score,
+		"barriers-asc": (d) => +d.score
+	};
+	const regions = _.uniq(states.map((d) => d.region));
 
 	$: mobile = $viewport.width < 600;
-
-	let order = mobile ? "alpha" : "geo";
-	let highlight;
-
-	const onClick = (e) => {
-		const id = e.target.id;
-		$selectedState = id;
-		highlight = id;
-	};
+	$: sortedStates = _.orderBy(
+		states,
+		sortFns[$order],
+		$order === "barriers-asc" ? "desc" : "asc"
+	);
+	$: $order = mobile ? "alpha" : "geo";
+	$: geo = $order === "geo" && !mobile;
 </script>
 
 <div class="full-page">
-	<TopBar bind:order bind:highlight />
-	<figure>
-		{#each states as { id, name, row, col }}
-			{@const label = mobile ? name : id}
-			<div
-				class="state"
-				class:highlighted={highlight === id}
-				{id}
-				style={`--row: ${row}; --col: ${col}`}
-				on:click={onClick}
-				role="button"
-			>
-				<div class="abbrev">{label}</div>
-				<img src={"assets/img/iowa-100.png"} />
-			</div>
-		{/each}
+	<TopBar />
+	<figure class:geo>
+		{#if $order === "region"}
+			{#each regions as region}
+				{@const regionStates = sortedStates.filter((d) => d.region === region)}
+				<h3>{_.startCase(region)}</h3>
+				{#each regionStates as { id, name }}
+					<State {id} label={name} />
+				{/each}
+			{/each}
+		{:else}
+			{#if $order === "barriers-asc" || $order === "barriers-desc"}
+				<h3>
+					States with the {$order === "barriers-asc" ? "fewest" : "most"} barriers
+				</h3>
+			{/if}
+
+			{#each sortedStates as { id, name, row, col }}
+				<State {id} label={geo ? id : name} {row} {col} />
+			{/each}
+
+			{#if $order === "barriers-asc" || $order === "barriers-desc"}
+				<h3>
+					States with the {$order === "barriers-asc" ? "most" : "fewest"} barriers
+				</h3>
+			{/if}
+		{/if}
 	</figure>
 </div>
 
@@ -42,58 +68,21 @@
 		display: grid;
 		grid-template-rows: 80px 1fr;
 	}
-
 	figure {
 		display: grid;
-		grid-template-columns: repeat(12, 1fr);
-		grid-template-rows: repeat(8, 1fr);
-		max-width: 900px;
-		margin: auto;
+		max-width: min(100%, 900px);
+		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+		gap: 1rem;
+		margin: 2rem auto;
 		padding: 0 1rem;
 	}
-	.state {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		grid-row: var(--row);
-		grid-column: var(--col);
-		padding: 0.25rem;
+	figure.geo {
+		max-width: 900px;
+		grid-template-columns: repeat(12, 1fr);
+		grid-template-rows: repeat(8, 1fr);
+		gap: 0;
 	}
-	.state:hover {
-		cursor: pointer;
-	}
-	.highlighted {
-		outline: 3px solid var(--color-pp-magenta);
-		border-radius: 3px;
-	}
-	.highlighted .abbrev {
-		font-weight: 900;
-		color: black;
-	}
-	.abbrev {
-		font-family: var(--sans);
-		color: var(--color-pp-text-gray);
-		text-align: center;
-		pointer-events: none;
-	}
-	img {
-		pointer-events: none;
-	}
-
-	@media (max-width: 800px) {
-		.state {
-			font-size: 0.8rem;
-		}
-	}
-	@media (max-width: 600px) {
-		figure {
-			grid-template-columns: repeat(3, 1fr);
-			gap: 1rem;
-		}
-		.state {
-			grid-row: auto;
-			grid-column: auto;
-			font-size: 1rem;
-		}
+	h3 {
+		grid-column: 1/-1;
 	}
 </style>

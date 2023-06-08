@@ -41,11 +41,11 @@
 		cursor: pointer;
 		background: var(--color-white);
 		color: var(--color-gray-900);
-		/* border: 2px solid var(--color-gray-900); */
 		border-radius: 4px;
-		padding: 0.5em;
+		padding: 0.5em 2rem 0.5em 0.5em;
 		appearance: none;
 		line-height: 1.4;
+		text-transform: uppercase;
 	}
 
 	select::-ms-expand {
