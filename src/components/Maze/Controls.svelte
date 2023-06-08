@@ -57,13 +57,7 @@
 </div>
 
 {#if !$mq.desktop}
-	<div
-		class="mobile-controls"
-		style:width={`${$availableWidth}px`}
-		style:height={`${$availableWidth}px`}
-	>
-		<KeysMobile />
-	</div>
+	<KeysMobile />
 {/if}
 
 <style>
@@ -72,10 +66,6 @@
 		justify-content: space-between;
 		margin-top: 3rem;
 		visibility: hidden;
-	}
-	.mobile-controls {
-		position: absolute;
-		top: 0;
 	}
 	.visible {
 		visibility: visible;
