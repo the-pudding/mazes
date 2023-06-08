@@ -1,21 +1,13 @@
 <script>
 	import KeysDesktop from "$components/Maze/Keys.Desktop.svelte";
-	import KeysMobile from "$components/Maze/Keys.Mobile.svelte";
 	import Button from "$components/Button.svelte";
 	import Share from "$components/Modal/Share.svelte";
 	import { getContext } from "svelte";
 	import mq from "$stores/mq.js";
 	import _ from "lodash";
 
-	const {
-		size,
-		getAvailableWidth,
-		getData,
-		getGameState,
-		getLocation,
-		getPath
-	} = getContext("maze");
-	const availableWidth = getAvailableWidth();
+	const { size, getData, getGameState, getLocation, getPath } =
+		getContext("maze");
 	const data = getData();
 	const gameState = getGameState();
 	const location = getLocation();
@@ -39,7 +31,7 @@
 	$: buttonText = $gameState === "pre" ? "start maze" : "restart maze";
 </script>
 
-<div class="bottom" class:visible={$gameState !== "pre"}>
+<div class="footer" class:visible={$gameState !== "pre"}>
 	<div class="buttons">
 		<Button text={buttonText} onClick={$gameState === "pre" ? start : reset} />
 		<button
@@ -56,12 +48,9 @@
 	{/if}
 </div>
 
-{#if !$mq.desktop}
-	<KeysMobile />
-{/if}
-
 <style>
-	.bottom {
+	.footer {
+		width: 100%;
 		display: flex;
 		justify-content: space-between;
 		margin-top: 3rem;

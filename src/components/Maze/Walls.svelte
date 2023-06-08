@@ -2,6 +2,7 @@
 	import { getContext } from "svelte";
 	import { draw } from "svelte/transition";
 	import mq from "$stores/mq.js";
+	import { selectedState } from "$stores/misc.js";
 
 	const {
 		size,
@@ -22,7 +23,8 @@
 
 <g
 	style:transform={`translate(${$padding}px, ${$padding}px)`}
-	class:faded={$gameState === "post" || $gameState === "pre"}
+	class:faded={$selectedState &&
+		($gameState === "post" || $gameState === "pre")}
 >
 	{#if playable && $gameState !== "pre"}
 		{#each $data as d}

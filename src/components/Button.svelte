@@ -1,15 +1,11 @@
 <script>
 	export let text;
 	export let onClick;
-	export let margin = {};
 	export let disabled = false;
-
-	$: marginStr = `${margin.top || 0} ${margin.right || 0} ${margin.left || 0} ${
-		margin.bottom || 0
-	}`;
+	export let style;
 </script>
 
-<button on:click={onClick} style={`margin: ${marginStr}`} {disabled}>
+<button on:click={onClick} {style} {disabled}>
 	{text.toUpperCase()}
 </button>
 

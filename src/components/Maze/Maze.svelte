@@ -1,7 +1,7 @@
 <script>
-	import Controls from "$components/Maze/Controls.svelte";
 	import Walls from "$components/Maze/Walls.svelte";
 	import Path from "$components/Maze/Path.svelte";
+	import Footer from "$components/Maze/Footer.svelte";
 	import Overlay from "$components/Maze/Overlay.svelte";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
@@ -62,7 +62,7 @@
 
 		{#if playable}
 			<Overlay />
-			<Controls />
+			<Footer />
 		{/if}
 	{/if}
 </div>

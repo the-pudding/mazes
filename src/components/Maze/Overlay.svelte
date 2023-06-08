@@ -1,5 +1,6 @@
 <script>
-	import Keys from "$components/Maze/Keys.Desktop.svelte";
+	import KeysDesktop from "$components/Maze/Keys.Desktop.svelte";
+	import KeysMobile from "$components/Maze/Keys.Mobile.svelte";
 	import Button from "$components/Button.svelte";
 	import { getContext } from "svelte";
 	import mq from "$stores/mq.js";
@@ -13,19 +14,19 @@
 	};
 </script>
 
-<div
-	class="overlay"
-	class:visible={$gameState === "post" || $gameState === "pre"}
-	style:height={`${$width}px`}
->
-	{#if $gameState === "post"}
+<div class="overlay" style:height={`${$width}px`} class:visible={true}>
+	{#if $gameState === "pre"}
+		<Button text={"start maze"} onClick={start} style={"z-index: 11"} />
+		{#if $mq.desktop}
+			<KeysDesktop />
+		{/if}
+	{:else if $gameState === "post"}
 		<div class="text">Maze completed!</div>
 		<div class="text">Take action tk</div>
-	{:else if $gameState === "pre"}
-		<Button text={"start maze"} onClick={start} />
-		{#if $mq.desktop}
-			<Keys />
-		{/if}
+	{/if}
+
+	{#if !$mq.desktop}
+		<KeysMobile />
 	{/if}
 </div>
 

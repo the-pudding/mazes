@@ -38,7 +38,7 @@
 			animated={false}
 		/>
 
-		<Button text="go to maze" margin={{ top: "0.5rem" }} onClick={goToMaze} />
+		<Button text="go to maze" style="margin-top: 0.5rem" onClick={goToMaze} />
 	</div>
 </div>
 

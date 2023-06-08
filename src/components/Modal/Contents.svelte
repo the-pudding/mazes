@@ -107,5 +107,8 @@
 		.title div {
 			font-size: 1rem;
 		}
+		.maze {
+			max-width: 280px;
+		}
 	}
 </style>
