@@ -57,6 +57,16 @@
 		cursor: pointer;
 		background: var(--color-pp-gray-1);
 	}
+	.state:focus {
+		outline: 3px solid var(--color-pp-magenta);
+		border-radius: 3px;
+	}
+	.state:focus .abbrev,
+	.state:hover .abbrev {
+		color: black;
+		font-weight: 900;
+		text-transform: uppercase;
+	}
 	.abbrev {
 		font-family: var(--sans);
 		color: var(--color-pp-text-gray);

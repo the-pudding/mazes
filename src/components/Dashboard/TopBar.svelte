@@ -16,12 +16,8 @@
 	];
 	const highlightOptions = states.map((d) => ({ label: d.name, value: d.id }));
 
-	// TODO: make a seperate variable here, goToState
-	// when i select something, it updates $selectedState
-
-	// when i open modal, focus should go in modal
-	// when i close modal, focus should go to the state el that was just selected
-	// focus looks like a pink outline
+	let goToState = "";
+	$: if (goToState) $selectedState = goToState;
 </script>
 
 <div class="top-bar">
@@ -29,7 +25,7 @@
 	<Select
 		label="See state maze for"
 		options={highlightOptions}
-		bind:value={$selectedState}
+		bind:value={goToState}
 	/>
 </div>
 

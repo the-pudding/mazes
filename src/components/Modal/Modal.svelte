@@ -3,16 +3,28 @@
 	import Icon from "$components/helpers/Icon.svelte";
 	import { selectedState } from "$stores/misc.js";
 	import { browser } from "$app/environment";
-	import { onMount } from "svelte";
+	import { onMount, tick } from "svelte";
 
 	let modalEl;
+	let stateEl;
 	let numFocusable;
 	let firstFocusable;
 	let lastFocusable;
 
 	$: open = $selectedState !== undefined;
 	$: if (browser) document.body.classList.toggle("noscroll", open);
+	$: if (open && modalEl) focusModal();
+	$: if (!open && stateEl) focusState();
 
+	const focusModal = async () => {
+		await tick();
+		modalEl.focus();
+		stateEl = document.querySelector(`.state#${$selectedState}`);
+	};
+	const focusState = () => {
+		stateEl.focus();
+		stateEl = undefined;
+	};
 	const close = () => {
 		$selectedState = undefined;
 	};
