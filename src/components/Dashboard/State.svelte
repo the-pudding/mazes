@@ -80,6 +80,7 @@
 	@media (max-width: 800px) {
 		.state {
 			font-size: 0.8rem;
+			padding: 0.1rem;
 		}
 	}
 </style>

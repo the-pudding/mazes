@@ -64,7 +64,7 @@
 
 <style>
 	.full-page {
-		min-height: 100vh;
+		min-height: calc(100vh - 3rem);
 		display: grid;
 		grid-template-rows: 80px 1fr;
 	}
@@ -73,11 +73,11 @@
 		max-width: min(100%, 900px);
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 		gap: 1rem;
-		margin: 2rem auto;
-		padding: 0 1rem;
+		margin: auto;
+		padding: 3rem 1rem;
 	}
 	figure.geo {
-		max-width: 900px;
+		max-width: 840px;
 		grid-template-columns: repeat(12, 1fr);
 		grid-template-rows: repeat(8, 1fr);
 		gap: 0;

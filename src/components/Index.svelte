@@ -5,6 +5,8 @@
 	import Section from "$components/Section/Section.svelte";
 	import Dashboard from "$components/Dashboard/Dashboard.svelte";
 	import Modal from "$components/Modal/Modal.svelte";
+	import Methods from "$components/Methods.svelte";
+	import Footer from "$components/Footer.svelte";
 	import copy from "$data/copy.json";
 	import { selectedState } from "$stores/misc.js";
 
@@ -13,7 +15,7 @@
 
 <WIP />
 <article>
-	<div class="above" class:faded={$selectedState}>
+	<div class="tan" class:faded={$selectedState}>
 		<Intro />
 		<Scroll />
 
@@ -22,16 +24,24 @@
 		{/each}
 	</div>
 
-	<div class="below" class:faded={$selectedState}>
+	<div class="white" class:faded={$selectedState}>
 		<Dashboard />
 	</div>
-
 	<Modal />
+
+	<div class="tan" class:faded={$selectedState}>
+		<Methods />
+	</div>
+
+	<Footer />
 </article>
 
 <style>
-	.above {
+	.tan {
 		background: var(--upper-bg);
+	}
+	.white {
+		background: white;
 	}
 	.faded {
 		opacity: 0.2;

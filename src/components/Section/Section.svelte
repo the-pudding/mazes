@@ -6,7 +6,7 @@
 	export let title;
 	export let chunks;
 
-	$: id = _.kebabCase(title);
+	$: id = _.kebabCase(title).replaceAll("-strong", "");
 
 	const components = { Prose, Slide };
 </script>
@@ -32,8 +32,8 @@
 <style>
 	section {
 		max-width: 1000px;
-		margin: 10rem auto;
-		padding: 0 4rem;
+		margin: 0 auto;
+		padding: 10rem 4rem;
 	}
 	h2 {
 		font-size: 4rem;
