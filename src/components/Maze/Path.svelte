@@ -54,7 +54,7 @@
 	$: $path, $cellSize, $wallWidth, updatePath();
 	const updatePath = () => {
 		pathStr = $path
-			.slice(0, $gameState === "post" ? $path.length : $path.length - 1)
+			// .slice(0, $gameState === "post" ? $path.length : $path.length - 1)
 			.reduce((acc, { row, col }, i) => {
 				if (i === 0) {
 					return acc;
@@ -138,14 +138,14 @@
 		style={`--stroke-width: ${pathStrokeWidth}px`}
 	/>
 
-	{#key animatedPathStr}
+	<!-- {#key animatedPathStr}
 		<path
 			class="animated"
 			d={animatedPathStr}
 			in:draw={{ duration: dur * 4, delay: dur / 2, easing: quintOut }}
 			style={`--stroke-width: ${pathStrokeWidth}px`}
 		/>
-	{/key}
+	{/key} -->
 </g>
 
 <style>
