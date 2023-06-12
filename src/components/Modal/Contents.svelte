@@ -35,7 +35,14 @@
 
 <div class="play">
 	<div class="maze">
-		<Maze {wallData} size={wallData.length} playable={true} animated={false} />
+		{#key $selectedState}
+			<Maze
+				{wallData}
+				size={wallData.length}
+				playable={true}
+				animated={false}
+			/>
+		{/key}
 	</div>
 </div>
 <div class="facts">
