@@ -2,7 +2,7 @@
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Maze from "$components/Maze/Maze.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
-	import data from "$data/iowa.json";
+	import data from "$data/states/iowa.json";
 	import copy from "$data/copy.json";
 	import scrollY from "$stores/scrollY.js";
 	import mq from "$stores/mq.js";
@@ -11,6 +11,7 @@
 	let step;
 	let direction = "up";
 
+	const featuredState = "iowa";
 	const title = copy.title;
 	const steps = copy.scroll;
 	const groups = _.chunk(
@@ -53,7 +54,12 @@
 		>
 			IL
 		</div>
-		<img src="assets/img/iowa-100.png" class="maze" class:shrunk={zoom} />
+		<img
+			src={`assets/img/states/${featuredState}.png`}
+			class="maze"
+			class:shrunk={zoom}
+			alt={`maze for ${featuredState}`}
+		/>
 
 		<div class="svg-maze" class:visible={!zoom}>
 			<Maze

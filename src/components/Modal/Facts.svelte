@@ -1,13 +1,12 @@
 <script>
 	import Fact from "$components/Modal/Fact.svelte";
 	import facts from "$data/facts.csv";
-	import { selectedState, pathLength } from "$stores/misc.js";
-	import data from "$data/iowa.json";
+	import { selectedState, pathLength, mazeData } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
 	import _ from "lodash";
 
-	const solution = _.orderBy(
-		_.flatten(data).filter((d) => d.solution),
+	$: solution = _.orderBy(
+		_.flatten($mazeData[$selectedState]).filter((d) => d.solution),
 		"solutionIndex",
 		"asc"
 	);

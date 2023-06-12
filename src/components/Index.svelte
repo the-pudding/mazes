@@ -8,9 +8,22 @@
 	import Methods from "$components/Methods.svelte";
 	import Footer from "$components/Footer.svelte";
 	import copy from "$data/copy.json";
-	import { selectedState } from "$stores/misc.js";
+	import { selectedState, mazeData } from "$stores/misc.js";
+	import states from "$data/states.csv";
+	import _ from "lodash";
 
 	const { sections } = copy;
+
+	const modules = import.meta.glob("../data/states/*.json");
+	for (const path in modules) {
+		modules[path]().then((mod) => {
+			const state = path.replace("../data/states/", "").replace(".json", "");
+			const abbrev = states
+				.find((d) => _.kebabCase(state) === _.kebabCase(d.name))
+				?.id.toLowerCase();
+			$mazeData[abbrev] = mod.default;
+		});
+	}
 </script>
 
 <WIP />

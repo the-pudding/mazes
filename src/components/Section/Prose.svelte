@@ -2,9 +2,8 @@
 	import Maze from "$components/Maze/Maze.svelte";
 	import Button from "$components/Button.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
-	import data from "$data/iowa.json";
 	import states from "$data/states.csv";
-	import { selectedState } from "$stores/misc.js";
+	import { selectedState, mazeData } from "$stores/misc.js";
 
 	export let maze;
 	export let text;
@@ -15,6 +14,7 @@
 		$selectedState = maze;
 	};
 
+	$: data = $mazeData[maze.toLowerCase()];
 	$: reverse = align === "right";
 </script>
 
@@ -31,12 +31,14 @@
 			<div class="link">See all mazes <Icon name="arrow-right" /></div>
 		</div>
 
-		<Maze
-			wallData={data}
-			size={data.length}
-			playable={false}
-			animated={false}
-		/>
+		{#if data && data.length}
+			<Maze
+				wallData={data}
+				size={data.length}
+				playable={false}
+				animated={false}
+			/>
+		{/if}
 
 		<Button text="go to maze" style="margin-top: 0.5rem" onClick={goToMaze} />
 	</div>

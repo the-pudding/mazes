@@ -3,8 +3,7 @@
 	import Facts from "$components/Modal/Facts.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
 	import Share from "$components/Modal/Share.svelte";
-	import { selectedState } from "$stores/misc.js";
-	import data from "$data/iowa.json";
+	import { selectedState, mazeData } from "$stores/misc.js";
 	import states from "$data/states.csv";
 	import copy from "$data/copy.json";
 	import { scaleQuantize, extent } from "d3";
@@ -18,11 +17,12 @@
 			"one of the <strong>least complex</strong> states"
 		]);
 
-	$: stateData = states.find((d) => d.id === $selectedState);
+	$: stateData = states.find((d) => d.id.toLowerCase() === $selectedState);
 	$: name = stateData?.name;
 	$: guttmacherLink = stateData?.guttmacher;
 	$: score = stateData?.score;
 	$: level = scale(score);
+	$: wallData = $selectedState ? $mazeData[$selectedState] : [];
 </script>
 
 <div class="title">
@@ -34,11 +34,11 @@
 
 <div class="play">
 	<div class="maze">
-		<Maze wallData={data} size={data.length} playable={true} animated={false} />
+		<Maze {wallData} size={wallData.length} playable={true} animated={false} />
 	</div>
 </div>
 <div class="facts">
-	<Facts mazeSize={data.length} />
+	<Facts mazeSize={wallData.length} />
 </div>
 
 <div class="bottom">
