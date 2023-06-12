@@ -27,6 +27,7 @@
 	const circleX = tweened(($cellSize + $wallWidth) / 2);
 	const circleY = tweened(($cellSize + $wallWidth) / 2);
 
+	$: pathStrokeWidth = $cellSize * 0.25;
 	$: if ($location.row === 0 && $location.col === 0) {
 		$path = [{ row: 0, col: 0 }];
 		animatedPathStr = "";
@@ -131,13 +132,18 @@
 <g class="path" class:faded={$gameState === "post" || $gameState === "pre"}>
 	<circle cx={$circleX} cy={$circleY} r={$cellSize / 4} />
 
-	<path class="full" d={pathStr} />
+	<path
+		class="full"
+		d={pathStr}
+		style={`--stroke-width: ${pathStrokeWidth}px`}
+	/>
 
 	{#key animatedPathStr}
 		<path
 			class="animated"
 			d={animatedPathStr}
 			in:draw={{ duration: dur * 4, delay: dur / 2, easing: quintOut }}
+			style={`--stroke-width: ${pathStrokeWidth}px`}
 		/>
 	{/key}
 </g>
@@ -148,12 +154,12 @@
 	}
 	path.full {
 		stroke: var(--color-pp-magenta);
-		stroke-width: 10;
+		stroke-width: var(--stroke-width);
 		fill: none;
 	}
 	path.animated {
 		stroke: var(--color-pp-magenta);
-		stroke-width: 10;
+		stroke-width: var(--stroke-width);
 		fill: none;
 	}
 	.faded {
