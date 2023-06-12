@@ -4,17 +4,18 @@
 	import Icon from "$components/helpers/Icon.svelte";
 	import states from "$data/states.csv";
 	import { selectedState, mazeData } from "$stores/misc.js";
+	import _ from "lodash";
 
 	export let maze;
 	export let text;
 	export let align;
 
-	const stateName = states.find((d) => d.id === maze).name;
+	const stateName = _.startCase(states.find((d) => d.id === maze).name);
 	const goToMaze = () => {
 		$selectedState = maze;
 	};
 
-	$: data = $mazeData[maze.toLowerCase()];
+	$: data = $mazeData[maze];
 	$: reverse = align === "right";
 </script>
 

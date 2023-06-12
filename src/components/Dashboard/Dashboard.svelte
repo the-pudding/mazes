@@ -39,7 +39,8 @@
 				{@const regionStates = sortedStates.filter((d) => d.region === region)}
 				<h3>{_.startCase(region)}</h3>
 				{#each regionStates as { id, name }}
-					<State id={id.toLowerCase()} {name} label={name} />
+					{@const label = _.startCase(name)}
+					<State {id} {label} />
 				{/each}
 			{/each}
 		{:else}
@@ -50,13 +51,8 @@
 			{/if}
 
 			{#each sortedStates as { id, name, row, col }}
-				<State
-					id={id.toLowerCase()}
-					{name}
-					label={geo ? id : name}
-					{row}
-					{col}
-				/>
+				{@const label = geo ? id.toUpperCase() : _.startCase(name)}
+				<State {id} {label} {row} {col} />
 			{/each}
 
 			{#if $order === "barriers-asc" || $order === "barriers-desc"}

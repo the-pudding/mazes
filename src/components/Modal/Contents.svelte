@@ -6,6 +6,7 @@
 	import { selectedState, mazeData } from "$stores/misc.js";
 	import states from "$data/states.csv";
 	import copy from "$data/copy.json";
+	import _ from "lodash";
 	import { scaleQuantize, extent } from "d3";
 
 	const { modalNote } = copy;
@@ -17,8 +18,8 @@
 			"one of the <strong>least complex</strong> states"
 		]);
 
-	$: stateData = states.find((d) => d.id.toLowerCase() === $selectedState);
-	$: name = stateData?.name;
+	$: stateData = states.find((d) => d.id === $selectedState);
+	$: name = _.startCase(stateData?.name);
 	$: guttmacherLink = stateData?.guttmacher;
 	$: score = stateData?.score;
 	$: level = scale(score);

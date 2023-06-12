@@ -5,7 +5,6 @@
 	import _ from "lodash";
 
 	export let id;
-	export let name;
 	export let label;
 	export let row;
 	export let col;
@@ -39,10 +38,7 @@
 	tabindex="0"
 >
 	<div class="abbrev">{label}</div>
-	<img
-		src={`assets/img/states/${_.kebabCase(name)}.png`}
-		alt={`maze for ${id}`}
-	/>
+	<img src={`assets/img/states/${id}.png`} alt={`maze for ${id}`} />
 </div>
 
 <style>

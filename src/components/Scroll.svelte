@@ -2,16 +2,16 @@
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Maze from "$components/Maze/Maze.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
-	import data from "$data/states/iowa.json";
 	import copy from "$data/copy.json";
 	import scrollY from "$stores/scrollY.js";
 	import mq from "$stores/mq.js";
 	import _ from "lodash";
+	import data from "$data/states/il.json";
 
 	let step;
 	let direction = "up";
 
-	const featuredState = "iowa";
+	const featuredState = "il";
 	const title = copy.title;
 	const steps = copy.scroll;
 	const groups = _.chunk(
