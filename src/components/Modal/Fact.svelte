@@ -1,5 +1,6 @@
 <script>
-	import Icon from "$components/helpers/Icon.svelte";
+	import thumbUp from "$svg/thumb-up.svg";
+	import thumbDown from "$svg/thumb-down.svg";
 	import { slide, fade } from "svelte/transition";
 
 	export let thumb;
@@ -9,8 +10,12 @@
 
 <div class="fade" transition:fade>
 	<div class="fact" class:visible in:slide>
-		<div class="thumb" class:good={thumb === "up"}>
-			<Icon name={`thumbs-${thumb}`} />
+		<div class="thumb" class:good={thumb === "up"} class:bad={thumb === "down"}>
+			{#if thumb === "up"}
+				{@html thumbUp}
+			{:else}
+				{@html thumbDown}
+			{/if}
 		</div>
 		{text}
 	</div>
@@ -29,10 +34,19 @@
 		background: var(--color-pp-text-gray);
 		border-radius: 100%;
 		display: flex;
+		align-items: center;
+		justify-content: center;
 		padding: 4px;
 		margin-right: 0.6rem;
+		height: 25px;
+		width: 25px;
+		flex-shrink: 0;
 	}
 	.good {
 		background: var(--color-pp-magenta);
+		padding-bottom: 6px;
+	}
+	.bad {
+		padding-top: 6px;
 	}
 </style>
