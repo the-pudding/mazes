@@ -1,13 +1,41 @@
 <script>
+	import _ from "lodash";
 	import copy from "$data/copy.json";
+	import sources from "$data/sources.csv";
+
+	const cols = ["metric", "source", "link"];
 </script>
 
 <section class="methods">
 	<h3>Methodology</h3>
-
 	{#each copy.methodology as { value }}
 		<p>{@html value}</p>
 	{/each}
+
+	<details>
+		<summary><h3>Sources</h3></summary>
+
+		<table>
+			<tr>
+				{#each cols as key}
+					<th>{_.startCase(key)}</th>
+				{/each}
+			</tr>
+			{#each sources as source}
+				<tr>
+					{#each cols as key}
+						<td>
+							{#if key === "link"}
+								<a href={source[key]} target="_blank">Link</a>
+							{:else}
+								{source[key]}
+							{/if}
+						</td>
+					{/each}
+				</tr>
+			{/each}
+		</table>
+	</details>
 </section>
 
 <style>
@@ -21,7 +49,31 @@
 		text-transform: uppercase;
 		font-weight: 900;
 	}
+	summary h3 {
+		display: inline;
+	}
+	summary {
+		margin-bottom: 1rem;
+	}
+	details {
+		margin-top: 3rem;
+	}
+	summary:hover {
+		cursor: pointer;
+	}
+	a:hover {
+		color: var(--color-pp-magenta);
+	}
+	summary::marker {
+		color: var(--color-pp-magenta);
+	}
 	p {
 		color: var(--color-pp-text-gray);
+	}
+	th,
+	td {
+		padding: 0.5rem;
+		background: var(--color-pp-gray-1);
+		border: 1px solid var(--color-pp-text-gray);
 	}
 </style>
