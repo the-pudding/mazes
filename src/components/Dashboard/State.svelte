@@ -9,8 +9,25 @@
 	export let row;
 	export let col;
 
-	const { getOrder } = getContext("dashboard");
+	const { getOrder, getColumnWidth } = getContext("dashboard");
 	const order = getOrder();
+	const columnWidth = getColumnWidth();
+
+	const longNames = [
+		{ id: "dc", shortened: "D.C." },
+		{ id: "nc", shortened: "N. Carolina" },
+		{ id: "sc", shortened: "S. Carolina" },
+		{ id: "wv", shortened: "W. Virginia" },
+		{ id: "nm", shortened: "N. Mexico" },
+		{ id: "ma", shortened: "Mass." },
+		{ id: "nh", shortened: "New Hamp." },
+		{ id: "nd", shortened: "N. Dakota" },
+		{ id: "sd", shortened: "S. Dakota" },
+		{ id: "pa", shortened: "Penn." },
+		{ id: "ri", shortened: "Rhode I." },
+		{ id: "ct", shortened: "Conn." }
+	];
+	let labelWidth;
 
 	$: mobile = $viewport.width < 600;
 	$: geo = $order === "geo" && !mobile;
@@ -37,7 +54,22 @@
 	role="button"
 	tabindex="0"
 >
-	<div class="abbrev">{label}</div>
+	{#if longNames.find((d) => d.id === id)}
+		<div
+			class="abbrev"
+			bind:clientWidth={labelWidth}
+			class:visible={labelWidth <= $columnWidth}
+		>
+			{label}
+
+			<div class="shortened abbrev" class:visible={labelWidth > $columnWidth}>
+				{longNames.find((d) => d.id === id).shortened}
+			</div>
+		</div>
+	{:else}
+		<div class="abbrev" class:visible={true}>{label}</div>
+	{/if}
+
 	<img src={`assets/img/states/${id}.png`} alt={`maze for ${id}`} />
 </div>
 
@@ -73,6 +105,17 @@
 		color: var(--color-pp-text-gray);
 		text-align: center;
 		pointer-events: none;
+		white-space: nowrap;
+		visibility: hidden;
+	}
+	.shortened {
+		position: absolute;
+		top: 0px;
+		left: 50%;
+		transform: translate(-50%, 0);
+	}
+	.abbrev.visible {
+		visibility: visible;
 	}
 	img {
 		pointer-events: none;

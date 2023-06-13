@@ -4,11 +4,12 @@
 	import states from "$data/states.csv";
 	import viewport from "$stores/viewport.js";
 	import _ from "lodash";
-	import { setContext } from "svelte";
+	import { onMount, setContext, tick } from "svelte";
 	import { writable } from "svelte/store";
 
 	setContext("dashboard", {
-		getOrder: () => order
+		getOrder: () => order,
+		getColumnWidth: () => columnWidth
 	});
 
 	const order = writable("alpha");
@@ -20,6 +21,7 @@
 		"barriers-asc": (d) => +d.score
 	};
 	const regions = _.uniq(states.map((d) => d.region));
+	const columnWidth = writable(0);
 
 	$: mobile = $viewport.width < 600;
 	$: sortedStates = _.orderBy(
@@ -29,6 +31,16 @@
 	);
 	$: $order = mobile ? "alpha" : "geo";
 	$: geo = $order === "geo" && !mobile;
+	$: if ($viewport.width && $order) measure();
+
+	const measure = async () => {
+		await tick();
+		$columnWidth = document.querySelector("figure .state")?.clientWidth;
+	};
+
+	onMount(() => {
+		measure();
+	});
 </script>
 
 <div class="full-page">
