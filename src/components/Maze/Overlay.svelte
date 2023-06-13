@@ -18,7 +18,7 @@
 	{#if $gameState === "pre"}
 		<Button text={"start maze"} onClick={start} style={"z-index: 11"} />
 		{#if $mq.desktop}
-			<KeysDesktop />
+			<KeysDesktop background={true} />
 		{/if}
 	{:else if $gameState === "post"}
 		<div class="text">Maze completed!</div>

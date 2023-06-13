@@ -2,11 +2,13 @@
 	import Icon from "$components/helpers/Icon.svelte";
 	import { getContext } from "svelte";
 
+	export let background = false;
+
 	const { getGameState } = getContext("maze");
 	const gameState = getGameState();
 </script>
 
-<div class="container" class:background={$gameState === "pre"}>
+<div class="container" class:background>
 	<div class="keys">
 		{#each ["up", "left", "down", "right"] as direction}
 			<span class={`key ${direction}`}>
