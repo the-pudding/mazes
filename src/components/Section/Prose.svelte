@@ -52,6 +52,7 @@
 		grid-template-columns: 1fr 250px;
 		align-items: center;
 		gap: 3rem;
+		min-height: 333px;
 	}
 	.container.reverse {
 		grid-template-columns: 250px 1fr;

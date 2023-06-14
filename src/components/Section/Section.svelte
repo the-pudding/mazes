@@ -15,7 +15,7 @@
 	<h2>{@html title}</h2>
 
 	{#each chunks as { type, component, maze, align, text, before, after, panels }}
-		<svelte:element this={type}>
+		<svelte:element this={type} class="chunk">
 			<svelte:component
 				this={components[component]}
 				{maze}
@@ -33,14 +33,19 @@
 	section {
 		max-width: 1000px;
 		margin: 0 auto;
-		padding: 10rem 4rem;
+		padding: 0 4rem;
 	}
 	h2 {
 		font-size: 4rem;
 		text-transform: uppercase;
+		margin: 0;
+		padding: 16px 0;
 	}
 	:global(section h2 strong) {
 		color: var(--color-pp-magenta);
 		font-weight: 900;
+	}
+	.chunk {
+		display: flex;
 	}
 </style>

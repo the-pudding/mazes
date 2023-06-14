@@ -1,5 +1,6 @@
 <script>
 	import WIP from "$components/helpers/WIP.svelte";
+	import Line from "$components/Line.svelte";
 	import Intro from "$components/Intro.svelte";
 	import Scroll from "$components/Scroll.svelte";
 	import Section from "$components/Section/Section.svelte";
@@ -25,12 +26,15 @@
 <WIP />
 <article>
 	<div class="tan" class:faded={$selectedState}>
-		<Intro />
-		<Scroll />
+		<!-- <Intro />
+		<Scroll /> -->
 
-		{#each sections as { title, chunks }}
-			<Section {title} {chunks} />
-		{/each}
+		<div class="sections">
+			<Line />
+			{#each sections as { title, chunks }}
+				<Section {title} {chunks} />
+			{/each}
+		</div>
 	</div>
 
 	<div class="white" class:faded={$selectedState}>
