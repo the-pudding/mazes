@@ -49,7 +49,7 @@
 <div class="play">
 	<div class="maze">
 		{#if loading}
-			<div class="loading">loading...</div>
+			<div class="loading" class:visible={loading}>loading...</div>
 		{:else if data && data.length}
 			{#key $selectedState}
 				<Maze wallData={data} {size} playable={true} animated={false} />
@@ -91,12 +91,13 @@
 	.maze {
 		width: 100%;
 		max-width: 380px;
+		position: relative;
 	}
 	.bottom {
 		grid-area: bottom;
 		color: var(--color-pp-text-gray);
 		display: flex;
-		align-items: center;
+		align-items: end;
 		justify-content: space-between;
 	}
 	.left {
@@ -124,8 +125,16 @@
 		margin-top: 1rem;
 	}
 	.loading {
-		font-size: 2rem;
+		font-size: 1.5rem;
 		text-align: center;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		visibility: hidden;
+	}
+	.loading.visible {
+		visibility: visible;
 	}
 
 	@media (max-width: 600px) {

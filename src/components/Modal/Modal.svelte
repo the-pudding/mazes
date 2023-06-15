@@ -91,7 +91,7 @@
 	.modal.open {
 		z-index: 10;
 		display: grid;
-		grid-template-rows: minmax(115px, 1fr) 3fr minmax(100px, 1fr);
+		grid-template-rows: minmax(115px, 1fr) 2fr 1fr;
 		grid-template-columns: minmax(200px, 1fr) minmax(0, 1.3fr);
 		grid-template-areas:
 			"top top"
