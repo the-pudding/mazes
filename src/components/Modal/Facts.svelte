@@ -6,7 +6,7 @@
 	import _ from "lodash";
 
 	$: solution = _.orderBy(
-		_.flatten($mazeData[$selectedState]).filter((d) => d.solution),
+		_.flatten($mazeData[$selectedState]).filter((d) => d.solutionIndex),
 		"solutionIndex",
 		"asc"
 	);

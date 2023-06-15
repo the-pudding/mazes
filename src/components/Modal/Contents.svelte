@@ -3,11 +3,16 @@
 	import Facts from "$components/Modal/Facts.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
 	import Share from "$components/Modal/Share.svelte";
-	import { selectedState, mazeData } from "$stores/misc.js";
+	import loadMazeData from "$utils/loadMazeData.js";
+	import { selectedState } from "$stores/misc.js";
 	import states from "$data/states.csv";
 	import copy from "$data/copy.json";
 	import _ from "lodash";
 	import { scaleQuantize, extent } from "d3";
+	import { tick } from "svelte";
+
+	let data;
+	let loading = true;
 
 	const { modalNote } = copy;
 	const scale = scaleQuantize()
@@ -23,7 +28,15 @@
 	$: guttmacherLink = stateData?.guttmacher;
 	$: score = stateData?.score;
 	$: level = scale(score);
-	$: wallData = $selectedState ? $mazeData[$selectedState] : [];
+	$: size = data && data.length ? Math.sqrt(data.length) : 0;
+	$: if ($selectedState) getMazeData();
+
+	const getMazeData = async () => {
+		loading = true;
+		data = await loadMazeData($selectedState);
+		await tick();
+		loading = false;
+	};
 </script>
 
 <div class="title">
@@ -35,18 +48,17 @@
 
 <div class="play">
 	<div class="maze">
-		{#key $selectedState}
-			<Maze
-				{wallData}
-				size={wallData.length}
-				playable={true}
-				animated={false}
-			/>
-		{/key}
+		{#if loading}
+			<div class="loading">loading...</div>
+		{:else if data && data.length}
+			{#key $selectedState}
+				<Maze wallData={data} {size} playable={true} animated={false} />
+			{/key}
+		{/if}
 	</div>
 </div>
 <div class="facts">
-	<Facts mazeSize={wallData.length} />
+	<Facts mazeSize={size} />
 </div>
 
 <div class="bottom">
@@ -110,6 +122,10 @@
 	}
 	.note {
 		margin-top: 1rem;
+	}
+	.loading {
+		font-size: 2rem;
+		text-align: center;
 	}
 
 	@media (max-width: 600px) {

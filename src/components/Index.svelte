@@ -9,18 +9,10 @@
 	import Methods from "$components/Methods.svelte";
 	import Footer from "$components/Footer.svelte";
 	import copy from "$data/copy.json";
-	import { selectedState, mazeData } from "$stores/misc.js";
+	import { selectedState } from "$stores/misc.js";
 	import _ from "lodash";
 
 	const { sections } = copy;
-
-	const modules = import.meta.glob("../data/states/*.json");
-	for (const path in modules) {
-		modules[path]().then((mod) => {
-			const id = path.replace("../data/states/", "").replace(".json", "");
-			$mazeData[id] = mod.default;
-		});
-	}
 </script>
 
 <WIP />

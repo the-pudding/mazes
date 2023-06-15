@@ -106,7 +106,9 @@
 		// todo: if in progress, jump to the end of the current animation
 		// do the new animation
 
-		const current = $data[$location.row][$location.col];
+		const current = $data.find(
+			(d) => d.row === $location.row && d.col === $location.col
+		);
 		const [top, right, bottom, left] = current.walls;
 
 		const validLeft = e.keyCode === 37 && !left;

@@ -3,57 +3,59 @@
 	import Button from "$components/Button.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
 	import states from "$data/states.csv";
-	import { selectedState, mazeData } from "$stores/misc.js";
+	import { selectedState } from "$stores/misc.js";
 	import _ from "lodash";
+	import { fade } from "svelte/transition";
+	import mq from "$stores/mq.js";
 	import inView from "$actions/inView.js";
-	import { csv } from "d3";
+	import loadMazeData from "$utils/loadMazeData.js";
 
 	export let maze;
 	export let text;
 	export let align;
 
+	let data;
 	const stateName = _.startCase(states.find((d) => d.id === maze).name);
 	const goToMaze = () => {
 		$selectedState = maze;
 	};
 
-	$: data = $mazeData[maze];
 	$: reverse = align === "right";
 
 	const onEnter = async () => {
-		// function: load state data (external)
-		// check if it's in the store, if not, load it
-		// data = await csv(`assets/states/${maze}.json`); // todo
-		// save it to store
+		data = await loadMazeData(maze);
 	};
 </script>
 
-<div class="container" class:reverse>
+<div class="container" class:reverse use:inView on:enter={onEnter}>
 	<div class="words" class:reverse>
 		{#each text as { value }}
 			<p>{@html value}</p>
 		{/each}
 	</div>
 
-	<div class="maze">
-		<div class="top">
-			<div class="state">{stateName}</div>
-			<button class="link" on:click={() => (location.href = "#dashboard")}
-				>See all mazes <Icon name="arrow-right" /></button
-			>
-		</div>
+	{#if data && data.length}
+		<div
+			class="maze"
+			transition:fade={{ duration: $mq.reducedMotion ? 0 : 800 }}
+		>
+			<div class="top">
+				<div class="state">{stateName}</div>
+				<button class="link" on:click={() => (location.href = "#dashboard")}
+					>See all mazes <Icon name="arrow-right" /></button
+				>
+			</div>
 
-		{#if data && data.length}
 			<Maze
 				wallData={data}
-				size={data.length}
+				size={Math.sqrt(data.length)}
 				playable={false}
 				animated={false}
 			/>
-		{/if}
 
-		<Button text="go to maze" style="margin-top: 0.5rem" onClick={goToMaze} />
-	</div>
+			<Button text="go to maze" style="margin-top: 0.5rem" onClick={goToMaze} />
+		</div>
+	{/if}
 </div>
 
 <style>

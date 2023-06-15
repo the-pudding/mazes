@@ -6,29 +6,37 @@
 	import scrollY from "$stores/scrollY.js";
 	import mq from "$stores/mq.js";
 	import _ from "lodash";
-	import data from "$data/states/il.json";
+	import loadMazeData from "$utils/loadMazeData.js";
+	import { onMount } from "svelte";
 
+	let data;
+	let groups;
 	let step;
 	let direction = "up";
 
 	const featuredState = "il";
+
 	const title = copy.title;
 	const steps = copy.scroll;
-	const groups = _.chunk(
-		_.shuffle(_.flatten(data)),
-		Math.ceil(data.length ** 2 / (steps.length - 1))
-	);
 
 	$: currentWalls =
 		step === undefined && direction === "up"
 			? []
 			: step === undefined && direction === "down"
-			? groups
-			: groups.slice(0, step + 1);
+			? _.flatten(groups)
+			: _.flatten(groups.slice(0, step + 1));
 	$: direction = $scrollY < 3000 ? "up" : "down";
 	$: zoom =
 		step === steps.length - 1 || (step === undefined && direction === "down");
 	$: zoomDuration = $mq.reducedMotion ? 0 : 3000;
+
+	onMount(async () => {
+		data = await loadMazeData(featuredState);
+		groups = _.chunk(
+			_.shuffle(data),
+			Math.ceil(data.length / (steps.length - 1))
+		);
+	});
 </script>
 
 <section id="scrolly">
@@ -52,7 +60,7 @@
 			class:visible={zoom}
 			style={`--delay: ${zoomDuration ? zoomDuration - 500 : 0}ms`}
 		>
-			IL
+			{featuredState.toUpperCase()}
 		</div>
 		<img
 			src={`assets/img/states/${featuredState}.png`}
@@ -61,14 +69,16 @@
 			alt={`maze for ${featuredState}`}
 		/>
 
-		<div class="svg-maze" class:visible={!zoom}>
-			<Maze
-				wallData={currentWalls}
-				size={data.length}
-				playable={false}
-				animated={true}
-			/>
-		</div>
+		{#if data && data.length}
+			<div class="svg-maze" class:visible={!zoom}>
+				<Maze
+					wallData={currentWalls}
+					size={Math.sqrt(data.length)}
+					playable={false}
+					animated={true}
+				/>
+			</div>
+		{/if}
 
 		<button
 			class="link"

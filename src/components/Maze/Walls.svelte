@@ -27,74 +27,69 @@
 		($gameState === "post" || $gameState === "pre")}
 >
 	{#if playable && $gameState !== "pre"}
-		{#each $data as d}
-			<!-- TODO: unclear if we need all of these rects -->
-			{#each d as { row, col }}
-				{@const start = row === 0 && col === 0}
-				{@const finish = row === size - 1 && col === size - 1}
-				<rect
-					x={col * $cellSize}
-					y={row * $cellSize}
-					width={$cellSize}
-					height={$cellSize}
-					class:start
-					class:finish
-				/>
-			{/each}
+		{#each $data as { row, col }}
+			{@const start = row === 0 && col === 0}
+			{@const finish = row === size - 1 && col === size - 1}
+			<rect
+				x={col * $cellSize}
+				y={row * $cellSize}
+				width={$cellSize}
+				height={$cellSize}
+				class:start
+				class:finish
+			/>
 		{/each}
 	{/if}
 
-	{#each $data as d}
-		{#each d as { row, col, walls }}
-			{@const [top, right, bottom, left] = walls}
-			{@const lineDraw = {
-				duration: animated && !$mq.reducedMotion ? 800 : 0,
-				delay: animated && !$mq.reducedMotion ? Math.random() * 400 : 0
-			}}
-			{#if top}
-				<line
-					x1={col * $cellSize - $wallWidth / 2}
-					x2={col * $cellSize + $cellSize + $wallWidth / 2}
-					y1={row * $cellSize}
-					y2={row * $cellSize}
-					stroke-width={$wallWidth}
-					transition:draw={lineDraw}
-				/>
-			{/if}
+	{#each $data as { row, col, walls }}
+		{@const [top, right, bottom, left] = walls}
+		{@const lineDraw = {
+			duration: animated && !$mq.reducedMotion ? 800 : 0,
+			delay: animated && !$mq.reducedMotion ? Math.random() * 400 : 0
+		}}
+		{#if top}
+			<line
+				x1={col * $cellSize - $wallWidth / 2}
+				x2={col * $cellSize + $cellSize + $wallWidth / 2}
+				y1={row * $cellSize}
+				y2={row * $cellSize}
+				stroke-width={$wallWidth}
+				transition:draw={lineDraw}
+			/>
+		{/if}
 
-			{#if right}
-				<line
-					x1={col * $cellSize + $cellSize}
-					x2={col * $cellSize + $cellSize}
-					y1={row * $cellSize - $wallWidth / 2}
-					y2={row * $cellSize + $cellSize + $wallWidth / 2}
-					stroke-width={$wallWidth}
-					transition:draw={lineDraw}
-				/>
-			{/if}
+		{#if right}
+			<line
+				x1={col * $cellSize + $cellSize}
+				x2={col * $cellSize + $cellSize}
+				y1={row * $cellSize - $wallWidth / 2}
+				y2={row * $cellSize + $cellSize + $wallWidth / 2}
+				stroke-width={$wallWidth}
+				transition:draw={lineDraw}
+			/>
+		{/if}
 
-			{#if bottom}
-				<line
-					x1={col * $cellSize + $cellSize + $wallWidth / 2}
-					x2={col * $cellSize - $wallWidth / 2}
-					y1={row * $cellSize + $cellSize}
-					y2={row * $cellSize + $cellSize}
-					stroke-width={$wallWidth}
-					transition:draw={lineDraw}
-				/>
-			{/if}
+		{#if bottom}
+			<line
+				x1={col * $cellSize + $cellSize + $wallWidth / 2}
+				x2={col * $cellSize - $wallWidth / 2}
+				y1={row * $cellSize + $cellSize}
+				y2={row * $cellSize + $cellSize}
+				stroke-width={$wallWidth}
+				transition:draw={lineDraw}
+			/>
+		{/if}
 
-			{#if left}
-				<line
-					x1={col * $cellSize}
-					x2={col * $cellSize}
-					y1={row * $cellSize + $cellSize + $wallWidth / 2}
-					y2={row * $cellSize - $wallWidth / 2}
-					stroke-width={$wallWidth}
-					transition:draw={lineDraw}
-				/>
-			{/if}
-		{/each}
+		{#if left}
+			<line
+				x1={col * $cellSize}
+				x2={col * $cellSize}
+				y1={row * $cellSize + $cellSize + $wallWidth / 2}
+				y2={row * $cellSize - $wallWidth / 2}
+				stroke-width={$wallWidth}
+				transition:draw={lineDraw}
+			/>
+		{/if}
 	{/each}
 </g>
 
