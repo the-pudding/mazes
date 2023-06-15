@@ -37,7 +37,7 @@
 		</div>
 	</div>
 
-	<div class="white" class:faded={$selectedState}>
+	<div id="dashboard" class="white" class:faded={$selectedState}>
 		<Dashboard />
 	</div>
 	<Modal />

@@ -38,7 +38,9 @@
 	<div class="maze">
 		<div class="top">
 			<div class="state">{stateName}</div>
-			<div class="link">See all mazes <Icon name="arrow-right" /></div>
+			<button class="link" on:click={() => (location.href = "#dashboard")}
+				>See all mazes <Icon name="arrow-right" /></button
+			>
 		</div>
 
 		{#if data && data.length}
@@ -85,6 +87,7 @@
 		align-items: center;
 		color: var(--color-pp-text-gray);
 		font-size: 0.9rem;
+		background: none;
 	}
 	:global(.words p strong) {
 		background: var(--color-pp-gray-1);

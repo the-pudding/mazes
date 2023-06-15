@@ -70,14 +70,15 @@
 			/>
 		</div>
 
-		<div
+		<button
 			class="link"
 			class:visible={zoom}
 			style={`--delay: ${zoomDuration ? zoomDuration - 500 : 0}ms`}
+			on:click={() => (location.href = "#dashboard")}
 		>
 			See all mazes
 			<Icon name="arrow-right" />
-		</div>
+		</button>
 	</div>
 
 	<div class="steps">
@@ -210,6 +211,7 @@
 		right: 0;
 		opacity: 0;
 		color: var(--color-pp-text-gray);
+		background: none;
 		display: flex;
 		align-items: center;
 	}
