@@ -27,18 +27,14 @@
 		($gameState === "post" || $gameState === "pre")}
 >
 	{#if playable && $gameState !== "pre"}
-		{#each $data as { row, col }}
-			{@const start = row === 0 && col === 0}
-			{@const finish = row === size - 1 && col === size - 1}
-			<rect
-				x={col * $cellSize}
-				y={row * $cellSize}
-				width={$cellSize}
-				height={$cellSize}
-				class:start
-				class:finish
-			/>
-		{/each}
+		<rect class="start" x={0} y={0} width={$cellSize} height={$cellSize} />
+		<rect
+			class="finish"
+			x={(size - 1) * $cellSize}
+			y={(size - 1) * $cellSize}
+			width={$cellSize}
+			height={$cellSize}
+		/>
 	{/if}
 
 	{#each $data as { row, col, walls }}
