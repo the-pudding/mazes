@@ -39,7 +39,7 @@
 		font-size: 4rem;
 		text-transform: uppercase;
 		margin: 0;
-		padding: 16px 0;
+		padding: 5rem 0 16px 0;
 	}
 	:global(section h2 strong) {
 		color: var(--color-pp-magenta);

@@ -35,6 +35,7 @@
 		align-items: center;
 		font-size: 2rem;
 		overflow: hidden;
+		margin: 5rem 0;
 	}
 	.panel {
 		padding: 2rem;

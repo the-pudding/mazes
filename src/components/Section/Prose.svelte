@@ -5,6 +5,8 @@
 	import states from "$data/states.csv";
 	import { selectedState, mazeData } from "$stores/misc.js";
 	import _ from "lodash";
+	import inView from "$actions/inView.js";
+	import { csv } from "d3";
 
 	export let maze;
 	export let text;
@@ -17,6 +19,13 @@
 
 	$: data = $mazeData[maze];
 	$: reverse = align === "right";
+
+	const onEnter = async () => {
+		// function: load state data (external)
+		// check if it's in the store, if not, load it
+		// data = await csv(`assets/states/${maze}.json`); // todo
+		// save it to store
+	};
 </script>
 
 <div class="container" class:reverse>

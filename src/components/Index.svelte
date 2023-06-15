@@ -26,8 +26,8 @@
 <WIP />
 <article>
 	<div class="tan" class:faded={$selectedState}>
-		<!-- <Intro />
-		<Scroll /> -->
+		<Intro />
+		<Scroll />
 
 		<div class="sections">
 			<Line />
@@ -50,6 +50,9 @@
 </article>
 
 <style>
+	.sections {
+		position: relative;
+	}
 	.tan {
 		background: var(--upper-bg);
 	}

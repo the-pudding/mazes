@@ -23,7 +23,7 @@
 	let pathStr;
 	let animatedPathStr;
 	let inProgress = { x: false, y: false };
-	const dur = 0;
+	const dur = 100;
 	const circleX = tweened(($cellSize + $wallWidth) / 2);
 	const circleY = tweened(($cellSize + $wallWidth) / 2);
 
@@ -54,7 +54,7 @@
 	$: $path, $cellSize, $wallWidth, updatePath();
 	const updatePath = () => {
 		pathStr = $path
-			// .slice(0, $gameState === "post" ? $path.length : $path.length - 1)
+			.slice(0, $gameState === "post" ? $path.length : $path.length - 1)
 			.reduce((acc, { row, col }, i) => {
 				if (i === 0) {
 					return acc;
@@ -103,6 +103,8 @@
 
 	const onKeyDown = (e) => {
 		if ($gameState === "post" || inProgress.x || inProgress.y) return;
+		// todo: if in progress, jump to the end of the current animation
+		// do the new animation
 
 		const current = $data[$location.row][$location.col];
 		const [top, right, bottom, left] = current.walls;
@@ -138,14 +140,14 @@
 		style={`--stroke-width: ${pathStrokeWidth}px`}
 	/>
 
-	<!-- {#key animatedPathStr}
+	{#key animatedPathStr}
 		<path
 			class="animated"
 			d={animatedPathStr}
-			in:draw={{ duration: dur * 4, delay: dur / 2, easing: quintOut }}
+			in:draw={{ duration: dur * 4, delay: 0, easing: quintOut }}
 			style={`--stroke-width: ${pathStrokeWidth}px`}
 		/>
-	{/key} -->
+	{/key}
 </g>
 
 <style>

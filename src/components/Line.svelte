@@ -3,33 +3,58 @@
 	import scrollY from "$stores/scrollY.js";
 	import _ from "lodash";
 	import { scaleLinear } from "d3";
+	import viewport from "$stores/viewport.js";
+	import { browser } from "$app/environment";
 
 	const padding = 15;
-	let start;
-	let height;
-	let width;
+	let offset = 0;
+	let height = 0;
+	let width = 0;
 	let heights = [];
-	let pathLength;
-	$: dashScale = scaleLinear().domain([0, 4500]).range([pathLength, 0]); // TODO should be max scrollY
-	$: currentDashOffset = dashScale($scrollY);
-
-	onMount(() => {
-		const div = document.querySelector("div.sections");
-		height = div.clientHeight;
-		width = div.clientWidth;
-		const chunks = document.querySelectorAll("section > .chunk, section > h2");
-		start = chunks[0].offsetTop;
-		heights = Array.from(chunks).map((chunk) => chunk.clientHeight);
-		pathLength = _.sum(heights) + (width - padding * 2) * heights.length;
-	});
-
-	$: pathStr = `M ${padding} ${start} ${heights.map(
+	let startY = 0;
+	let pathLength = 0;
+	$: dashScale = scaleLinear()
+		.domain([offset, offset + height])
+		.range([pathLength, 0]);
+	$: currentDashOffset = dashScale($scrollY >= offset ? $scrollY : pathLength);
+	$: pathStr = `M ${padding} ${startY} ${heights.map(
 		(h, i) =>
 			`v ${h} h ${i % 2 === 0 ? width - padding * 2 : -(width - padding * 2)}`
 	)}`;
+	$: pathLength = _.sum(heights) + (width - padding * 2) * heights.length;
+	$: $viewport.width, $viewport.height, measure();
+
+	const measure = () => {
+		if (browser) {
+			const container = document.querySelector("div.sections");
+			height = container.clientHeight;
+			width = container.clientWidth;
+			offset = container.offsetTop;
+
+			const chunks = Array.from(
+				document.querySelectorAll("section > .chunk, section > h2")
+			);
+			startY = chunks[0].offsetTop;
+			const chunksGrouped = chunks.reduce((acc, current, i) => {
+				if (current.tagName === "H2") return [...acc, [current, chunks[i + 1]]];
+				else if (chunks[i - 1] && chunks[i - 1].tagName === "H2") return acc;
+				else return [...acc, current];
+			}, []);
+			heights = chunksGrouped.map((chunk) => {
+				if (Array.isArray(chunk)) {
+					const [h2, div] = chunk;
+					return h2.clientHeight + div.clientHeight;
+				} else return chunk.clientHeight;
+			});
+		}
+	};
+
+	onMount(() => {
+		measure();
+	});
 </script>
 
-{#if height}
+{#if height && pathStr}
 	<svg width="100%" {height}>
 		<path
 			d={pathStr}
