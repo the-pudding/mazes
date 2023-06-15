@@ -11,7 +11,7 @@ const loadMazeData = async (id) => {
 	data = data.map((d) => ({
 		row: +d.row,
 		col: +d.col,
-		solutionIndex: +d.solutionIndex,
+		solutionIndex: d.solutionIndex ? +d.solutionIndex : null,
 		walls: d.walls.split("|").map((w) => (w === "t" ? true : false))
 	}));
 	mazeData.update((d) => ({ ...d, [id]: data }));

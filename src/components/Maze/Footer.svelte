@@ -21,9 +21,12 @@
 		$location = { row: 0, col: 0 };
 	};
 	const solve = () => {
-		const solution = _.flatten($data).filter((d) => d.solution);
-		const solutionSorted = _.orderBy(solution, "solutionIndex", "asc");
-		$path = solutionSorted;
+		const solution = _.orderBy(
+			$data.filter((d) => d.solutionIndex !== null),
+			"solutionIndex",
+			"asc"
+		);
+		$path = solution;
 		$gameState = "post";
 		$location = { row: size - 1, col: size - 1 };
 	};
