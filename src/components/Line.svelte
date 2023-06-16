@@ -7,6 +7,7 @@
 	import { browser } from "$app/environment";
 
 	const padding = 15;
+	const lineShift = 1000;
 	let offset = 0;
 	let height = 0;
 	let width = 0;
@@ -14,9 +15,13 @@
 	let startY = 0;
 	let pathLength = 0;
 	$: dashScale = scaleLinear()
-		.domain([offset, offset + height])
+		.domain([
+			offset - heights[0] + lineShift,
+			offset + _.sum(heights.slice(0, heights.length - 1))
+		])
 		.range([pathLength, 0]);
-	$: currentDashOffset = dashScale($scrollY >= offset ? $scrollY : pathLength);
+
+	$: currentDashOffset = dashScale($scrollY);
 	$: pathStr = `M ${padding} ${startY} ${heights.map(
 		(h, i) =>
 			`v ${h} h ${i % 2 === 0 ? width - padding * 2 : -(width - padding * 2)}`
