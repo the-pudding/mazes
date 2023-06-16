@@ -77,7 +77,7 @@
 	path {
 		stroke: var(--color-pp-light-purple);
 		stroke-width: 3px;
-		opacity: 0.5;
+		opacity: 0.3;
 		fill: none;
 		stroke-dasharray: var(--pathLength);
 		stroke-dashoffset: var(--offset);

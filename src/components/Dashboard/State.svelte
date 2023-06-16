@@ -34,7 +34,6 @@
 
 	const onClick = (e) => {
 		const id = e.target.id;
-		// todo load state data or pull from store if it's there
 		$selectedState = id;
 	};
 	const onKeyDown = (e) => {

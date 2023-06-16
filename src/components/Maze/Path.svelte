@@ -1,10 +1,9 @@
 <script>
-	import { getContext, tick } from "svelte";
+	import { getContext } from "svelte";
 	import mq from "$stores/mq.js";
 	import { tweened } from "svelte/motion";
 	import { draw } from "svelte/transition";
 	import { quintOut } from "svelte/easing";
-	import { previous } from "$stores/previous.js";
 
 	const {
 		getData,
@@ -27,7 +26,6 @@
 	const dur = 100;
 	const circleX = tweened(($cellSize + $wallWidth) / 2);
 	const circleY = tweened(($cellSize + $wallWidth) / 2);
-	const prevLocation = previous(location);
 
 	$: pathStrokeWidth = $cellSize * 0.25;
 	$: if ($location.row === 0 && $location.col === 0) {
@@ -86,18 +84,22 @@
 				$location.col - prevCol
 			];
 
-			if (rowDiff === 1) {
-				mostRecentMove = `v ${$cellSize}`;
-			} else if (rowDiff === -1) {
-				mostRecentMove = `v -${$cellSize}`;
-			} else if (colDiff === 1) {
-				mostRecentMove = `h ${$cellSize}`;
-			} else if (colDiff === -1) {
-				mostRecentMove = `h -${$cellSize}`;
-			}
-
 			let prevCenterX = prevCol * $cellSize + ($cellSize + $wallWidth) / 2;
 			let prevCenterY = prevRow * $cellSize + ($cellSize + $wallWidth) / 2;
+
+			if (rowDiff === 1) {
+				mostRecentMove = `v ${$cellSize}`;
+				if (prevRow !== 0 || prevCol !== 0) prevCenterY -= pathStrokeWidth / 2;
+			} else if (rowDiff === -1) {
+				mostRecentMove = `v -${$cellSize}`;
+				if (prevRow !== 0 || prevCol !== 0) prevCenterY += pathStrokeWidth / 2;
+			} else if (colDiff === 1) {
+				mostRecentMove = `h ${$cellSize}`;
+				if (prevRow !== 0 || prevCol !== 0) prevCenterX -= pathStrokeWidth / 2;
+			} else if (colDiff === -1) {
+				mostRecentMove = `h -${$cellSize}`;
+				if (prevRow !== 0 || prevCol !== 0) prevCenterX += pathStrokeWidth / 2;
+			}
 
 			animatedPathStr = `M ${prevCenterX} ${prevCenterY} ${mostRecentMove}`;
 		}
@@ -107,7 +109,8 @@
 	const onKeyDown = async (e) => {
 		if ($gameState === "post") return;
 		if (inProgress.x || inProgress.y) {
-			// location.set($prevLocation, { duration: 0 });
+			circleX.set(currentCenterX, { duration: 0 });
+			circleY.set(currentCenterY, { duration: 0 });
 			move(e);
 		} else {
 			move(e);
@@ -128,12 +131,16 @@
 		if (validLeft || validRight || validUp || validDown) {
 			inProgress = { x: true, y: true };
 			if (validLeft) {
+				headingTo = { row: $location.row, col: $location.col - 1 };
 				$location = { row: $location.row, col: $location.col - 1 };
 			} else if (validUp) {
+				headingTo = { row: $location.row - 1, col: $location.col };
 				$location = { row: $location.row - 1, col: $location.col };
 			} else if (validRight) {
+				headingTo = { row: $location.row, col: $location.col + 1 };
 				$location = { row: $location.row, col: $location.col + 1 };
 			} else if (validDown) {
+				headingTo = { row: $location.row + 1, col: $location.col };
 				$location = { row: $location.row + 1, col: $location.col };
 			}
 			$path = [...$path, $location];
@@ -155,7 +162,7 @@
 		<path
 			class="animated"
 			d={animatedPathStr}
-			in:draw={{ duration: dur * 4, easing: quintOut }}
+			in:draw={{ duration: dur * 2, easing: quintOut }}
 			style={`--stroke-width: ${pathStrokeWidth}px`}
 		/>
 	{/key}
