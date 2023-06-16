@@ -1,9 +1,10 @@
 <script>
-	import { getContext } from "svelte";
+	import { getContext, tick } from "svelte";
 	import mq from "$stores/mq.js";
 	import { tweened } from "svelte/motion";
 	import { draw } from "svelte/transition";
 	import { quintOut } from "svelte/easing";
+	import { previous } from "$stores/previous.js";
 
 	const {
 		getData,
@@ -26,6 +27,7 @@
 	const dur = 100;
 	const circleX = tweened(($cellSize + $wallWidth) / 2);
 	const circleY = tweened(($cellSize + $wallWidth) / 2);
+	const prevLocation = previous(location);
 
 	$: pathStrokeWidth = $cellSize * 0.25;
 	$: if ($location.row === 0 && $location.col === 0) {
@@ -101,11 +103,18 @@
 		}
 	};
 
-	const onKeyDown = (e) => {
-		if ($gameState === "post" || inProgress.x || inProgress.y) return;
-		// todo: if in progress, jump to the end of the current animation
-		// do the new animation
+	let headingTo;
+	const onKeyDown = async (e) => {
+		if ($gameState === "post") return;
+		if (inProgress.x || inProgress.y) {
+			// location.set($prevLocation, { duration: 0 });
+			move(e);
+		} else {
+			move(e);
+		}
+	};
 
+	const move = (e) => {
 		const current = $data.find(
 			(d) => d.row === $location.row && d.col === $location.col
 		);
@@ -146,7 +155,7 @@
 		<path
 			class="animated"
 			d={animatedPathStr}
-			in:draw={{ duration: dur * 4, delay: 0, easing: quintOut }}
+			in:draw={{ duration: dur * 4, easing: quintOut }}
 			style={`--stroke-width: ${pathStrokeWidth}px`}
 		/>
 	{/key}
