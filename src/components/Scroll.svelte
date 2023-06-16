@@ -55,19 +55,20 @@
 			style={`--dur: ${zoomDuration}ms`}
 		/>
 
-		<div
-			class="label"
-			class:visible={zoom}
-			style={`--delay: ${zoomDuration ? zoomDuration - 500 : 0}ms`}
-		>
-			{featuredState.toUpperCase()}
+		<div class="maze" class:shrunk={zoom}>
+			<div
+				class="label"
+				class:visible={zoom}
+				style={`--delay: ${zoomDuration ? zoomDuration - 500 : 0}ms`}
+			>
+				{featuredState.toUpperCase()}
+			</div>
+			<img
+				src={`assets/img/states/${featuredState}.png`}
+				alt={`maze for ${featuredState}`}
+				style="width: 100%"
+			/>
 		</div>
-		<img
-			src={`assets/img/states/${featuredState}.png`}
-			class="maze"
-			class:shrunk={zoom}
-			alt={`maze for ${featuredState}`}
-		/>
 
 		{#if data && data.length}
 			<div class="svg-maze" class:visible={!zoom}>
@@ -162,7 +163,7 @@
 	}
 	.map {
 		position: absolute;
-		width: 100%;
+		max-height: calc(100vh - 3rem);
 		transform: translate(35%, -41%) scale(8);
 		opacity: 0;
 		transition: all var(--dur);
@@ -206,8 +207,12 @@
 	.label {
 		color: var(--color-pp-text-gray);
 		position: absolute;
-		top: 50.4%;
-		left: 45.4%;
+		top: -34%;
+		font-size: 170px;
+		height: 300px;
+		z-index: 10000;
+		left: 50%;
+		transform: translate(-50%, 0);
 		opacity: 0;
 		transition: none;
 	}

@@ -15,7 +15,7 @@
 	const { sections } = copy;
 </script>
 
-<WIP />
+<!-- <WIP /> -->
 <article>
 	<div class="tan" class:faded={$selectedState}>
 		<Intro />

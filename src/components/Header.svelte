@@ -35,6 +35,7 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 1em;
+		z-index: 10000;
 	}
 	span {
 		font-weight: bold;
