@@ -83,29 +83,35 @@
 				$location.row - prevRow,
 				$location.col - prevCol
 			];
-
 			let prevCenterX = prevCol * $cellSize + ($cellSize + $wallWidth) / 2;
 			let prevCenterY = prevRow * $cellSize + ($cellSize + $wallWidth) / 2;
 
+			const twoAgo = $path.length > 2 ? $path[$path.length - 3] : null;
+			const doubleBack =
+				twoAgo && twoAgo.row === $location.row && twoAgo.col === $location.col;
+
 			if (rowDiff === 1) {
 				mostRecentMove = `v ${$cellSize}`;
-				if (prevRow !== 0 || prevCol !== 0) prevCenterY -= pathStrokeWidth / 2;
+				if ((prevRow !== 0 || prevCol !== 0) && !doubleBack)
+					prevCenterY -= pathStrokeWidth / 2;
 			} else if (rowDiff === -1) {
 				mostRecentMove = `v -${$cellSize}`;
-				if (prevRow !== 0 || prevCol !== 0) prevCenterY += pathStrokeWidth / 2;
+				if ((prevRow !== 0 || prevCol !== 0) && !doubleBack)
+					prevCenterY += pathStrokeWidth / 2;
 			} else if (colDiff === 1) {
 				mostRecentMove = `h ${$cellSize}`;
-				if (prevRow !== 0 || prevCol !== 0) prevCenterX -= pathStrokeWidth / 2;
+				if ((prevRow !== 0 || prevCol !== 0) && !doubleBack)
+					prevCenterX -= pathStrokeWidth / 2;
 			} else if (colDiff === -1) {
 				mostRecentMove = `h -${$cellSize}`;
-				if (prevRow !== 0 || prevCol !== 0) prevCenterX += pathStrokeWidth / 2;
+				if ((prevRow !== 0 || prevCol !== 0) && !doubleBack)
+					prevCenterX += pathStrokeWidth / 2;
 			}
 
 			animatedPathStr = `M ${prevCenterX} ${prevCenterY} ${mostRecentMove}`;
 		}
 	};
 
-	let headingTo;
 	const onKeyDown = async (e) => {
 		if ($gameState === "post") return;
 		if (inProgress.x || inProgress.y) {
@@ -131,16 +137,12 @@
 		if (validLeft || validRight || validUp || validDown) {
 			inProgress = { x: true, y: true };
 			if (validLeft) {
-				headingTo = { row: $location.row, col: $location.col - 1 };
 				$location = { row: $location.row, col: $location.col - 1 };
 			} else if (validUp) {
-				headingTo = { row: $location.row - 1, col: $location.col };
 				$location = { row: $location.row - 1, col: $location.col };
 			} else if (validRight) {
-				headingTo = { row: $location.row, col: $location.col + 1 };
 				$location = { row: $location.row, col: $location.col + 1 };
 			} else if (validDown) {
-				headingTo = { row: $location.row + 1, col: $location.col };
 				$location = { row: $location.row + 1, col: $location.col };
 			}
 			$path = [...$path, $location];
