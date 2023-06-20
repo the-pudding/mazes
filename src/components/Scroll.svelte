@@ -173,6 +173,7 @@
 		opacity: 1;
 	}
 	h1 {
+		font-family: var(--font-heavy);
 		font-size: 4rem;
 		position: absolute;
 		top: 50%;
@@ -180,7 +181,6 @@
 		text-align: center;
 		background: var(--upper-bg);
 		color: var(--color-pp-magenta);
-		font-weight: 900;
 		text-transform: uppercase;
 		z-index: 1;
 		opacity: 0;

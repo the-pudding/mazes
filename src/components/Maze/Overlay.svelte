@@ -50,7 +50,6 @@
 	.text {
 		text-align: center;
 		font-size: 2rem;
-		font-weight: 700;
 		color: var(--color-text);
 	}
 	@media (max-width: 600px) {

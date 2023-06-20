@@ -6,8 +6,8 @@
 /* colors defined in variables.css */
 :root {
 	/* font */
-	--sans: "Avenir Next", -apple-system, BlinkMacSystemFont, Helvetica, Arial,
-		sans-serif;
+	--sans: "Avenir Next Regular", -apple-system, BlinkMacSystemFont, Helvetica,
+		Arial, sans-serif;
 	--serif: "Tiempos Text Web", Iowan Old Style, Times New Roman, Times, serif;
 	--mono: Menlo, Consolas, Monaco, monospace;
 
@@ -37,9 +37,15 @@
 	--color-placeholder: var(--color-gray-500);
 
 	--upper-bg: #f9f7f4;
+	--font-bold: "Avenir Next Bold";
+	--font-heavy: "Avenir Next Heavy";
 
 	/* "1" second duration */
 	--1s: 1ms;
+}
+
+strong {
+	font-family: var(--font-bold);
 }
 
 /* dark theme */

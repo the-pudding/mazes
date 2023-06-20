@@ -9,7 +9,7 @@
 <style>
 	.share {
 		color: var(--color-pp-text-gray);
-		font-weight: 700;
+		font-family: var(--font-bold);
 		display: flex;
 		align-items: center;
 	}

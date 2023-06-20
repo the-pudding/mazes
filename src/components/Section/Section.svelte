@@ -43,7 +43,7 @@
 	}
 	:global(section h2 strong) {
 		color: var(--color-pp-magenta);
-		font-weight: 900;
+		font-family: var(--font-heavy);
 	}
 	.chunk {
 		display: flex;

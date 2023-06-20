@@ -97,7 +97,7 @@
 	.state:focus .abbrev,
 	.state:hover .abbrev {
 		color: black;
-		font-weight: 900;
+		font-family: var(--font-heavy);
 		text-transform: uppercase;
 	}
 	.abbrev {

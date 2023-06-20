@@ -46,8 +46,8 @@
 	}
 	h3 {
 		font-size: 1.2rem;
+		font-family: var(--font-heavy);
 		text-transform: uppercase;
-		font-weight: 900;
 	}
 	summary h3 {
 		display: inline;

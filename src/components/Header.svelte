@@ -38,7 +38,7 @@
 		z-index: 10000;
 	}
 	span {
-		font-weight: bold;
+		font-family: var(--font-heavy);
 	}
 	.title {
 		font-size: 1.3rem;

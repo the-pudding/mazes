@@ -114,7 +114,7 @@
 		font-size: 0.65rem;
 	}
 	h2 {
-		font-weight: 900;
+		font-family: var(--font-heavy);
 		font-size: 3rem;
 		margin-bottom: 0;
 	}

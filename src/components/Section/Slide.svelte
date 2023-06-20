@@ -57,7 +57,7 @@
 	}
 	:global(.panel strong) {
 		color: var(--color-pp-magenta);
-		font-weight: 900;
+		font-family: var(--font-heavy);
 		text-transform: uppercase;
 	}
 	.before {

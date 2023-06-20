@@ -13,8 +13,8 @@
 	button {
 		background: var(--color-pp-magenta);
 		color: white;
+		font-family: var(--font-bold);
 		padding: 0.5rem 1rem;
-		font-weight: 500;
 		border-radius: 100px;
 	}
 	button:hover {

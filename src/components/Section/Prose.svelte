@@ -82,7 +82,7 @@
 	}
 	.state {
 		font-size: 1.5rem;
-		font-weight: 900;
+		font-family: var(--font-heavy);
 	}
 	.link {
 		display: flex;
