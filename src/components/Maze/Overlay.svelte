@@ -12,9 +12,11 @@
 	const start = () => {
 		$gameState = "mid";
 	};
+
+	$: visible = $gameState === "pre" || $gameState === "post";
 </script>
 
-<div class="overlay" style:height={`${$width}px`} class:visible={true}>
+<div class="overlay" style:height={`${$width}px`} class:visible>
 	{#if $gameState === "pre"}
 		<Button text={"start maze"} onClick={start} style={"z-index: 11"} />
 		{#if $mq.desktop}
@@ -40,12 +42,13 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-evenly;
-		visibility: hidden;
 		font-size: 1.6rem;
 		z-index: 10;
+		opacity: 0;
+		transition: opacity calc(var(--1s) * 1) calc(var(--1s) * 0.2) ease-in-out;
 	}
 	.visible {
-		visibility: visible;
+		opacity: 1;
 	}
 	.text {
 		text-align: center;
