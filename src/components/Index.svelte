@@ -18,7 +18,7 @@
 <WIP />
 <article>
 	<div class="tan" class:faded={$selectedState}>
-		<!-- <Intro />
+		<Intro />
 		<Scroll />
 
 		<div class="sections">
@@ -36,11 +36,9 @@
 
 	<div class="tan" class:faded={$selectedState}>
 		<Methods />
-	</div> -->
-
-		<div style="height: 30vh" />
-		<Footer />
 	</div>
+
+	<Footer />
 </article>
 
 <style>

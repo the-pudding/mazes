@@ -18,7 +18,7 @@
 			<div class="left">
 				<div>
 					<a href="https://www.plannedparenthood.org/" target="_blank">
-						<img src="assets/img/ppfa-logo.png" />
+						<img src="assets/img/ppfa-logo.png" alt="planned parenthood logo" />
 					</a>
 					<div class="sub">{sub}</div>
 				</div>
@@ -42,7 +42,9 @@
 							<a href={titleLink} target="_blank" class="title">{title}</a>
 							<ul class="links">
 								{#each links as { text, link }}
-									<li class="link"><a href={link}>{text}</a></li>
+									<li class="link">
+										<a href={link} target="_blank">{text}</a>
+									</li>
 								{/each}
 							</ul>
 						</li>

@@ -179,7 +179,7 @@
 		top: 50%;
 		transform: translate(0, -50%);
 		text-align: center;
-		background: var(--upper-bg);
+		background: rgb(249, 247, 244, 0.9);
 		color: var(--color-pp-magenta);
 		text-transform: uppercase;
 		z-index: 1;

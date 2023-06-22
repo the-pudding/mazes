@@ -65,7 +65,6 @@
 	on:keydown={trapFocus}
 >
 	<button class="close" on:click={close}><Icon name="x" /></button>
-
 	<Contents />
 </div>
 

@@ -1,11 +1,12 @@
 <script>
-	import Icon from "$components/helpers/Icon.svelte";
 	import copy from "$data/copy.json";
-	import viewport from "$stores/viewport";
+	import { language } from "$stores/misc.js";
 
 	const { title } = copy;
 
-	$: mobile = $viewport.width < 600;
+	const toggleLanguage = () => {
+		$language = $language === "english" ? "spanish" : "english";
+	};
 </script>
 
 <header>
@@ -14,13 +15,11 @@
 		{title.split(" ").slice(2).join(" ").toUpperCase()}
 	</div>
 
-	{#if mobile}
-		<button class="btn-open">
-			<Icon name="menu" />
-		</button>
-	{:else}
-		<div class="about">ABOUT</div>
-	{/if}
+	<div class="about">
+		<button on:click={toggleLanguage}
+			>{$language === "english" ? "Español" : "English"}</button
+		>
+	</div>
 </header>
 
 <style>
@@ -43,10 +42,6 @@
 	.title {
 		font-size: 1.3rem;
 	}
-	.about {
-		font-size: 1rem;
-	}
-
 	.btn-open {
 		top: 0;
 		position: sticky;
@@ -61,12 +56,23 @@
 	.btn-open:hover {
 		color: var(--color-accent);
 	}
+	button {
+		background: none;
+		border: none;
+		color: white;
+	}
+	button:hover {
+		color: var(--color-pp-gray-1);
+	}
 
 	@media (max-width: 600px) {
 		.title {
 			font-size: 1rem;
 			text-align: left;
 			margin-right: 1em;
+		}
+		.about {
+			font-size: 0.8rem;
 		}
 	}
 </style>
