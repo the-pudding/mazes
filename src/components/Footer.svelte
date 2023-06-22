@@ -1,11 +1,18 @@
 <script>
 	import copy from "$data/copy.json";
+	import facebook from "$svg/facebook.svg";
+	import twitter from "$svg/twitter.svg";
+	import instagram from "$svg/instagram.svg";
+	import youtube from "$svg/youtube.svg";
+	import tiktok from "$svg/tiktok.svg";
 
-	const { main, sub, columns, extra, copyright, social } = copy.footer;
+	const { main, sub, columns, extra, copyright, social, call, donate } =
+		copy.footer;
+	const icons = { facebook, twitter, instagram, youtube, tiktok };
 </script>
 
 <footer>
-	<div class="container">
+	<div class="wrapper">
 		<p class="main">{main}</p>
 		<div class="sides">
 			<div class="left">
@@ -16,12 +23,18 @@
 					<div class="sub">{sub}</div>
 				</div>
 
+				<a href={call} class="button">call planned parenthood</a>
+				<a href={donate} target="_blank" class="button">donate</a>
+
 				<div class="socials">
 					{#each social as { id, link }}
-						<a href={link} target="_blank" class="social-link">{id}</a>
+						<a href={link} target="_blank" class="social-link">
+							{@html icons[id]}
+						</a>
 					{/each}
 				</div>
 			</div>
+
 			<div class="right">
 				<ul class="columns">
 					{#each columns as { title, titleLink, links }}
@@ -38,7 +51,7 @@
 			</div>
 		</div>
 
-		<div class="lower">
+		<div class="bottom">
 			<div>{copyright}</div>
 			<ul>
 				{#each extra as { text, link }}
@@ -56,7 +69,7 @@
 		padding: 5rem 3rem;
 		font-size: 0.9rem;
 	}
-	.container {
+	.wrapper {
 		max-width: 1200px;
 		margin: auto;
 	}
@@ -79,7 +92,11 @@
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-		margin-right: 6px;
+		margin-right: 8px;
+		padding: 8px;
+	}
+	.social-link:hover {
+		background: var(--color-pp-gray-1);
 	}
 	.sides {
 		display: flex;
@@ -103,7 +120,6 @@
 	ul.columns {
 		width: 100%;
 		display: flex;
-		flex-wrap: no-wrap;
 	}
 	.column {
 		padding: 0 0.8rem;
@@ -113,9 +129,13 @@
 		color: white;
 		text-transform: uppercase;
 		font-size: 0.8rem;
+		font-family: var(--font-bold);
+	}
+	.links {
+		padding-top: 0.5rem;
 	}
 	.link {
-		margin-top: 1rem;
+		padding: 0.5rem 0;
 	}
 	a {
 		border: none;
@@ -125,18 +145,21 @@
 		text-decoration: underline;
 		color: white;
 	}
-	.lower {
+	.bottom {
 		display: flex;
 		justify-content: space-between;
 		border-top: 1px solid var(--color-pp-gray-2);
 		padding-top: 1rem;
 	}
-	.lower ul {
+	.bottom ul {
 		display: flex;
 		font-size: 0.8rem;
 	}
-	.lower ul li {
+	.bottom ul li {
 		margin-left: 1rem;
+	}
+	.button {
+		display: none;
 	}
 
 	@media (max-width: 1000px) {
@@ -158,7 +181,62 @@
 			justify-content: flex-end;
 		}
 	}
-	@media (max-width: 800px) {
-		/* mobile version */
+	@media (max-width: 750px) {
+		footer {
+			padding: 3rem 1rem;
+		}
+		.main {
+			text-align: center;
+		}
+		.left {
+			flex-direction: column;
+			align-items: start;
+		}
+		.socials {
+			justify-content: center;
+			margin: 1.5rem 0 0 0;
+		}
+		.social-link {
+			margin-right: 1rem;
+		}
+		.social-link:last-of-type {
+			margin-right: 0;
+		}
+		ul.columns {
+			flex-direction: column;
+		}
+		.column {
+			padding: 0;
+			margin-bottom: 2rem;
+		}
+		.sides {
+			margin-bottom: 0;
+		}
+		.bottom {
+			border: none;
+			flex-direction: column;
+			align-items: center;
+		}
+		.bottom ul {
+			margin-top: 2rem;
+		}
+		.button {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			font-family: var(--font-bold);
+			border: 3px solid white;
+			border-radius: 25px;
+			color: white;
+			text-transform: uppercase;
+			padding: 0.5rem 1.3rem;
+			margin-top: 1rem;
+			transition: all calc(var(--1s) * 0.25) ease-out;
+		}
+		.button:hover {
+			background: white;
+			color: var(--color-pp-dark);
+			text-decoration: none;
+		}
 	}
 </style>
