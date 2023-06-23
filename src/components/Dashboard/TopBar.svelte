@@ -14,10 +14,13 @@
 		{ label: "by more barriers", value: "barriers-desc" },
 		{ label: "by fewer barriers", value: "barriers-asc" }
 	];
-	const highlightOptions = states.map((d) => ({ label: d.name, value: d.id }));
+	const highlightOptions = [
+		{ label: "select state", value: "default" },
+		...states.map((d) => ({ label: d.name, value: d.id }))
+	];
 
-	let goToState = "";
-	$: if (goToState) $selectedState = goToState;
+	let goToState = "default";
+	$: if (goToState && goToState !== "default") $selectedState = goToState;
 </script>
 
 <div class="top-bar">
