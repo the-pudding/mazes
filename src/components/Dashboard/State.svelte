@@ -33,7 +33,7 @@
 	$: geo = $order === "geo" && !mobile;
 
 	const onClick = (e) => {
-		const id = e.target.id;
+		const id = e.target.id.replace("-state", "");
 		$selectedState = id;
 	};
 	const onKeyDown = (e) => {
@@ -47,7 +47,7 @@
 <div
 	class="state"
 	class:geo
-	{id}
+	id={`${id}-state`}
 	style={row && col ? `--row: ${row}; --col: ${col}` : null}
 	on:click={onClick}
 	on:keydown={onKeyDown}

@@ -1,9 +1,15 @@
 <script>
 	import Icon from "$components/helpers/Icon.svelte";
+
+	// TODO
+	// copy to clipboard
+	// {url}/#{selectedState}
+
+	const share = () => {};
 </script>
 
 <div class="share">
-	SHARE <button><Icon name="share" /></button>
+	SHARE <button on:click={share}><Icon name="share" /></button>
 </div>
 
 <style>
