@@ -4,7 +4,7 @@
 	import Icon from "$components/helpers/Icon.svelte";
 	import Share from "$components/Modal/Share.svelte";
 	import loadMazeData from "$utils/loadMazeData.js";
-	import { selectedState } from "$stores/misc.js";
+	import { language, selectedState } from "$stores/misc.js";
 	import states from "$data/states.csv";
 	import copy from "$data/copy.json";
 	import _ from "lodash";
@@ -68,7 +68,7 @@
 			<span><Icon name="external-link" /></span></a
 		>
 		<div class="note">
-			{@html modalNote}
+			{@html modalNote[$language]}
 		</div>
 	</div>
 

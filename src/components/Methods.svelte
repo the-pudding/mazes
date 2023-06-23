@@ -1,6 +1,7 @@
 <script>
 	import _ from "lodash";
 	import copy from "$data/copy.json";
+	import { language } from "$stores/misc.js";
 	import sources from "$data/sources.csv";
 
 	const cols = ["metric", "source", "link"];
@@ -8,8 +9,8 @@
 
 <section class="methods">
 	<h3>Methodology</h3>
-	{#each copy.methodology as { value }}
-		<p>{@html value}</p>
+	{#each copy.methodology as text}
+		<p>{@html text[$language]}</p>
 	{/each}
 
 	<details>

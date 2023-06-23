@@ -1,6 +1,7 @@
 <script>
 	import Prose from "$components/Section/Prose.svelte";
 	import Slide from "$components/Section/Slide.svelte";
+	import { language } from "$stores/misc.js";
 	import _ from "lodash";
 
 	export let title;
@@ -12,7 +13,7 @@
 </script>
 
 <section {id}>
-	<h2>{@html title}</h2>
+	<h2>{@html title[$language]}</h2>
 
 	{#each chunks as { type, component, maze, align, text, before, after, panels }}
 		<svelte:element this={type} class="chunk">

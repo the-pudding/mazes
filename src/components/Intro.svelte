@@ -1,20 +1,13 @@
 <script>
 	import copy from "$data/copy.json";
+	import { language } from "$stores/misc.js";
 
 	const { intro } = copy;
-
-	const lines = intro.map((d) => d.value);
-	const groups = [lines.slice(0, 1), lines.slice(1, 4), lines.slice(4)];
 </script>
 
 <section class="intro">
-	{#each groups as group, i}
-		<div class="group">
-			{#each group as line, j}
-				{@const emphasis = i === groups.length - 1 && j === group.length - 1}
-				<p class:emphasis>{@html line}</p>
-			{/each}
-		</div>
+	{#each intro as text}
+		<p>{@html text[$language]}</p>
 	{/each}
 </section>
 
@@ -32,10 +25,5 @@
 	p {
 		font-size: 2rem;
 		text-align: center;
-	}
-	.emphasis {
-		color: var(--color-pp-magenta);
-		text-transform: uppercase;
-		font-size: 4rem;
 	}
 </style>

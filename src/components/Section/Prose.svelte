@@ -9,6 +9,7 @@
 	import mq from "$stores/mq.js";
 	import inView from "$actions/inView.js";
 	import loadMazeData from "$utils/loadMazeData.js";
+	import { language } from "$stores/misc.js";
 
 	export let maze;
 	export let text;
@@ -29,8 +30,8 @@
 
 <div class="container" class:reverse use:inView on:enter={onEnter}>
 	<div class="words" class:reverse>
-		{#each text as { value }}
-			<p>{@html value}</p>
+		{#each text as t}
+			<p>{@html t[$language]}</p>
 		{/each}
 	</div>
 

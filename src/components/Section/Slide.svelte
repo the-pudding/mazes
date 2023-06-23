@@ -1,6 +1,7 @@
 <script>
 	import inView from "$actions/inView.js";
 	import mq from "$stores/mq.js";
+	import { language } from "$stores/misc.js";
 
 	export let before;
 	export let after;
@@ -15,16 +16,16 @@
 	on:enter={() => (visible = true)}
 	on:exit={() => (visible = false)}
 >
-	{#if before}<div class="before">{@html before}</div>{/if}
+	{#if before}<div class="before">{@html before[$language]}</div>{/if}
 
-	{#each panels as { value }, i}
+	{#each panels as text, i}
 		{@const delay = $mq.reducedMotion ? 0 : i * 500}
 		<div class="panel" class:visible style={`--delay: ${delay}ms`}>
-			{@html value}
+			{@html text[$language]}
 		</div>
 	{/each}
 
-	{#if after}<div class="after">{@html after}</div>{/if}
+	{#if after}<div class="after">{@html after[$language]}</div>{/if}
 </div>
 
 <style>
@@ -59,6 +60,10 @@
 		color: var(--color-pp-magenta);
 		font-family: var(--font-heavy);
 		text-transform: uppercase;
+	}
+	:global(.panel a) {
+		font-family: var(--font-heavy);
+		color: var(--color-pp-dark);
 	}
 	.before {
 		margin-bottom: 2rem;

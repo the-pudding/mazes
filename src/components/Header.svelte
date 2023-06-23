@@ -2,7 +2,7 @@
 	import copy from "$data/copy.json";
 	import { language } from "$stores/misc.js";
 
-	const { title } = copy;
+	const { headerTitle } = copy;
 
 	const toggleLanguage = () => {
 		$language = $language === "english" ? "spanish" : "english";
@@ -11,8 +11,7 @@
 
 <header>
 	<div class="title">
-		<span>{title.split(" ").slice(0, 2).join(" ").toUpperCase()}</span>
-		{title.split(" ").slice(2).join(" ").toUpperCase()}
+		{@html headerTitle[$language]}
 	</div>
 
 	<div class="about">
@@ -36,11 +35,9 @@
 		padding: 1em;
 		z-index: 10000;
 	}
-	span {
-		font-family: var(--font-heavy);
-	}
 	.title {
 		font-size: 1.3rem;
+		text-transform: uppercase;
 	}
 	.btn-open {
 		top: 0;

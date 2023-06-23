@@ -8,6 +8,7 @@
 	import _ from "lodash";
 	import loadMazeData from "$utils/loadMazeData.js";
 	import { onMount } from "svelte";
+	import { language } from "$stores/misc.js";
 
 	let data;
 	let groups;
@@ -15,10 +16,9 @@
 	let direction = "up";
 
 	const featuredState = "il";
-
-	const title = copy.title;
 	const steps = copy.scroll;
 
+	$: hed = steps[steps.length - 1][$language];
 	$: currentWalls =
 		step === undefined && direction === "up"
 			? []
@@ -45,7 +45,7 @@
 			class:visible={zoom}
 			style={`--delay: ${zoomDuration}ms; --dur: ${zoomDuration / 3}ms`}
 		>
-			{title}
+			{hed}
 		</h1>
 		<img
 			src="assets/img/usa-missing.png"
@@ -94,10 +94,9 @@
 
 	<div class="steps">
 		<Scrolly bind:value={step}>
-			{#each steps as { value }, i}
-				{@const active = value === i}
-				<div class="step" class:active>
-					<p>{@html value}</p>
+			{#each steps as text, i}
+				<div class="step">
+					<p>{@html text[$language]}</p>
 				</div>
 			{/each}
 		</Scrolly>
