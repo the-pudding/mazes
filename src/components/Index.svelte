@@ -15,14 +15,14 @@
 	const { sections } = copy;
 </script>
 
-<!-- <WIP /> -->
+<WIP />
 <article>
 	<div class="tan" class:faded={$selectedState}>
 		<Intro />
 		<Scroll />
 
 		<div class="sections">
-			<!-- <Line /> -->
+			<Line />
 			{#each sections as { title, chunks }}
 				<Section {title} {chunks} />
 			{/each}

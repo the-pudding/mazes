@@ -19,8 +19,13 @@
 		...states.map((d) => ({ label: d.name, value: d.id }))
 	];
 
-	let goToState = "default";
-	$: if (goToState && goToState !== "default") $selectedState = goToState;
+	let selectState = "default";
+
+	$: if (selectState && selectState !== "default") $selectedState = selectState;
+
+	// TODO
+	// when selectState is something, update selected state
+	// when selected state is blank, reset selectState
 </script>
 
 <div class="top-bar">
@@ -28,7 +33,7 @@
 	<Select
 		label="See state maze for"
 		options={highlightOptions}
-		bind:value={goToState}
+		bind:value={selectState}
 	/>
 </div>
 

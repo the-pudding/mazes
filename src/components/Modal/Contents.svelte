@@ -12,7 +12,8 @@
 	import { tick } from "svelte";
 
 	let data;
-	let loading = true;
+	let width;
+	let loading = false;
 
 	const { modalNote } = copy;
 	const scale = scaleQuantize()
@@ -47,14 +48,10 @@
 </div>
 
 <div class="play">
-	<div class="maze">
-		{#if loading}
-			<div class="loading" class:visible={loading}>loading...</div>
-		{:else if data && data.length}
-			{#key $selectedState}
-				<Maze wallData={data} {size} playable={true} animated={false} />
-			{/key}
-		{/if}
+	<div class="maze" bind:clientWidth={width}>
+		{#key $selectedState}
+			<Maze wallData={data} {size} playable={true} animated={false} {loading} />
+		{/key}
 	</div>
 </div>
 <div class="facts">
@@ -123,18 +120,6 @@
 	}
 	.note {
 		margin-top: 1rem;
-	}
-	.loading {
-		font-size: 1.5rem;
-		text-align: center;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		visibility: hidden;
-	}
-	.loading.visible {
-		visibility: visible;
 	}
 
 	@media (max-width: 600px) {

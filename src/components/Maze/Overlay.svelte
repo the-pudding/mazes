@@ -4,6 +4,9 @@
 	import Button from "$components/Button.svelte";
 	import { getContext } from "svelte";
 	import mq from "$stores/mq.js";
+	import { fade } from "svelte/transition";
+
+	export let loading;
 
 	const { getGameState, getWidth } = getContext("maze");
 	const gameState = getGameState();
@@ -18,9 +21,28 @@
 
 <div class="overlay" style:height={`${$width}px`} class:visible>
 	{#if $gameState === "pre"}
-		<Button text={"start maze"} onClick={start} style={"z-index: 11"} />
-		{#if $mq.desktop}
-			<KeysDesktop background={true} />
+		{#if loading}
+			<svg width={$width} height={$width}>
+				<path
+					d="M 0 0 L {$width} 0 L {$width} {$width} L 0 {$width} Z"
+					fill="none"
+					stroke="var(--color-pp-text-gray)"
+					stroke-width={10}
+					style={`--offset: ${$width * 4}`}
+				/>
+			</svg>
+			<div class="loading-text">Loading...</div>
+		{:else}
+			<div transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}>
+				<Button
+					text={"start maze"}
+					onClick={start}
+					style={"z-index: 11; margin-bottom: 1rem"}
+				/>
+				{#if $mq.desktop}
+					<KeysDesktop background={true} />
+				{/if}
+			</div>
 		{/if}
 	{:else if $gameState === "post"}
 		<div class="text">Maze completed!</div>
@@ -55,6 +77,29 @@
 		font-size: 2rem;
 		color: var(--color-text);
 	}
+	.loading-text {
+		color: var(--color-pp-text-gray);
+		font-size: 0.8rem;
+		position: absolute;
+		top: 50%;
+		transform: translate(0, -50%);
+	}
+	svg {
+		position: absolute;
+		top: 0;
+	}
+	path {
+		opacity: 0.25;
+		stroke-dasharray: var(--offset);
+		stroke-dashoffset: var(--offset);
+		animation: dash calc(var(--1s) * 4) infinite linear;
+	}
+	@keyframes dash {
+		to {
+			stroke-dashoffset: 0;
+		}
+	}
+
 	@media (max-width: 600px) {
 		.overlay {
 			font-size: 1.2rem;

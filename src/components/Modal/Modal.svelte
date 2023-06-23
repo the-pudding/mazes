@@ -20,6 +20,7 @@
 		await tick();
 		modalEl.focus();
 		stateEl = document.querySelector(`.state#${$selectedState}`);
+		// location.href = `#${$selectedState}`;
 	};
 	const focusState = () => {
 		stateEl.focus();
@@ -27,6 +28,7 @@
 	};
 	const close = () => {
 		$selectedState = undefined;
+		// TODO clear url
 	};
 	const trapFocus = (e) => {
 		const tabPressed = e.key === "Tab" || e.keyCode === 9;

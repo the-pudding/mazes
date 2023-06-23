@@ -6,12 +6,14 @@
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
 	import { pathLength } from "$stores/misc.js";
+	import { fade } from "svelte/transition";
 	import mq from "$stores/mq.js";
 
 	export let wallData;
 	export let size;
 	export let playable;
 	export let animated;
+	export let loading = false;
 
 	const data = writable(wallData);
 	const availableWidth = writable(0);
@@ -54,14 +56,21 @@
 <div class="container" bind:clientWidth={$availableWidth}>
 	{#if $width}
 		<svg width={$width} height={$width}>
-			<Walls />
-			{#if playable && $gameState !== "pre"}
-				<Path />
+			{#if !loading}
+				<g
+					class="fade"
+					transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}
+				>
+					<Walls />
+					{#if playable && $gameState !== "pre"}
+						<Path />
+					{/if}
+				</g>
 			{/if}
 		</svg>
 
 		{#if playable}
-			<Overlay />
+			<Overlay {loading} />
 			<Footer />
 		{/if}
 	{/if}
