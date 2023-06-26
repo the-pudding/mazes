@@ -14,6 +14,7 @@
 	export let playable;
 	export let animated;
 	export let loading = false;
+	export let mazePath = [{ row: 0, col: 0 }];
 
 	const data = writable(wallData);
 	const availableWidth = writable(0);
@@ -22,7 +23,7 @@
 	const wallWidth = writable(0);
 	const padding = writable(0);
 	const location = writable({ row: 0, col: 0 });
-	const path = writable([{ row: 0, col: 0 }]);
+	const path = writable(mazePath);
 	const gameState = writable("pre");
 
 	setContext("maze", {
@@ -41,8 +42,9 @@
 		getGameState: () => gameState
 	});
 
-	$: $width = $mq.desktop ? $availableWidth : $availableWidth * 0.9;
 	$: $data = wallData;
+	$: $path = mazePath;
+	$: $width = $mq.desktop ? $availableWidth : $availableWidth * 0.9;
 	$: $wallWidth = $width / 50;
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = size ? ($width - $padding * 2) / size : 0;
@@ -62,9 +64,7 @@
 					transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}
 				>
 					<Walls />
-					{#if playable && $gameState !== "pre"}
-						<Path />
-					{/if}
+					<Path />
 				</g>
 			{/if}
 		</svg>

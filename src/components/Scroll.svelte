@@ -11,36 +11,58 @@
 	import { language } from "$stores/misc.js";
 
 	let data;
-	let groups;
+	let simple;
 	let step;
+	let solution;
 	let direction = "up";
 
 	const featuredState = "il";
 	const steps = copy.scroll;
 
+	$: walls =
+		step >= 5 || (step === undefined && direction === "down") ? data : simple;
+	$: solution = _.orderBy(
+		_.flatten(simple).filter((d) => d.solutionIndex !== null),
+		"solutionIndex",
+		"asc"
+	);
+	$: mazePath = zoom
+		? []
+		: step === 1
+		? solution.slice(0, 5)
+		: step === 2
+		? solution.slice(0, 9)
+		: step === 3
+		? solution.slice(0, 12)
+		: step === 4
+		? solution
+		: [];
 	$: hed = steps[steps.length - 1][$language];
-	$: currentWalls =
-		step === undefined && direction === "up"
-			? []
-			: step === undefined && direction === "down"
-			? _.flatten(groups)
-			: _.flatten(groups.slice(0, step + 1));
 	$: direction = $scrollY < 3000 ? "up" : "down";
+	$: zoomDuration = $mq.reducedMotion ? 0 : 3000;
 	$: zoom =
 		step === steps.length - 1 || (step === undefined && direction === "down");
-	$: zoomDuration = $mq.reducedMotion ? 0 : 3000;
 
 	onMount(async () => {
+		simple = await loadMazeData("il-simple");
 		data = await loadMazeData(featuredState);
-		groups = _.chunk(
-			_.shuffle(data),
-			Math.ceil(data.length / (steps.length - 1))
-		);
 	});
 </script>
 
 <section id="scrolly">
 	<div class="sticky" class:zoom style={`--dur: ${zoomDuration}ms`}>
+		{#if data && data.length}
+			<div class="svg-maze" class:shrunk={zoom}>
+				<Maze
+					wallData={walls}
+					size={Math.sqrt(simple.length)}
+					playable={false}
+					animated={true}
+					{mazePath}
+				/>
+			</div>
+		{/if}
+
 		<h1
 			class:visible={zoom}
 			style={`--delay: ${zoomDuration}ms; --dur: ${zoomDuration / 3}ms`}
@@ -54,32 +76,6 @@
 			class:visible={zoom}
 			style={`--dur: ${zoomDuration}ms`}
 		/>
-
-		<div class="maze" class:shrunk={zoom}>
-			<div
-				class="label"
-				class:visible={zoom}
-				style={`--delay: ${zoomDuration ? zoomDuration - 500 : 0}ms`}
-			>
-				{featuredState.toUpperCase()}
-			</div>
-			<img
-				src={`assets/img/states/${featuredState}.png`}
-				alt={`maze for ${featuredState}`}
-				style="width: 100%"
-			/>
-		</div>
-
-		{#if data && data.length}
-			<div class="svg-maze" class:visible={!zoom}>
-				<Maze
-					wallData={currentWalls}
-					size={Math.sqrt(data.length)}
-					playable={false}
-					animated={true}
-				/>
-			</div>
-		{/if}
 
 		<button
 			class="link"
@@ -151,8 +147,12 @@
 		top: 50%;
 		width: 60%;
 		max-width: 700px;
-		transition: none;
-		visibility: hidden;
+		transition: all var(--dur);
+		/* visibility: hidden; */
+		transform: translate(0, -50%) scale(1);
+		/* transform: translate(-7%, -39.7%) scale(0.118); */
+	}
+	.svg-maze.shrunk {
 		transform: translate(-7%, -39.7%) scale(0.118);
 	}
 	.svg-maze.visible {

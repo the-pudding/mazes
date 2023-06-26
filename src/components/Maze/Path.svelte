@@ -11,7 +11,8 @@
 		getLocation,
 		getPath,
 		getWallWidth,
-		getGameState
+		getGameState,
+		playable
 	} = getContext("maze");
 	const data = getData();
 	const cellSize = getCellSize();
@@ -28,7 +29,7 @@
 	const circleY = tweened(($cellSize + $wallWidth) / 2);
 
 	$: pathStrokeWidth = $cellSize * 0.25;
-	$: if ($location.row === 0 && $location.col === 0) {
+	$: if (playable && $location.row === 0 && $location.col === 0) {
 		$path = [{ row: 0, col: 0 }];
 		animatedPathStr = "";
 	}
@@ -54,7 +55,10 @@
 	$: $path, $cellSize, $wallWidth, updatePath();
 	const updatePath = () => {
 		pathStr = $path
-			.slice(0, $gameState === "post" ? $path.length : $path.length - 1)
+			.slice(
+				0,
+				$gameState === "post" || !playable ? $path.length : $path.length - 1
+			)
 			.reduce((acc, { row, col }, i) => {
 				if (i === 0) {
 					return acc;
@@ -151,15 +155,18 @@
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
-<g class="path" class:faded={$gameState === "post" || $gameState === "pre"}>
-	<circle cx={$circleX} cy={$circleY} r={$cellSize / 4} />
-
+<g
+	class="path"
+	class:faded={playable && ($gameState === "post" || $gameState === "pre")}
+>
+	{#if playable}
+		<circle cx={$circleX} cy={$circleY} r={$cellSize / 4} />
+	{/if}
 	<path
 		class="full"
 		d={pathStr}
 		style={`--stroke-width: ${pathStrokeWidth}px`}
 	/>
-
 	{#key animatedPathStr}
 		<path
 			class="animated"
