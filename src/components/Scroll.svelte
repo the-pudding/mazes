@@ -58,6 +58,7 @@
 					size={Math.sqrt(simple.length)}
 					playable={false}
 					animated={true}
+					intro={true}
 					{mazePath}
 				/>
 			</div>

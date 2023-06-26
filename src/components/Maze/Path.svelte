@@ -29,7 +29,7 @@
 	const circleY = tweened(($cellSize + $wallWidth) / 2);
 
 	$: pathStrokeWidth = $cellSize * 0.25;
-	$: if (playable && $location.row === 0 && $location.col === 0) {
+	$: if ($location.row === 0 && $location.col === 0) {
 		$path = [{ row: 0, col: 0 }];
 		animatedPathStr = "";
 	}
@@ -55,10 +55,7 @@
 	$: $path, $cellSize, $wallWidth, updatePath();
 	const updatePath = () => {
 		pathStr = $path
-			.slice(
-				0,
-				$gameState === "post" || !playable ? $path.length : $path.length - 1
-			)
+			.slice(0, $gameState === "post" ? $path.length : $path.length - 1)
 			.reduce((acc, { row, col }, i) => {
 				if (i === 0) {
 					return acc;
