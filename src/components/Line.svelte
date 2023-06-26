@@ -5,6 +5,10 @@
 	import { scaleLinear } from "d3";
 	import viewport from "$stores/viewport.js";
 	import { browser } from "$app/environment";
+	import { mazeData } from "$stores/misc.js";
+
+	const inlineStates = ["wi", "ks", "mt", "fl", "la", "il", "il-simple"];
+	$: loaded = Object.keys($mazeData).filter((d) => inlineStates.includes(d));
 
 	const padding = 15;
 	const lineShift = 1000;
@@ -22,14 +26,16 @@
 		.range([pathLength, 0]);
 
 	$: currentDashOffset = dashScale($scrollY);
-	$: pathStr = `M ${padding} ${startY} ${heights.map(
-		(h, i) =>
-			`v ${h} h ${i % 2 === 0 ? width - padding * 2 : -(width - padding * 2)}`
-	)}`;
+	let pathStr;
+	// $: pathStr = `M ${padding} ${startY} ${heights.map(
+	// 	(h, i) =>
+	// 		`v ${h} h ${i % 2 === 0 ? width - padding * 2 : -(width - padding * 2)}`
+	// )}`;
 	$: pathLength = _.sum(heights) + (width - padding * 2) * heights.length;
-	$: $viewport.width, $viewport.height, measure();
+	$: $viewport.width, $viewport.height, loaded.length, measure();
 
 	const measure = () => {
+		console.log("measure");
 		if (browser) {
 			const container = document.querySelector("div.sections");
 			height = container.clientHeight;
@@ -51,6 +57,14 @@
 					return h2.clientHeight + div.clientHeight;
 				} else return chunk.clientHeight;
 			});
+			console.log({ chunksGrouped, heights });
+
+			pathStr = `M ${padding} ${startY} ${heights.map(
+				(h, i) =>
+					`v ${h} h ${
+						i % 2 === 0 ? width - padding * 2 : -(width - padding * 2)
+					}`
+			)}`;
 		}
 	};
 

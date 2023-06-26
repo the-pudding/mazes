@@ -16,7 +16,7 @@
 		$gameState = "mid";
 	};
 
-	$: visible = $gameState === "pre" || $gameState === "post";
+	$: visible = $gameState === "pre" || $gameState === "post" || !mq.desktop;
 </script>
 
 <div class="overlay" style:height={`${$width}px`} class:visible>

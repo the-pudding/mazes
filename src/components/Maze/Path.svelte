@@ -4,6 +4,8 @@
 	import { tweened } from "svelte/motion";
 	import { draw } from "svelte/transition";
 	import { quintOut } from "svelte/easing";
+	import _ from "lodash";
+	import { previous } from "$stores/previous.js";
 
 	const {
 		getData,
@@ -12,7 +14,8 @@
 		getPath,
 		getWallWidth,
 		getGameState,
-		playable
+		playable,
+		intro
 	} = getContext("maze");
 	const data = getData();
 	const cellSize = getCellSize();
@@ -20,14 +23,15 @@
 	const path = getPath();
 	const wallWidth = getWallWidth();
 	const gameState = getGameState();
+	const prevPath = previous(path);
 
 	let pathStr;
 	let animatedPathStr;
 	let inProgress = { x: false, y: false };
-	const dur = 100;
 	const circleX = tweened(($cellSize + $wallWidth) / 2);
 	const circleY = tweened(($cellSize + $wallWidth) / 2);
 
+	$: dur = intro ? 1000 : 100;
 	$: pathStrokeWidth = $cellSize * 0.25;
 	$: if ($location.row === 0 && $location.col === 0) {
 		$path = [{ row: 0, col: 0 }];
@@ -52,32 +56,60 @@
 			});
 	}
 
+	const arrayToPath = (arr, start) => {
+		return arr.reduce((acc, { row, col }, i) => {
+			if (i === 0) {
+				return acc;
+			}
+
+			const prev = arr[i - 1];
+			const [prevRow, prevCol] = [prev.row, prev.col];
+			const [rowDiff, colDiff] = [row - prevRow, col - prevCol];
+
+			if (rowDiff === 1) {
+				return `${acc} v ${$cellSize}`;
+			} else if (rowDiff === -1) {
+				return `${acc} v -${$cellSize}`;
+			} else if (colDiff === 1) {
+				return `${acc} h ${$cellSize}`;
+			} else if (colDiff === -1) {
+				return `${acc} h -${$cellSize}`;
+			}
+		}, start);
+	};
+	$: console.log("path", $path);
+	$: console.log("prev", $prevPath);
+
 	$: $path, $cellSize, $wallWidth, updatePath();
 	const updatePath = () => {
-		pathStr = $path
-			.slice(0, $gameState === "post" ? $path.length : $path.length - 1)
-			.reduce((acc, { row, col }, i) => {
-				if (i === 0) {
-					return acc;
-				}
+		pathStr = arrayToPath(
+			$prevPath, //$path.slice(0, $gameState === "post" ? $path.length : $path.length - 1),
+			`M ${($cellSize + $wallWidth) / 2} ${($cellSize + $wallWidth) / 2}`
+		);
 
-				const prev = $path[i - 1];
-				const [prevRow, prevCol] = [prev.row, prev.col];
-				const [rowDiff, colDiff] = [row - prevRow, col - prevCol];
+		if (intro) {
+			let newSteps =
+				$path.length > $prevPath.length ? _.difference($path, $prevPath) : null;
+			if (newSteps === null) {
+				animatedPathStr = "";
+				return;
+			}
 
-				if (rowDiff === 1) {
-					return `${acc} v ${$cellSize}`;
-				} else if (rowDiff === -1) {
-					return `${acc} v -${$cellSize}`;
-				} else if (colDiff === 1) {
-					return `${acc} h ${$cellSize}`;
-				} else if (colDiff === -1) {
-					return `${acc} h -${$cellSize}`;
-				}
-			}, `M ${($cellSize + $wallWidth) / 2} ${($cellSize + $wallWidth) / 2}`);
+			const startIndex = $path.findIndex(
+				(d) => d.row === newSteps[0].row && d.col === newSteps[0].col
+			);
+			if (startIndex) newSteps = [$path[startIndex - 1], ...newSteps];
+			if (newSteps.length > 1) {
+				animatedPathStr = arrayToPath(
+					newSteps,
+					`M ${newSteps[0].col * $cellSize + ($cellSize + $wallWidth) / 2} ${
+						newSteps[0].row * $cellSize + ($cellSize + $wallWidth) / 2
+					}`
+				);
+			}
+		} else if ($path.length > 1) {
+			let mostRecentMove = "";
 
-		let mostRecentMove = "";
-		if ($path.length > 1) {
 			const prev = $path[$path.length - 2];
 			const [prevRow, prevCol] = [prev.row, prev.col];
 			const [rowDiff, colDiff] = [
@@ -168,7 +200,7 @@
 		<path
 			class="animated"
 			d={animatedPathStr}
-			in:draw={{ duration: dur * 2, easing: quintOut }}
+			transition:draw={{ duration: dur * 2, easing: quintOut }}
 			style={`--stroke-width: ${pathStrokeWidth}px`}
 		/>
 	{/key}
@@ -184,7 +216,8 @@
 		fill: none;
 	}
 	path.animated {
-		stroke: var(--color-pp-magenta);
+		stroke: cornflowerblue;
+		/* stroke: var(--color-pp-magenta); */
 		stroke-width: var(--stroke-width);
 		fill: none;
 	}

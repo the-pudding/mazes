@@ -7,7 +7,7 @@
 	export let title;
 	export let chunks;
 
-	$: id = _.kebabCase(title).replaceAll("-strong", "");
+	$: id = _.kebabCase(title["english"]).replaceAll("-strong", "");
 
 	const components = { Prose, Slide };
 </script>
@@ -48,5 +48,14 @@
 	}
 	.chunk {
 		display: flex;
+	}
+
+	@media (max-width: 600px) {
+		h2 {
+			font-size: 3rem;
+		}
+		section {
+			padding: 0 2rem;
+		}
 	}
 </style>

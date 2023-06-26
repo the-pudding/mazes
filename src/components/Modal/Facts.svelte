@@ -25,7 +25,7 @@
 	$: visibleFacts.length, scrollToFact();
 
 	const scrollToFact = () => {
-		console.log("scroll to fact");
+		// console.log("scroll to fact");
 		if (!browser) return;
 
 		const i = visibleFacts.length - 1 <= 0 ? 0 : visibleFacts.length - 1;
