@@ -109,6 +109,6 @@
 		transition: opacity calc(var(--1s) * 0.5) ease-in-out;
 	}
 	g.faded {
-		opacity: 0.05;
+		opacity: 0.025;
 	}
 </style>

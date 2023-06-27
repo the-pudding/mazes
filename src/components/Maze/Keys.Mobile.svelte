@@ -58,7 +58,7 @@
 		top: 0;
 	}
 	.text {
-		color: var(--color-pp-text-gray);
+		color: var(--color-pp-dark);
 		font-size: 0.7rem;
 		position: absolute;
 		top: 0;

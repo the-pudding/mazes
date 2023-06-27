@@ -24,7 +24,7 @@
 		align-items: center;
 	}
 	.text {
-		color: var(--color-pp-text-gray);
+		color: var(--color-pp-dark);
 		font-size: 0.9rem;
 		margin-top: 4px;
 		text-align: center;

@@ -54,7 +54,7 @@
 				animated={false}
 			/>
 
-			<Button text="go to maze" style="margin-top: 0.5rem" onClick={goToMaze} />
+			<Button text="go to maze" style="margin-top: 1rem" onClick={goToMaze} />
 		</div>
 	{/if}
 </div>
@@ -75,6 +75,10 @@
 	.words.reverse {
 		grid-column: 2;
 	}
+	.words p {
+		font-size: 1.2rem;
+		line-height: 1.75;
+	}
 	.top {
 		display: flex;
 		justify-content: space-between;
@@ -91,10 +95,16 @@
 		color: var(--color-pp-text-gray);
 		font-size: 0.9rem;
 		background: none;
+		padding-right: 0;
+	}
+	.link:hover {
+		color: var(--color-pp-text-gray-1);
+		transform: translateX(0.125rem);
+		transition: all .2s ease-in;
 	}
 	:global(.words p strong) {
 		background: var(--color-pp-gray-1);
-		padding: 0rem 0.3rem;
+		padding: 0.25rem 0.5rem;
 		box-shadow: 0px 0px 5px rgba(124, 115, 115, 0.1);
 		border-radius: 5px;
 	}

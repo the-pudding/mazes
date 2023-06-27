@@ -79,6 +79,8 @@
 	.facts {
 		grid-area: side;
 		overflow: scroll;
+		margin-top: -0.5rem;
+		padding-top: 1rem;
 	}
 	.play {
 		grid-area: main;
