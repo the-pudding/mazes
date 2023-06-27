@@ -35,7 +35,6 @@
 	$: $viewport.width, $viewport.height, loaded.length, measure();
 
 	const measure = () => {
-		console.log("measure");
 		if (browser) {
 			const container = document.querySelector("div.sections");
 			height = container.clientHeight;
@@ -57,7 +56,6 @@
 					return h2.clientHeight + div.clientHeight;
 				} else return chunk.clientHeight;
 			});
-			console.log({ chunksGrouped, heights });
 
 			pathStr = `M ${padding} ${startY} ${heights.map(
 				(h, i) =>

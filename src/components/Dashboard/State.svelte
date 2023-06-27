@@ -25,7 +25,8 @@
 		{ id: "sd", shortened: "S. Dakota" },
 		{ id: "pa", shortened: "Penn." },
 		{ id: "ri", shortened: "Rhode I." },
-		{ id: "ct", shortened: "Conn." }
+		{ id: "ct", shortened: "Conn." },
+		{ id: "wa", shortened: "Wash." }
 	];
 	let labelWidth;
 

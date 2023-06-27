@@ -1,6 +1,7 @@
 <script>
 	import Walls from "$components/Maze/Walls.svelte";
 	import Path from "$components/Maze/Path.svelte";
+	import IntroPath from "$components/Maze/IntroPath.svelte";
 	import Footer from "$components/Maze/Footer.svelte";
 	import Overlay from "$components/Maze/Overlay.svelte";
 	import { writable } from "svelte/store";
@@ -68,8 +69,11 @@
 					transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}
 				>
 					<Walls />
-					{#if playable || intro}
+
+					{#if playable}
 						<Path />
+					{:else if intro}
+						<IntroPath />
 					{/if}
 				</g>
 			{/if}

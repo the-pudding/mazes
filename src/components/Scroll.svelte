@@ -8,11 +8,10 @@
 	import _ from "lodash";
 	import loadMazeData from "$utils/loadMazeData.js";
 	import { onMount } from "svelte";
-	import { language } from "$stores/misc.js";
+	import { language, scrollStep } from "$stores/misc.js";
 
 	let data;
 	let simple;
-	let step;
 	let solution;
 	let direction = "up";
 
@@ -20,7 +19,9 @@
 	const steps = copy.scroll;
 
 	$: walls =
-		step >= 5 || (step === undefined && direction === "down") ? data : simple;
+		$scrollStep >= 5 || ($scrollStep === undefined && direction === "down")
+			? data
+			: simple;
 	$: solution = _.orderBy(
 		_.flatten(simple).filter((d) => d.solutionIndex !== null),
 		"solutionIndex",
@@ -28,20 +29,21 @@
 	);
 	$: mazePath = zoom
 		? []
-		: step === 1
+		: $scrollStep === 1
 		? solution.slice(0, 5)
-		: step === 2
+		: $scrollStep === 2
 		? solution.slice(0, 9)
-		: step === 3
+		: $scrollStep === 3
 		? solution.slice(0, 12)
-		: step === 4
+		: $scrollStep === 4
 		? solution
 		: [];
 	$: hed = steps[steps.length - 1][$language];
 	$: direction = $scrollY < 3000 ? "up" : "down";
 	$: zoomDuration = $mq.reducedMotion ? 0 : 3000;
 	$: zoom =
-		step === steps.length - 1 || (step === undefined && direction === "down");
+		$scrollStep === steps.length - 1 ||
+		($scrollStep === undefined && direction === "down");
 
 	onMount(async () => {
 		simple = await loadMazeData("il-simple");
@@ -90,7 +92,7 @@
 	</div>
 
 	<div class="steps">
-		<Scrolly bind:value={step}>
+		<Scrolly bind:value={$scrollStep}>
 			{#each steps as text, i}
 				<div class="step">
 					<p>{@html text[$language]}</p>

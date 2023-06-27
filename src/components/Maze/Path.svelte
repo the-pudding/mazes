@@ -4,8 +4,6 @@
 	import { tweened } from "svelte/motion";
 	import { draw } from "svelte/transition";
 	import { quintOut } from "svelte/easing";
-	import _ from "lodash";
-	import { previous } from "$stores/previous.js";
 
 	const {
 		getData,
@@ -13,9 +11,7 @@
 		getLocation,
 		getPath,
 		getWallWidth,
-		getGameState,
-		playable,
-		intro
+		getGameState
 	} = getContext("maze");
 	const data = getData();
 	const cellSize = getCellSize();
@@ -23,15 +19,14 @@
 	const path = getPath();
 	const wallWidth = getWallWidth();
 	const gameState = getGameState();
-	const prevPath = previous(path);
 
 	let pathStr;
 	let animatedPathStr;
 	let inProgress = { x: false, y: false };
+	const dur = 100;
 	const circleX = tweened(($cellSize + $wallWidth) / 2);
 	const circleY = tweened(($cellSize + $wallWidth) / 2);
 
-	$: dur = intro ? 1000 : 100;
 	$: pathStrokeWidth = $cellSize * 0.25;
 	$: if ($location.row === 0 && $location.col === 0) {
 		$path = [{ row: 0, col: 0 }];
@@ -56,60 +51,32 @@
 			});
 	}
 
-	const arrayToPath = (arr, start) => {
-		return arr.reduce((acc, { row, col }, i) => {
-			if (i === 0) {
-				return acc;
-			}
-
-			const prev = arr[i - 1];
-			const [prevRow, prevCol] = [prev.row, prev.col];
-			const [rowDiff, colDiff] = [row - prevRow, col - prevCol];
-
-			if (rowDiff === 1) {
-				return `${acc} v ${$cellSize}`;
-			} else if (rowDiff === -1) {
-				return `${acc} v -${$cellSize}`;
-			} else if (colDiff === 1) {
-				return `${acc} h ${$cellSize}`;
-			} else if (colDiff === -1) {
-				return `${acc} h -${$cellSize}`;
-			}
-		}, start);
-	};
-	$: console.log("path", $path);
-	$: console.log("prev", $prevPath);
-
 	$: $path, $cellSize, $wallWidth, updatePath();
 	const updatePath = () => {
-		pathStr = arrayToPath(
-			$prevPath, //$path.slice(0, $gameState === "post" ? $path.length : $path.length - 1),
-			`M ${($cellSize + $wallWidth) / 2} ${($cellSize + $wallWidth) / 2}`
-		);
+		pathStr = $path
+			.slice(0, $gameState === "post" ? $path.length : $path.length - 1)
+			.reduce((acc, { row, col }, i) => {
+				if (i === 0) {
+					return acc;
+				}
 
-		if (intro) {
-			let newSteps =
-				$path.length > $prevPath.length ? _.difference($path, $prevPath) : null;
-			if (newSteps === null) {
-				animatedPathStr = "";
-				return;
-			}
+				const prev = $path[i - 1];
+				const [prevRow, prevCol] = [prev.row, prev.col];
+				const [rowDiff, colDiff] = [row - prevRow, col - prevCol];
 
-			const startIndex = $path.findIndex(
-				(d) => d.row === newSteps[0].row && d.col === newSteps[0].col
-			);
-			if (startIndex) newSteps = [$path[startIndex - 1], ...newSteps];
-			if (newSteps.length > 1) {
-				animatedPathStr = arrayToPath(
-					newSteps,
-					`M ${newSteps[0].col * $cellSize + ($cellSize + $wallWidth) / 2} ${
-						newSteps[0].row * $cellSize + ($cellSize + $wallWidth) / 2
-					}`
-				);
-			}
-		} else if ($path.length > 1) {
-			let mostRecentMove = "";
+				if (rowDiff === 1) {
+					return `${acc} v ${$cellSize}`;
+				} else if (rowDiff === -1) {
+					return `${acc} v -${$cellSize}`;
+				} else if (colDiff === 1) {
+					return `${acc} h ${$cellSize}`;
+				} else if (colDiff === -1) {
+					return `${acc} h -${$cellSize}`;
+				}
+			}, `M ${($cellSize + $wallWidth) / 2} ${($cellSize + $wallWidth) / 2}`);
 
+		let mostRecentMove = "";
+		if ($path.length > 1) {
 			const prev = $path[$path.length - 2];
 			const [prevRow, prevCol] = [prev.row, prev.col];
 			const [rowDiff, colDiff] = [
@@ -184,23 +151,20 @@
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
-<g
-	class="path"
-	class:faded={playable && ($gameState === "post" || $gameState === "pre")}
->
-	{#if playable}
-		<circle cx={$circleX} cy={$circleY} r={$cellSize / 4} />
-	{/if}
+<g class="path" class:faded={$gameState === "post" || $gameState === "pre"}>
+	<circle cx={$circleX} cy={$circleY} r={$cellSize / 4} />
+
 	<path
 		class="full"
 		d={pathStr}
 		style={`--stroke-width: ${pathStrokeWidth}px`}
 	/>
+
 	{#key animatedPathStr}
 		<path
 			class="animated"
 			d={animatedPathStr}
-			transition:draw={{ duration: dur * 2, easing: quintOut }}
+			in:draw={{ duration: dur * 2, easing: quintOut }}
 			style={`--stroke-width: ${pathStrokeWidth}px`}
 		/>
 	{/key}
@@ -216,8 +180,7 @@
 		fill: none;
 	}
 	path.animated {
-		stroke: cornflowerblue;
-		/* stroke: var(--color-pp-magenta); */
+		stroke: var(--color-pp-magenta);
 		stroke-width: var(--stroke-width);
 		fill: none;
 	}
