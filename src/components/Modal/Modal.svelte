@@ -21,7 +21,6 @@
 		await tick();
 		modalEl.focus();
 		stateEl = document.querySelector(`.state#${$selectedState}`);
-		location.href = `#${$selectedState}`;
 	};
 	const focusState = () => {
 		stateEl.focus();
@@ -29,8 +28,6 @@
 	};
 	const close = () => {
 		$selectedState = undefined;
-		// TODO: how to clear hash without refreshing?
-		// document.location.hash = "";
 	};
 	const trapFocus = (e) => {
 		const tabPressed = e.key === "Tab" || e.keyCode === 9;

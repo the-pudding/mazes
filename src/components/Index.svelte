@@ -11,11 +11,22 @@
 	import copy from "$data/copy.json";
 	import { selectedState } from "$stores/misc.js";
 	import _ from "lodash";
+	import { onMount } from "svelte";
+	import urlParams from "$utils/urlParams.js";
 
 	const { sections } = copy;
+
+	onMount(() => {
+		const state = urlParams.get("state");
+		if (state !== "") {
+			const dashboardEl = document.getElementById("dashboard");
+			dashboardEl.scrollIntoView({ behavior: "instant", alignToTop: true });
+			$selectedState = state;
+		}
+	});
 </script>
 
-<!-- <WIP /> -->
+<WIP />
 <article>
 	<div class="tan" class:faded={$selectedState}>
 		<Intro />
