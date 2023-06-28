@@ -3,6 +3,7 @@
 	import { getContext } from "svelte";
 	import _ from "lodash";
 	import { scrollStep, mazeData } from "$stores/misc.js";
+	import { fade } from "svelte/transition";
 
 	const { getCellSize, getWallWidth } = getContext("maze");
 	const cellSize = getCellSize();
@@ -14,14 +15,14 @@
 		"asc"
 	);
 	const paths = [
-		solution.slice(0, 8),
+		[{ row: -1, col: 0 }, ...solution.slice(0, 8)],
 		solution.slice(8, 11),
 		solution.slice(11, 16),
-		solution.slice(16)
+		[...solution.slice(16), { row: 10, col: 9 }]
 	];
 	$: pathStrs = paths.map((path, i) => {
 		const prevEnd =
-			i !== 0 ? paths[i - 1][paths[i - 1].length - 1] : { row: 0, col: 0 };
+			i !== 0 ? paths[i - 1][paths[i - 1].length - 1] : paths[0][0];
 		const fullPath = i !== 0 ? [prevEnd, ...path] : path;
 
 		const [prevRow, prevCol] = [prevEnd.row, prevEnd.col];
@@ -51,9 +52,11 @@
 	});
 </script>
 
-<g id="intro-path">
-	{#each pathStrs as d, i}
-		{@const visible = $scrollStep >= i + 1}
-		<Path {i} {d} {visible} />
-	{/each}
-</g>
+{#if $scrollStep < 5}
+	<g id="intro-path" transition:fade>
+		{#each pathStrs as d, i}
+			{@const visible = $scrollStep >= i + 1}
+			<Path {i} {d} {visible} />
+		{/each}
+	</g>
+{/if}
