@@ -10,7 +10,8 @@
 	let pathEl;
 
 	$: pathLength = pathEl?.getTotalLength();
-	$: forwards = $scrollStep > $prevScrollStep;
+	$: forwards =
+		$scrollStep > $prevScrollStep || (!$prevScrollStep && $scrollStep === 0);
 	$: moving = forwards
 		? visible && $scrollStep === i + 1
 		: !visible && $scrollStep === i;

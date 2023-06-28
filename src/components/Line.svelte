@@ -26,11 +26,10 @@
 		.range([pathLength, 0]);
 
 	$: currentDashOffset = dashScale($scrollY);
-	let pathStr;
-	// $: pathStr = `M ${padding} ${startY} ${heights.map(
-	// 	(h, i) =>
-	// 		`v ${h} h ${i % 2 === 0 ? width - padding * 2 : -(width - padding * 2)}`
-	// )}`;
+	$: pathStr = `M ${padding} ${startY} ${heights.map(
+		(h, i) =>
+			`v ${h} h ${i % 2 === 0 ? width - padding * 2 : -(width - padding * 2)}`
+	)}`;
 	$: pathLength = _.sum(heights) + (width - padding * 2) * heights.length;
 	$: $viewport.width, $viewport.height, loaded.length, measure();
 
@@ -87,7 +86,7 @@
 		pointer-events: none;
 	}
 	path {
-		stroke: var(--color-pp-light-purple);
+		stroke: var(--color-pp-magenta);
 		stroke-width: 3px;
 		opacity: 0.3;
 		fill: none;

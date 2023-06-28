@@ -11,10 +11,13 @@
 	import copy from "$data/copy.json";
 	import { selectedState } from "$stores/misc.js";
 	import _ from "lodash";
+	import viewport from "$stores/viewport.js";
 	import { onMount } from "svelte";
 	import urlParams from "$utils/urlParams.js";
 
 	const { sections } = copy;
+
+	$: mobile = $viewport.width < 600;
 
 	onMount(() => {
 		const state = urlParams.get("state");
@@ -33,7 +36,8 @@
 		<Scroll />
 
 		<div class="sections">
-			<Line />
+			{#if !mobile}<Line />{/if}
+
 			{#each sections as { title, chunks }}
 				<Section {title} {chunks} />
 			{/each}
