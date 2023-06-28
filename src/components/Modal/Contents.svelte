@@ -106,7 +106,7 @@
 	}
 	.maze {
 		width: 100%;
-		max-width: 380px;
+		max-width: 359px;
 		position: relative;
 	}
 	.bottom {
@@ -119,6 +119,7 @@
 	.left {
 		max-width: 600px;
 		margin-right: 3rem;
+		font-size: 0.8rem;
 	}
 	.left a {
 		color: var(--color-pp-text-gray);
