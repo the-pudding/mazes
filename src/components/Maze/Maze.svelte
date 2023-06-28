@@ -1,6 +1,7 @@
 <script>
 	import Walls from "$components/Maze/Walls.svelte";
 	import Path from "$components/Maze/Path.svelte";
+	import Intro from "$components/Maze/Intro.svelte";
 	import Footer from "$components/Maze/Footer.svelte";
 	import Overlay from "$components/Maze/Overlay.svelte";
 	import { writable } from "svelte/store";
@@ -13,57 +14,66 @@
 	export let size;
 	export let playable;
 	export let animated;
+	export let intro = false;
 	export let loading = false;
+	export let mazePath = [{ row: 0, col: 0 }];
 
 	const data = writable(wallData);
 	const availableWidth = writable(0);
 	const width = writable(0);
+	const dims = writable(0);
 	const cellSize = writable(0);
 	const wallWidth = writable(0);
 	const padding = writable(0);
 	const location = writable({ row: 0, col: 0 });
-	const path = writable([{ row: 0, col: 0 }]);
+	const path = writable(mazePath);
 	const gameState = writable("pre");
 
 	setContext("maze", {
-		size,
 		wallWidth,
 		playable,
 		animated,
+		intro,
 		getData: () => data,
 		getCellSize: () => cellSize,
 		getWallWidth: () => wallWidth,
 		getAvailableWidth: () => availableWidth,
 		getWidth: () => width,
+		getDims: () => dims,
 		getPadding: () => padding,
 		getLocation: () => location,
 		getPath: () => path,
 		getGameState: () => gameState
 	});
 
-	$: $width = $mq.desktop ? $availableWidth : $availableWidth * 0.9;
 	$: $data = wallData;
+	$: $path = mazePath;
+	$: $dims = size;
+	$: $width = $mq.desktop ? $availableWidth : $availableWidth * 0.9;
 	$: $wallWidth = $width / 50;
 	$: $padding = $wallWidth / 2;
-	$: $cellSize = size ? ($width - $padding * 2) / size : 0;
+	$: $cellSize = $dims ? ($width - $padding * 2) / $dims : 0;
 	$: $pathLength = $path.length - 1;
 
-	$: if ($location.row === size - 1 && $location.col === size - 1) {
+	$: if ($location.row === $dims - 1 && $location.col === $dims - 1) {
 		$gameState = "post";
 	}
 </script>
 
 <div class="container" bind:clientWidth={$availableWidth}>
 	{#if $width}
-		<svg width={$width} height={$width}>
+		<svg id="intro-svg" width={$width} height={$width}>
 			{#if !loading}
 				<g
 					class="fade"
 					transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}
 				>
 					<Walls />
-					{#if playable && $gameState !== "pre"}
+
+					{#if playable}
 						<Path />
+					{:else if intro}
+						<Intro />
 					{/if}
 				</g>
 			{/if}

@@ -3,6 +3,7 @@
 	import states from "$data/states.csv";
 	import { getContext } from "svelte";
 	import { selectedState } from "$stores/misc.js";
+	import viewport from "$stores/viewport.js";
 
 	const { getOrder } = getContext("dashboard");
 	const order = getOrder();
@@ -21,6 +22,7 @@
 
 	let selectState = "default";
 
+	$: mobile = $viewport.width < 600;
 	$: if (selectState && selectState !== "default") $selectedState = selectState;
 
 	// TODO
@@ -31,7 +33,7 @@
 <div class="top-bar">
 	<Select label="Order" options={orderOptions} bind:value={$order} />
 	<Select
-		label="See state maze for"
+		label={mobile ? "Find" : "See state maze for"}
 		options={highlightOptions}
 		bind:value={selectState}
 	/>
@@ -42,5 +44,8 @@
 		background: var(--color-pp-gray-1);
 		display: flex;
 		justify-content: space-evenly;
+		padding: 0 1rem;
+		position: sticky;
+		top: 3rem;
 	}
 </style>

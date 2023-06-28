@@ -4,7 +4,6 @@
 	import { selectedState } from "$stores/misc.js";
 	import { browser } from "$app/environment";
 	import { onMount, tick } from "svelte";
-	import { page } from "$app/stores";
 
 	let modalEl;
 	let stateEl;
@@ -19,9 +18,9 @@
 
 	const focusModal = async () => {
 		await tick();
+		getFocusable();
 		modalEl.focus();
 		stateEl = document.querySelector(`.state#${$selectedState}`);
-		location.href = `#${$selectedState}`;
 	};
 	const focusState = () => {
 		stateEl.focus();
@@ -29,8 +28,6 @@
 	};
 	const close = () => {
 		$selectedState = undefined;
-		// TODO: how to clear hash without refreshing?
-		// document.location.hash = "";
 	};
 	const trapFocus = (e) => {
 		const tabPressed = e.key === "Tab" || e.keyCode === 9;
@@ -48,17 +45,18 @@
 			}
 		}
 	};
-
-	onMount(() => {
+	$: console.log({ numFocusable, firstFocusable, lastFocusable });
+	const getFocusable = () => {
 		const focusable = modalEl.querySelectorAll(
 			"a[href], button, textarea, input[type='text'], input[type='radio'], input[type='checkbox'], select"
 		);
 		numFocusable = focusable.length;
 		firstFocusable = focusable[0];
 		lastFocusable = focusable[numFocusable - 1];
+	};
 
-		const hash = $page.url.hash;
-		if (hash !== "") $selectedState = hash.slice(1);
+	onMount(() => {
+		getFocusable();
 	});
 </script>
 

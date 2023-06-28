@@ -119,4 +119,10 @@
 	.after {
 		margin-top: 2rem;
 	}
+
+	@media (max-width: 600px) {
+		.container {
+			font-size: 1.6rem;
+		}
+	}
 </style>

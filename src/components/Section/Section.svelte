@@ -49,4 +49,13 @@
 	.chunk {
 		display: flex;
 	}
+
+	@media (max-width: 600px) {
+		h2 {
+			font-size: 3rem;
+		}
+		section {
+			padding: 0 2rem;
+		}
+	}
 </style>

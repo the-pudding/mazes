@@ -64,7 +64,7 @@
 
 	@media (max-width: 600px) {
 		.title {
-			font-size: 1rem;
+			font-size: 0.85rem;
 			text-align: left;
 			margin-right: 1em;
 		}

@@ -38,6 +38,7 @@
 	class="mobile-controls"
 	style:width={`${$availableWidth}px`}
 	style:height={`${$availableWidth}px`}
+	class:active={$gameState === "mid"}
 >
 	{#each ["up", "right", "down", "left"] as direction}
 		<button
@@ -56,6 +57,10 @@
 	.mobile-controls {
 		position: absolute;
 		top: 0;
+		pointer-events: none;
+	}
+	.active {
+		pointer-events: auto;
 	}
 	.text {
 		color: var(--color-pp-dark);

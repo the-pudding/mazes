@@ -5,18 +5,19 @@
 	import { selectedState } from "$stores/misc.js";
 
 	const {
-		size,
 		animated,
 		playable,
 		getData,
 		getCellSize,
 		getWallWidth,
 		getPadding,
-		getGameState
+		getGameState,
+		getDims
 	} = getContext("maze");
 	const data = getData();
 	const cellSize = getCellSize();
 	const wallWidth = getWallWidth();
+	const dims = getDims();
 	const padding = getPadding();
 	const gameState = getGameState();
 </script>
@@ -30,8 +31,8 @@
 		<rect class="start" x={0} y={0} width={$cellSize} height={$cellSize} />
 		<rect
 			class="finish"
-			x={(size - 1) * $cellSize}
-			y={(size - 1) * $cellSize}
+			x={($dims - 1) * $cellSize}
+			y={($dims - 1) * $cellSize}
 			width={$cellSize}
 			height={$cellSize}
 		/>

@@ -72,6 +72,11 @@
 		grid-template-columns: 250px 1fr;
 		grid-auto-flow: dense;
 	}
+	.maze {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+	}
 	.words.reverse {
 		grid-column: 2;
 	}
@@ -114,6 +119,14 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			margin: 2rem 0;
+		}
+		.maze {
+			align-items: center;
+			width: 60%;
+		}
+		.top {
+			flex-direction: column;
 		}
 	}
 </style>

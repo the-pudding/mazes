@@ -21,12 +21,13 @@
 		i,
 		visible: $pathLength >= thresholds[i]
 	}));
-	$: $pathLength, scrollToFact();
+	$: visibleFacts = displayList.filter((d) => d.visible);
+	$: visibleFacts.length, scrollToFact();
 
 	const scrollToFact = () => {
+		// console.log("scroll to fact");
 		if (!browser) return;
 
-		const visibleFacts = displayList.filter((d) => d.visible);
 		const i = visibleFacts.length - 1 <= 0 ? 0 : visibleFacts.length - 1;
 		const el = document.querySelector(`#fact-${i}`);
 		if (el) {

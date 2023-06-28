@@ -10,6 +10,7 @@
 	import _ from "lodash";
 	import { scaleQuantize, extent } from "d3";
 	import { tick } from "svelte";
+	import viewport from "$stores/viewport.js";
 
 	let data;
 	let width;
@@ -24,6 +25,7 @@
 			"one of the <strong>least complex</strong> states"
 		]);
 
+	$: mobile = $viewport.width < 600;
 	$: stateData = states.find((d) => d.id === $selectedState);
 	$: name = _.startCase(stateData?.name);
 	$: guttmacherLink = stateData?.guttmacher;
@@ -58,19 +60,21 @@
 	<Facts mazeSize={size} />
 </div>
 
-<div class="bottom">
-	<div class="left">
-		<a href={guttmacherLink} target="_blank"
-			>Read more about {name}'s abortion policies
-			<span><Icon name="external-link" /></span></a
-		>
-		<div class="note">
-			{@html modalNote[$language]}
+{#if !mobile}
+	<div class="bottom">
+		<div class="left">
+			<a href={guttmacherLink} target="_blank"
+				>Read more about {name}'s abortion policies
+				<span><Icon name="external-link" /></span></a
+			>
+			<div class="note">
+				{@html modalNote[$language]}
+			</div>
 		</div>
-	</div>
 
-	<Share />
-</div>
+		<Share />
+	</div>
+{/if}
 
 <style>
 	.title {
@@ -128,9 +132,6 @@
 		.play {
 			width: 100%;
 			margin-top: 2rem;
-		}
-		.bottom {
-			display: none;
 		}
 		h2 {
 			font-size: 2rem;

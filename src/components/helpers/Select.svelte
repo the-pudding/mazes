@@ -23,6 +23,10 @@
 		position: relative;
 		display: flex;
 		align-items: center;
+		padding-right: 0.5rem;
+	}
+	.select:last-of-type {
+		padding-right: 0;
 	}
 
 	label {

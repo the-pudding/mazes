@@ -1,7 +1,7 @@
 <script>
 	import WIP from "$components/helpers/WIP.svelte";
 	import Line from "$components/Line.svelte";
-	import Intro from "$components/Intro.svelte";
+	import Landing from "$components/Landing.svelte";
 	import Scroll from "$components/Scroll.svelte";
 	import Section from "$components/Section/Section.svelte";
 	import Dashboard from "$components/Dashboard/Dashboard.svelte";
@@ -11,18 +11,33 @@
 	import copy from "$data/copy.json";
 	import { selectedState } from "$stores/misc.js";
 	import _ from "lodash";
+	import viewport from "$stores/viewport.js";
+	import { onMount } from "svelte";
+	import urlParams from "$utils/urlParams.js";
 
 	const { sections } = copy;
+
+	$: mobile = $viewport.width < 600;
+
+	onMount(() => {
+		const state = urlParams.get("state");
+		if (state !== "") {
+			const dashboardEl = document.getElementById("dashboard");
+			dashboardEl.scrollIntoView({ behavior: "instant", alignToTop: true });
+			$selectedState = state;
+		}
+	});
 </script>
 
 <WIP />
 <article>
 	<div class="tan" class:faded={$selectedState}>
-		<Intro />
+		<Landing />
 		<Scroll />
 
 		<div class="sections">
-			<Line />
+			{#if !mobile}<Line />{/if}
+
 			{#each sections as { title, chunks }}
 				<Section {title} {chunks} />
 			{/each}

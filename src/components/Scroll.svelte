@@ -8,39 +8,64 @@
 	import _ from "lodash";
 	import loadMazeData from "$utils/loadMazeData.js";
 	import { onMount } from "svelte";
-	import { language } from "$stores/misc.js";
+	import { language, scrollStep } from "$stores/misc.js";
 
 	let data;
-	let groups;
-	let step;
+	let simple;
+	let solution;
 	let direction = "up";
 
 	const featuredState = "il";
 	const steps = copy.scroll;
 
+	$: walls =
+		$scrollStep >= 5 || ($scrollStep === undefined && direction === "down")
+			? data
+			: simple;
+	$: solution = _.orderBy(
+		_.flatten(simple).filter((d) => d.solutionIndex !== null),
+		"solutionIndex",
+		"asc"
+	);
+	$: mazePath = zoom
+		? []
+		: $scrollStep === 1
+		? solution.slice(0, 5)
+		: $scrollStep === 2
+		? solution.slice(0, 9)
+		: $scrollStep === 3
+		? solution.slice(0, 12)
+		: $scrollStep === 4
+		? solution
+		: [];
 	$: hed = steps[steps.length - 1][$language];
-	$: currentWalls =
-		step === undefined && direction === "up"
-			? []
-			: step === undefined && direction === "down"
-			? _.flatten(groups)
-			: _.flatten(groups.slice(0, step + 1));
 	$: direction = $scrollY < 3000 ? "up" : "down";
-	$: zoom =
-		step === steps.length - 1 || (step === undefined && direction === "down");
 	$: zoomDuration = $mq.reducedMotion ? 0 : 3000;
+	$: zoom =
+		$scrollStep === steps.length - 1 ||
+		($scrollStep === undefined && direction === "down");
 
 	onMount(async () => {
+		simple = await loadMazeData("il-simple");
 		data = await loadMazeData(featuredState);
-		groups = _.chunk(
-			_.shuffle(data),
-			Math.ceil(data.length / (steps.length - 1))
-		);
 	});
 </script>
 
 <section id="scrolly">
 	<div class="sticky" class:zoom style={`--dur: ${zoomDuration}ms`}>
+		{#if data && data.length}
+			<div class="svg-maze" class:shrunk={zoom}>
+				<Maze
+					wallData={walls}
+					size={Math.sqrt(simple.length)}
+					playable={false}
+					animated={true}
+					intro={true}
+					{mazePath}
+				/>
+			</div>
+		{/if}
+
 		<h1
 			class:visible={zoom}
 			style={`--delay: ${zoomDuration}ms; --dur: ${zoomDuration / 3}ms`}
@@ -55,32 +80,6 @@
 			style={`--dur: ${zoomDuration}ms`}
 		/>
 
-		<div class="maze" class:shrunk={zoom}>
-			<div
-				class="label"
-				class:visible={zoom}
-				style={`--delay: ${zoomDuration ? zoomDuration - 500 : 0}ms`}
-			>
-				{featuredState.toUpperCase()}
-			</div>
-			<img
-				src={`assets/img/states/${featuredState}.png`}
-				alt={`maze for ${featuredState}`}
-				style="width: 100%"
-			/>
-		</div>
-
-		{#if data && data.length}
-			<div class="svg-maze" class:visible={!zoom}>
-				<Maze
-					wallData={currentWalls}
-					size={Math.sqrt(data.length)}
-					playable={false}
-					animated={true}
-				/>
-			</div>
-		{/if}
-
 		<button
 			class="link"
 			class:visible={zoom}
@@ -93,7 +92,7 @@
 	</div>
 
 	<div class="steps">
-		<Scrolly bind:value={step}>
+		<Scrolly bind:value={$scrollStep}>
 			{#each steps as text, i}
 				<div class="step">
 					<p>{@html text[$language]}</p>
@@ -152,8 +151,12 @@
 		top: 50%;
 		width: 60%;
 		max-width: 700px;
-		transition: none;
-		visibility: hidden;
+		transition: all var(--dur);
+		/* visibility: hidden; */
+		transform: translate(0, -50%) scale(1);
+		/* transform: translate(-7%, -39.7%) scale(0.118); */
+	}
+	.svg-maze.shrunk {
 		transform: translate(-7%, -39.7%) scale(0.118);
 	}
 	.svg-maze.visible {
