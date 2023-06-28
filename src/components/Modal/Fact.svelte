@@ -1,21 +1,10 @@
 <script>
-	import thumbUp from "$svg/thumb-up.svg";
-	import thumbDown from "$svg/thumb-down.svg";
-
-	export let thumb;
 	export let text;
 	export let visible;
 	export let i;
 </script>
 
 <div id={`fact-${i}`} class="fact" class:visible>
-	<div class="thumb" class:good={thumb === "up"} class:bad={thumb === "down"}>
-		{#if thumb === "up"}
-			{@html thumbUp}
-		{:else}
-			{@html thumbDown}
-		{/if}
-	</div>
 	{text}
 </div>
 
@@ -34,25 +23,6 @@
 	.fact.visible {
 		transform: translate(0, 0);
 		opacity: 1;
-	}
-	.thumb {
-		background: var(--color-pp-text-gray);
-		border-radius: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 4px;
-		margin-right: 0.6rem;
-		height: 25px;
-		width: 25px;
-		flex-shrink: 0;
-	}
-	.good {
-		background: var(--color-pp-magenta);
-		padding-bottom: 6px;
-	}
-	.bad {
-		padding-top: 6px;
 	}
 	@media (max-width: 600px) {
 		.fact {

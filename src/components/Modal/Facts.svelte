@@ -5,6 +5,8 @@
 	import _ from "lodash";
 	import { browser } from "$app/environment";
 
+	export let ban;
+
 	$: solution = _.orderBy(
 		_.flatten($mazeData[$selectedState]).filter((d) => d.solutionIndex),
 		"solutionIndex",
@@ -19,7 +21,7 @@
 	$: displayList = stateFacts.map((d, i) => ({
 		...d,
 		i,
-		visible: $pathLength >= thresholds[i]
+		visible: ban || $pathLength >= thresholds[i]
 	}));
 	$: visibleFacts = displayList.filter((d) => d.visible);
 	$: visibleFacts.length, scrollToFact();

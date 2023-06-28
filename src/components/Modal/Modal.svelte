@@ -20,7 +20,7 @@
 		await tick();
 		getFocusable();
 		modalEl.focus();
-		stateEl = document.querySelector(`.state#${$selectedState}`);
+		stateEl = document.querySelector(`.state#${$selectedState}-state`);
 	};
 	const focusState = () => {
 		stateEl.focus();

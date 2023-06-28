@@ -62,9 +62,9 @@
 				</h3>
 			{/if}
 
-			{#each sortedStates as { id, name, row, col }}
+			{#each sortedStates as { id, name, row, col, ban }}
 				{@const label = geo ? id.toUpperCase() : _.startCase(name)}
-				<State {id} {label} {row} {col} />
+				<State {id} {label} {row} {col} ban={ban === "true"} />
 			{/each}
 
 			{#if $order === "barriers-asc" || $order === "barriers-desc"}

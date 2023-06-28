@@ -8,6 +8,7 @@
 	export let label;
 	export let row;
 	export let col;
+	export let ban;
 
 	const { getOrder, getColumnWidth } = getContext("dashboard");
 	const order = getOrder();
@@ -34,6 +35,7 @@
 	$: geo = $order === "geo" && !mobile;
 
 	const onClick = (e) => {
+		console.log(e.target);
 		const id = e.target.id.replace("-state", "");
 		$selectedState = id;
 	};
@@ -71,7 +73,11 @@
 		<div class="abbrev" class:visible={true}>{label}</div>
 	{/if}
 
-	<img src={`assets/img/states/${id}.png`} alt={`maze for ${id}`} />
+	{#if ban}
+		<div class="black-box" />
+	{:else}
+		<img src={`assets/img/states/${id}.png`} alt={`maze for ${id}`} />
+	{/if}
 </div>
 
 <style>
@@ -90,7 +96,7 @@
 	.state:hover {
 		cursor: pointer;
 		background: var(--color-pp-gray-1);
-		transition: all .2s ease-in;
+		transition: all 0.2s ease-in;
 	}
 	.state:focus {
 		outline: 3px solid var(--color-pp-magenta);
@@ -101,7 +107,7 @@
 		color: black;
 		font-family: var(--font-heavy);
 		text-transform: uppercase;
-		transition: all .2s ease-in;
+		transition: all 0.2s ease-in;
 	}
 	.abbrev {
 		font-family: var(--sans);
@@ -121,6 +127,12 @@
 		visibility: visible;
 	}
 	img {
+		pointer-events: none;
+	}
+	.black-box {
+		height: 100%;
+		width: 100%;
+		background: black;
 		pointer-events: none;
 	}
 

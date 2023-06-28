@@ -27,6 +27,7 @@
 
 	$: mobile = $viewport.width < 600;
 	$: stateData = states.find((d) => d.id === $selectedState);
+	$: ban = stateData?.ban === "true";
 	$: name = _.startCase(stateData?.name);
 	$: guttmacherLink = stateData?.guttmacher;
 	$: score = stateData?.score;
@@ -52,12 +53,24 @@
 <div class="play">
 	<div class="maze" bind:clientWidth={width}>
 		{#key $selectedState}
-			<Maze wallData={data} {size} playable={true} animated={false} {loading} />
+			{#if ban}
+				<div class="black-box">
+					<p>{@html copy.totalBanNote[$language]}</p>
+				</div>
+			{:else}
+				<Maze
+					wallData={data}
+					{size}
+					playable={true}
+					animated={false}
+					{loading}
+				/>
+			{/if}
 		{/key}
 	</div>
 </div>
 <div class="facts">
-	<Facts mazeSize={size} />
+	<Facts {ban} />
 </div>
 
 {#if !mobile}
@@ -126,6 +139,20 @@
 	}
 	.note {
 		margin-top: 1rem;
+	}
+	.black-box {
+		width: 100%;
+		height: 100%;
+		background: black;
+		display: flex;
+		align-items: center;
+		padding: 2rem;
+	}
+	.black-box p {
+		color: white;
+		text-align: center;
+		margin: 0;
+		font-size: 1.2rem;
 	}
 
 	@media (max-width: 600px) {
