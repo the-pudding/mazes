@@ -140,6 +140,7 @@
 	}
 	.step p {
 		font-size: 1.2rem;
+		line-height: 1.75;
 		padding: 1.2rem;
 	}
 	.spacer {

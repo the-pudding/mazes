@@ -42,7 +42,7 @@
 		padding: 0.5rem;
 	}
 	.text {
-		color: var(--color-pp-text-gray);
+		color: var(--color-pp-gray-1);
 	}
 	.desktop .text {
 		font-size: 0.9rem;

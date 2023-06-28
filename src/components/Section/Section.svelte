@@ -7,7 +7,7 @@
 	export let title;
 	export let chunks;
 
-	$: id = _.kebabCase(title["english"]).replaceAll("-strong", "");
+	$: id = _.kebabCase(title.english).replaceAll("-strong", "");
 
 	const components = { Prose, Slide };
 </script>

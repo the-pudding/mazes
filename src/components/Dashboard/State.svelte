@@ -90,6 +90,7 @@
 	.state:hover {
 		cursor: pointer;
 		background: var(--color-pp-gray-1);
+		transition: all .2s ease-in;
 	}
 	.state:focus {
 		outline: 3px solid var(--color-pp-magenta);
@@ -100,6 +101,7 @@
 		color: black;
 		font-family: var(--font-heavy);
 		text-transform: uppercase;
+		transition: all .2s ease-in;
 	}
 	.abbrev {
 		font-family: var(--sans);
