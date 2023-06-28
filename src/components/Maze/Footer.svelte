@@ -6,12 +6,13 @@
 	import mq from "$stores/mq.js";
 	import _ from "lodash";
 
-	const { size, getData, getGameState, getLocation, getPath } =
+	const { getDims, getData, getGameState, getLocation, getPath } =
 		getContext("maze");
 	const data = getData();
 	const gameState = getGameState();
 	const location = getLocation();
 	const path = getPath();
+	const dims = getDims();
 
 	const start = () => {
 		$gameState = "mid";
@@ -28,7 +29,7 @@
 		);
 		$path = solution;
 		$gameState = "post";
-		$location = { row: size - 1, col: size - 1 };
+		$location = { row: $dims - 1, col: $dims - 1 };
 	};
 
 	$: buttonText = $gameState === "pre" ? "start maze" : "restart maze";

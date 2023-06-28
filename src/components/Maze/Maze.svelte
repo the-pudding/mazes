@@ -54,6 +54,7 @@
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = $dims ? ($width - $padding * 2) / $dims : 0;
 	$: $pathLength = $path.length - 1;
+	$: labelsVisible = $gameState === "mid";
 
 	$: if ($location.row === $dims - 1 && $location.col === $dims - 1) {
 		$gameState = "post";
@@ -62,7 +63,7 @@
 
 <div class="container" bind:clientWidth={$availableWidth}>
 	{#if $width}
-		<svg id="intro-svg" width={$width} height={$width}>
+		<svg width={$width} height={$width}>
 			{#if !loading}
 				<g
 					class="fade"
@@ -79,6 +80,24 @@
 			{/if}
 		</svg>
 
+		<div
+			class="label"
+			class:visible={labelsVisible}
+			style:top={0}
+			style:left={0}
+			style:transform={`translate(0, -100%)`}
+		>
+			start
+		</div>
+		<div
+			class="label"
+			class:visible={labelsVisible}
+			style:right={0}
+			style:top={`${$width}px`}
+		>
+			finish
+		</div>
+
 		{#if playable}
 			<Overlay {loading} />
 			<Footer />
@@ -92,5 +111,13 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+	.label {
+		position: absolute;
+		visibility: hidden;
+		color: var(--color-pp-text-gray);
+	}
+	.visible {
+		visibility: visible;
 	}
 </style>
