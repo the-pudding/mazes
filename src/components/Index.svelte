@@ -1,7 +1,7 @@
 <script>
 	import WIP from "$components/helpers/WIP.svelte";
 	import Line from "$components/Line.svelte";
-	import Intro from "$components/Intro.svelte";
+	import Landing from "$components/Landing.svelte";
 	import Scroll from "$components/Scroll.svelte";
 	import Section from "$components/Section/Section.svelte";
 	import Dashboard from "$components/Dashboard/Dashboard.svelte";
@@ -29,7 +29,7 @@
 <WIP />
 <article>
 	<div class="tan" class:faded={$selectedState}>
-		<Intro />
+		<Landing />
 		<Scroll />
 
 		<div class="sections">

@@ -1,14 +1,6 @@
-<!-- // track the step
-// 4 paths defined in points
-// show certain ones when it's the right step
-// all have draw transition in and out -->
-
 <script>
+	import Path from "$components/Maze/Intro.Path.svelte";
 	import { getContext } from "svelte";
-	import mq from "$stores/mq.js";
-	import { tweened } from "svelte/motion";
-	import { draw } from "svelte/transition";
-	import { quintOut } from "svelte/easing";
 	import _ from "lodash";
 	import { scrollStep, mazeData } from "$stores/misc.js";
 
@@ -27,7 +19,6 @@
 		solution.slice(11, 16),
 		solution.slice(16)
 	];
-	$: pathStrokeWidth = $cellSize * 0.25;
 	$: pathStrs = paths.map((path, i) => {
 		const prevEnd =
 			i !== 0 ? paths[i - 1][paths[i - 1].length - 1] : { row: 0, col: 0 };
@@ -60,15 +51,9 @@
 	});
 </script>
 
-<g class="path">
-	{#each pathStrs as d}
-		<path {d} stroke-width={pathStrokeWidth} />
+<g id="intro-path">
+	{#each pathStrs as d, i}
+		{@const visible = $scrollStep >= i + 1}
+		<Path {i} {d} {visible} />
 	{/each}
 </g>
-
-<style>
-	path {
-		stroke: var(--color-pp-magenta);
-		fill: none;
-	}
-</style>

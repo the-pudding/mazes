@@ -1,7 +1,7 @@
 <script>
 	import Walls from "$components/Maze/Walls.svelte";
 	import Path from "$components/Maze/Path.svelte";
-	import IntroPath from "$components/Maze/IntroPath.svelte";
+	import Intro from "$components/Maze/Intro.svelte";
 	import Footer from "$components/Maze/Footer.svelte";
 	import Overlay from "$components/Maze/Overlay.svelte";
 	import { writable } from "svelte/store";
@@ -62,7 +62,7 @@
 
 <div class="container" bind:clientWidth={$availableWidth}>
 	{#if $width}
-		<svg width={$width} height={$width}>
+		<svg id="intro-svg" width={$width} height={$width}>
 			{#if !loading}
 				<g
 					class="fade"
@@ -73,7 +73,7 @@
 					{#if playable}
 						<Path />
 					{:else if intro}
-						<IntroPath />
+						<Intro />
 					{/if}
 				</g>
 			{/if}
