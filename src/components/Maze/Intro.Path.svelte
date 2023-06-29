@@ -3,22 +3,21 @@
 	import { previous } from "$stores/previous.js";
 	import mq from "$stores/mq.js";
 	import { tweened } from "svelte/motion";
-	import { getContext } from "svelte";
-	import { quintOut } from "svelte/easing";
+	import { cubicOut } from "svelte/easing";
 
 	export let i;
 	export let d;
 	export let visible;
 
+	let pathEl;
 	const strokeDashOffset = tweened(0, {
-		duration: $mq.reducedMotion ? 0 : 3000,
-		easing: quintOut
+		duration: $mq.reducedMotion ? 0 : 2000,
+		easing: cubicOut
 	});
 	const prevScrollStep = previous(scrollStep);
-	let pathEl;
 
-	$: if (visible && moving) $strokeDashOffset = 0;
-	$: if (!visible && moving) $strokeDashOffset = pathLength;
+	$: if (visible && moving) strokeDashOffset.set(0);
+	$: if (!visible && moving) strokeDashOffset.set(pathLength);
 	$: if (visible && !moving) strokeDashOffset.set(0, { duration: 0 });
 	$: if (!visible && !moving) strokeDashOffset.set(pathLength, { duration: 0 });
 

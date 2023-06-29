@@ -22,7 +22,7 @@
 		solution.slice(12, 16),
 		[...solution.slice(16), { row: 10, col: 9 }]
 	];
-	$: pathStrs = paths.map((path, i) => {
+	$: pathData = paths.map((path, i) => {
 		const prevEnd =
 			i !== 0 ? paths[i - 1][paths[i - 1].length - 1] : paths[0][0];
 		const fullPath = i !== 0 ? [prevEnd, ...path] : path;
@@ -32,7 +32,7 @@
 		const y = prevRow * $cellSize + ($cellSize + $wallWidth) / 2;
 		const start = `M ${x} ${y}`;
 
-		return fullPath.reduce((acc, { row, col }, i) => {
+		const d = fullPath.reduce((acc, { row, col }, i) => {
 			if (i === 0) {
 				return acc;
 			}
@@ -51,6 +51,13 @@
 				return `${acc} h -${$cellSize}`;
 			}
 		}, start);
+
+		const endX =
+			path[path.length - 1].col * $cellSize + ($cellSize + $wallWidth) / 2;
+		const endY =
+			path[path.length - 1].row * $cellSize + ($cellSize + $wallWidth) / 2;
+
+		return { d, endX, endY };
 	});
 </script>
 
@@ -59,9 +66,34 @@
 		id="intro-path"
 		transition:fade={{ duration: mq.reducedMotion ? 0 : 1500 }}
 	>
-		{#each pathStrs as d, i}
+		{#each pathData as { d }, i}
 			{@const visible = $scrollStep >= i + 1}
 			<Path {i} {d} {visible} />
 		{/each}
+
+		{#each pathData.slice(0, pathData.length - 1) as { endX, endY }, i}
+			{@const visible = $scrollStep === i + 1}
+			<image
+				href="assets/img/intro.png"
+				x={endX}
+				y={endY}
+				width={100}
+				height={100}
+				class:visible
+			/>
+		{/each}
 	</g>
 {/if}
+
+<style>
+	image {
+		transform: translate(-50%, -50%) scale(0);
+		transform-box: fill-box;
+		transform-origin: center;
+		transition: transform var(--1s) 0s ease-out;
+	}
+	image.visible {
+		transform: translate(-50%, -50%) scale(1);
+		transition: transform var(--1s) 0s ease-in;
+	}
+</style>
