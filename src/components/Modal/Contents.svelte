@@ -56,8 +56,18 @@
 	<div class="maze" bind:clientWidth={width}>
 		{#key $selectedState}
 			{#if ban}
-				<div class="black-box">
+				<div
+					class="black-box"
+					style:width={`${width}px`}
+					style:height={`${width}px`}
+				>
 					<p>{@html copy.totalBanNote[$language]}</p>
+					<p>
+						<a href={guttmacherLink} target="_blank"
+							>Read more about {name}'s abortion policies
+							<span><Icon name="external-link" /></span></a
+						>
+					</p>
 				</div>
 			{:else}
 				<Maze
@@ -78,10 +88,6 @@
 {#if !mobile}
 	<div class="bottom">
 		<div class="left">
-			<a href={guttmacherLink} target="_blank"
-				>Read more about {name}'s abortion policies
-				<span><Icon name="external-link" /></span></a
-			>
 			<div class="note">
 				{@html modalNote[$language]}
 			</div>
@@ -123,15 +129,6 @@
 		margin-right: 3rem;
 		font-size: 0.8rem;
 	}
-	.left a {
-		color: var(--color-pp-text-gray);
-	}
-	.left a:hover {
-		color: black;
-	}
-	.left a span {
-		font-size: 0.65rem;
-	}
 	h2 {
 		font-family: var(--font-heavy);
 		font-size: 3rem;
@@ -144,18 +141,26 @@
 		margin-top: 1rem;
 	}
 	.black-box {
-		width: 100%;
-		height: 100%;
 		background: black;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
+		justify-content: center;
 		padding: 2rem;
 	}
 	.black-box p {
 		color: white;
 		text-align: center;
-		margin: 0;
 		font-size: 1.2rem;
+	}
+	.black-box a {
+		color: white;
+	}
+	.black-box a:hover {
+		color: var(--color-pp-gray-1);
+	}
+	.black-box a span {
+		font-size: 0.65rem;
 	}
 
 	@media (max-width: 600px) {

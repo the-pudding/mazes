@@ -2,9 +2,13 @@
 	import KeysDesktop from "$components/Maze/Keys.Desktop.svelte";
 	import KeysMobile from "$components/Maze/Keys.Mobile.svelte";
 	import Button from "$components/Button.svelte";
+	import Icon from "$components/helpers/Icon.svelte";
+	import states from "$data/states.csv";
 	import { getContext } from "svelte";
 	import mq from "$stores/mq.js";
+	import { selectedState } from "$stores/misc.js";
 	import { fade } from "svelte/transition";
+	import _ from "lodash";
 
 	export let loading;
 
@@ -16,6 +20,9 @@
 		$gameState = "mid";
 	};
 
+	$: stateData = states.find((d) => d.id === $selectedState);
+	$: name = _.startCase(stateData?.name);
+	$: guttmacherLink = stateData?.guttmacher;
 	$: visible = $gameState === "pre" || $gameState === "post" || !mq.desktop;
 </script>
 
@@ -45,8 +52,13 @@
 			</div>
 		{/if}
 	{:else if $gameState === "post"}
-		<div class="text">Maze completed!</div>
-		<div class="text">Take action tk</div>
+		<p class="text">Maze completed!</p>
+		<p class="text small">
+			<a href={guttmacherLink} target="_blank"
+				>Read more about {name}'s abortion policies
+				<span><Icon name="external-link" /></span></a
+			>
+		</p>
 	{/if}
 
 	{#if !$mq.desktop}
@@ -63,7 +75,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: space-evenly;
+		justify-content: center;
 		font-size: 1.6rem;
 		z-index: 10;
 		opacity: 0;
@@ -76,6 +88,12 @@
 		text-align: center;
 		font-size: 2rem;
 		color: var(--color-text);
+		font-family: var(--font-bold);
+	}
+	.small {
+		font-size: 1.2rem;
+		max-width: 300px;
+		font-family: var(--sans);
 	}
 	.loading-text {
 		color: var(--color-pp-text-gray);

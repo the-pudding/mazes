@@ -4,6 +4,7 @@
 	import { selectedState } from "$stores/misc.js";
 	import { browser } from "$app/environment";
 	import { onMount, tick } from "svelte";
+	import states from "$data/states.csv";
 
 	let modalEl;
 	let stateEl;
@@ -12,6 +13,9 @@
 	let lastFocusable;
 
 	$: open = $selectedState !== undefined;
+	$: ban =
+		$selectedState &&
+		states.find((d) => d.id === $selectedState).ban === "true";
 	$: if (browser) document.body.classList.toggle("noscroll", open);
 	$: if (open && modalEl) focusModal();
 	$: if (!open && stateEl) focusState();
@@ -65,6 +69,7 @@
 <div
 	class="modal"
 	class:open
+	class:ban
 	bind:this={modalEl}
 	tabindex="-1"
 	on:keydown={trapFocus}
@@ -93,7 +98,7 @@
 		padding: 2rem;
 	}
 	.modal.open {
-		z-index: 10;
+		z-index: 1000;
 		display: grid;
 		grid-template-rows: minmax(115px, 1fr) 2fr 1fr;
 		grid-template-columns: minmax(200px, 1fr) minmax(0, 1.3fr);
@@ -102,6 +107,9 @@
 			"side main"
 			"bottom bottom";
 		gap: 2rem 1rem;
+	}
+	.modal.ban {
+		grid-template-rows: minmax(100px, 0.33fr) 2fr 1fr;
 	}
 	.close {
 		display: flex;

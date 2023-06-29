@@ -128,14 +128,12 @@
 	.abbrev.visible {
 		visibility: visible;
 	}
-	img {
-		pointer-events: none;
-	}
 	img.hide {
 		visibility: hidden;
 	}
 	.img-wrapper {
 		position: relative;
+		pointer-events: none;
 	}
 	.black-box {
 		position: absolute;
@@ -143,7 +141,6 @@
 		height: 100%;
 		width: 100%;
 		background: black;
-		pointer-events: none;
 	}
 
 	@media (max-width: 800px) {
