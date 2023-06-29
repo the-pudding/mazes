@@ -52,7 +52,7 @@
 	});
 </script>
 
-{#if $scrollStep < 5}
+{#if $scrollStep < 6}
 	<g id="intro-path" transition:fade>
 		{#each pathStrs as d, i}
 			{@const visible = $scrollStep >= i + 1}

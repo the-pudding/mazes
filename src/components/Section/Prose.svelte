@@ -16,26 +16,29 @@
 	export let align;
 
 	let data;
-	const stateName = _.startCase(states.find((d) => d.id === maze).name);
+	const stateName = maze
+		? _.startCase(states.find((d) => d.id === maze).name)
+		: null;
 	const goToMaze = () => {
 		$selectedState = maze;
 	};
 
 	$: reverse = align === "right";
+	$: center = align === "center";
 
 	const onEnter = async () => {
-		data = await loadMazeData(maze);
+		if (maze) data = await loadMazeData(maze);
 	};
 </script>
 
-<div class="container" class:reverse use:inView on:enter={onEnter}>
+<div class="container" class:reverse class:center use:inView on:enter={onEnter}>
 	<div class="words" class:reverse>
 		{#each text as t}
 			<p>{@html t[$language]}</p>
 		{/each}
 	</div>
 
-	{#if data && data.length}
+	{#if maze && data && data.length}
 		<div
 			class="maze"
 			transition:fade={{ duration: $mq.reducedMotion ? 0 : 800 }}
@@ -72,6 +75,14 @@
 		grid-template-columns: 250px 1fr;
 		grid-auto-flow: dense;
 	}
+	.container.center {
+		grid-template-columns: 1fr;
+		max-width: 600px;
+		margin: auto;
+	}
+	.container:last-of-type {
+		padding-bottom: 5rem;
+	}
 	.maze {
 		display: flex;
 		flex-direction: column;
@@ -105,7 +116,7 @@
 	.link:hover {
 		color: var(--color-pp-text-gray-1);
 		transform: translateX(0.125rem);
-		transition: all .2s ease-in;
+		transition: all 0.2s ease-in;
 	}
 	:global(.words p strong) {
 		background: var(--color-pp-gray-1);

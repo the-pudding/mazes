@@ -42,6 +42,10 @@
 		margin: 0;
 		padding: 5rem 0 16px 0;
 	}
+	h2:last-of-type {
+		max-width: 600px;
+		margin: auto;
+	}
 	:global(section h2 strong) {
 		color: var(--color-pp-magenta);
 		font-family: var(--font-heavy);

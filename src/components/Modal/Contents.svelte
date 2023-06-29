@@ -45,9 +45,11 @@
 
 <div class="title">
 	<h2>{name}</h2>
-	<div>
-		...is {@html level} for abortion access.
-	</div>
+	{#if !ban}
+		<div>
+			...is {@html level} for abortion access.
+		</div>
+	{/if}
 </div>
 
 <div class="play">

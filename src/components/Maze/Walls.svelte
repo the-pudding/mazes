@@ -6,7 +6,6 @@
 
 	const {
 		animated,
-		playable,
 		getData,
 		getCellSize,
 		getWallWidth,
@@ -27,24 +26,13 @@
 	class:faded={$selectedState &&
 		($gameState === "post" || $gameState === "pre")}
 >
-	{#if playable && $gameState !== "pre"}
-		<rect class="start" x={0} y={0} width={$cellSize} height={$cellSize} />
-		<rect
-			class="finish"
-			x={($dims - 1) * $cellSize}
-			y={($dims - 1) * $cellSize}
-			width={$cellSize}
-			height={$cellSize}
-		/>
-	{/if}
-
 	{#each $data as { row, col, walls }}
 		{@const [top, right, bottom, left] = walls}
 		{@const lineDraw = {
 			duration: animated && !$mq.reducedMotion ? 800 : 0,
 			delay: animated && !$mq.reducedMotion ? Math.random() * 400 : 0
 		}}
-		{#if top}
+		{#if top && (row !== 0 || col !== 0)}
 			<line
 				x1={col * $cellSize - $wallWidth / 2}
 				x2={col * $cellSize + $cellSize + $wallWidth / 2}
@@ -66,7 +54,7 @@
 			/>
 		{/if}
 
-		{#if bottom}
+		{#if bottom && (row !== $dims - 1 || col !== $dims - 1)}
 			<line
 				x1={col * $cellSize + $cellSize + $wallWidth / 2}
 				x2={col * $cellSize - $wallWidth / 2}

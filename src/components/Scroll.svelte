@@ -19,7 +19,7 @@
 	const steps = copy.scroll;
 
 	$: walls =
-		$scrollStep >= 5 || ($scrollStep === undefined && direction === "down")
+		$scrollStep >= 6 || ($scrollStep === undefined && direction === "down")
 			? data
 			: simple;
 	$: solution = _.orderBy(
@@ -27,6 +27,7 @@
 		"solutionIndex",
 		"asc"
 	);
+
 	$: mazePath = zoom
 		? []
 		: $scrollStep === 1
@@ -34,8 +35,10 @@
 		: $scrollStep === 2
 		? solution.slice(0, 9)
 		: $scrollStep === 3
-		? solution.slice(0, 12)
+		? solution.slice(0, 10)
 		: $scrollStep === 4
+		? solution.slice(0, 11)
+		: $scrollStep === 5
 		? solution
 		: [];
 	$: hed = steps[steps.length - 1][$language];
@@ -59,7 +62,7 @@
 					wallData={walls}
 					size={Math.sqrt(simple.length)}
 					playable={false}
-					animated={true}
+					animated={false}
 					intro={true}
 					{mazePath}
 				/>
