@@ -9,3 +9,5 @@ export const selectedState = writable(undefined);
 export const pathLength = writable(0);
 
 export const scrollStep = writable(undefined);
+
+export const dashboardInView = writable(false);

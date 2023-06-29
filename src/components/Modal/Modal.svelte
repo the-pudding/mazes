@@ -1,7 +1,7 @@
 <script>
 	import Contents from "$components/Modal/Contents.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
-	import { selectedState } from "$stores/misc.js";
+	import { selectedState, dashboardInView } from "$stores/misc.js";
 	import { browser } from "$app/environment";
 	import { onMount, tick } from "svelte";
 	import states from "$data/states.csv";
@@ -18,13 +18,14 @@
 		states.find((d) => d.id === $selectedState).ban === "true";
 	$: if (browser) document.body.classList.toggle("noscroll", open);
 	$: if (open && modalEl) focusModal();
-	$: if (!open && stateEl) focusState();
+	$: if (!open && $dashboardInView && stateEl) focusState();
 
 	const focusModal = async () => {
 		await tick();
 		getFocusable();
 		modalEl.focus();
-		stateEl = document.querySelector(`.state#${$selectedState}-state`);
+		if ($dashboardInView)
+			stateEl = document.querySelector(`.state#${$selectedState}-state`);
 	};
 	const focusState = () => {
 		stateEl.focus();
@@ -49,7 +50,6 @@
 			}
 		}
 	};
-	$: console.log({ numFocusable, firstFocusable, lastFocusable });
 	const getFocusable = () => {
 		const focusable = modalEl.querySelectorAll(
 			"a[href], button, textarea, input[type='text'], input[type='radio'], input[type='checkbox'], select"

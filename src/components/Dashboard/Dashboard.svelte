@@ -6,6 +6,8 @@
 	import _ from "lodash";
 	import { onMount, setContext, tick } from "svelte";
 	import { writable } from "svelte/store";
+	import inView from "$actions/inView.js";
+	import { dashboardInView } from "$stores/misc.js";
 
 	setContext("dashboard", {
 		getOrder: () => order,
@@ -42,7 +44,12 @@
 	});
 </script>
 
-<div class="full-page">
+<div
+	class="full-page"
+	use:inView
+	on:enter={() => ($dashboardInView = true)}
+	on:exit={() => ($dashboardInView = false)}
+>
 	<TopBar />
 	<figure class:geo>
 		{#if $order === "region"}
