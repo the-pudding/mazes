@@ -12,8 +12,7 @@
 		{ label: "alphabetically", value: "alpha" },
 		{ label: "geographically", value: "geo" },
 		{ label: "regionally", value: "region" },
-		{ label: "by more barriers", value: "barriers-desc" },
-		{ label: "by fewer barriers", value: "barriers-asc" }
+		{ label: "by barriers", value: "barriers" }
 	];
 	const highlightOptions = [
 		{ label: "select state", value: "default" },
@@ -24,10 +23,6 @@
 
 	$: mobile = $viewport.width < 600;
 	$: if (selectState && selectState !== "default") $selectedState = selectState;
-
-	// TODO
-	// when selectState is something, update selected state
-	// when selected state is blank, reset selectState
 </script>
 
 <div class="top-bar">
@@ -47,5 +42,6 @@
 		padding: 0 1rem;
 		position: sticky;
 		top: 3rem;
+		z-index: 1000;
 	}
 </style>

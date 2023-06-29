@@ -35,7 +35,6 @@
 	$: geo = $order === "geo" && !mobile;
 
 	const onClick = (e) => {
-		console.log(e.target);
 		const id = e.target.id.replace("-state", "");
 		$selectedState = id;
 	};
@@ -73,11 +72,14 @@
 		<div class="abbrev" class:visible={true}>{label}</div>
 	{/if}
 
-	{#if ban}
-		<div class="black-box" />
-	{:else}
-		<img src={`assets/img/states/${id}.png`} alt={`maze for ${id}`} />
-	{/if}
+	<div class="img-wrapper">
+		<img
+			src={`assets/img/states/${id}.png`}
+			alt={`maze for ${id}`}
+			class:hide={ban}
+		/>
+		{#if ban}<div class="black-box" />{/if}
+	</div>
 </div>
 
 <style>
@@ -129,7 +131,15 @@
 	img {
 		pointer-events: none;
 	}
+	img.hide {
+		visibility: hidden;
+	}
+	.img-wrapper {
+		position: relative;
+	}
 	.black-box {
+		position: absolute;
+		bottom: 0;
 		height: 100%;
 		width: 100%;
 		background: black;

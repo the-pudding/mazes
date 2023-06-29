@@ -17,8 +17,7 @@
 		geo: (d) => `${d.row}-${d.col}`,
 		alpha: (d) => d.name,
 		region: (d) => d.region,
-		"barriers-desc": (d) => +d.score,
-		"barriers-asc": (d) => +d.score
+		barriers: (d) => +d.score
 	};
 	const regions = _.uniq(states.map((d) => d.region));
 	const columnWidth = writable(0);
@@ -27,7 +26,7 @@
 	$: sortedStates = _.orderBy(
 		states,
 		sortFns[$order],
-		$order === "barriers-asc" ? "desc" : "asc"
+		$order === "barriers" ? "desc" : "asc"
 	);
 	$: $order = mobile ? "alpha" : "geo";
 	$: geo = $order === "geo" && !mobile;
@@ -50,28 +49,19 @@
 			{#each regions as region}
 				{@const regionStates = sortedStates.filter((d) => d.region === region)}
 				<h3>{_.startCase(region)}</h3>
-				{#each regionStates as { id, name }}
+				{#each regionStates as { id, name, ban }}
 					{@const label = _.startCase(name)}
-					<State {id} {label} />
+					<State {id} {label} ban={ban === "true"} />
 				{/each}
 			{/each}
 		{:else}
-			{#if $order === "barriers-asc" || $order === "barriers-desc"}
-				<h3>
-					States with the {$order === "barriers-asc" ? "fewest" : "most"} barriers
-				</h3>
+			{#if $order === "barriers"}
+				<h3>Fewest to most barriers</h3>
 			{/if}
-
 			{#each sortedStates as { id, name, row, col, ban }}
 				{@const label = geo ? id.toUpperCase() : _.startCase(name)}
 				<State {id} {label} {row} {col} ban={ban === "true"} />
 			{/each}
-
-			{#if $order === "barriers-asc" || $order === "barriers-desc"}
-				<h3>
-					States with the {$order === "barriers-asc" ? "most" : "fewest"} barriers
-				</h3>
-			{/if}
 		{/if}
 	</figure>
 </div>
@@ -98,5 +88,6 @@
 	}
 	h3 {
 		grid-column: 1/-1;
+		margin-bottom: 0;
 	}
 </style>
