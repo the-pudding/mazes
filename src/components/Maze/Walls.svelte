@@ -1,11 +1,12 @@
 <script>
 	import { getContext } from "svelte";
-	import { draw } from "svelte/transition";
+	import { draw, fade } from "svelte/transition";
 	import mq from "$stores/mq.js";
 	import { selectedState } from "$stores/misc.js";
 
 	const {
 		animated,
+		intro,
 		getData,
 		getCellSize,
 		getWallWidth,
@@ -29,8 +30,8 @@
 	{#each $data as { row, col, walls }}
 		{@const [top, right, bottom, left] = walls}
 		{@const lineDraw = {
-			duration: animated && !$mq.reducedMotion ? 800 : 0,
-			delay: animated && !$mq.reducedMotion ? Math.random() * 400 : 0
+			duration: (animated || intro) && !$mq.reducedMotion ? 800 : 0,
+			delay: (animated || intro) && !$mq.reducedMotion ? Math.random() * 400 : 0
 		}}
 		{#if top && (row !== 0 || col !== 0)}
 			<line

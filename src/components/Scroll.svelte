@@ -12,35 +12,31 @@
 
 	let data;
 	let simple;
-	let solution;
 	let direction = "up";
+	let walls;
+	let allWallsInPlace = false;
 
 	const featuredState = "il";
 	const steps = copy.scroll;
 
-	$: walls =
-		$scrollStep >= 6 || ($scrollStep === undefined && direction === "down")
-			? data
-			: simple;
-	$: solution = _.orderBy(
-		_.flatten(simple).filter((d) => d.solutionIndex !== null),
-		"solutionIndex",
-		"asc"
-	);
+	$: if (
+		!allWallsInPlace &&
+		($scrollStep >= 6 || ($scrollStep === undefined && direction === "down"))
+	)
+		enterWalls();
+	$: if (allWallsInPlace && $scrollStep < 6) exitWalls();
 
-	$: mazePath = zoom
-		? []
-		: $scrollStep === 1
-		? solution.slice(0, 5)
-		: $scrollStep === 2
-		? solution.slice(0, 9)
-		: $scrollStep === 3
-		? solution.slice(0, 10)
-		: $scrollStep === 4
-		? solution.slice(0, 11)
-		: $scrollStep === 5
-		? solution
-		: [];
+	const enterWalls = () => {
+		setTimeout(() => {
+			walls = data;
+			allWallsInPlace = true;
+		}, 1500);
+	};
+	const exitWalls = () => {
+		walls = simple;
+		allWallsInPlace = false;
+	};
+
 	$: hed = steps[steps.length - 1][$language];
 	$: direction = $scrollY < 3000 ? "up" : "down";
 	$: zoomDuration = $mq.reducedMotion ? 0 : 3000;
@@ -51,6 +47,7 @@
 	onMount(async () => {
 		simple = await loadMazeData("il-simple");
 		data = await loadMazeData(featuredState);
+		walls = simple;
 	});
 </script>
 
@@ -64,7 +61,6 @@
 					playable={false}
 					animated={false}
 					intro={true}
-					{mazePath}
 				/>
 			</div>
 		{/if}

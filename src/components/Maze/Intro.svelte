@@ -4,6 +4,7 @@
 	import _ from "lodash";
 	import { scrollStep, mazeData } from "$stores/misc.js";
 	import { fade } from "svelte/transition";
+	import mq from "$stores/mq.js";
 
 	const { getCellSize, getWallWidth } = getContext("maze");
 	const cellSize = getCellSize();
@@ -15,9 +16,10 @@
 		"asc"
 	);
 	const paths = [
-		[{ row: -1, col: 0 }, ...solution.slice(0, 8)],
-		solution.slice(8, 11),
-		solution.slice(11, 16),
+		[{ row: -1, col: 0 }, ...solution.slice(0, 4)],
+		solution.slice(4, 8),
+		solution.slice(8, 12),
+		solution.slice(12, 16),
 		[...solution.slice(16), { row: 10, col: 9 }]
 	];
 	$: pathStrs = paths.map((path, i) => {
@@ -53,7 +55,10 @@
 </script>
 
 {#if $scrollStep < 6}
-	<g id="intro-path" transition:fade>
+	<g
+		id="intro-path"
+		transition:fade={{ duration: mq.reducedMotion ? 0 : 1500 }}
+	>
 		{#each pathStrs as d, i}
 			{@const visible = $scrollStep >= i + 1}
 			<Path {i} {d} {visible} />
