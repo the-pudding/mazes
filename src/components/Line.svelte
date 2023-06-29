@@ -41,12 +41,14 @@
 			offset = container.offsetTop;
 
 			const chunks = Array.from(
-				document.querySelectorAll("section > .chunk, section > h2")
+				document.querySelectorAll("section > .chunk, section > .head")
 			);
 			startY = chunks[0].offsetTop;
 			const chunksGrouped = chunks.reduce((acc, current, i) => {
-				if (current.tagName === "H2") return [...acc, [current, chunks[i + 1]]];
-				else if (chunks[i - 1] && chunks[i - 1].tagName === "H2") return acc;
+				if (current.className.includes("head"))
+					return [...acc, [current, chunks[i + 1]]];
+				else if (chunks[i - 1] && chunks[i - 1].className.includes("head"))
+					return acc;
 				else return [...acc, current];
 			}, []);
 			heights = chunksGrouped.map((chunk) => {
@@ -86,7 +88,7 @@
 		pointer-events: none;
 	}
 	path {
-		stroke: var(--color-pp-magenta);
+		stroke: var(--color-pp-light-purple);
 		stroke-width: 3px;
 		opacity: 0.3;
 		fill: none;

@@ -13,7 +13,10 @@
 </script>
 
 <section {id}>
-	<h2>{@html title[$language]}</h2>
+	<div class="head">
+		<img src="assets/img/hero.png" />
+		<h2>{@html title[$language]}</h2>
+	</div>
 
 	{#each chunks as { type, component, maze, align, text, before, after, panels }}
 		<svelte:element this={type} class="chunk">
@@ -42,16 +45,22 @@
 		margin: 0;
 		padding: 5rem 0 16px 0;
 	}
-	h2:last-of-type {
+	/* h2:last-of-type {
 		max-width: 600px;
 		margin: auto;
-	}
+	} */
+
 	:global(section h2 strong) {
 		color: var(--color-pp-magenta);
 		font-family: var(--font-heavy);
 	}
 	.chunk {
 		display: flex;
+	}
+	img {
+		max-width: 477px;
+		margin: auto;
+		padding: 4rem 0;
 	}
 
 	@media (max-width: 600px) {
