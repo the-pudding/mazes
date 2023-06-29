@@ -1,6 +1,7 @@
 <script>
 	import Maze from "$components/Maze/Maze.svelte";
 	import Button from "$components/Button.svelte";
+	import Grid from "$components/Section/Grid.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
 	import states from "$data/states.csv";
 	import { selectedState } from "$stores/misc.js";
@@ -16,18 +17,19 @@
 	export let align;
 
 	let data;
-	const stateName = maze
-		? _.startCase(states.find((d) => d.id === maze).name)
-		: null;
+
 	const goToMaze = () => {
 		$selectedState = maze;
 	};
 
+	$: grid = maze && maze.includes("|");
 	$: reverse = align === "right";
 	$: center = align === "center";
+	$: stateName =
+		maze && !grid ? _.startCase(states.find((d) => d.id === maze).name) : null;
 
 	const onEnter = async () => {
-		if (maze) data = await loadMazeData(maze);
+		if (maze && !grid) data = await loadMazeData(maze);
 	};
 </script>
 
@@ -38,7 +40,9 @@
 		{/each}
 	</div>
 
-	{#if maze && data && data.length}
+	{#if grid}
+		<Grid ids={maze.split("|")} />
+	{:else if maze && data && data.length}
 		<div
 			class="maze"
 			transition:fade={{ duration: $mq.reducedMotion ? 0 : 800 }}
@@ -125,7 +129,7 @@
 		border-radius: 5px;
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 800px) {
 		.container {
 			display: flex;
 			flex-direction: column;
@@ -135,6 +139,7 @@
 		.maze {
 			align-items: center;
 			width: 60%;
+			max-width: 300px;
 		}
 		.top {
 			flex-direction: column;

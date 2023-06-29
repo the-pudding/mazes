@@ -40,7 +40,7 @@
 	};
 	const onKeyDown = (e) => {
 		if (e.keyCode === 13 || e.keyCode === 32) {
-			const id = e.target.id;
+			const id = e.target.id.replace("-state", "");
 			$selectedState = id;
 		}
 	};
@@ -108,7 +108,6 @@
 	.state:hover .abbrev {
 		color: black;
 		font-family: var(--font-heavy);
-		text-transform: uppercase;
 		transition: all 0.2s ease-in;
 	}
 	.abbrev {
