@@ -7,7 +7,7 @@
 	const cols = ["metric", "source", "link"];
 </script>
 
-<section class="methods">
+<section id="methods">
 	<h3>Methodology</h3>
 	{#each copy.methodology as text}
 		<p>{@html text[$language]}</p>

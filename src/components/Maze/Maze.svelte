@@ -63,7 +63,7 @@
 
 <div class="container" bind:clientWidth={$availableWidth}>
 	{#if $width}
-		<svg width={$width} height={$width}>
+		<svg width={$width} height={$width} class:filled={intro}>
 			{#if !loading}
 				<g
 					class="fade"
@@ -106,6 +106,9 @@
 </div>
 
 <style>
+	svg.filled {
+		background: var(--upper-bg);
+	}
 	.container {
 		width: 100%;
 		display: flex;

@@ -1,6 +1,7 @@
 <script>
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Maze from "$components/Maze/Maze.svelte";
+	import Dashboard from "$components/Dashboard/Dashboard.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
 	import copy from "$data/copy.json";
 	import scrollY from "$stores/scrollY.js";
@@ -9,6 +10,7 @@
 	import loadMazeData from "$utils/loadMazeData.js";
 	import { onMount } from "svelte";
 	import { language, scrollStep } from "$stores/misc.js";
+	import viewport from "$stores/viewport.js";
 
 	let data;
 	let simple;
@@ -43,27 +45,56 @@
 	$: zoom =
 		$scrollStep === steps.length - 1 ||
 		($scrollStep === undefined && direction === "down");
+	$: $viewport.width, calculateIlPosition();
+
+	let mazeEl;
+	let labelEl;
+	let w;
+	let left;
+	let top;
+
+	const calculateIlPosition = () => {
+		if (mazeEl) {
+			w = mazeEl.offsetWidth;
+			left = mazeEl.offsetLeft;
+			top = mazeEl.offsetTop;
+		}
+	};
 
 	onMount(async () => {
 		simple = await loadMazeData("il-simple");
 		data = await loadMazeData(featuredState);
 		walls = simple;
+
+		mazeEl = document.querySelector("#spot-maze");
+		labelEl = document.querySelector("#spot-label");
+		calculateIlPosition();
 	});
 </script>
 
 <section id="scrolly">
 	<div class="sticky" class:zoom style={`--dur: ${zoomDuration}ms`}>
-		{#if data && data.length}
-			<div class="svg-maze" class:shrunk={zoom}>
-				<Maze
-					wallData={walls}
-					size={Math.sqrt(simple.length)}
-					playable={false}
-					animated={false}
-					intro={true}
-				/>
-			</div>
-		{/if}
+		<div class="map" class:visible={zoom}>
+			<Dashboard interactive={false} />
+		</div>
+
+		<div class="illinois">
+			{#if data && data.length}
+				<div
+					class="svg-maze"
+					class:shrunk={zoom}
+					style={`--w: ${w}px; --left: ${left}px; --top: ${top}px`}
+				>
+					<Maze
+						wallData={walls}
+						size={Math.sqrt(simple.length)}
+						playable={false}
+						animated={false}
+						intro={true}
+					/>
+				</div>
+			{/if}
+		</div>
 
 		<h1
 			class:visible={zoom}
@@ -71,13 +102,6 @@
 		>
 			{hed}
 		</h1>
-		<img
-			src="assets/img/usa-missing.png"
-			alt="map of mazes for each state in the usa"
-			class="map"
-			class:visible={zoom}
-			style={`--dur: ${zoomDuration}ms`}
-		/>
 
 		<button
 			class="link"
@@ -145,33 +169,43 @@
 	.spacer {
 		height: 75vh;
 	}
+	.illinois {
+		position: relative;
+		max-width: min(100%, 900px);
+		max-height: calc(100vh - 3rem);
+		width: 100%;
+		height: 100%;
+	}
 	.svg-maze {
 		position: absolute;
 		top: 50%;
+		left: 50%;
 		width: 60%;
 		max-width: 700px;
-		transition: all var(--dur);
-		/* visibility: hidden; */
-		transform: translate(0, -50%) scale(1);
-		/* transform: translate(-7%, -39.7%) scale(0.118); */
+		transition: top 2s, left 2s, width 2s, transform 2s, opacity 0.4s;
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1);
 	}
 	.svg-maze.shrunk {
-		transform: translate(-7%, -39.7%) scale(0.118);
-	}
-	.svg-maze.visible {
-		transition: all 3s;
-		visibility: visible;
-		transform: translate(0, -50%);
+		transform: translate(0, 0) scale(1);
+		top: var(--top);
+		left: var(--left);
+		width: var(--w);
+		height: var(--h);
+		opacity: 0;
 	}
 	.map {
 		position: absolute;
+		top: 50%;
+		max-width: min(100%, 900px);
 		max-height: calc(100vh - 3rem);
-		transform: translate(35%, -41%) scale(8);
+		transform: translate(33.7%, -112.3%) scale(8.1);
+		/* transform: translate(35%, -41%) scale(8); */
 		opacity: 0;
 		transition: all var(--dur);
 	}
 	.map.visible {
-		transform: translate(0, 0) scale(1);
+		transform: translate(0, -50%) scale(1);
 		opacity: 1;
 	}
 	h1 {
@@ -235,6 +269,11 @@
 	.link.visible {
 		transition: opacity calc(var(--1s) * 0.5) var(--delay);
 		opacity: 1;
+	}
+	.link:hover {
+		color: var(--color-pp-text-gray-1);
+		transform: translateX(0.125rem);
+		transition: all 0.2s ease-in;
 	}
 
 	@media (max-width: 800px) {

@@ -10,7 +10,7 @@
 	export let col;
 	export let ban;
 
-	const { getOrder, getColumnWidth } = getContext("dashboard");
+	const { interactive, getOrder, getColumnWidth } = getContext("dashboard");
 	const order = getOrder();
 	const columnWidth = getColumnWidth();
 
@@ -35,13 +35,17 @@
 	$: geo = $order === "geo" && !mobile;
 
 	const onClick = (e) => {
-		const id = e.target.id.replace("-state", "");
-		$selectedState = id;
-	};
-	const onKeyDown = (e) => {
-		if (e.keyCode === 13 || e.keyCode === 32) {
+		if (interactive) {
 			const id = e.target.id.replace("-state", "");
 			$selectedState = id;
+		}
+	};
+	const onKeyDown = (e) => {
+		if (interactive) {
+			if (e.keyCode === 13 || e.keyCode === 32) {
+				const id = e.target.id.replace("-state", "");
+				$selectedState = id;
+			}
 		}
 	};
 </script>
@@ -49,7 +53,8 @@
 <div
 	class="state"
 	class:geo
-	id={`${id}-state`}
+	class:interactive
+	id={interactive ? `${id}-state` : null}
 	style={row && col ? `--row: ${row}; --col: ${col}` : null}
 	on:click={onClick}
 	on:keydown={onKeyDown}
@@ -69,10 +74,13 @@
 			</div>
 		</div>
 	{:else}
-		<div class="abbrev" class:visible={true}>{label}</div>
+		<div class="abbrev" class:visible={true} id={"spot-label"}>{label}</div>
 	{/if}
 
-	<div class="img-wrapper">
+	<div
+		class="img-wrapper"
+		id={!interactive && id === "il" ? "spot-maze" : null}
+	>
 		<img
 			src={`assets/img/states/${id}.png`}
 			alt={`maze for ${id}`}
@@ -95,17 +103,17 @@
 		grid-row: var(--row);
 		grid-column: var(--col);
 	}
-	.state:hover {
+	.state.interactive:hover {
 		cursor: pointer;
 		background: var(--color-pp-gray-1);
 		transition: all 0.2s ease-in;
 	}
-	.state:focus {
+	.state.interactive:focus {
 		outline: 3px solid var(--color-pp-magenta);
 		border-radius: 3px;
 	}
-	.state:focus .abbrev,
-	.state:hover .abbrev {
+	.state.interactive:focus .abbrev,
+	.state.interactive:hover .abbrev {
 		color: black;
 		font-family: var(--font-heavy);
 		transition: all 0.2s ease-in;
