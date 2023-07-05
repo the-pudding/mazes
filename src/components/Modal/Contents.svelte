@@ -175,7 +175,7 @@
 			font-size: 1rem;
 		}
 		.maze {
-			max-width: 280px;
+			max-width: 80%;
 		}
 	}
 </style>

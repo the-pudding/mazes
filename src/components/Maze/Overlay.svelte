@@ -6,6 +6,7 @@
 	import states from "$data/states.csv";
 	import { getContext } from "svelte";
 	import mq from "$stores/mq.js";
+	import viewport from "$stores/viewport.js";
 	import { selectedState } from "$stores/misc.js";
 	import { fade } from "svelte/transition";
 	import _ from "lodash";
@@ -20,10 +21,11 @@
 		$gameState = "mid";
 	};
 
+	$: mobile = $viewport.width < 600;
 	$: stateData = states.find((d) => d.id === $selectedState);
 	$: name = _.startCase(stateData?.name);
 	$: guttmacherLink = stateData?.guttmacher;
-	$: visible = $gameState === "pre" || $gameState === "post" || !mq.desktop;
+	$: visible = mobile || $gameState === "pre" || $gameState === "post";
 </script>
 
 <div class="overlay" style:height={`${$width}px`} class:visible>
@@ -46,7 +48,7 @@
 					onClick={start}
 					style={"z-index: 11; margin-bottom: 1rem"}
 				/>
-				{#if $mq.desktop}
+				{#if !mobile}
 					<KeysDesktop background={true} />
 				{/if}
 			</div>
@@ -54,14 +56,14 @@
 	{:else if $gameState === "post"}
 		<p class="text">Maze completed!</p>
 		<p class="text small">
-			<a href={guttmacherLink} target="_blank"
+			<a href={guttmacherLink} target="_blank" id="read-more"
 				>Read more about {name}'s abortion policies
 				<span><Icon name="external-link" /></span></a
 			>
 		</p>
 	{/if}
 
-	{#if !$mq.desktop}
+	{#if mobile}
 		<KeysMobile />
 	{/if}
 </div>

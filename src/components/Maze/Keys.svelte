@@ -1,24 +1,15 @@
 <script>
 	import Icon from "$components/helpers/Icon.svelte";
 	import { getContext } from "svelte";
-	import mq from "$stores/mq.js";
+	import viewport from "$stores/viewport.js";
 
 	const { getGameState } = getContext("maze");
 	const gameState = getGameState();
+
+	$: mobile = $viewport.width < 600;
 </script>
 
-{#if $mq.desktop}
-	<div class="desktop" class:background={$gameState === "pre"}>
-		<div class="keys">
-			{#each ["up", "left", "down", "right"] as direction}
-				<span class={`key ${direction}`}>
-					<Icon name={`arrow-${direction}`} />
-				</span>
-			{/each}
-		</div>
-		<div class="text">Use arrow keys to navigate</div>
-	</div>
-{:else}
+{#if mobile}
 	<div class="mobile">
 		{#each ["up", "right", "down", "left"] as direction}
 			<button class={direction} disabled={$gameState !== "mid"}
@@ -28,6 +19,17 @@
 				<div class="text">Tap arrow buttons to navigate</div>
 			{/if}
 		{/each}
+	</div>
+{:else}
+	<div class="desktop" class:background={$gameState === "pre"}>
+		<div class="keys">
+			{#each ["up", "left", "down", "right"] as direction}
+				<span class={`key ${direction}`}>
+					<Icon name={`arrow-${direction}`} />
+				</span>
+			{/each}
+		</div>
+		<div class="text">Use arrow keys to navigate</div>
 	</div>
 {/if}
 

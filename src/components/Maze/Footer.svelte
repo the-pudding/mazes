@@ -2,9 +2,9 @@
 	import KeysDesktop from "$components/Maze/Keys.Desktop.svelte";
 	import Button from "$components/Button.svelte";
 	import Share from "$components/Modal/Share.svelte";
-	import { getContext } from "svelte";
-	import mq from "$stores/mq.js";
+	import { getContext, tick } from "svelte";
 	import _ from "lodash";
+	import viewport from "$stores/viewport.js";
 
 	const { getDims, getData, getGameState, getLocation, getPath } =
 		getContext("maze");
@@ -21,7 +21,7 @@
 		$gameState = "mid";
 		$location = { row: 0, col: 0 };
 	};
-	const solve = () => {
+	const solve = async () => {
 		const solution = _.orderBy(
 			$data.filter((d) => d.solutionIndex !== null),
 			"solutionIndex",
@@ -30,8 +30,13 @@
 		$path = solution;
 		$gameState = "post";
 		$location = { row: $dims - 1, col: $dims - 1 };
+
+		await tick();
+		const readMoreLink = document.getElementById("read-more");
+		readMoreLink.focus();
 	};
 
+	$: mobile = $viewport.width < 600;
 	$: buttonText = $gameState === "pre" ? "start maze" : "restart maze";
 </script>
 
@@ -45,10 +50,10 @@
 		>
 	</div>
 
-	{#if $mq.desktop}
-		<KeysDesktop />
-	{:else}
+	{#if mobile}
 		<Share />
+	{:else}
+		<KeysDesktop />
 	{/if}
 </div>
 
@@ -58,15 +63,16 @@
 		display: flex;
 		justify-content: space-between;
 		margin-top: 3rem;
-		visibility: hidden;
+		opacity: 0.1;
 	}
 	.visible {
-		visibility: visible;
+		opacity: 1;
 	}
 	.buttons {
 		display: flex;
 		flex-direction: column;
 		align-items: start;
+		margin-right: 1rem;
 	}
 	.text {
 		font-size: 0.9rem;

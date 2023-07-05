@@ -11,7 +11,9 @@
 	const location = getLocation();
 
 	const move = (direction) => {
-		const current = $data[$location.row][$location.col];
+		const current = $data.find(
+			(d) => d.row === $location.row && d.col === $location.col
+		);
 		const [top, right, bottom, left] = current.walls;
 
 		const validLeft = direction === "left" && !left;
@@ -89,16 +91,16 @@
 	button.down {
 		bottom: 0;
 		left: 50%;
-		transform: translate(-50%, 20%);
+		transform: translate(-50%, 120%);
 	}
 	button.left {
 		top: 50%;
 		left: 0;
-		transform: translate(-70%, -50%);
+		transform: translate(-120%, -50%);
 	}
 	button.right {
 		top: 50%;
 		right: 0;
-		transform: translate(70%, -50%);
+		transform: translate(120%, -50%);
 	}
 </style>
