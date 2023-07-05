@@ -4,7 +4,7 @@
 	import { language } from "$stores/misc.js";
 	import sources from "$data/sources.csv";
 
-	const cols = ["metric", "source", "link"];
+	const cols = ["metric", "source"];
 </script>
 
 <section id="methods">
@@ -26,8 +26,8 @@
 				<tr>
 					{#each cols as key}
 						<td>
-							{#if key === "link"}
-								<a href={source[key]} target="_blank">Link</a>
+							{#if key === "source"}
+								<a href={source.link} target="_blank">{source[key]}</a>
 							{:else}
 								{source[key]}
 							{/if}
@@ -62,11 +62,8 @@
 	summary:hover {
 		cursor: pointer;
 	}
-	a:hover {
-		color: var(--color-pp-magenta);
-	}
 	summary::marker {
-		color: var(--color-pp-magenta);
+		color: var(--color-pp-dark-purple);
 	}
 	p {
 		color: var(--color-pp-text-gray);
@@ -74,7 +71,18 @@
 	th,
 	td {
 		padding: 0.5rem;
-		background: var(--color-pp-gray-1);
-		border: 1px solid var(--color-pp-text-gray);
+	}
+	th {
+		font-family: var(--font-bold);
+		border-bottom: 3px solid var(--color-pp-dark);
+	}
+	tr {
+		border-bottom: 1px solid var(--color-pp-gray-3);
+	}
+	td {
+		vertical-align: middle;
+	}
+	td:last-child {
+		font-size: 0.8rem;
 	}
 </style>
