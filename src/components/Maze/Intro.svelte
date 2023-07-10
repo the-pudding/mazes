@@ -59,6 +59,7 @@
 
 		return { d, endX, endY };
 	});
+	$: bubbleSize = $cellSize * 1.2;
 </script>
 
 {#if $scrollStep < 6}
@@ -77,8 +78,8 @@
 				href="assets/img/intro.png"
 				x={endX}
 				y={endY}
-				width={100}
-				height={100}
+				width={bubbleSize}
+				height={bubbleSize}
 				class:visible
 			/>
 		{/each}
