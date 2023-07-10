@@ -51,7 +51,7 @@
 	$: $path = mazePath;
 	$: $dims = size;
 	$: mobile = $viewport.width < 600;
-	$: $width = mobile ? $availableWidth : $availableWidth * 0.9;
+	$: $width = mobile || intro ? $availableWidth : $availableWidth * 0.9;
 	$: $wallWidth = $width / 50;
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = $dims ? ($width - $padding * 2) / $dims : 0;

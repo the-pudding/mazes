@@ -47,6 +47,7 @@
 		($scrollStep === undefined && direction === "down");
 	$: $viewport.width, calculateIlPosition();
 
+	let shrinkingMazeEl;
 	let mazeEl;
 	let labelEl;
 	let w;
@@ -55,9 +56,30 @@
 
 	const calculateIlPosition = () => {
 		if (mazeEl) {
-			w = mazeEl.offsetWidth;
-			left = mazeEl.offsetLeft;
-			top = mazeEl.offsetTop;
+			let rect = mazeEl.getBoundingClientRect();
+			console.log({ rect });
+			w = rect.width;
+			left = rect.left;
+			top = rect.top;
+		}
+	};
+
+	const transitionStart = () => {
+		if (!shrinkingMazeEl) return;
+
+		if (!zoom) {
+			shrinkingMazeEl.classList.add("visible");
+			const mapIl = document.getElementById("il-intro");
+			mapIl.classList.remove("visible");
+		}
+	};
+	const transitionEnd = () => {
+		if (!shrinkingMazeEl) return;
+
+		if (zoom) {
+			shrinkingMazeEl.classList.remove("visible");
+			const mapIl = document.getElementById("il-intro");
+			mapIl.classList.add("visible");
 		}
 	};
 
@@ -66,8 +88,8 @@
 		data = await loadMazeData(featuredState);
 		walls = simple;
 
-		mazeEl = document.querySelector("#spot-maze");
-		labelEl = document.querySelector("#spot-label");
+		mazeEl = document.querySelector("#il-spot");
+		labelEl = document.querySelector("#il-label-spot");
 		calculateIlPosition();
 	});
 </script>
@@ -75,26 +97,31 @@
 <section id="scrolly">
 	<div class="sticky" class:zoom style={`--dur: ${zoomDuration}ms`}>
 		<div class="map" class:visible={zoom}>
-			<Dashboard interactive={false} />
+			<Dashboard type="intro" />
+		</div>
+		<div class="hidden">
+			<Dashboard type="hidden" />
 		</div>
 
-		<div class="illinois">
-			{#if data && data.length}
-				<div
-					class="svg-maze"
-					class:shrunk={zoom}
-					style={`--w: ${w}px; --left: ${left}px; --top: ${top}px`}
-				>
-					<Maze
-						wallData={walls}
-						size={Math.sqrt(simple.length)}
-						playable={false}
-						animated={false}
-						intro={true}
-					/>
-				</div>
-			{/if}
-		</div>
+		{#if data && data.length}
+			<div
+				class="illinois"
+				class:visible={$scrollStep !== undefined}
+				class:shrunk={zoom}
+				style={`--w: ${w}px; --left: ${left}px; --top: ${top}px`}
+				bind:this={shrinkingMazeEl}
+				on:transitionstart={transitionStart}
+				on:transitionend={transitionEnd}
+			>
+				<Maze
+					wallData={walls}
+					size={Math.sqrt(simple.length)}
+					playable={false}
+					animated={false}
+					intro={true}
+				/>
+			</div>
+		{/if}
 
 		<h1
 			class:visible={zoom}
@@ -170,29 +197,22 @@
 		height: 75vh;
 	}
 	.illinois {
-		position: relative;
-		max-width: min(100%, 900px);
-		max-height: calc(100vh - 3rem);
-		width: 100%;
-		height: 100%;
-	}
-	.svg-maze {
-		position: absolute;
+		position: fixed;
 		top: 50%;
 		left: 50%;
 		width: 60%;
 		max-width: 700px;
-		transition: top 2s, left 2s, width 2s, transform 2s, opacity 0.4s;
-		opacity: 1;
-		transform: translate(-50%, -50%) scale(1);
+		transform: translate(-50%, -50%);
+		transition: all calc(var(--dur) * 0.95);
+		visibility: hidden;
 	}
-	.svg-maze.shrunk {
-		transform: translate(0, 0) scale(1);
-		top: var(--top);
-		left: var(--left);
+	.illinois.visible {
+		visibility: visible;
+	}
+	.illinois.shrunk {
+		top: calc(var(--top) + var(--w) / 2);
+		left: calc(var(--left) + var(--w) / 2);
 		width: var(--w);
-		height: var(--h);
-		opacity: 0;
 	}
 	.map {
 		position: absolute;
@@ -200,13 +220,21 @@
 		max-width: min(100%, 900px);
 		max-height: calc(100vh - 3rem);
 		transform: translate(33.7%, -112.3%) scale(8.1);
-		/* transform: translate(35%, -41%) scale(8); */
 		opacity: 0;
 		transition: all var(--dur);
 	}
 	.map.visible {
 		transform: translate(0, -50%) scale(1);
 		opacity: 1;
+	}
+	.hidden {
+		position: absolute;
+		top: 50%;
+		max-width: min(100%, 900px);
+		max-height: calc(100vh - 3rem);
+		transform: translate(0, -50%) scale(1);
+		visibility: hidden;
+		opacity: 0;
 	}
 	h1 {
 		font-family: var(--font-heavy);
@@ -224,36 +252,6 @@
 	}
 	h1.visible {
 		transition: opacity var(--dur) var(--delay);
-		opacity: 1;
-	}
-	.maze {
-		position: absolute;
-		top: 50%;
-		width: 100%;
-		max-width: 700px;
-		transform: translate(0, -50%) scale(1);
-		width: 60%;
-		visibility: hidden;
-		transition: all 3s;
-	}
-	.maze.shrunk {
-		visibility: visible;
-		transform: translate(-7%, -39.7%) scale(0.118);
-	}
-	.label {
-		color: var(--color-pp-text-gray);
-		position: absolute;
-		top: -34%;
-		font-size: 170px;
-		height: 300px;
-		z-index: 10000;
-		left: 50%;
-		transform: translate(-50%, 0);
-		opacity: 0;
-		transition: none;
-	}
-	.label.visible {
-		transition: opacity calc(var(--1s) * 0.5) var(--delay);
 		opacity: 1;
 	}
 	.link {

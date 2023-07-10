@@ -24,7 +24,7 @@
 		$order === "barriers" ? "desc" : "asc"
 	);
 	$: $order = mobile ? "alpha" : "geo";
-	$: geo = $order === "geo" && !mobile;
+	$: geo = ($order === "geo" && !mobile) || !interactive;
 	$: if ($viewport.width && $order) measure();
 
 	const measure = async () => {
@@ -71,7 +71,6 @@
 		padding: 3rem 1rem;
 	}
 	figure.geo {
-		/* max-width: 840px; */
 		grid-template-columns: repeat(12, 1fr);
 		grid-template-rows: repeat(8, 1fr);
 		gap: 0;

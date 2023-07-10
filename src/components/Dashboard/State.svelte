@@ -10,7 +10,8 @@
 	export let col;
 	export let ban;
 
-	const { interactive, getOrder, getColumnWidth } = getContext("dashboard");
+	const { interactive, type, getOrder, getColumnWidth } =
+		getContext("dashboard");
 	const order = getOrder();
 	const columnWidth = getColumnWidth();
 
@@ -32,7 +33,7 @@
 	let labelWidth;
 
 	$: mobile = $viewport.width < 600;
-	$: geo = $order === "geo" && !mobile;
+	$: geo = ($order === "geo" && !mobile) || !interactive;
 
 	const onClick = (e) => {
 		if (interactive) {
@@ -54,7 +55,14 @@
 	class="state"
 	class:geo
 	class:interactive
-	id={interactive ? `${id}-state` : null}
+	class:visible={type !== "intro" || id !== "il"}
+	id={interactive
+		? `${id}-state`
+		: type === "intro"
+		? `${id}-intro`
+		: type === "hidden"
+		? `${id}-hidden`
+		: null}
 	style={row && col ? `--row: ${row}; --col: ${col}` : null}
 	on:click={onClick}
 	on:keydown={onKeyDown}
@@ -74,12 +82,18 @@
 			</div>
 		</div>
 	{:else}
-		<div class="abbrev" class:visible={true} id={"spot-label"}>{label}</div>
+		<div
+			class="abbrev"
+			class:visible={true}
+			id={type === "hidden" && id === "il" ? "il-label-spot" : null}
+		>
+			{label}
+		</div>
 	{/if}
 
 	<div
 		class="img-wrapper"
-		id={!interactive && id === "il" ? "spot-maze" : null}
+		id={type === "hidden" && id === "il" ? "il-spot" : null}
 	>
 		<img
 			src={`assets/img/states/${id}.png`}
@@ -98,6 +112,11 @@
 		grid-row: auto;
 		grid-column: auto;
 		padding: 0.25rem;
+		opacity: 0;
+		transition: all calc(var(--1s) * 0.3) ease-in-out;
+	}
+	:global(.state.visible) {
+		opacity: 1 !important;
 	}
 	.state.geo {
 		grid-row: var(--row);
@@ -124,7 +143,7 @@
 		text-align: center;
 		pointer-events: none;
 		white-space: nowrap;
-		visibility: hidden;
+		opacity: 0;
 	}
 	.shortened {
 		position: absolute;
@@ -133,7 +152,7 @@
 		transform: translate(-50%, 0);
 	}
 	.abbrev.visible {
-		visibility: visible;
+		opacity: 1;
 	}
 	img.hide {
 		visibility: hidden;

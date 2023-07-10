@@ -7,10 +7,13 @@
 	import { setContext } from "svelte";
 	import { writable } from "svelte/store";
 
-	export let interactive = true;
+	export let type = "interactive";
+
+	let interactive = type === "interactive";
 
 	setContext("dashboard", {
 		interactive,
+		type,
 		getOrder: () => order,
 		getColumnWidth: () => columnWidth
 	});
