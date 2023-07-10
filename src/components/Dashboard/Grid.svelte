@@ -14,7 +14,10 @@
 		geo: (d) => `${d.row}-${d.col}`,
 		alpha: (d) => d.name,
 		region: (d) => d.region,
-		barriers: (d) => +d.score
+		barriers: (d) => {
+			if (d.ban === "true") return -1;
+			return +d.score;
+		}
 	};
 
 	$: mobile = $viewport.width < 600;

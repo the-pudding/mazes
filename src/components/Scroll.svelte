@@ -57,7 +57,6 @@
 	const calculateIlPosition = () => {
 		if (mazeEl) {
 			let rect = mazeEl.getBoundingClientRect();
-			console.log({ rect });
 			w = rect.width;
 			left = rect.left;
 			top = rect.top;
@@ -67,7 +66,7 @@
 	const transitionStart = () => {
 		if (!shrinkingMazeEl) return;
 
-		if (!zoom) {
+		if (!zoom && $scrollStep) {
 			shrinkingMazeEl.classList.add("visible");
 			const mapIl = document.getElementById("il-intro");
 			mapIl.classList.remove("visible");
@@ -76,7 +75,7 @@
 	const transitionEnd = () => {
 		if (!shrinkingMazeEl) return;
 
-		if (zoom) {
+		if (zoom && $scrollStep) {
 			shrinkingMazeEl.classList.remove("visible");
 			const mapIl = document.getElementById("il-intro");
 			mapIl.classList.add("visible");
@@ -127,6 +126,7 @@
 			class:visible={zoom}
 			style={`--delay: ${zoomDuration}ms; --dur: ${zoomDuration / 3}ms`}
 		>
+			<span>Welcome to the...</span>
 			{hed}
 		</h1>
 
@@ -204,10 +204,10 @@
 		max-width: 700px;
 		transform: translate(-50%, -50%);
 		transition: all calc(var(--dur) * 0.95);
-		visibility: hidden;
+		opacity: 0;
 	}
 	.illinois.visible {
-		visibility: visible;
+		opacity: 1;
 	}
 	.illinois.shrunk {
 		top: calc(var(--top) + var(--w) / 2);
@@ -253,6 +253,13 @@
 	h1.visible {
 		transition: opacity var(--dur) var(--delay);
 		opacity: 1;
+	}
+	h1 span {
+		font-size: 1.8rem;
+		display: block;
+		color: var(--color-pp-text-gray);
+		text-transform: none;
+		margin: 0.5rem 0 1rem;
 	}
 	.link {
 		position: absolute;

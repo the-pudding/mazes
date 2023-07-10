@@ -143,7 +143,7 @@
 		text-align: center;
 		pointer-events: none;
 		white-space: nowrap;
-		opacity: 0;
+		visibility: hidden;
 	}
 	.shortened {
 		position: absolute;
@@ -152,7 +152,7 @@
 		transform: translate(-50%, 0);
 	}
 	.abbrev.visible {
-		opacity: 1;
+		visibility: visible;
 	}
 	img.hide {
 		visibility: hidden;
