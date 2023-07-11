@@ -1,5 +1,4 @@
 <script>
-	import WIP from "$components/helpers/WIP.svelte";
 	import Line from "$components/Line.svelte";
 	import Landing from "$components/Landing.svelte";
 	import Scroll from "$components/Scroll.svelte";
@@ -17,7 +16,7 @@
 
 	const { sections } = copy;
 
-	$: mobile = $viewport.width < 600;
+	$: small = $viewport.width < 800;
 
 	onMount(() => {
 		const state = urlParams.get("state");
@@ -29,14 +28,15 @@
 	});
 </script>
 
-<!-- <WIP /> -->
 <article>
 	<div class="tan" class:faded={$selectedState}>
 		<Landing />
 		<Scroll />
 
 		<div class="sections">
-			{#if !mobile}<Line />{/if}
+			{#if !small}
+				<Line />
+			{/if}
 
 			{#each sections as { title, chunks }}
 				<Section {title} {chunks} />

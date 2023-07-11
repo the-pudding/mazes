@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from "svelte";
+	import { onMount, tick } from "svelte";
 	import scrollY from "$stores/scrollY.js";
 	import _ from "lodash";
 	import { scaleLinear } from "d3";
@@ -8,33 +8,35 @@
 	import { mazeData } from "$stores/misc.js";
 
 	const inlineStates = ["wi", "ks", "mt", "fl", "la", "il", "il-simple"];
-	$: loaded = Object.keys($mazeData).filter((d) => inlineStates.includes(d));
-
 	const padding = 15;
-	const lineShift = 1000;
 	let offset = 0;
 	let height = 0;
 	let width = 0;
 	let heights = [];
 	let startY = 0;
 	let pathLength = 0;
-	$: dashScale = scaleLinear()
-		.domain([
-			offset - heights[0] + lineShift,
-			offset + _.sum(heights.slice(0, heights.length - 1))
-		])
-		.range([pathLength, 0]);
 
+	$: dashScale = scaleLinear()
+		.domain([offset, offset + _.sum(heights) - $viewport.height + 1000])
+		.range([pathLength, 0])
+		.clamp(true);
 	$: currentDashOffset = dashScale($scrollY);
 	$: pathStr = `M ${padding} ${startY} ${heights.map(
 		(h, i) =>
-			`v ${h} h ${i % 2 === 0 ? width - padding * 2 : -(width - padding * 2)}`
+			`v ${h} ${
+				i === heights.length - 1
+					? ""
+					: `h ${i % 2 === 0 ? width - padding * 2 : -(width - padding * 2)}`
+			}`
 	)}`;
 	$: pathLength = _.sum(heights) + (width - padding * 2) * heights.length;
 	$: $viewport.width, $viewport.height, loaded.length, measure();
+	$: loaded = Object.keys($mazeData).filter((d) => inlineStates.includes(d));
 
-	const measure = () => {
+	const measure = async () => {
 		if (browser) {
+			await tick();
+
 			const container = document.querySelector("div.sections");
 			height = container.clientHeight;
 			width = container.clientWidth;
@@ -57,13 +59,6 @@
 					return h2.clientHeight + div.clientHeight;
 				} else return chunk.clientHeight;
 			});
-
-			pathStr = `M ${padding} ${startY} ${heights.map(
-				(h, i) =>
-					`v ${h} h ${
-						i % 2 === 0 ? width - padding * 2 : -(width - padding * 2)
-					}`
-			)}`;
 		}
 	};
 
