@@ -8,7 +8,7 @@
 	import mq from "$stores/mq.js";
 	import _ from "lodash";
 	import loadMazeData from "$utils/loadMazeData.js";
-	import { onMount } from "svelte";
+	import { onMount, tick } from "svelte";
 	import { language, scrollStep } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
 
@@ -45,7 +45,7 @@
 	$: zoom =
 		$scrollStep === steps.length - 1 ||
 		($scrollStep === undefined && direction === "down");
-	$: $viewport.width, calculateIlPosition();
+	$: $viewport.width, $scrollStep, calculateIlPosition();
 
 	let shrinkingMazeEl;
 	let mazeEl;
@@ -89,6 +89,9 @@
 
 		mazeEl = document.querySelector("#il-spot");
 		labelEl = document.querySelector("#il-label-spot");
+
+		await tick();
+
 		calculateIlPosition();
 	});
 </script>
@@ -203,7 +206,7 @@
 		width: 60%;
 		max-width: 700px;
 		transform: translate(-50%, -50%);
-		transition: all calc(var(--dur) * 0.95);
+		transition: all calc(var(--dur) * 0.95), opacity calc(var(--1s) * 0.4);
 		opacity: 0;
 	}
 	.illinois.visible {
@@ -257,7 +260,7 @@
 	h1 span {
 		font-size: 1.8rem;
 		display: block;
-		color: var(--color-pp-text-gray);
+		color: var(--color-pp-dark);
 		text-transform: none;
 		margin: 0.5rem 0 1rem;
 	}
@@ -285,15 +288,27 @@
 		h1 {
 			font-size: 3rem;
 		}
+		h1 span {
+			font-size: 1.5rem;
+		}
 	}
 	@media (max-width: 600px) {
 		h1 {
 			font-size: 2rem;
+			top: 4rem;
+			transform: translate(0, 0);
+			background: var(--color-pp-gray-1);
+		}
+		h1 span {
+			font-size: 1.2rem;
 		}
 	}
 	@media (max-width: 350px) {
 		h1 {
 			font-size: 1.5rem;
+		}
+		h1 span {
+			font-size: 1rem;
 		}
 	}
 </style>
