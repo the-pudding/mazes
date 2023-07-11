@@ -10,6 +10,7 @@
 	import { fade } from "svelte/transition";
 	import viewport from "$stores/viewport.js";
 	import mq from "$stores/mq.js";
+	import _ from "lodash";
 
 	export let wallData;
 	export let size;
@@ -20,6 +21,7 @@
 	export let mazePath = [{ row: 0, col: 0 }];
 
 	const data = writable(wallData);
+	const solution = writable([]);
 	const availableWidth = writable(0);
 	const width = writable(0);
 	const dims = writable(0);
@@ -36,6 +38,7 @@
 		animated,
 		intro,
 		getData: () => data,
+		getSolution: () => solution,
 		getCellSize: () => cellSize,
 		getWallWidth: () => wallWidth,
 		getAvailableWidth: () => availableWidth,
@@ -57,6 +60,11 @@
 	$: $cellSize = $dims ? ($width - $padding * 2) / $dims : 0;
 	$: $pathLength = $path.length - 1;
 	$: labelsVisible = $gameState === "mid";
+	$: $solution = _.orderBy(
+		_.flatten(wallData).filter((d) => d.solutionIndex !== null),
+		"solutionIndex",
+		"asc"
+	);
 
 	$: if ($location.row === $dims - 1 && $location.col === $dims - 1) {
 		$gameState = "post";

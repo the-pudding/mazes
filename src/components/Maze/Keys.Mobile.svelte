@@ -70,7 +70,7 @@
 		position: absolute;
 		top: 0;
 		left: 50%;
-		transform: translate(1.6rem, -100%);
+		transform: translate(2rem, -150%);
 		text-align: start;
 	}
 	button {

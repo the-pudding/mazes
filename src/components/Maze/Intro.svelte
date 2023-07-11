@@ -2,25 +2,21 @@
 	import Path from "$components/Maze/Intro.Path.svelte";
 	import { getContext } from "svelte";
 	import _ from "lodash";
-	import { scrollStep, mazeData } from "$stores/misc.js";
+	import { scrollStep } from "$stores/misc.js";
 	import { fade } from "svelte/transition";
 	import mq from "$stores/mq.js";
 
-	const { getCellSize, getWallWidth } = getContext("maze");
+	const { getCellSize, getWallWidth, getSolution } = getContext("maze");
 	const cellSize = getCellSize();
 	const wallWidth = getWallWidth();
+	const solution = getSolution();
 
-	const solution = _.orderBy(
-		_.flatten($mazeData["il-simple"]).filter((d) => d.solutionIndex !== null),
-		"solutionIndex",
-		"asc"
-	);
 	const paths = [
-		[{ row: -1, col: 0 }, ...solution.slice(0, 4)],
-		solution.slice(4, 8),
-		solution.slice(8, 12),
-		solution.slice(12, 16),
-		[...solution.slice(16), { row: 10, col: 9 }]
+		[{ row: -1, col: 0 }, ...$solution.slice(0, 4)],
+		$solution.slice(4, 8),
+		$solution.slice(8, 12),
+		$solution.slice(12, 16),
+		[...$solution.slice(16), { row: 10, col: 9 }]
 	];
 	$: pathData = paths.map((path, i) => {
 		const prevEnd =
