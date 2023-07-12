@@ -181,7 +181,7 @@
 		border: 1px solid var(--color-pp-gray-1);
 		box-shadow: 0px 0px 5px rgba(124, 115, 115, 0.1);
 		text-align: center;
-		max-width: 700px;
+		max-width: 580px;
 		margin: 70vh auto;
 	}
 	.step:first-of-type {

@@ -55,7 +55,7 @@
 
 		return { d, endX, endY };
 	});
-	$: bubbleSize = $cellSize * 1.2;
+	$: bubbleSize = $cellSize * 1.5;
 </script>
 
 {#if $scrollStep < 6}
@@ -71,7 +71,7 @@
 		{#each pathData.slice(0, pathData.length - 1) as { endX, endY }, i}
 			{@const visible = $scrollStep === i + 1}
 			<image
-				href="assets/img/intro.png"
+				href="assets/img/intro{i}.png"
 				x={endX}
 				y={endY}
 				width={bubbleSize}
