@@ -11,7 +11,7 @@
 	let img;
 
 	onMount(async () => {
-		img = await loadImage("assets/img/hero.png");
+		img = await loadImage("assets/img/hero-bg.jpg");
 	});
 </script>
 
