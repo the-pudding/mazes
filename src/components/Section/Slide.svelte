@@ -81,13 +81,13 @@
 		clip-path: polygon(5% 5%, 100% 10%, 100% 95%, 0% 100%);
 	}
 	:global(#the-peoples-power .panel) {
-		min-height: 18rem;
-	}
-	:global(#the-peoples-power .panel:nth-of-type(1) .panel-text, #the-peoples-power .panel:nth-of-type(1) .panel-underlay) {
-		min-width: 90%;
-		clip-path: polygon(5% 5%, 100% 0%, 100% 90%, 0% 100%);
+		min-height: 14rem;
 	}
 	:global(#the-peoples-power .panel:nth-of-type(2) .panel-text, #the-peoples-power .panel:nth-of-type(2) .panel-underlay) {
+		min-width: 90%;
+		clip-path: polygon(0% 5%, 100% 0%, 100% 90%, 2% 100%);
+	}
+	:global(#the-peoples-power .panel:nth-of-type(3) .panel-text, #the-peoples-power .panel:nth-of-type(3) .panel-underlay) {
 		min-width: 90%;
 		clip-path: polygon(0% 5%, 100% 10%, 100% 100%, 0% 95%);
 	}
