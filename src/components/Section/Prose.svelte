@@ -81,7 +81,6 @@
 	}
 	.container.center {
 		grid-template-columns: 1fr;
-		max-width: 600px;
 		margin: auto;
 	}
 	.container:last-of-type {

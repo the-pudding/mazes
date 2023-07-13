@@ -16,25 +16,41 @@
 
 	const components = { Prose, Slide };
 
-	function toggleVisible(view) { visible = view == "enter" ? true : false }
+	function toggleVisible(view) {
+		visible = view == "enter" ? true : false;
+	}
 </script>
 
 <section {id}>
-	<div class="head"
-	use:inView
-    on:enter={() => toggleVisible("enter")}
-	on:exit={() => toggleVisible("exit")}>
+	<div
+		class="head"
+		use:inView
+		on:enter={() => toggleVisible("enter")}
+		on:exit={() => toggleVisible("exit")}
+	>
 		{#if id !== "the-mazes"}
 			<div class="img-wrapper">
-			{#if id == "a-right-removed" && visible}
-				<img src="assets/img/{id}-bg.jpg" transition:fade/>
-				<img src="assets/img/{id}-sc.png" transition:fly={{ y: 100, duration: 500, delay: 500 }} />
-			{:else if id == "the-peoples-power" && visible}
-				<img src="assets/img/{id}-bg.jpg" transition:fade/>
-				<img src="assets/img/{id}-1.png" transition:fly={{ y: 100, duration: 500, delay: 500 }} />
-				<img src="assets/img/{id}-2.png" transition:fly={{ y: 100, duration: 500, delay: 750 }} />
-				<img src="assets/img/{id}-3.png" transition:fly={{ y: 100, duration: 500, delay: 1000 }} />
-			{/if}
+				{#if id == "a-right-removed" && visible}
+					<img src="assets/img/{id}-bg.jpg" transition:fade />
+					<img
+						src="assets/img/{id}-sc.png"
+						transition:fly={{ y: 100, duration: 500, delay: 500 }}
+					/>
+				{:else if id == "the-peoples-power" && visible}
+					<img src="assets/img/{id}-bg.jpg" transition:fade />
+					<img
+						src="assets/img/{id}-1.png"
+						transition:fly={{ y: 100, duration: 500, delay: 500 }}
+					/>
+					<img
+						src="assets/img/{id}-2.png"
+						transition:fly={{ y: 100, duration: 500, delay: 750 }}
+					/>
+					<img
+						src="assets/img/{id}-3.png"
+						transition:fly={{ y: 100, duration: 500, delay: 1000 }}
+					/>
+				{/if}
 			</div>
 		{/if}
 		<h2>{@html title[$language]}</h2>
