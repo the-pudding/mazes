@@ -1,7 +1,7 @@
 <script>
 	import Walls from "$components/Maze/Walls.svelte";
 	import Path from "$components/Maze/Path.svelte";
-	import Intro from "$components/Maze/Intro.svelte";
+	import IntroPaths from "$components/Maze/Intro.Paths.svelte";
 	import Footer from "$components/Maze/Footer.svelte";
 	import Overlay from "$components/Maze/Overlay.svelte";
 	import { writable } from "svelte/store";
@@ -87,7 +87,7 @@
 					{#if playable}
 						<Path />
 					{:else if intro}
-						<Intro />
+						<IntroPaths />
 					{/if}
 				</g>
 			{/if}

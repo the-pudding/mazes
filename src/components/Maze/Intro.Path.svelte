@@ -39,7 +39,7 @@
 	path {
 		fill: none;
 		stroke: var(--color-pp-magenta);
-		stroke-width: 5px;
+		stroke-width: 1px;
 		stroke-linejoin: round;
 		stroke-linecap: round;
 	}

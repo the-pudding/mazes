@@ -5,7 +5,7 @@
 	import { onMount, tick, getContext } from "svelte";
 	import _ from "lodash";
 
-	const { interactive, getOrder, getColumnWidth } = getContext("dashboard");
+	const { intro, getOrder, getColumnWidth } = getContext("dashboard");
 	const order = getOrder();
 	const columnWidth = getColumnWidth();
 
@@ -27,7 +27,7 @@
 		$order === "barriers" ? "desc" : "asc"
 	);
 	$: $order = mobile ? "alpha" : "geo";
-	$: geo = ($order === "geo" && !mobile) || !interactive;
+	$: geo = ($order === "geo" && !mobile) || intro;
 	$: if ($viewport.width && $order) measure();
 
 	const measure = async () => {
@@ -40,7 +40,7 @@
 	});
 </script>
 
-<figure class:geo class:interactive>
+<figure class:geo class:intro>
 	{#if $order === "region"}
 		{#each regions as region}
 			{@const regionStates = sortedStates.filter((d) => d.region === region)}
@@ -68,14 +68,14 @@
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 		gap: 1rem;
 		margin: auto;
-		padding: 0;
-	}
-	figure.interactive {
 		padding: 3rem 1rem;
 	}
+	figure.intro {
+		padding: 0;
+	}
 	figure.geo {
-		grid-template-columns: repeat(12, 1fr);
-		grid-template-rows: repeat(8, 1fr);
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		grid-template-rows: repeat(8, minmax(0, 1fr));
 		gap: 0;
 	}
 	h3 {

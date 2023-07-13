@@ -7,40 +7,28 @@
 	import { setContext } from "svelte";
 	import { writable } from "svelte/store";
 
-	export let type = "interactive";
-
-	let interactive = type === "interactive";
+	export let intro = false;
 
 	setContext("dashboard", {
-		interactive,
-		type,
+		intro,
 		getOrder: () => order,
 		getColumnWidth: () => columnWidth
 	});
 
-	const order = writable(interactive ? "alpha" : "geo");
+	const order = writable(intro ? "geo" : "alpha");
 	const columnWidth = writable(0);
 
 	const onEnter = () => {
-		if (interactive) $dashboardInView = true;
+		if (!intro) $dashboardInView = true;
 	};
 	const onExit = () => {
-		if (interactive) $dashboardInView = false;
+		if (!intro) $dashboardInView = false;
 	};
 </script>
 
-<div
-	class="container"
-	class:interactive
-	use:inView
-	on:enter={onEnter}
-	on:exit={onExit}
->
-	{#if interactive}
+<div class="container" use:inView on:enter={onEnter} on:exit={onExit}>
+	{#if !intro}
 		<TopBar />
 	{/if}
 	<Grid />
 </div>
-
-<style>
-</style>

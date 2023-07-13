@@ -1,7 +1,8 @@
 <script>
+	import Illinois from "$components/Dashboard/Illinois.svelte";
 	import viewport from "$stores/viewport.js";
 	import { getContext } from "svelte";
-	import { selectedState } from "$stores/misc.js";
+	import { selectedState, scrollStep } from "$stores/misc.js";
 	import _ from "lodash";
 
 	export let id;
@@ -10,8 +11,7 @@
 	export let col;
 	export let ban;
 
-	const { interactive, type, getOrder, getColumnWidth } =
-		getContext("dashboard");
+	const { intro, getOrder, getColumnWidth } = getContext("dashboard");
 	const order = getOrder();
 	const columnWidth = getColumnWidth();
 
@@ -33,16 +33,17 @@
 	let labelWidth;
 
 	$: mobile = $viewport.width < 600;
-	$: geo = ($order === "geo" && !mobile) || !interactive;
+	$: geo = ($order === "geo" && !mobile) || intro;
+	$: showAbbrevs = (intro && $scrollStep >= 7) || !intro;
 
 	const onClick = (e) => {
-		if (interactive) {
+		if (!intro) {
 			const id = e.target.id.replace("-state", "");
 			$selectedState = id;
 		}
 	};
 	const onKeyDown = (e) => {
-		if (interactive) {
+		if (!intro) {
 			if (e.keyCode === 13 || e.keyCode === 32) {
 				const id = e.target.id.replace("-state", "");
 				$selectedState = id;
@@ -54,15 +55,9 @@
 <div
 	class="state"
 	class:geo
-	class:interactive
-	class:visible={type !== "intro" || id !== "il"}
-	id={interactive
-		? `${id}-state`
-		: type === "intro"
-		? `${id}-intro`
-		: type === "hidden"
-		? `${id}-hidden`
-		: null}
+	class:interactive={!intro}
+	class:intro
+	id={intro ? `${id}-intro` : `${id}-state`}
 	style={row && col ? `--row: ${row}; --col: ${col}` : null}
 	on:click={onClick}
 	on:keydown={onKeyDown}
@@ -73,7 +68,7 @@
 		<div
 			class="abbrev"
 			bind:clientWidth={labelWidth}
-			class:visible={labelWidth <= $columnWidth}
+			class:visible={showAbbrevs && labelWidth <= $columnWidth}
 		>
 			{label}
 
@@ -82,25 +77,23 @@
 			</div>
 		</div>
 	{:else}
-		<div
-			class="abbrev"
-			class:visible={true}
-			id={type === "hidden" && id === "il" ? "il-label-spot" : null}
-		>
+		<div class="abbrev" class:visible={showAbbrevs}>
 			{label}
 		</div>
 	{/if}
 
-	<div
-		class="img-wrapper"
-		id={type === "hidden" && id === "il" ? "il-spot" : null}
-	>
-		<img
-			src={`assets/img/states/${id}.png`}
-			alt={`maze for ${id}`}
-			class:hide={ban}
-		/>
-		{#if ban}<div class="black-box" />{/if}
+	<div class="img-wrapper">
+		{#if intro && id === "il"}
+			<Illinois />
+		{:else}
+			<img
+				src={`assets/img/states/${id}.png`}
+				alt={`maze for ${id}`}
+				class:hide={ban}
+			/>
+		{/if}
+
+		<div class="fill" class:ban />
 	</div>
 </div>
 
@@ -112,11 +105,7 @@
 		grid-row: auto;
 		grid-column: auto;
 		padding: 0.25rem;
-		opacity: 0;
 		transition: all calc(var(--1s) * 0.3) ease-in-out;
-	}
-	:global(.state.visible) {
-		opacity: 1 !important;
 	}
 	.state.geo {
 		grid-row: var(--row);
@@ -124,8 +113,6 @@
 	}
 	.state.interactive:hover {
 		cursor: pointer;
-		background: var(--color-pp-gray-1);
-		transition: all 0.2s ease-in;
 	}
 	.state.interactive:focus {
 		outline: 3px solid var(--color-pp-magenta);
@@ -143,7 +130,8 @@
 		text-align: center;
 		pointer-events: none;
 		white-space: nowrap;
-		visibility: hidden;
+		opacity: 0;
+		transition: opacity calc(var(--1s) * 0.3) ease-in-out;
 	}
 	.shortened {
 		position: absolute;
@@ -152,7 +140,7 @@
 		transform: translate(-50%, 0);
 	}
 	.abbrev.visible {
-		visibility: visible;
+		opacity: 1;
 	}
 	img.hide {
 		visibility: hidden;
@@ -160,19 +148,35 @@
 	.img-wrapper {
 		position: relative;
 		pointer-events: none;
+		width: 100%;
 	}
-	.black-box {
+	.fill {
 		position: absolute;
 		bottom: 0;
 		height: 100%;
 		width: 100%;
+		background: var(--color-pp-gray-3);
+		opacity: 0;
+		transition: opacity calc(var(--1s) * 0.1);
+	}
+	.state.interactive:hover .fill {
+		opacity: 0.5;
+	}
+	.ban {
 		background: black;
+		opacity: 1;
+		visibility: visible;
 	}
 
 	@media (max-width: 800px) {
 		.state {
 			font-size: 0.8rem;
 			padding: 0.1rem;
+		}
+	}
+	@media (max-width: 600px) {
+		.intro .abbrev {
+			font-size: 0.5rem;
 		}
 	}
 </style>

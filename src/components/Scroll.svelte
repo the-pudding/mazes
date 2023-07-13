@@ -1,43 +1,14 @@
 <script>
 	import Scrolly from "$components/helpers/Scrolly.svelte";
-	import Maze from "$components/Maze/Maze.svelte";
 	import Dashboard from "$components/Dashboard/Dashboard.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
 	import copy from "$data/copy.json";
 	import scrollY from "$stores/scrollY.js";
 	import mq from "$stores/mq.js";
 	import _ from "lodash";
-	import loadMazeData from "$utils/loadMazeData.js";
-	import { onMount, tick } from "svelte";
 	import { language, scrollStep, direction } from "$stores/misc.js";
-	import viewport from "$stores/viewport.js";
 
-	let data;
-	let simple;
-	let walls;
-	let allWallsInPlace = false;
-
-	const featuredState = "il";
 	const steps = copy.scroll;
-
-	$: if (
-		!allWallsInPlace &&
-		($scrollStep >= 6 || ($scrollStep === undefined && $direction === "down"))
-	) {
-		enterWalls();
-	}
-	$: if (allWallsInPlace && $scrollStep < 6) exitWalls();
-
-	const enterWalls = () => {
-		setTimeout(() => {
-			walls = data;
-			allWallsInPlace = true;
-		}, 1500);
-	};
-	const exitWalls = () => {
-		walls = simple;
-		allWallsInPlace = false;
-	};
 
 	$: hed = steps[steps.length - 1][$language];
 	$: $direction = $scrollY < 3000 ? "up" : "down";
@@ -45,92 +16,18 @@
 	$: zoom =
 		$scrollStep === steps.length - 1 ||
 		($scrollStep === undefined && $direction === "down");
-	$: $viewport.width, $scrollStep, calculateIlPosition();
-
-	let shrinkingMazeEl;
-	let mazeEl;
-	let labelEl;
-	let w;
-	let left;
-	let top;
-
-	const calculateIlPosition = () => {
-		if (mazeEl) {
-			let rect = mazeEl.getBoundingClientRect();
-			w = rect.width;
-			left = rect.left;
-			top = rect.top;
-		}
-	};
-
-	const transitionStart = () => {
-		if (!shrinkingMazeEl) return;
-
-		if (!zoom && $scrollStep) {
-			shrinkingMazeEl.classList.add("visible");
-			const mapIl = document.getElementById("il-intro");
-			mapIl.classList.remove("visible");
-		}
-	};
-	const transitionEnd = () => {
-		if (!shrinkingMazeEl) return;
-
-		if (zoom && $scrollStep) {
-			shrinkingMazeEl.classList.remove("visible");
-			const mapIl = document.getElementById("il-intro");
-			mapIl.classList.add("visible");
-		}
-	};
-
-	onMount(async () => {
-		simple = await loadMazeData("il-simple");
-		data = await loadMazeData(featuredState);
-		walls = simple;
-
-		mazeEl = document.querySelector("#il-spot");
-		labelEl = document.querySelector("#il-label-spot");
-
-		await tick();
-
-		calculateIlPosition();
-	});
 </script>
 
 <section id="scrolly">
 	<div class="sticky" class:zoom style={`--dur: ${zoomDuration}ms`}>
-		<div class="map" class:visible={zoom}>
-			<Dashboard type="intro" />
+		<div class="map" class:zoomed-out={zoom}>
+			<Dashboard intro={true} />
 		</div>
-		<div class="hidden">
-			<Dashboard type="hidden" />
-		</div>
-
-		{#if data && data.length}
-			<div
-				class="illinois"
-				class:visible={$scrollStep !== undefined}
-				class:shrunk={zoom}
-				style={`--w: ${w}px; --left: ${left}px; --top: ${top}px`}
-				bind:this={shrinkingMazeEl}
-				on:transitionstart={transitionStart}
-				on:transitionend={transitionEnd}
-			>
-				<Maze
-					wallData={walls}
-					size={Math.sqrt(simple.length)}
-					playable={false}
-					animated={false}
-					intro={true}
-					{simple}
-				/>
-			</div>
-		{/if}
-
 		<h1
 			class:visible={zoom}
 			style={`--delay: ${zoomDuration}ms; --dur: ${zoomDuration / 3}ms`}
 		>
-			<span>Welcome to the...</span>
+			<span>This is the...</span>
 			{hed}
 		</h1>
 
@@ -147,7 +44,7 @@
 
 	<div class="steps">
 		<Scrolly bind:value={$scrollStep}>
-			{#each steps as text, i}
+			{#each steps as text}
 				<div class="step">
 					<p>{@html text[$language]}</p>
 				</div>
@@ -200,52 +97,23 @@
 	.spacer {
 		height: 75vh;
 	}
-	.illinois {
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		width: 60%;
-		max-width: 700px;
-		transform: translate(-50%, -50%);
-		transition: all calc(var(--dur) * 0.95), opacity calc(var(--1s) * 0.4);
-		opacity: 0;
-	}
-	.illinois.visible {
-		opacity: 1;
-	}
-	.illinois.shrunk {
-		top: calc(var(--top) + var(--w) / 2);
-		left: calc(var(--left) + var(--w) / 2);
-		width: var(--w);
-	}
 	.map {
 		position: absolute;
 		top: 50%;
 		max-width: min(100%, 900px);
 		max-height: calc(100vh - 3rem);
 		transform: translate(33.7%, -112.3%) scale(8.1);
-		opacity: 0;
 		transition: all var(--dur);
 	}
-	.map.visible {
+	.map.zoomed-out {
 		transform: translate(0, -50%) scale(1);
-		opacity: 1;
-	}
-	.hidden {
-		position: absolute;
-		top: 50%;
-		max-width: min(100%, 900px);
-		max-height: calc(100vh - 3rem);
-		transform: translate(0, -50%) scale(1);
-		visibility: hidden;
-		opacity: 0;
 	}
 	h1 {
 		font-family: var(--font-heavy);
+		font-weight: 900;
 		font-size: 4rem;
 		position: absolute;
-		top: 50%;
-		transform: translate(0, -50%);
+		top: 4rem;
 		text-align: center;
 		background: rgb(249, 247, 244, 0.9);
 		color: var(--color-pp-magenta);
@@ -259,6 +127,7 @@
 		opacity: 1;
 	}
 	h1 span {
+		font-family: var(--sans);
 		font-size: 1.8rem;
 		display: block;
 		color: var(--color-pp-dark);
@@ -295,21 +164,20 @@
 	}
 	@media (max-width: 600px) {
 		h1 {
-			font-size: 2rem;
-			top: 4rem;
-			transform: translate(0, 0);
-			background: var(--color-pp-gray-1);
-		}
-		h1 span {
-			font-size: 1.2rem;
+			font-size: 3.5rem;
+			line-height: 3.5rem;
 		}
 		.step {
 			margin: 70vh 1rem;
 		}
+		.map.zoomed-out {
+			transform: translate(0, -30%);
+		}
 	}
 	@media (max-width: 350px) {
 		h1 {
-			font-size: 1.5rem;
+			font-size: 2.8rem;
+			line-height: 2.8rem;
 		}
 		h1 span {
 			font-size: 1rem;

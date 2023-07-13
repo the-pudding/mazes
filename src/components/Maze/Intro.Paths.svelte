@@ -2,7 +2,7 @@
 	import Path from "$components/Maze/Intro.Path.svelte";
 	import { getContext } from "svelte";
 	import _ from "lodash";
-	import { scrollStep, direction } from "$stores/misc.js";
+	import { scrollStep } from "$stores/misc.js";
 	import { fade } from "svelte/transition";
 	import mq from "$stores/mq.js";
 
