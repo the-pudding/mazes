@@ -125,6 +125,7 @@
 	}
 	h2 {
 		font-family: var(--font-heavy);
+		font-weight: 900;
 		font-size: 3rem;
 		margin-bottom: 0;
 	}

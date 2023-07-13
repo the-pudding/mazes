@@ -107,6 +107,7 @@
 	.state {
 		font-size: 1.5rem;
 		font-family: var(--font-heavy);
+		font-weight: 900;
 	}
 	.link {
 		display: flex;

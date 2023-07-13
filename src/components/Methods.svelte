@@ -48,6 +48,7 @@
 	h3 {
 		font-size: 1.2rem;
 		font-family: var(--font-heavy);
+		font-weight: 900;
 		text-transform: uppercase;
 	}
 	summary h3 {

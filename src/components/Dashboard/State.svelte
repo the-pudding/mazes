@@ -122,6 +122,7 @@
 	.state.interactive:hover .abbrev {
 		color: black;
 		font-family: var(--font-heavy);
+		font-weight: 900;
 		transition: all 0.2s ease-in;
 	}
 	.abbrev {

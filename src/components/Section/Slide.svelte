@@ -49,7 +49,8 @@
 		min-height: 10rem;
 		width: 100%;
 	}
-	.panel-text, .panel-underlay {
+	.panel-text,
+	.panel-underlay {
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -70,24 +71,39 @@
 	.panel:nth-child(odd) .panel-underlay {
 		background: var(--color-pp-dark-purple);
 	}
-	:global(#a-right-removed .panel:nth-of-type(2) .panel-text, .panel:nth-of-type(2) .panel-underlay) {
+	:global(
+			#a-right-removed .panel:nth-of-type(2) .panel-text,
+			.panel:nth-of-type(2) .panel-underlay
+		) {
 		clip-path: polygon(5% 5%, 100% 0%, 100% 90%, 0% 100%);
 	}
-	:global(#a-right-removed .panel:nth-of-type(3) .panel-text, .panel:nth-of-type(3) .panel-underlay) {
+	:global(
+			#a-right-removed .panel:nth-of-type(3) .panel-text,
+			.panel:nth-of-type(3) .panel-underlay
+		) {
 		clip-path: polygon(0% 5%, 100% 10%, 100% 100%, 0% 95%);
 	}
-	:global(#a-right-removed .panel:nth-of-type(4) .panel-text, .panel:nth-of-type(4) .panel-underlay) {
+	:global(
+			#a-right-removed .panel:nth-of-type(4) .panel-text,
+			.panel:nth-of-type(4) .panel-underlay
+		) {
 		min-width: 35rem;
 		clip-path: polygon(5% 5%, 100% 10%, 100% 95%, 0% 100%);
 	}
 	:global(#the-peoples-power .panel) {
 		min-height: 14rem;
 	}
-	:global(#the-peoples-power .panel:nth-of-type(2) .panel-text, #the-peoples-power .panel:nth-of-type(2) .panel-underlay) {
+	:global(
+			#the-peoples-power .panel:nth-of-type(2) .panel-text,
+			#the-peoples-power .panel:nth-of-type(2) .panel-underlay
+		) {
 		min-width: 90%;
 		clip-path: polygon(0% 5%, 100% 0%, 100% 90%, 2% 100%);
 	}
-	:global(#the-peoples-power .panel:nth-of-type(3) .panel-text, #the-peoples-power .panel:nth-of-type(3) .panel-underlay) {
+	:global(
+			#the-peoples-power .panel:nth-of-type(3) .panel-text,
+			#the-peoples-power .panel:nth-of-type(3) .panel-underlay
+		) {
 		min-width: 90%;
 		clip-path: polygon(0% 5%, 100% 10%, 100% 100%, 0% 95%);
 	}
@@ -107,10 +123,12 @@
 	:global(.panel strong) {
 		color: var(--color-pp-magenta);
 		font-family: var(--font-heavy);
+		font-weight: 900;
 		text-transform: uppercase;
 	}
 	:global(.panel a) {
 		font-family: var(--font-heavy);
+		font-weight: 900;
 		color: var(--color-pp-dark);
 	}
 	.before {
