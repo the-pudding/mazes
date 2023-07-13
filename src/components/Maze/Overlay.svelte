@@ -13,12 +13,35 @@
 
 	export let loading;
 
-	const { getGameState, getWidth } = getContext("maze");
+	const { getGameState, getWidth, getLocation, getDims, getPath, getData } =
+		getContext("maze");
 	const gameState = getGameState();
 	const width = getWidth();
+	const location = getLocation();
+	const dims = getDims();
+	const path = getPath();
+	const data = getData();
 
 	const start = () => {
 		$gameState = "mid";
+	};
+	const reset = () => {
+		$gameState = "mid";
+		$location = { row: 0, col: 0 };
+	};
+	const solve = async () => {
+		const solution = _.orderBy(
+			$data.filter((d) => d.solutionIndex !== null),
+			"solutionIndex",
+			"asc"
+		);
+		$path = solution;
+		$gameState = "post";
+		$location = { row: $dims - 1, col: $dims - 1 };
+
+		await tick();
+		const readMoreLink = document.getElementById("read-more");
+		readMoreLink.focus();
 	};
 
 	$: mobile = $viewport.width < 600;
@@ -42,13 +65,18 @@
 			</svg>
 			<div class="loading-text">Loading...</div>
 		{:else}
-			<div transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}>
+			<div
+				transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}
+				style="display: flex; flex-direction: column; align-items: center"
+			>
 				<Button
 					text={"start maze"}
 					onClick={start}
 					style={"z-index: 11; margin-bottom: 1rem"}
 				/>
-				{#if !mobile}
+				{#if mobile}
+					<div class="instructions">Tap arrow buttons to navigate</div>
+				{:else}
 					<KeysDesktop background={true} />
 				{/if}
 			</div>
@@ -62,6 +90,15 @@
 			>
 		</p>
 	{/if}
+
+	<div class="buttons">
+		<button disabled={$gameState === "pre"} on:click={reset}>
+			<Icon name="refresh-cw" />
+		</button>
+		<button disabled={$gameState === "pre"} on:click={solve}>
+			<Icon name="check-circle" />
+		</button>
+	</div>
 
 	{#if mobile}
 		<KeysMobile />
@@ -113,6 +150,23 @@
 		stroke-dasharray: var(--offset);
 		stroke-dashoffset: var(--offset);
 		animation: dash calc(var(--1s) * 4) infinite linear;
+	}
+	.buttons {
+		position: absolute;
+		right: 0;
+		top: 0;
+		transform: translate(20%, -120%);
+	}
+	button {
+		border-radius: 100%;
+		background: var(--color-pp-light-navy);
+		color: white;
+		font-size: 0.9rem;
+	}
+	.instructions {
+		color: var(--color-pp-dark);
+		font-size: 0.9rem;
+		text-align: center;
 	}
 	@keyframes dash {
 		to {

@@ -4,8 +4,6 @@
 	import { language } from "$stores/misc.js";
 	import _ from "lodash";
 	import inView from "$actions/inView.js";
-	import { fade } from "svelte/transition";
-	import { fly } from "svelte/transition";
 
 	export let title;
 	export let chunks;
@@ -30,30 +28,18 @@
 	>
 		{#if id !== "the-mazes"}
 			<div class="img-wrapper">
-				{#if id == "a-right-removed" && visible}
-					<img src="assets/img/{id}-bg.jpg" transition:fade />
+				{#if id == "a-right-removed"}
+					<img src="assets/img/{id}-bg.jpg" class:visible />
 					<img
 						src="assets/img/{id}-sc.png"
-						transition:fly={{ y: 100, duration: 500, delay: 500 }}
-						class="overlay"
+						class:visible
+						class:overlay={true}
 					/>
-				{:else if id == "the-peoples-power" && visible}
-					<img src="assets/img/{id}-bg.jpg" transition:fade />
-					<img
-						src="assets/img/{id}-1.png"
-						transition:fly={{ y: 100, duration: 500, delay: 500 }}
-						class="overlay"
-					/>
-					<img
-						src="assets/img/{id}-2.png"
-						transition:fly={{ y: 100, duration: 500, delay: 750 }}
-						class="overlay"
-					/>
-					<img
-						src="assets/img/{id}-3.png"
-						transition:fly={{ y: 100, duration: 500, delay: 1000 }}
-						class="overlay"
-					/>
+				{:else if id == "the-peoples-power"}
+					<img src="assets/img/{id}-bg.jpg" class:visible />
+					<img src="assets/img/{id}-1.png" class:visible class:overlay={true} />
+					<img src="assets/img/{id}-2.png" class:visible class:overlay={true} />
+					<img src="assets/img/{id}-3.png" class:visible class:overlay={true} />
 				{/if}
 			</div>
 		{/if}
@@ -109,10 +95,20 @@
 	}
 	img {
 		width: 100%;
+		opacity: 0;
+		transition: all var(--1s) ease-in;
 	}
-	img.overlay {
+	img.visible {
+		opacity: 1;
+	}
+	.overlay {
 		position: absolute;
 		top: 0;
+		transform: translateY(100px);
+	}
+	.overlay.visible {
+		opacity: 1;
+		transform: translateY(0);
 	}
 
 	@media (max-width: 600px) {

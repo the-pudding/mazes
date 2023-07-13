@@ -87,8 +87,8 @@
 		position: fixed;
 		width: 90%;
 		max-width: 1000px;
-		height: 90vh;
-		margin: 4em auto;
+		height: calc(100vh - 5.5rem);
+		margin: 1.5rem 0 4rem 0;
 		top: 0;
 		left: 50%;
 		transform: translate(-50%, 0);
@@ -125,6 +125,9 @@
 	}
 
 	@media (max-width: 600px) {
+		.modal {
+			padding: 1.5rem;
+		}
 		.modal.open {
 			display: flex;
 			flex-direction: column;

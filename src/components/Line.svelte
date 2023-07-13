@@ -28,7 +28,7 @@
 					? ""
 					: `h ${i % 2 === 0 ? width - padding * 2 : -(width - padding * 2)}`
 			}`
-	)}`;
+	)}`.replace(",", "");
 	$: pathLength = _.sum(heights) + (width - padding * 2) * heights.length;
 	$: $viewport.width, $viewport.height, loaded.length, measure();
 	$: loaded = Object.keys($mazeData).filter((d) => inlineStates.includes(d));
@@ -61,6 +61,8 @@
 			});
 		}
 	};
+
+	$: console.log({ pathStr });
 
 	onMount(() => {
 		measure();

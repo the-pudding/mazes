@@ -44,7 +44,11 @@
 </script>
 
 <div class="title">
-	<h2>{name}</h2>
+	<h2>
+		{name}
+
+		<Share />
+	</h2>
 	{#if !ban}
 		<div>
 			...is {@html level} for abortion access.
@@ -87,13 +91,7 @@
 
 {#if !mobile}
 	<div class="bottom">
-		<div class="left">
-			<div class="note">
-				{@html modalNote[$language]}
-			</div>
-		</div>
-
-		<Share />
+		{@html modalNote[$language]}
 	</div>
 {/if}
 
@@ -123,10 +121,6 @@
 		display: flex;
 		align-items: end;
 		justify-content: space-between;
-	}
-	.left {
-		max-width: 600px;
-		margin-right: 3rem;
 		font-size: 0.8rem;
 	}
 	h2 {
@@ -136,9 +130,6 @@
 	}
 	.title div {
 		font-size: 1.3rem;
-	}
-	.note {
-		margin-top: 1rem;
 	}
 	.black-box {
 		background: black;
@@ -170,12 +161,17 @@
 		}
 		h2 {
 			font-size: 2rem;
+			margin: 0;
 		}
 		.title div {
 			font-size: 1rem;
 		}
 		.maze {
 			max-width: 80%;
+		}
+		.facts {
+			padding: 0;
+			margin-top: 1.5rem;
 		}
 	}
 </style>

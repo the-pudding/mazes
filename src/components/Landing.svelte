@@ -4,7 +4,6 @@
 	import loadImage from "$utils/loadImage.js";
 	import { onMount } from "svelte";
 	import { fade } from "svelte/transition";
-	import { fly } from "svelte/transition";
 
 	const { intro } = copy;
 

@@ -62,9 +62,6 @@
 	summary:hover {
 		cursor: pointer;
 	}
-	summary::marker {
-		color: var(--color-pp-dark-purple);
-	}
 	p {
 		color: var(--color-pp-text-gray);
 	}

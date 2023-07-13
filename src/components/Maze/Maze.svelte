@@ -113,7 +113,9 @@
 
 		{#if playable}
 			<Overlay {loading} />
-			<Footer />
+			{#if !mobile}
+				<Footer />
+			{/if}
 		{/if}
 	{/if}
 </div>

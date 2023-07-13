@@ -1,7 +1,6 @@
 <script>
 	import KeysDesktop from "$components/Maze/Keys.Desktop.svelte";
 	import Button from "$components/Button.svelte";
-	import Share from "$components/Modal/Share.svelte";
 	import { getContext, tick } from "svelte";
 	import _ from "lodash";
 	import viewport from "$stores/viewport.js";
@@ -55,11 +54,7 @@
 		>
 	</div>
 
-	{#if mobile}
-		<Share />
-	{:else}
-		<KeysDesktop />
-	{/if}
+	<KeysDesktop />
 </div>
 
 <style>

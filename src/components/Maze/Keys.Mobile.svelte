@@ -49,9 +49,6 @@
 			on:click={() => move(direction)}
 			><Icon name={`arrow-${direction}`} /></button
 		>
-		{#if direction === "up"}
-			<div class="text">Tap arrow buttons to navigate</div>
-		{/if}
 	{/each}
 </div>
 
@@ -63,15 +60,6 @@
 	}
 	.active {
 		pointer-events: auto;
-	}
-	.text {
-		color: var(--color-pp-dark);
-		font-size: 0.7rem;
-		position: absolute;
-		top: 0;
-		left: 50%;
-		transform: translate(2rem, -150%);
-		text-align: start;
 	}
 	button {
 		position: absolute;

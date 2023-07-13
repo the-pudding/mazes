@@ -25,7 +25,7 @@
 		class="copy-btn"
 		data-clipboard-text={`${copy.url}/?state=${$selectedState}`}
 	>
-		SHARE <div class="circle"><Icon name="share" /></div>
+		<Icon name="share" />
 	</button>
 
 	<div class="clip" class:visible={showMessage}>Link copied to clipboard!</div>
@@ -33,6 +33,7 @@
 
 <style>
 	.share {
+		display: inline-block;
 		position: relative;
 	}
 	button {
@@ -41,23 +42,11 @@
 		display: flex;
 		align-items: center;
 		background: none;
+		border-radius: 100%;
+		font-size: 1.5rem;
 	}
 	button:hover {
 		background: var(--color-gray-100);
-	}
-	button:hover .circle {
-		background: var(--color-pp-navy);
-	}
-	.circle {
-		height: 42px;
-		width: 42px;
-		background: var(--color-pp-light-navy);
-		color: white;
-		border-radius: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin-left: 0.5rem;
 	}
 	.clip {
 		position: absolute;
@@ -74,9 +63,7 @@
 	}
 	@media (max-width: 600px) {
 		button {
-			font-size: 0.8rem;
-			padding-top: 0;
-			padding-bottom: 0;
+			font-size: 1rem;
 		}
 		.clip {
 			top: 20%;

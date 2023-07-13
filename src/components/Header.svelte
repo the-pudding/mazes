@@ -1,15 +1,17 @@
 <script>
 	import copy from "$data/copy.json";
-	import { language } from "$stores/misc.js";
+	import { language, selectedState } from "$stores/misc.js";
 
 	const { headerTitle } = copy;
 
 	const toggleLanguage = () => {
 		$language = $language === "english" ? "spanish" : "english";
 	};
+
+	$: faded = $selectedState !== undefined;
 </script>
 
-<header>
+<header class:faded>
 	<div class="title">
 		{@html headerTitle[$language]}
 	</div>
@@ -33,7 +35,10 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 1em;
-		z-index: 10000;
+		z-index: 999;
+	}
+	header.faded {
+		background: var(--color-pp-gray-3);
 	}
 	.title {
 		font-size: 1.3rem;
