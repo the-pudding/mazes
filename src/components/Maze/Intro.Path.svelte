@@ -21,7 +21,7 @@
 	$: if (visible && !moving) strokeDashOffset.set(0, { duration: 0 });
 	$: if (!visible && !moving) strokeDashOffset.set(pathLength, { duration: 0 });
 
-	$: pathLength = pathEl?.getTotalLength();
+	$: pathLength = pathEl?.getTotalLength() + 1; // gets rid of dot on mobile
 	$: forwards =
 		$scrollStep > $prevScrollStep || (!$prevScrollStep && $scrollStep === 0);
 	$: moving = forwards
@@ -32,8 +32,6 @@
 <path
 	bind:this={pathEl}
 	{d}
-	class:visible
-	class:moving
 	style={`stroke-dasharray: ${pathLength}; stroke-dashoffset: ${$strokeDashOffset}`}
 />
 

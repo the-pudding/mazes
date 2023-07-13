@@ -9,12 +9,11 @@
 	import _ from "lodash";
 	import loadMazeData from "$utils/loadMazeData.js";
 	import { onMount, tick } from "svelte";
-	import { language, scrollStep } from "$stores/misc.js";
+	import { language, scrollStep, direction } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
 
 	let data;
 	let simple;
-	let direction = "up";
 	let walls;
 	let allWallsInPlace = false;
 
@@ -23,9 +22,10 @@
 
 	$: if (
 		!allWallsInPlace &&
-		($scrollStep >= 6 || ($scrollStep === undefined && direction === "down"))
-	)
+		($scrollStep >= 6 || ($scrollStep === undefined && $direction === "down"))
+	) {
 		enterWalls();
+	}
 	$: if (allWallsInPlace && $scrollStep < 6) exitWalls();
 
 	const enterWalls = () => {
@@ -40,11 +40,11 @@
 	};
 
 	$: hed = steps[steps.length - 1][$language];
-	$: direction = $scrollY < 3000 ? "up" : "down";
+	$: $direction = $scrollY < 3000 ? "up" : "down";
 	$: zoomDuration = $mq.reducedMotion ? 0 : 3000;
 	$: zoom =
 		$scrollStep === steps.length - 1 ||
-		($scrollStep === undefined && direction === "down");
+		($scrollStep === undefined && $direction === "down");
 	$: $viewport.width, $scrollStep, calculateIlPosition();
 
 	let shrinkingMazeEl;
@@ -121,6 +121,7 @@
 					playable={false}
 					animated={false}
 					intro={true}
+					{simple}
 				/>
 			</div>
 		{/if}
@@ -301,6 +302,9 @@
 		}
 		h1 span {
 			font-size: 1.2rem;
+		}
+		.step {
+			margin: 70vh 1rem;
 		}
 	}
 	@media (max-width: 350px) {

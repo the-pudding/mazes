@@ -37,16 +37,21 @@
 	};
 
 	$: mobile = $viewport.width < 600;
-	$: buttonText = $gameState === "pre" ? "start maze" : "restart maze";
+	$: buttonText =
+		$gameState === "pre"
+			? `start${!mobile ? " maze" : ""}`
+			: `restart${!mobile ? " maze" : ""}`;
 </script>
 
 <div class="footer" class:visible={$gameState !== "pre"}>
 	<div class="buttons">
 		<Button text={buttonText} onClick={$gameState === "pre" ? start : reset} />
+
 		<button
 			class="complete text"
 			on:click={solve}
-			disabled={$gameState === "post"}>Complete the maze</button
+			disabled={$gameState === "post"}
+			>{mobile ? "Solve" : "Complete the maze"}</button
 		>
 	</div>
 

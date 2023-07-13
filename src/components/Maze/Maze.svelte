@@ -19,6 +19,7 @@
 	export let intro = false;
 	export let loading = false;
 	export let mazePath = [{ row: 0, col: 0 }];
+	export let simple;
 
 	const data = writable(wallData);
 	const solution = writable([]);
@@ -61,7 +62,9 @@
 	$: $pathLength = $path.length - 1;
 	$: labelsVisible = $gameState === "mid";
 	$: $solution = _.orderBy(
-		_.flatten(wallData).filter((d) => d.solutionIndex !== null),
+		_.flatten(intro ? simple : wallData).filter(
+			(d) => d.solutionIndex !== null
+		),
 		"solutionIndex",
 		"asc"
 	);

@@ -43,9 +43,4 @@
 </div>
 
 <style>
-	.container.interactive {
-		min-height: calc(100vh - 3rem);
-		display: grid;
-		grid-template-rows: 80px 1fr;
-	}
 </style>

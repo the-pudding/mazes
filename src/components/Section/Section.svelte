@@ -35,20 +35,24 @@
 					<img
 						src="assets/img/{id}-sc.png"
 						transition:fly={{ y: 100, duration: 500, delay: 500 }}
+						class="overlay"
 					/>
 				{:else if id == "the-peoples-power" && visible}
 					<img src="assets/img/{id}-bg.jpg" transition:fade />
 					<img
 						src="assets/img/{id}-1.png"
 						transition:fly={{ y: 100, duration: 500, delay: 500 }}
+						class="overlay"
 					/>
 					<img
 						src="assets/img/{id}-2.png"
 						transition:fly={{ y: 100, duration: 500, delay: 750 }}
+						class="overlay"
 					/>
 					<img
 						src="assets/img/{id}-3.png"
 						transition:fly={{ y: 100, duration: 500, delay: 1000 }}
+						class="overlay"
 					/>
 				{/if}
 			</div>
@@ -101,14 +105,14 @@
 		position: relative;
 		width: 100%;
 		max-width: 700px;
-		height: 500px;
 		margin: 0 auto;
 	}
 	img {
+		width: 100%;
+	}
+	img.overlay {
 		position: absolute;
-		max-width: 700px;
-		margin: auto;
-		padding: 4rem 0 0 0;
+		top: 0;
 	}
 
 	@media (max-width: 600px) {

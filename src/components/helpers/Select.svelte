@@ -23,10 +23,6 @@
 		position: relative;
 		display: flex;
 		align-items: center;
-		padding-right: 0.5rem;
-	}
-	.select:last-of-type {
-		padding-right: 0;
 	}
 
 	label {
@@ -62,7 +58,7 @@
 		display: block;
 		content: "";
 		position: absolute;
-		bottom: 2.25em;
+		bottom: 1.25em;
 		right: 0.75em;
 		width: 1em;
 		height: 1em;
@@ -86,5 +82,17 @@
 	.select:disabled {
 		cursor: not-allowed;
 		background-color: var(--color-gray-300);
+	}
+
+	@media (max-width: 600px) {
+		select {
+			height: 32px;
+		}
+		.select::after {
+			bottom: 1em;
+			width: 0.75em;
+			height: 0.75em;
+			border-radius: 2px;
+		}
 	}
 </style>

@@ -2,7 +2,7 @@
 	import Path from "$components/Maze/Intro.Path.svelte";
 	import { getContext } from "svelte";
 	import _ from "lodash";
-	import { scrollStep } from "$stores/misc.js";
+	import { scrollStep, direction } from "$stores/misc.js";
 	import { fade } from "svelte/transition";
 	import mq from "$stores/mq.js";
 
@@ -61,7 +61,9 @@
 {#if $scrollStep < 6}
 	<g
 		id="intro-path"
-		transition:fade={{ duration: mq.reducedMotion ? 0 : 1500 }}
+		transition:fade={{
+			duration: mq.reducedMotion ? 0 : 500
+		}}
 	>
 		{#each pathData as { d }, i}
 			{@const visible = $scrollStep >= i + 1}
