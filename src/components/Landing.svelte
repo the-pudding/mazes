@@ -16,16 +16,14 @@
 </script>
 
 <section class="intro">
-	<!-- {#if img}
-		<img src="assets/img/hero.png" transition:fade />
-	{/if} -->
 	<div class="img-wrapper">
 		{#if img}
-		<img src="assets/img/hero-bg.jpg" transition:fade />
-		<img src="assets/img/hero-2.png" transition:fly={{ y: 100, duration: 500, delay: 500 }} />
-		<img src="assets/img/hero-3.png" transition:fly={{ y: 100, duration: 500, delay: 750 }} />
-		<img src="assets/img/hero-4.png" transition:fly={{ y: 100, duration: 500, delay: 1000 }} />
+			<img src="assets/img/hero-bg.jpg" transition:fade class="visible" />
 		{/if}
+
+		<img src="assets/img/hero-2.png" class:visible={img} />
+		<img src="assets/img/hero-3.png" class:visible={img} />
+		<img src="assets/img/hero-4.png" class:visible={img} />
 	</div>
 	{#each intro as text}
 		<p>{@html text[$language]}</p>
@@ -58,6 +56,16 @@
 
 	.img-wrapper img {
 		position: absolute;
+		max-height: 100%;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -20%);
+		opacity: 0;
+		transition: all var(--1s);
+	}
+	img.visible {
+		transform: translate(-50%, -50%);
+		opacity: 1;
 	}
 
 	@media (max-width: 600px) {
