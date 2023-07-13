@@ -8,7 +8,6 @@
 	import { mazeData } from "$stores/misc.js";
 
 	const inlineStates = ["wi", "ks", "mt", "fl", "la", "il", "il-simple"];
-	const padding = 15;
 	let offset = 0;
 	let height = 0;
 	let width = 0;
@@ -16,6 +15,7 @@
 	let startY = 0;
 	let pathLength = 0;
 
+	$: padding = $viewport.width < 1200 ? 15 : 15 + ($viewport.width - 1200) / 2;
 	$: dashScale = scaleLinear()
 		.domain([offset, offset + _.sum(heights) - $viewport.height + 1000])
 		.range([pathLength, 0])
