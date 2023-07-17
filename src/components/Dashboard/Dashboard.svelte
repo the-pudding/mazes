@@ -10,17 +10,21 @@
 	import viewport from "$stores/viewport.js";
 
 	export let intro = false;
+	export let zoom;
 
 	setContext("dashboard", {
 		intro,
 		getOrder: () => order,
-		getColumnWidth: () => columnWidth
+		getColumnWidth: () => columnWidth,
+		getIsZoomedIn: () => isZoomedIn
 	});
 
 	const order = writable(intro ? "geo" : "alpha");
 	const columnWidth = writable(0);
+	const isZoomedIn = writable(intro ? true : false);
 
 	$: mobile = $viewport.width < 600;
+	$: $isZoomedIn = !zoom;
 
 	const onEnter = () => {
 		if (!intro) $dashboardInView = true;
@@ -36,7 +40,7 @@
 	{/if}
 	<Grid />
 
-	{#if !mobile}
+	{#if !mobile && !intro}
 		<button class="link" on:click={() => (location.href = "#dashboard")}>
 			<Icon name="arrow-left" />
 			<span>Read the story</span>
@@ -47,7 +51,6 @@
 <style>
 	.container {
 		position: relative;
-		height: calc(100vh - 3rem);
 	}
 	.link {
 		position: absolute;
@@ -65,10 +68,5 @@
 	}
 	.link span {
 		margin-left: 0.3rem;
-	}
-	@media (max-width: 600px) {
-		.container {
-			height: auto;
-		}
 	}
 </style>

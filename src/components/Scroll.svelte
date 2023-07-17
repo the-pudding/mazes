@@ -21,7 +21,7 @@
 <section id="scrolly">
 	<div class="sticky" class:zoom style={`--dur: ${zoomDuration}ms`}>
 		<div class="map" class:zoomed-out={zoom}>
-			<Dashboard intro={true} />
+			<Dashboard intro={true} {zoom} />
 		</div>
 		<h1
 			class:visible={zoom}
@@ -99,14 +99,14 @@
 	}
 	.map {
 		position: absolute;
-		top: 50%;
 		max-width: min(100%, 900px);
 		max-height: calc(100vh - 3rem);
-		transform: translate(33.7%, -112.3%) scale(8.1);
+		top: 3rem;
+		transform: translate(35%, -50%) scale(8);
 		transition: all var(--dur);
 	}
 	.map.zoomed-out {
-		transform: translate(0, -50%) scale(1);
+		transform: translate(0, 0) scale(1);
 	}
 	h1 {
 		font-family: var(--font-heavy);
@@ -161,6 +161,9 @@
 		h1 span {
 			font-size: 1.5rem;
 		}
+		.map.zoomed-out {
+			transform: translate(0, 25%);
+		}
 	}
 	@media (max-width: 600px) {
 		h1 {
@@ -171,7 +174,7 @@
 			margin: 70vh 1rem;
 		}
 		.map.zoomed-out {
-			transform: translate(0, -30%);
+			transform: translate(0, 50%);
 		}
 	}
 	@media (max-width: 350px) {

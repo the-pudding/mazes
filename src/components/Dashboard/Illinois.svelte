@@ -46,9 +46,3 @@
 		/>
 	{/if}
 </div>
-
-<style>
-	.container {
-		background: blue;
-	}
-</style>

@@ -5,9 +5,11 @@
 	import { onMount, tick, getContext } from "svelte";
 	import _ from "lodash";
 
-	const { intro, getOrder, getColumnWidth } = getContext("dashboard");
+	const { intro, getOrder, getColumnWidth, getIsZoomedIn } =
+		getContext("dashboard");
 	const order = getOrder();
 	const columnWidth = getColumnWidth();
+	const isZoomedIn = getIsZoomedIn();
 
 	const regions = _.uniq(states.map((d) => d.region));
 	const sortFns = {
@@ -40,7 +42,7 @@
 	});
 </script>
 
-<figure class:geo class:intro>
+<figure class:geo class:intro class:zoomedin={$isZoomedIn}>
 	{#if $order === "region"}
 		{#each regions as region}
 			{@const regionStates = sortedStates.filter((d) => d.region === region)}
@@ -72,6 +74,9 @@
 	}
 	figure.intro {
 		padding: 0;
+		height: 100%;
+	}
+	figure.zoomedin {
 	}
 	figure.geo {
 		grid-template-columns: repeat(12, minmax(0, 1fr));
