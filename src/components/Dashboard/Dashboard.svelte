@@ -38,10 +38,18 @@
 	{#if !intro}
 		<TopBar />
 	{/if}
+
+	{#if mobile && !intro}
+		<button class="mobile link" on:click={() => (location.href = "")}>
+			<Icon name="arrow-left" />
+			<span>Read the story</span>
+		</button>
+	{/if}
+
 	<Grid />
 
 	{#if !mobile && !intro}
-		<button class="link" on:click={() => (location.href = "#dashboard")}>
+		<button class="link" on:click={() => (location.href = "")}>
 			<Icon name="arrow-left" />
 			<span>Read the story</span>
 		</button>
@@ -60,6 +68,12 @@
 		background: none;
 		display: flex;
 		align-items: center;
+	}
+	.mobile {
+		width: 100%;
+		justify-content: end;
+		position: static;
+		margin-top: 1em;
 	}
 	.link:hover {
 		color: var(--color-pp-text-gray-1);

@@ -14,9 +14,11 @@
 	$: copyText = copy.shareNote[$language]
 		.replace(
 			"[state]",
-			`${$selectedState === "dc" ? "the " : ""}${_.startCase(
-				states.find((d) => d.id === $selectedState)?.name
-			)}`
+			`${
+				$selectedState === "dc"
+					? `${$language === "english" ? "the" : "el"} `
+					: ""
+			}${_.startCase(states.find((d) => d.id === $selectedState)?.name)}`
 		)
 		.replace("[link]", link);
 
