@@ -91,10 +91,15 @@
 		</p>
 	{/if}
 
-	<div class="buttons">
+	<div class="restart">
 		<button disabled={$gameState === "pre"} on:click={reset}>
 			<Icon name="refresh-cw" />
 		</button>
+		<div class="label">Restart</div>
+	</div>
+
+	<div class="solve">
+		<div class="label">Complete</div>
 		<button disabled={$gameState === "pre"} on:click={solve}>
 			<Icon name="check-circle" />
 		</button>
@@ -151,17 +156,38 @@
 		stroke-dashoffset: var(--offset);
 		animation: dash calc(var(--1s) * 4) infinite linear;
 	}
-	.buttons {
-		position: absolute;
-		right: 0;
-		top: 0;
-		transform: translate(20%, -120%);
-	}
 	button {
 		border-radius: 100%;
-		background: var(--color-pp-light-navy);
-		color: white;
+		background: #f9f7f4;
+		color: var(--color-pp-gray-3);
 		font-size: 0.9rem;
+	}
+	.restart,
+	.solve {
+		position: absolute;
+		display: flex;
+		align-items: center;
+	}
+	.restart {
+		left: 0;
+		top: 0;
+		transform: translate(0, calc(-100% - 4px));
+	}
+	.solve {
+		bottom: 0;
+		right: 0;
+		transform: translate(0, calc(100% + 4px));
+	}
+	.label {
+		font-family: var(--sans);
+		font-size: 0.7rem;
+		color: var(--color-pp-text-gray);
+	}
+	.restart .label {
+		margin-left: 4px;
+	}
+	.solve .label {
+		margin-right: 4px;
 	}
 	.instructions {
 		color: var(--color-pp-dark);

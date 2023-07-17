@@ -60,7 +60,7 @@
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = $dims ? ($width - $padding * 2) / $dims : 0;
 	$: $pathLength = $path.length - 1;
-	$: labelsVisible = $gameState === "mid";
+	$: labelsVisible = $gameState === "mid" && !mobile;
 	$: $solution = _.orderBy(
 		_.flatten(intro ? simple : wallData).filter(
 			(d) => d.solutionIndex !== null

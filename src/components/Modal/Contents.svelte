@@ -128,6 +128,8 @@
 		font-weight: 900;
 		font-size: 3rem;
 		margin-bottom: 0;
+		display: flex;
+		align-items: center;
 	}
 	.title div {
 		font-size: 1.3rem;
