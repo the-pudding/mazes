@@ -131,8 +131,12 @@
 		text-align: center;
 		pointer-events: none;
 		white-space: nowrap;
-		opacity: 0;
+		visibility: hidden;
 		transition: opacity calc(var(--1s) * 0.3) ease-in-out;
+	}
+	.intro .abbrev {
+		visibility: visible;
+		opacity: 0;
 	}
 	.shortened {
 		position: absolute;
@@ -141,6 +145,9 @@
 		transform: translate(-50%, 0);
 	}
 	.abbrev.visible {
+		visibility: visible;
+	}
+	.intro .abbrev.visible {
 		opacity: 1;
 	}
 	img.hide {

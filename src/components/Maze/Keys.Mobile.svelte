@@ -68,6 +68,7 @@
 		align-items: center;
 		justify-content: center;
 		font-size: 0.8rem;
+		touch-action: manipulation;
 	}
 	button.up {
 		top: 0;
@@ -90,5 +91,11 @@
 		top: 50%;
 		right: 0;
 		transform: translate(120%, -50%);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		button {
+			touch-action: auto;
+		}
 	}
 </style>
