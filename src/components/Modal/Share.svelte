@@ -1,13 +1,24 @@
 <script>
 	import Icon from "$components/helpers/Icon.svelte";
 	import copy from "$data/copy.json";
-	import { selectedState } from "$stores/misc.js";
+	import states from "$data/states.csv";
+	import { selectedState, language } from "$stores/misc.js";
 	import Clipboard from "clipboard";
 	import { onMount } from "svelte";
+	import _ from "lodash";
 
 	let showMessage = false;
 
 	$: if (!$selectedState) showMessage = false;
+	$: link = `${copy.url}/?state=${$selectedState}`;
+	$: copyText = copy.shareNote[$language]
+		.replace(
+			"[state]",
+			`${$selectedState === "dc" ? "the " : ""}${_.startCase(
+				states.find((d) => d.id === $selectedState)?.name
+			)}`
+		)
+		.replace("[link]", link);
 
 	onMount(() => {
 		const clipboard = new Clipboard(".copy-btn");
@@ -21,10 +32,7 @@
 </script>
 
 <div class="share">
-	<button
-		class="copy-btn"
-		data-clipboard-text={`${copy.url}/?state=${$selectedState}`}
-	>
+	<button class="copy-btn" data-clipboard-text={copyText}>
 		<Icon name="share" />
 	</button>
 
@@ -58,8 +66,9 @@
 		background: var(--color-gray-200);
 	}
 	.text {
+		color: var(--color-pp-text-gray);
 		position: relative;
-		font-size: 0.75rem;
+		font-size: 1rem;
 		pointer-events: none;
 		margin-left: 8px;
 	}
@@ -86,6 +95,9 @@
 	@media (max-width: 600px) {
 		button {
 			font-size: 1rem;
+		}
+		.text {
+			font-size: 0.75rem;
 		}
 	}
 </style>
