@@ -5,6 +5,7 @@
 	import instagram from "$svg/instagram.svg";
 	import youtube from "$svg/youtube.svg";
 	import tiktok from "$svg/tiktok.svg";
+	import ppfa from "$svg/WHITE_PPFA-primary-with-tagline-c3.svg";
 
 	const { main, sub, columns, extra, copyright, social, call, donate } =
 		copy.footer;
@@ -18,7 +19,9 @@
 			<div class="left">
 				<div>
 					<a href="https://www.plannedparenthood.org/" target="_blank">
-						<img src="assets/img/ppfa-logo.png" alt="planned parenthood logo" />
+						<div class="logo-wrapper">
+							{@html ppfa}
+						</div>
 					</a>
 					<div class="sub">{sub}</div>
 				</div>
@@ -80,9 +83,18 @@
 		margin: 0;
 		font-size: 1.1rem;
 	}
-	img {
+	.logo-wrapper {
 		width: 220px;
-		margin-bottom: 1.5rem;
+		margin: 0 0 0.5rem -1rem;
+	}
+	:global(.logo-wrapper svg){
+		width: 100%;
+	}
+	:global(.logo-wrapper svg path){
+		fill: white;
+	}
+	:global(.logo-wrapper svg:hover){
+		opacity: 0.5;
 	}
 	.socials {
 		width: 100%;

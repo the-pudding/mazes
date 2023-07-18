@@ -31,7 +31,7 @@
 			{hed}
 		</h1>
 
-		<button
+		<!-- <button
 			class="link"
 			class:visible={zoom}
 			style={`--delay: ${zoomDuration ? zoomDuration - 500 : 0}ms`}
@@ -39,7 +39,7 @@
 		>
 			See all mazes
 			<Icon name="arrow-right" />
-		</button>
+		</button> -->
 	</div>
 
 	<div class="steps">

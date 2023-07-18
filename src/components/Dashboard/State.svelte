@@ -170,7 +170,7 @@
 		bottom: 0;
 		height: 100%;
 		width: 100%;
-		background: var(--color-pp-gray-3);
+		background: var(--color-pp-gray-1);
 		opacity: 0;
 		transition: opacity calc(var(--1s) * 0.1);
 	}

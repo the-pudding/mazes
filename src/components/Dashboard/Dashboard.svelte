@@ -3,8 +3,9 @@
 	import Grid from "$components/Dashboard/Grid.svelte";
 	import TopBar from "$components/Dashboard/TopBar.svelte";
 	import _ from "lodash";
+	import copy from "$data/copy.json";
 	import inView from "$actions/inView.js";
-	import { dashboardInView } from "$stores/misc.js";
+	import { dashboardInView, language } from "$stores/misc.js";
 	import { setContext } from "svelte";
 	import { writable } from "svelte/store";
 	import viewport from "$stores/viewport.js";
@@ -18,7 +19,6 @@
 		getColumnWidth: () => columnWidth,
 		getIsZoomedIn: () => isZoomedIn
 	});
-
 	const order = writable(intro ? "geo" : "alpha");
 	const columnWidth = writable(0);
 	const isZoomedIn = writable(intro ? true : false);
@@ -39,20 +39,26 @@
 		<TopBar />
 	{/if}
 
-	{#if mobile && !intro}
+	<!-- {#if mobile && !intro}
 		<button class="mobile link" on:click={() => (location.href = "")}>
-			<Icon name="arrow-left" />
 			<span>Read the story</span>
+			<Icon name="arrow-right" />
 		</button>
-	{/if}
+	{/if} -->
 
 	<Grid />
 
-	{#if !mobile && !intro}
+	<!-- {#if !mobile && !intro}
 		<button class="link" on:click={() => (location.href = "")}>
-			<Icon name="arrow-left" />
 			<span>Read the story</span>
+			<Icon name="arrow-right" />
 		</button>
+	{/if} -->
+
+	{#if !intro}
+	<div class="notes">
+		<p>{@html copy.modalNote[$language]}</p>
+	</div>
 	{/if}
 </div>
 
@@ -61,19 +67,22 @@
 		position: relative;
 	}
 	.link {
-		position: absolute;
-		bottom: 1rem;
-		right: 0;
 		color: var(--color-pp-text-gray);
 		background: none;
 		display: flex;
 		align-items: center;
+		padding: 1rem 0 0 0;
+		justify-content: end;
+		position: absolute;
+		right: 1rem;
+		bottom: 4rem;
 	}
 	.mobile {
 		width: 100%;
 		justify-content: end;
 		position: static;
-		margin-top: 1em;
+		margin: 1rem 0 0 0;
+		padding: 0 1rem 0 0;
 	}
 	.link:hover {
 		color: var(--color-pp-text-gray-1);
@@ -82,5 +91,18 @@
 	}
 	.link span {
 		margin-left: 0.3rem;
+	}
+	.notes {
+		width: 100%;
+		padding: 1rem;
+		display: flex;
+		flex-direction: row;
+		align-items: start;
+		justify-content: space-between;
+	}
+	.notes p {
+		color: var(--color-pp-text-gray);
+		font-size: 0.8rem;
+		width: 100%;
 	}
 </style>
