@@ -91,19 +91,21 @@
 		</p>
 	{/if}
 
-	<div class="restart">
-		<button disabled={$gameState === "pre"} on:click={reset}>
-			<Icon name="refresh-cw" />
-		</button>
-		<div class="label">Restart</div>
-	</div>
+	{#if mobile}
+		<div class="restart">
+			<button disabled={$gameState === "pre"} on:click={reset}>
+				<Icon name="refresh-cw" />
+			</button>
+			<div class="label">Restart</div>
+		</div>
 
-	<div class="solve">
-		<div class="label">Complete</div>
-		<button disabled={$gameState === "pre"} on:click={solve}>
-			<Icon name="check-circle" />
-		</button>
-	</div>
+		<div class="solve">
+			<div class="label">Complete</div>
+			<button disabled={$gameState === "pre"} on:click={solve}>
+				<Icon name="check-circle" />
+			</button>
+		</div>
+	{/if}
 
 	{#if mobile}
 		<KeysMobile />

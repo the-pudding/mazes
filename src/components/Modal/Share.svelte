@@ -40,9 +40,7 @@
 
 	<div class="text">
 		<div class="label" class:visible={!showMessage}>Share</div>
-		<div class="message" class:visible={showMessage}>
-			Link copied to clipboard!
-		</div>
+		<div class="message" class:visible={showMessage}>Copied to clipboard!</div>
 	</div>
 </div>
 

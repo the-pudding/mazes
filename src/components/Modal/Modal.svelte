@@ -134,4 +134,12 @@
 			align-items: center;
 		}
 	}
+	@media (max-height: 830px) {
+		.modal {
+			overflow: scroll;
+		}
+		.close {
+			transform: translate(-8px, 8px);
+		}
+	}
 </style>
