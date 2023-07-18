@@ -1,14 +1,15 @@
 <script>
 	import copy from "$data/copy.json";
-	import { language, selectedState } from "$stores/misc.js";
+	import {
+		language,
+		selectedState,
+		dashboardInView,
+		storyInView
+	} from "$stores/misc.js";
 	import story from "$svg/story.svg";
 	import maze from "$svg/maze.svg";
 
 	const { headerTitle } = copy;
-
-	const toggleLanguage = () => {
-		$language = $language === "english" ? "spanish" : "english";
-	};
 
 	$: faded = $selectedState !== undefined;
 </script>
@@ -20,17 +21,22 @@
 
 	<div class="about">
 		<p class="dir">Go to</p>
-		<button id="story" on:click={() => (location.href = "#a-right-removed")}>
+		<button
+			id="story"
+			on:click={() => (location.href = "")}
+			disabled={$storyInView}
+		>
 			<p>Story</p>
 			{@html story}
 		</button>
-		<button id="maze" on:click={() => (location.href = "#dashboard")}>
+		<button
+			id="maze"
+			on:click={() => (location.href = "#dashboard")}
+			disabled={$dashboardInView}
+		>
 			<p>Mazes</p>
 			{@html maze}
 		</button>
-		<!-- <button on:click={toggleLanguage}
-			>{$language === "english" ? "Español" : "English"}</button
-		> -->
 	</div>
 </header>
 
@@ -58,6 +64,7 @@
 	.about {
 		display: flex;
 		flex-direction: row;
+		align-items: center;
 	}
 	.dir {
 		text-transform: uppercase;
@@ -65,6 +72,10 @@
 		font-weight: 700;
 		font-size: 0.8rem;
 		color: var(--color-pp-gray-1);
+	}
+	p {
+		margin: 0;
+		line-height: 1.3em;
 	}
 	.btn-open {
 		top: 0;
@@ -100,11 +111,21 @@
 	:global(.about svg) {
 		margin: 0 0 0 0.25rem;
 	}
-	:global(.about svg line, .about svg path, .about svg rect, .about svg polyline) {
+	:global(
+			.about svg line,
+			.about svg path,
+			.about svg rect,
+			.about svg polyline
+		) {
 		stroke: var(--color-pp-gray-1);
 	}
 
-	:global(.about button:hover svg line, .about button:hover svg path, .about button:hover svg rect, .about button:hover svg polyline) {
+	:global(
+			.about button:hover svg line,
+			.about button:hover svg path,
+			.about button:hover svg rect,
+			.about button:hover svg polyline
+		) {
 		opacity: 0.5;
 	}
 

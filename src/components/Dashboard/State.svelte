@@ -112,7 +112,7 @@
 		transition: all calc(var(--1s) * 0.3) ease-in-out;
 	}
 	.state.faded {
-		opacity: 0.1;
+		opacity: 0.05;
 	}
 	.state.geo {
 		grid-row: var(--row);

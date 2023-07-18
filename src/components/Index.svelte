@@ -8,7 +8,8 @@
 	import Methods from "$components/Methods.svelte";
 	import Footer from "$components/Footer.svelte";
 	import copy from "$data/copy.json";
-	import { selectedState } from "$stores/misc.js";
+	import { selectedState, dashboardInView, storyInView } from "$stores/misc.js";
+	import inView from "$actions/inView.js";
 	import _ from "lodash";
 	import viewport from "$stores/viewport.js";
 	import { onMount } from "svelte";
@@ -29,7 +30,13 @@
 </script>
 
 <article>
-	<div class="tan" class:faded={$selectedState}>
+	<div
+		class="story"
+		class:faded={$selectedState}
+		use:inView
+		on:enter={() => ($storyInView = true)}
+		on:exit={() => ($storyInView = false)}
+	>
 		<Landing />
 		<Scroll />
 
@@ -44,12 +51,18 @@
 		</div>
 	</div>
 
-	<div id="dashboard" class="white" class:faded={$selectedState}>
+	<div
+		id="dashboard"
+		class:faded={$selectedState}
+		use:inView
+		on:enter={() => ($dashboardInView = true)}
+		on:exit={() => ($dashboardInView = false)}
+	>
 		<Dashboard />
 	</div>
 	<Modal />
 
-	<div class="tan" class:faded={$selectedState}>
+	<div class="end" class:faded={$selectedState}>
 		<Methods />
 	</div>
 
@@ -60,10 +73,11 @@
 	.sections {
 		position: relative;
 	}
-	.tan {
+	.story,
+	.end {
 		background: var(--upper-bg);
 	}
-	.white {
+	#dashboard {
 		background: white;
 	}
 	.faded {

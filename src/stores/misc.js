@@ -12,3 +12,4 @@ export const scrollStep = writable(undefined);
 export const direction = writable("down");
 
 export const dashboardInView = writable(false);
+export const storyInView = writable(true);
