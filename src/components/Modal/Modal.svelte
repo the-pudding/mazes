@@ -87,7 +87,7 @@
 		position: fixed;
 		width: 90%;
 		max-width: 1000px;
-		height: calc(100vh - 5.5rem);
+		max-height: calc(100vh - 5.5rem);
 		margin: 1.5rem 0 4rem 0;
 		top: 0;
 		left: 50%;
@@ -109,7 +109,7 @@
 		gap: 2rem 1rem;
 	}
 	.modal.ban {
-		grid-template-rows: minmax(100px, 0.33fr) 2fr 1fr;
+		grid-template-rows: minmax(100px, 0.33fr) 2fr 0.5fr;
 	}
 	.close {
 		display: flex;
