@@ -32,6 +32,7 @@
 	const location = writable({ row: 0, col: 0 });
 	const path = writable(mazePath);
 	const gameState = writable("pre");
+	const mobilePadding = 3;
 
 	setContext("maze", {
 		wallWidth,
@@ -55,7 +56,12 @@
 	$: $path = mazePath;
 	$: $dims = size;
 	$: mobile = $viewport.width < 600;
-	$: $width = mobile || intro ? $availableWidth : $availableWidth * 0.9;
+	$: withPadding = mobile && intro;
+	$: $width = withPadding
+		? $availableWidth
+		: intro
+		? $availableWidth
+		: $availableWidth * 0.9;
 	$: $wallWidth = $width / 50;
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = $dims ? ($width - $padding * 2) / $dims : 0;
@@ -76,10 +82,11 @@
 
 <div class="container" bind:clientWidth={$availableWidth}>
 	{#if $width}
-		<svg width={$width} height={$width} class:filled={intro}>
+		<svg width={$width + mobilePadding} height={$width} class:filled={intro}>
 			{#if !loading}
 				<g
 					class="fade"
+					style:transform={`translate(${mobilePadding / 2}px, 0)`}
 					transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}
 				>
 					<Walls />

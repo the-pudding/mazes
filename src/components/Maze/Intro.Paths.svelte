@@ -5,6 +5,7 @@
 	import { scrollStep } from "$stores/misc.js";
 	import { fade } from "svelte/transition";
 	import mq from "$stores/mq.js";
+	import viewport from "$stores/viewport.js";
 
 	const { getCellSize, getWallWidth, getSolution } = getContext("maze");
 	const cellSize = getCellSize();
@@ -55,7 +56,8 @@
 
 		return { d, endX, endY };
 	});
-	$: bubbleSize = $cellSize * 1.5;
+	$: mobile = $viewport.width < 600;
+	$: bubbleSize = mobile ? $cellSize * 3 : $cellSize * 1.5;
 </script>
 
 {#if $scrollStep < 6}
