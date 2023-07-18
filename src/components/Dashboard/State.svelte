@@ -11,9 +11,11 @@
 	export let col;
 	export let ban;
 
-	const { intro, getOrder, getColumnWidth } = getContext("dashboard");
+	const { intro, getOrder, getColumnWidth, getIsZoomedIn } =
+		getContext("dashboard");
 	const order = getOrder();
 	const columnWidth = getColumnWidth();
+	const isZoomedIn = getIsZoomedIn();
 
 	const longNames = [
 		{ id: "dc", shortened: "D.C." },
@@ -34,7 +36,8 @@
 
 	$: mobile = $viewport.width < 600;
 	$: geo = ($order === "geo" && !mobile) || intro;
-	$: showAbbrevs = (intro && $scrollStep >= 7) || !intro;
+	$: showAbbrevs = (intro && !$isZoomedIn) || !intro;
+	$: faded = id !== "il" && intro && $isZoomedIn;
 
 	const onClick = (e) => {
 		if (!intro) {
@@ -57,6 +60,7 @@
 	class:geo
 	class:interactive={!intro}
 	class:intro
+	class:faded
 	id={intro ? `${id}-intro` : `${id}-state`}
 	style={row && col ? `--row: ${row}; --col: ${col}` : null}
 	on:click={onClick}
@@ -106,6 +110,9 @@
 		grid-column: auto;
 		padding: 0.25rem;
 		transition: all calc(var(--1s) * 0.3) ease-in-out;
+	}
+	.state.faded {
+		opacity: 0.1;
 	}
 	.state.geo {
 		grid-row: var(--row);
