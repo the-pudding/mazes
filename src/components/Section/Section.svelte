@@ -74,6 +74,9 @@
 		padding: 1rem 0 0 0;
 		text-align: center;
 	}
+	#the-mazes {
+		max-width: 800px;
+	}
 	#the-mazes h2 {
 		max-width: 600px;
 		margin: auto;
@@ -91,8 +94,8 @@
 	.img-wrapper {
 		position: relative;
 		width: 100%;
-		max-width: 700px;
-		margin: 0 auto;
+		max-width: 600px;
+		margin: 1rem auto 0 auto;
 	}
 	img {
 		width: 100%;
