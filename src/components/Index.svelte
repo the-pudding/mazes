@@ -33,7 +33,7 @@
 	<div
 		class="story"
 		class:faded={$selectedState}
-		use:inView
+		use:inView={{ top: 250 }}
 		on:enter={() => ($storyInView = true)}
 		on:exit={() => ($storyInView = false)}
 	>
