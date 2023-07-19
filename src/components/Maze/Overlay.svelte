@@ -169,6 +169,7 @@
 		position: absolute;
 		display: flex;
 		align-items: center;
+		z-index: 1;
 	}
 	.restart {
 		left: 0;
