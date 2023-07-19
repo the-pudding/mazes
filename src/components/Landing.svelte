@@ -4,10 +4,13 @@
 	import loadImage from "$utils/loadImage.js";
 	import { onMount } from "svelte";
 	import { fade } from "svelte/transition";
+	import viewport from "$stores/viewport.js";
 
 	const { intro } = copy;
 
 	let img;
+
+	$: mobile = $viewport.width < 600;
 
 	onMount(async () => {
 		img = await loadImage("assets/img/hero-bg.jpg");
@@ -17,12 +20,25 @@
 <section class="intro">
 	<div class="img-wrapper">
 		{#if img}
-			<img src="assets/img/hero-bg.jpg" transition:fade />
+			<img
+				src={`assets/img/hero-bg${mobile ? "-small" : ""}.jpg`}
+				alt="The Supreme Court building on a pink and purple background"
+				transition:fade
+			/>
 		{/if}
 
-		<img src="assets/img/hero-2.png" class:visible={img} class:overlay={true} />
-		<img src="assets/img/hero-3.png" class:visible={img} class:overlay={true} />
-		<img src="assets/img/hero-4.png" class:visible={img} class:overlay={true} />
+		{#each [2, 3, 4] as i}
+			{@const alt =
+				i === 2 || i === 2
+					? "A woman protesting, with her fist raised in the air"
+					: "A woman wearing a mask carrying a sign that says Abortion Saved My Life"}
+			<img
+				src={`assets/img/hero-${i}${mobile ? "-small" : ""}.png`}
+				class:visible={img}
+				class:overlay={true}
+				{alt}
+			/>
+		{/each}
 	</div>
 	{#each intro as text}
 		<p>{@html text[$language]}</p>

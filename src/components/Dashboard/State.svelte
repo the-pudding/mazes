@@ -1,9 +1,9 @@
 <script>
 	import Illinois from "$components/Dashboard/Illinois.svelte";
-	import viewport from "$stores/viewport.js";
 	import { getContext } from "svelte";
-	import { selectedState, scrollStep } from "$stores/misc.js";
+	import { selectedState } from "$stores/misc.js";
 	import _ from "lodash";
+	import states from "$data/states.csv";
 
 	export let id;
 	export let label;
@@ -34,7 +34,6 @@
 	];
 	let labelWidth;
 
-	$: mobile = $viewport.width < 600;
 	$: geo = $order === "geo";
 	$: showAbbrevs = (intro && !$isZoomedIn) || !intro;
 	$: faded = id !== "il" && intro && $isZoomedIn;
@@ -92,7 +91,7 @@
 		{:else}
 			<img
 				src={`assets/img/states/${id}.png`}
-				alt={`maze for ${id}`}
+				alt={`maze for ${states.find((d) => d.id === id).name}`}
 				class:hide={ban}
 			/>
 		{/if}

@@ -17,7 +17,7 @@
 		getColumnWidth: () => columnWidth,
 		getIsZoomedIn: () => isZoomedIn
 	});
-	const order = writable("geo");
+	const order = writable("alpha");
 	const columnWidth = writable(0);
 	const isZoomedIn = writable(intro ? true : false);
 

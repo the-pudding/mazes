@@ -28,19 +28,26 @@
 	>
 		{#if id !== "the-mazes"}
 			<div class="img-wrapper">
-				{#if id == "a-right-removed"}
-					<img src="assets/img/{id}-bg.jpg" class:visible />
+				<img
+					src={`assets/img/${id}-bg.jpg`}
+					class:visible
+					alt={id === "a-right-removed"
+						? "The Supreme Court building and signs that say things like Abortion is a Human Right"
+						: "The Supreme Court building and women protesting, featuring a sign that says Bans Off Our Bodies"}
+				/>
+
+				{#each id === "a-right-removed" ? [1] : [1, 2, 3] as i}
+					{@const alt =
+						id === "the-peoples-power"
+							? "A fist risen in the air"
+							: "The 9 Supreme Court justices, emphasizing the conservative majority of 6 justices"}
 					<img
-						src="assets/img/{id}-sc.png"
+						src={`assets/img/${id}-${i}.png`}
 						class:visible
 						class:overlay={true}
+						{alt}
 					/>
-				{:else if id == "the-peoples-power"}
-					<img src="assets/img/{id}-bg.jpg" class:visible />
-					<img src="assets/img/{id}-1.png" class:visible class:overlay={true} />
-					<img src="assets/img/{id}-2.png" class:visible class:overlay={true} />
-					<img src="assets/img/{id}-3.png" class:visible class:overlay={true} />
-				{/if}
+				{/each}
 			</div>
 		{/if}
 		<h2>{@html title[$language]}</h2>

@@ -35,7 +35,7 @@
 				<div class="img-wrapper">
 					<img
 						src={`assets/img/states/${id}.png`}
-						alt={`maze for ${id}`}
+						alt={`maze for ${states.find((d) => d.id === id).name}`}
 						class:hide={ban}
 					/>
 					{#if ban}<div class="black-box" />{/if}
