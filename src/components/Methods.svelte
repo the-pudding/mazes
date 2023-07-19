@@ -43,7 +43,7 @@
 	section {
 		max-width: 700px;
 		margin: auto;
-		padding: 10rem 2rem;
+		padding: 10rem 4rem;
 	}
 	h3 {
 		font-size: 1.2rem;

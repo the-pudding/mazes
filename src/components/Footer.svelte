@@ -87,13 +87,13 @@
 		width: 220px;
 		margin: 0 0 0.5rem -1rem;
 	}
-	:global(.logo-wrapper svg){
+	:global(.logo-wrapper svg) {
 		width: 100%;
 	}
-	:global(.logo-wrapper svg path){
+	:global(.logo-wrapper svg path) {
 		fill: white;
 	}
-	:global(.logo-wrapper svg:hover){
+	:global(.logo-wrapper svg:hover) {
 		opacity: 0.5;
 	}
 	.socials {
@@ -201,6 +201,8 @@
 		}
 		.main {
 			text-align: center;
+			max-width: 382px;
+			margin: auto;
 		}
 		.left {
 			flex-direction: column;
