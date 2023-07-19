@@ -122,12 +122,6 @@
 		transform: translateX(0.125rem);
 		transition: all 0.2s ease-in;
 	}
-	:global(.words p strong) {
-		background: var(--color-pp-gray-1);
-		padding: 0.25rem 0.5rem;
-		box-shadow: 0px 0px 5px rgba(124, 115, 115, 0.1);
-		border-radius: 5px;
-	}
 
 	@media (max-width: 800px) {
 		.container {

@@ -42,7 +42,6 @@
 		fill: none;
 		stroke: var(--color-pp-magenta);
 		stroke-width: 1px;
-		stroke-linejoin: round;
-		stroke-linecap: round;
+		stroke-linecap: square;
 	}
 </style>

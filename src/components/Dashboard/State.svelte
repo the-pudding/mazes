@@ -1,7 +1,7 @@
 <script>
 	import Illinois from "$components/Dashboard/Illinois.svelte";
 	import { getContext } from "svelte";
-	import { selectedState } from "$stores/misc.js";
+	import { selectedState, scrollStep, direction } from "$stores/misc.js";
 	import _ from "lodash";
 	import states from "$data/states.csv";
 
@@ -36,7 +36,12 @@
 
 	$: geo = $order === "geo";
 	$: showAbbrevs = (intro && !$isZoomedIn) || !intro;
-	$: faded = id !== "il" && intro && $isZoomedIn;
+	$: faded = visible && id !== "il" && intro && $isZoomedIn;
+	$: visible =
+		!intro ||
+		id === "il" ||
+		$scrollStep >= 0 ||
+		($scrollStep === undefined && $direction === "down");
 
 	const onClick = (e) => {
 		if (!intro) {
@@ -56,6 +61,7 @@
 
 <div
 	class="state"
+	class:visible
 	class:geo
 	class:interactive={!intro}
 	class:intro
@@ -108,7 +114,11 @@
 		grid-row: auto;
 		grid-column: auto;
 		padding: 0.25rem;
+		opacity: 0;
 		transition: all calc(var(--1s) * 0.3) ease-in-out;
+	}
+	.state.visible {
+		opacity: 1;
 	}
 	.state.faded {
 		opacity: 0.05;

@@ -34,8 +34,8 @@
 	<Grid />
 
 	{#if !intro}
-		<div class="notes">
-			<p>{@html copy.modalNote[$language]}</p>
+		<div class="note">
+			{@html copy.modalNote[$language]}
 		</div>
 	{/if}
 </div>
@@ -55,17 +55,16 @@
 		right: 1rem;
 		bottom: 4rem;
 	}
-	.notes {
+	.note {
+		max-width: 800px;
+		margin: auto;
 		width: 100%;
 		padding: 1rem;
 		display: flex;
 		flex-direction: row;
 		align-items: start;
 		justify-content: space-between;
-	}
-	.notes p {
 		color: var(--color-pp-text-gray);
 		font-size: 0.8rem;
-		width: 100%;
 	}
 </style>

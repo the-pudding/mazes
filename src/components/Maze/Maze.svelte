@@ -57,11 +57,7 @@
 	$: $dims = size;
 	$: mobile = $viewport.width < 600;
 	$: withPadding = mobile && intro;
-	$: $width = withPadding
-		? $availableWidth
-		: intro
-		? $availableWidth
-		: $availableWidth * 0.9;
+	$: $width = $availableWidth;
 	$: $wallWidth = $width / 50;
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = $dims ? ($width - $padding * 2) / $dims : 0;
@@ -75,6 +71,8 @@
 		"asc"
 	);
 
+	$: console.log($availableWidth);
+
 	$: if ($location.row === $dims - 1 && $location.col === $dims - 1) {
 		$gameState = "post";
 	}
@@ -82,11 +80,17 @@
 
 <div class="container" bind:clientWidth={$availableWidth}>
 	{#if $width}
-		<svg width={$width + mobilePadding} height={$width} class:filled={intro}>
+		<svg
+			width={withPadding ? $width + mobilePadding : $width}
+			height={$width}
+			class:filled={intro}
+		>
 			{#if !loading}
 				<g
 					class="fade"
-					style:transform={`translate(${mobilePadding / 2}px, 0)`}
+					style:transform={withPadding
+						? `translate(${mobilePadding / 2}px, 0)`
+						: null}
 					transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}
 				>
 					<Walls />
