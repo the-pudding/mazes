@@ -35,7 +35,7 @@
 	let labelWidth;
 
 	$: mobile = $viewport.width < 600;
-	$: geo = ($order === "geo" && !mobile) || intro;
+	$: geo = $order === "geo";
 	$: showAbbrevs = (intro && !$isZoomedIn) || !intro;
 	$: faded = id !== "il" && intro && $isZoomedIn;
 

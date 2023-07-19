@@ -13,7 +13,11 @@
 	{/if}
 	<select {id} bind:value {disabled}>
 		{#each options as option}
-			<option value={option.value}>{option.label}</option>
+			<option
+				value={option.value}
+				disabled={option.disabled !== undefined ? option.disabled : false}
+				>{option.label}</option
+			>
 		{/each}
 	</select>
 </div>

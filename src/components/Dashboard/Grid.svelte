@@ -20,14 +20,12 @@
 		}
 	};
 
-	$: mobile = $viewport.width < 600;
 	$: sortedStates = _.orderBy(
 		states,
 		sortFns[$order],
 		$order === "barriers" ? "desc" : "asc"
 	);
-	$: $order = mobile ? "alpha" : "geo";
-	$: geo = ($order === "geo" && !mobile) || intro;
+	$: geo = $order === "geo";
 	$: if ($viewport.width && $order) measure();
 
 	const measure = async () => {

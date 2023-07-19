@@ -1,11 +1,11 @@
 <script>
-	import Icon from "$components/helpers/Icon.svelte";
 	import Grid from "$components/Dashboard/Grid.svelte";
 	import TopBar from "$components/Dashboard/TopBar.svelte";
 	import _ from "lodash";
 	import copy from "$data/copy.json";
 	import { language } from "$stores/misc.js";
 	import { setContext } from "svelte";
+	import viewport from "$stores/viewport.js";
 	import { writable } from "svelte/store";
 
 	export let intro = false;
@@ -17,10 +17,12 @@
 		getColumnWidth: () => columnWidth,
 		getIsZoomedIn: () => isZoomedIn
 	});
-	const order = writable(intro ? "geo" : "alpha");
+	const order = writable("geo");
 	const columnWidth = writable(0);
 	const isZoomedIn = writable(intro ? true : false);
 
+	$: mobile = $viewport.width < 600;
+	$: $order = intro ? "geo" : mobile ? "alpha" : "geo";
 	$: $isZoomedIn = !zoom;
 </script>
 
