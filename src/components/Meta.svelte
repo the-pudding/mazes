@@ -1,7 +1,7 @@
 <script>
 	export let title = "Title TK";
 	export let description = "Description TK";
-	export let url = "https://pudding.cool";
+	export let url = "";
 	export let keywords = "";
 	export let preloadFont = [];
 </script>
@@ -9,11 +9,11 @@
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={description} />
-	<meta name="author" content="The Pudding" />
+	<meta name="author" content="Planned Parenthood" />
 	<meta name="news_keywords" content={keywords} />
 
 	<meta property="og:title" content={title} />
-	<meta property="og:site_name" content="The Pudding" />
+	<meta property="og:site_name" content="Planned Parenthood" />
 	<meta property="og:url" content={url} />
 	<meta property="og:description" content={description} />
 	<meta property="og:type" content="article" />
@@ -28,8 +28,8 @@
 	<meta property="og:image:height" content="600" />
 
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="https://pudding.cool" />
-	<meta name="twitter:creator" content="@puddingviz" />
+	<meta name="twitter:site" content="https://www.plannedparenthood.org/" />
+	<meta name="twitter:creator" content="@PPFA" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta

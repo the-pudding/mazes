@@ -71,8 +71,6 @@
 		"asc"
 	);
 
-	$: console.log($availableWidth);
-
 	$: if ($location.row === $dims - 1 && $location.col === $dims - 1) {
 		$gameState = "post";
 	}

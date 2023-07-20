@@ -23,7 +23,10 @@
 		<p class="dir">Go to</p>
 		<button
 			id="story"
-			on:click={() => (location.href = "")}
+			on:click={() => {
+				location.href = "";
+				window.scrollTo(0, 0);
+			}}
 			disabled={$storyInView}
 		>
 			<p>Story</p>

@@ -30,16 +30,6 @@
 			<span>This is the...</span>
 			{hed}
 		</h1>
-
-		<!-- <button
-			class="link"
-			class:visible={zoom}
-			style={`--delay: ${zoomDuration ? zoomDuration - 500 : 0}ms`}
-			on:click={() => (location.href = "#dashboard")}
-		>
-			See all mazes
-			<Icon name="arrow-right" />
-		</button> -->
 	</div>
 
 	<div class="steps">
@@ -127,33 +117,12 @@
 		opacity: 1;
 	}
 	h1 span {
-		font-family: var(--sans);
 		font-size: 1.8rem;
 		display: block;
 		color: var(--color-pp-dark);
 		text-transform: none;
 		margin: 0.5rem 0 1rem;
 	}
-	.link {
-		position: absolute;
-		bottom: 2rem;
-		right: 0;
-		opacity: 0;
-		color: var(--color-pp-text-gray);
-		background: none;
-		display: flex;
-		align-items: center;
-	}
-	.link.visible {
-		transition: opacity calc(var(--1s) * 0.5) var(--delay);
-		opacity: 1;
-	}
-	.link:hover {
-		color: var(--color-pp-text-gray-1);
-		transform: translateX(0.125rem);
-		transition: all 0.2s ease-in;
-	}
-
 	@media (max-width: 800px) {
 		h1 {
 			font-size: 3rem;

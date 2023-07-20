@@ -4,6 +4,7 @@
 	import { getContext } from "svelte";
 	import { selectedState } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
+	import _ from "lodash";
 
 	const { getOrder } = getContext("dashboard");
 	const order = getOrder();
@@ -11,15 +12,14 @@
 	let selectState = "default";
 	const highlightOptions = [
 		{ label: "select state", value: "default" },
-		...states.map((d) => ({ label: d.name, value: d.id }))
+		...states.map((d) => ({ label: _.startCase(d.name), value: d.id }))
 	];
 	$: orderOptions = [
-		{ label: "alphabetically", value: "alpha" },
-		{ label: "geographically", value: "geo", disabled: mobile },
-		{ label: "regionally", value: "region" },
-		{ label: "by barriers", value: "barriers" }
+		{ label: "Alphabetically", value: "alpha" },
+		{ label: "Geographically", value: "geo", disabled: mobile },
+		{ label: "Regionally", value: "region" },
+		{ label: "By barriers", value: "barriers" }
 	];
-
 	$: mobile = $viewport.width < 600;
 	$: if (selectState && selectState !== "default") $selectedState = selectState;
 </script>
