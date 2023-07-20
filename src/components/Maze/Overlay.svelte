@@ -64,23 +64,19 @@
 				/>
 			</svg>
 			<div class="loading-text">Loading...</div>
-		{:else}
-			<div
-				transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}
-				style="display: flex; flex-direction: column; align-items: center"
-			>
-				<Button
-					text={"start maze"}
-					onClick={start}
-					style={"z-index: 11; margin-bottom: 1rem"}
-				/>
-				{#if mobile}
-					<div class="instructions">Tap arrow buttons to navigate</div>
-				{:else}
-					<KeysDesktop background={true} />
-				{/if}
-			</div>
 		{/if}
+		<div class:visible={!loading} class="pre-game">
+			<Button
+				text={"start maze"}
+				onClick={start}
+				style={"z-index: 11; margin-bottom: 1rem"}
+			/>
+			{#if mobile}
+				<div class="instructions">Tap arrow buttons to navigate</div>
+			{:else}
+				<KeysDesktop background={true} />
+			{/if}
+		</div>
 	{:else if $gameState === "post"}
 		<p class="text">Maze completed!</p>
 		<p class="text small">
@@ -126,6 +122,13 @@
 		z-index: 10;
 		opacity: 0;
 		transition: opacity calc(var(--1s) * 1) calc(var(--1s) * 0.2) ease-in-out;
+	}
+	.pre-game {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		opacity: 0;
+		transition: opacity calc(var(--1s) * 0.5);
 	}
 	.visible {
 		opacity: 1;

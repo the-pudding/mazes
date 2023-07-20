@@ -63,9 +63,6 @@
 	summary:hover {
 		cursor: pointer;
 	}
-	p {
-		color: var(--color-pp-text-gray);
-	}
 	th,
 	td {
 		padding: 0.5rem;

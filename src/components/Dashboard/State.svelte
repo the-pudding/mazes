@@ -71,7 +71,7 @@
 	on:click={onClick}
 	on:keydown={onKeyDown}
 	role="button"
-	tabindex="0"
+	tabindex={intro ? "-1" : "0"}
 >
 	{#if longNames.find((d) => d.id === id)}
 		<div

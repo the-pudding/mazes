@@ -18,7 +18,11 @@
 		<div class="sides">
 			<div class="left">
 				<div>
-					<a href="https://www.plannedparenthood.org/" target="_blank">
+					<a
+						href="https://www.plannedparenthood.org/"
+						target="_blank"
+						aria-label="link to planned parenthood website"
+					>
 						<div class="logo-wrapper">
 							{@html ppfa}
 						</div>
@@ -31,7 +35,12 @@
 
 				<div class="socials">
 					{#each social as { id, link }}
-						<a href={link} target="_blank" class="social-link">
+						<a
+							href={link}
+							target="_blank"
+							class="social-link"
+							aria-label={`link to planned parenthood's ${id}`}
+						>
 							{@html icons[id]}
 						</a>
 					{/each}

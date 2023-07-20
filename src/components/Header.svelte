@@ -96,7 +96,6 @@
 	}
 	button {
 		background: none;
-		border-radius: 100%;
 		border: none;
 		display: flex;
 		flex-direction: row;

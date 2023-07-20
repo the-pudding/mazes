@@ -44,12 +44,16 @@
 
 <div class="footer" class:visible={$gameState !== "pre"}>
 	<div class="buttons">
-		<Button text={buttonText} onClick={$gameState === "pre" ? start : reset} />
+		<Button
+			text={buttonText}
+			onClick={$gameState === "pre" ? start : reset}
+			disabled={$gameState === "pre"}
+		/>
 
 		<button
 			class="complete text"
 			on:click={solve}
-			disabled={$gameState === "post"}
+			disabled={$gameState !== "mid"}
 			>{mobile ? "Solve" : "Complete the maze"}</button
 		>
 	</div>

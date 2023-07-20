@@ -6,7 +6,7 @@
 	import Overlay from "$components/Maze/Overlay.svelte";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
-	import { pathLength } from "$stores/misc.js";
+	import { pathLength, globalGameState } from "$stores/misc.js";
 	import { fade } from "svelte/transition";
 	import viewport from "$stores/viewport.js";
 	import mq from "$stores/mq.js";
@@ -52,6 +52,7 @@
 		getGameState: () => gameState
 	});
 
+	$: $globalGameState = $gameState;
 	$: $data = wallData;
 	$: $path = mazePath;
 	$: $dims = size;

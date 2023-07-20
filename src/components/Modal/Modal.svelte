@@ -1,10 +1,15 @@
 <script>
 	import Contents from "$components/Modal/Contents.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
-	import { selectedState, dashboardInView } from "$stores/misc.js";
+	import {
+		selectedState,
+		dashboardInView,
+		globalGameState
+	} from "$stores/misc.js";
 	import { browser } from "$app/environment";
-	import { onMount, tick } from "svelte";
+	import { tick } from "svelte";
 	import states from "$data/states.csv";
+	import viewport from "$stores/viewport.js";
 
 	let modalEl;
 	let stateEl;
@@ -19,10 +24,12 @@
 	$: if (browser) document.body.classList.toggle("noscroll", open);
 	$: if (open && modalEl) focusModal();
 	$: if (!open && $dashboardInView && stateEl) focusState();
+	$: mobile = $viewport.width < 600;
+	$: mobile, $globalGameState, getFocusable();
 
 	const focusModal = async () => {
 		await tick();
-		getFocusable();
+		await getFocusable();
 		modalEl.focus();
 		if ($dashboardInView)
 			stateEl = document.querySelector(`.state#${$selectedState}-state`);
@@ -50,18 +57,20 @@
 			}
 		}
 	};
-	const getFocusable = () => {
-		const focusable = modalEl.querySelectorAll(
-			"a[href], button, textarea, input[type='text'], input[type='radio'], input[type='checkbox'], select"
-		);
+	const getFocusable = async () => {
+		if (!modalEl) return;
+
+		await tick();
+		const focusable = Array.from(
+			modalEl.querySelectorAll(
+				"a[href], button, textarea, input[type='text'], input[type='radio'], input[type='checkbox'], select"
+			)
+		).filter((d) => !d.disabled);
+
 		numFocusable = focusable.length;
 		firstFocusable = focusable[0];
 		lastFocusable = focusable[numFocusable - 1];
 	};
-
-	onMount(() => {
-		getFocusable();
-	});
 </script>
 
 <svelte:body class:modal-open={true} />
