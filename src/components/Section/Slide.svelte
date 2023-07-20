@@ -87,7 +87,7 @@
 			#a-right-removed .panel:nth-of-type(4) .panel-text,
 			.panel:nth-of-type(4) .panel-underlay
 		) {
-		min-width: 35rem;
+		min-width: 30rem;
 		clip-path: polygon(5% 5%, 100% 10%, 100% 95%, 0% 100%);
 	}
 	:global(#the-peoples-power .panel) {
@@ -140,7 +140,21 @@
 
 	@media (max-width: 600px) {
 		.container {
-			font-size: 1.6rem;
+			font-size: 1.4rem;
+			margin: 2rem 0;
+		}
+		.panel {
+			min-height: 8rem;
+		}
+		:global(
+			#a-right-removed .panel:nth-of-type(4) .panel-text,
+			.panel:nth-of-type(4) .panel-underlay
+		) {
+		min-width: 0;
+		}
+
+		:global(#the-peoples-power .panel) {
+			min-height: 15rem;
 		}
 	}
 </style>

@@ -80,6 +80,7 @@
 		margin: 0;
 		padding: 1rem 0 0 0;
 		text-align: center;
+		line-height: 1;
 	}
 	#the-mazes {
 		max-width: 800px;
