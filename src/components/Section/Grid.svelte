@@ -38,7 +38,7 @@
 						alt={`maze for ${states.find((d) => d.id === id).name}`}
 						class:hide={ban}
 					/>
-					{#if ban}<div class="black-box" />{/if}
+					<div class="fill" class:ban />
 				</div>
 			</div>
 		{/each}
@@ -65,11 +65,10 @@
 	.name {
 		text-align: center;
 		color: var(--color-pp-text-gray);
+		pointer-events: none;
 	}
 	.state:hover {
 		cursor: pointer;
-		background: var(--color-pp-gray-1);
-		transition: all 0.2s ease-in;
 	}
 	.state:hover .name {
 		color: black;
@@ -84,12 +83,22 @@
 		position: relative;
 		pointer-events: none;
 	}
-	.black-box {
+	.fill {
 		position: absolute;
 		bottom: 0;
 		height: 100%;
 		width: 100%;
+		background: var(--color-pp-gray-1);
+		opacity: 0;
+		transition: opacity calc(var(--1s) * 0.1);
+	}
+	.state:hover .fill {
+		opacity: 0.5;
+	}
+	.ban {
 		background: black;
+		opacity: 1;
+		visibility: visible;
 	}
 
 	@media (max-width: 800px) {
