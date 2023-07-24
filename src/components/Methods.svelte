@@ -4,7 +4,7 @@
 	import { language } from "$stores/misc.js";
 	import sources from "$data/sources.csv";
 
-	const cols = ["metric", "source"];
+	const cols = ["metric", "source", "lastUpdated"];
 </script>
 
 <section id="methods">

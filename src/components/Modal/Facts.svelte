@@ -21,7 +21,7 @@
 	$: displayList = stateFacts.map((d, i) => ({
 		...d,
 		i,
-		visible: ban || $pathLength >= thresholds[i]
+		visible: ban || $selectedState === "wi" || $pathLength >= thresholds[i]
 	}));
 	$: visibleFacts = displayList.filter((d) => d.visible);
 	$: numFacts = visibleFacts.length;

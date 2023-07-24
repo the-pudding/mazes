@@ -34,13 +34,15 @@
 </script>
 
 <div class="share">
-	<button class="copy-btn" data-clipboard-text={copyText}>
-		<Icon name="share" />
-	</button>
+	<div class="click">
+		<button class="copy-btn" data-clipboard-text={copyText}>
+			<Icon name="share" />
+		</button>
+		<div class="message" class:visible={showMessage}>Copied to clipboard!</div>
+	</div>
 
 	<div class="text">
 		<div class="label" class:visible={!showMessage}>Share</div>
-		<div class="message" class:visible={showMessage}>Copied to clipboard!</div>
 	</div>
 </div>
 
@@ -68,29 +70,32 @@
 	.text {
 		color: var(--color-pp-text-gray);
 		position: relative;
-		font-size: 1rem;
+		font-size: 0.9rem;
 		pointer-events: none;
 		margin-left: 8px;
 	}
 	.label {
-		position: absolute;
-		left: 0;
-		top: 50%;
-		transform: translate(0, -50%);
-		width: 100%;
 		opacity: 0;
 		transition: opacity calc(var(--1s) * 0.3);
 	}
+	.click {
+		position: relative;
+	}
 	.message {
+		color: var(--color-pp-text-gray);
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: translate(0%, -120%);
+		font-size: 0.75rem;
 		opacity: 0;
-		transform: translateY(-0.3rem);
 		transition: all calc(var(--1s) * 0.3);
 	}
 	.visible {
 		opacity: 1;
 	}
 	.message.visible {
-		transform: translateY(0);
+		transform: translate(0%, -110%);
 	}
 	@media (max-width: 600px) {
 		button {

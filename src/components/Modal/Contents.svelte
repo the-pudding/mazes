@@ -18,10 +18,17 @@
 
 	const { modalNote } = copy;
 	const scale = scaleQuantize()
-		.domain(extent(states, (d) => +d.score))
+		.domain(
+			extent(
+				states.filter((d) => d.ban === "false"),
+				(d) => +d.score
+			)
+		)
 		.range([
 			"one of the <strong>most complex</strong> states",
+			"a <strong>very complex</strong> state",
 			"a <strong>moderately complex</strong> state",
+			"a <strong>somewhat complex</strong> state",
 			"one of the <strong>least complex</strong> states"
 		]);
 
@@ -46,7 +53,6 @@
 <div class="title">
 	<h2>
 		{name}
-
 		<Share />
 	</h2>
 	{#if !ban}
@@ -72,6 +78,19 @@
 							<span><Icon name="external-link" /></span></a
 						>
 					</p>
+				</div>
+			{:else if $selectedState === "wi"}
+				<div
+					class="white-box"
+					style:width={`${width}px`}
+					style:height={`${width}px`}
+				>
+					<img
+						src="assets/img/states/wi.png"
+						alt="maze for wisconsin"
+						class="wi"
+					/>
+					<p>{@html copy.WINote[$language]}</p>
 				</div>
 			{:else}
 				<Maze
@@ -134,6 +153,18 @@
 	.title div {
 		font-size: 1.3rem;
 	}
+	.white-box {
+		background: rgb(255, 255, 255, 0.95);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+	}
+	.white-box {
+		text-align: center;
+		font-size: 1.2rem;
+	}
 	.black-box {
 		background: black;
 		display: flex;
@@ -155,6 +186,12 @@
 	}
 	.black-box a span {
 		font-size: 0.65rem;
+	}
+	img.wi {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
 	}
 
 	@media (max-width: 600px) {
