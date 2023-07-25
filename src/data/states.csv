@@ -25,7 +25,7 @@ nh,new hampshire,135.1502261,northeast,2,12,false,https://states.guttmacher.org/
 nj,new jersey,165.8651335,northeast,4,10,false,https://states.guttmacher.org/policies/new-jersey/abortion-policies
 nm,new mexico,149.5345599,west,6,4,false,https://states.guttmacher.org/policies/new-mexico/abortion-policies
 ny,new york,153.4720442,northeast,3,10,false,https://states.guttmacher.org/policies/new-york/abortion-policies
-nc,north carolina,109.3959427,south,6,10,true,https://states.guttmacher.org/policies/north-carolina/abortion-policies
+nc,north carolina,109.3959427,south,6,10,false,https://states.guttmacher.org/policies/north-carolina/abortion-policies
 oh,ohio,95.77119105,midwest,4,8,false,https://states.guttmacher.org/policies/ohio/abortion-policies
 or,oregon,168.7914115,west,4,2,false,https://states.guttmacher.org/policies/oregon/abortion-policies
 pa,pennsylvania,114.2757608,northeast,4,9,false,https://states.guttmacher.org/policies/pennsylvania/abortion-policies

@@ -90,19 +90,19 @@
 		min-width: 30rem;
 		clip-path: polygon(5% 5%, 100% 10%, 100% 95%, 0% 100%);
 	}
-	:global(#the-peoples-power .panel) {
+	:global(#the-people-push-back .panel) {
 		min-height: 14rem;
 	}
 	:global(
-			#the-peoples-power .panel:nth-of-type(2) .panel-text,
-			#the-peoples-power .panel:nth-of-type(2) .panel-underlay
+			#the-people-push-back .panel:nth-of-type(2) .panel-text,
+			#the-people-push-back .panel:nth-of-type(2) .panel-underlay
 		) {
 		min-width: 90%;
 		clip-path: polygon(0% 5%, 100% 0%, 100% 90%, 2% 100%);
 	}
 	:global(
-			#the-peoples-power .panel:nth-of-type(3) .panel-text,
-			#the-peoples-power .panel:nth-of-type(3) .panel-underlay
+			#the-people-push-back .panel:nth-of-type(3) .panel-text,
+			#the-people-push-back .panel:nth-of-type(3) .panel-underlay
 		) {
 		min-width: 90%;
 		clip-path: polygon(0% 5%, 100% 10%, 100% 100%, 0% 95%);
@@ -147,13 +147,13 @@
 			min-height: 8rem;
 		}
 		:global(
-			#a-right-removed .panel:nth-of-type(4) .panel-text,
-			.panel:nth-of-type(4) .panel-underlay
-		) {
-		min-width: 0;
+				#a-right-removed .panel:nth-of-type(4) .panel-text,
+				.panel:nth-of-type(4) .panel-underlay
+			) {
+			min-width: 0;
 		}
 
-		:global(#the-peoples-power .panel) {
+		:global(#the-people-push-back .panel) {
 			min-height: 15rem;
 		}
 	}

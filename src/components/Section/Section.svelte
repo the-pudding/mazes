@@ -38,7 +38,7 @@
 
 				{#each id === "a-right-removed" ? [1] : [1, 2, 3] as i}
 					{@const alt =
-						id === "the-peoples-power"
+						id === "the-people-push-back"
 							? "A fist risen in the air"
 							: "The 9 Supreme Court justices, emphasizing the conservative majority of 6 justices"}
 					<img
