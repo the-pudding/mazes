@@ -35,7 +35,10 @@
 	$: mobile = $viewport.width < 600;
 	$: stateData = states.find((d) => d.id === $selectedState);
 	$: ban = stateData?.ban === "true";
-	$: name = _.startCase(stateData?.name);
+	$: name =
+		$viewport.width < 800 && $selectedState === "dc"
+			? "D.C."
+			: _.startCase(stateData?.name);
 	$: guttmacherLink = stateData?.guttmacher;
 	$: score = stateData?.score;
 	$: level = scale(score);
@@ -52,7 +55,7 @@
 
 <div class="title">
 	<h2>
-		{name}
+		<span>{name}</span>
 		<Share />
 	</h2>
 	{#if !ban}
@@ -194,6 +197,11 @@
 		z-index: -1;
 	}
 
+	@media (max-width: 800px) {
+		h2 {
+			font-size: 2.5rem;
+		}
+	}
 	@media (max-width: 600px) {
 		.play {
 			width: 100%;
@@ -212,6 +220,11 @@
 		.facts {
 			padding: 0;
 			margin-top: 1.5rem;
+		}
+	}
+	@media (max-width: 400px) {
+		h2 {
+			font-size: 1.5rem;
 		}
 	}
 </style>

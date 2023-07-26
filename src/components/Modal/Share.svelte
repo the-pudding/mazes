@@ -102,7 +102,7 @@
 			font-size: 1rem;
 		}
 		.text {
-			font-size: 0.75rem;
+			display: none;
 		}
 	}
 </style>
