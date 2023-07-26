@@ -42,7 +42,7 @@
 	</div>
 
 	<div class="text">
-		<div class="label" class:visible={!showMessage}>Share</div>
+		<div class="label">Share</div>
 	</div>
 </div>
 
@@ -74,32 +74,32 @@
 		pointer-events: none;
 		margin-left: 8px;
 	}
-	.label {
-		opacity: 0;
-		transition: opacity calc(var(--1s) * 0.3);
-	}
 	.click {
 		position: relative;
 	}
 	.message {
 		color: var(--color-pp-text-gray);
 		position: absolute;
-		top: 0;
-		left: 0;
-		transform: translate(0%, -120%);
+		top: 50%;
+		left: 50%;
 		font-size: 0.75rem;
+		background: rgb(232, 229, 225, 0.9);
+		padding: 4px;
+		text-align: center;
+		transform: translate(-50%, -160%);
+		transform-box: fill-box;
 		opacity: 0;
 		transition: all calc(var(--1s) * 0.3);
 	}
 	.visible {
 		opacity: 1;
 	}
-	.message.visible {
-		transform: translate(0%, -110%);
-	}
 	@media (max-width: 600px) {
 		button {
 			font-size: 1rem;
+		}
+		.message {
+			transform: translate(-50%, 50%);
 		}
 		.text {
 			display: none;
