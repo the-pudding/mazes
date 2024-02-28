@@ -96,7 +96,7 @@
 		position: fixed;
 		width: 90%;
 		max-width: 1000px;
-		max-height: calc(100vh - 5.5rem);
+		height: calc(100vh - 5.5rem);
 		margin: 1.5rem 0 4rem 0;
 		top: 0;
 		left: 50%;
@@ -108,17 +108,8 @@
 	}
 	.modal.open {
 		z-index: 1000;
-		display: grid;
-		grid-template-rows: minmax(115px, 1fr) 2fr 1fr;
-		grid-template-columns: minmax(200px, 1fr) minmax(0, 1.3fr);
-		grid-template-areas:
-			"top top"
-			"side main"
-			"bottom bottom";
-		gap: 2rem 1rem;
-	}
-	.modal.ban {
-		grid-template-rows: minmax(100px, 0.33fr) 2fr 0.5fr;
+		display: flex;
+		flex-direction: column;
 	}
 	.close {
 		display: flex;

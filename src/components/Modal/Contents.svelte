@@ -1,6 +1,5 @@
 <script>
 	import Maze from "$components/Maze/Maze.svelte";
-	import Facts from "$components/Modal/Facts.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
 	import Share from "$components/Modal/Share.svelte";
 	import loadMazeData from "$utils/loadMazeData.js";
@@ -65,50 +64,10 @@
 	{/if}
 </div>
 
-<div class="play">
-	<div class="maze" bind:clientWidth={width}>
-		{#key $selectedState}
-			{#if ban}
-				<div
-					class="black-box"
-					style:width={`${width}px`}
-					style:height={`${width}px`}
-				>
-					<p>{@html copy.totalBanNote[$language]}</p>
-					<p>
-						<a href={guttmacherLink} target="_blank"
-							>Read more about {name}'s abortion policies
-							<span><Icon name="external-link" /></span></a
-						>
-					</p>
-				</div>
-			{:else if $selectedState === "wi"}
-				<div
-					class="white-box"
-					style:width={`${width}px`}
-					style:height={`${width}px`}
-				>
-					<img
-						src="assets/img/states/wi.png"
-						alt="maze for wisconsin"
-						class="wi"
-					/>
-					<p>{@html copy.WINote[$language]}</p>
-				</div>
-			{:else}
-				<Maze
-					wallData={data}
-					{size}
-					playable={true}
-					animated={false}
-					{loading}
-				/>
-			{/if}
-		{/key}
-	</div>
-</div>
-<div class="facts">
-	<Facts {ban} />
+<div class="maze" bind:clientWidth={width}>
+	{#key $selectedState}
+		<!-- <Maze wallData={data} {size} playable={true} animated={false} {loading} /> -->
+	{/key}
 </div>
 
 {#if !mobile}
@@ -118,27 +77,14 @@
 {/if}
 
 <style>
-	.title {
-		grid-area: top;
-	}
-	.facts {
-		grid-area: side;
-		overflow: scroll;
-		margin-top: -0.5rem;
-		padding-top: 1rem;
-	}
-	.play {
-		grid-area: main;
-		display: flex;
-		justify-content: center;
-	}
 	.maze {
 		width: 100%;
-		max-width: 359px;
 		position: relative;
+		background: lightgreen;
+		flex: 1;
+		margin: 2rem 0;
 	}
 	.bottom {
-		grid-area: bottom;
 		color: var(--color-pp-text-gray);
 		display: flex;
 		align-items: end;
@@ -203,10 +149,6 @@
 		}
 	}
 	@media (max-width: 600px) {
-		.play {
-			width: 100%;
-			margin-top: 2rem;
-		}
 		h2 {
 			font-size: 2rem;
 			margin: 0;
@@ -216,10 +158,6 @@
 		}
 		.maze {
 			max-width: 80%;
-		}
-		.facts {
-			padding: 0;
-			margin-top: 1.5rem;
 		}
 	}
 	@media (max-width: 400px) {

@@ -30,7 +30,7 @@
 </script>
 
 <article>
-	<div
+	<!-- <div
 		class="story"
 		class:faded={$selectedState}
 		use:inView={{ top: 250 }}
@@ -49,7 +49,7 @@
 				<Section {title} {chunks} />
 			{/each}
 		</div>
-	</div>
+	</div> -->
 
 	<div
 		id="dashboard"
@@ -62,11 +62,11 @@
 	</div>
 	<Modal />
 
-	<div class="end" class:faded={$selectedState}>
+	<!-- <div class="end" class:faded={$selectedState}>
 		<Methods />
 	</div>
 
-	<Footer />
+	<Footer /> -->
 </article>
 
 <style>

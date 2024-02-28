@@ -166,9 +166,9 @@
 	.intro .abbrev.visible {
 		opacity: 1;
 	}
-	img.hide {
+	/* img.hide {
 		visibility: hidden;
-	}
+	} */
 	.img-wrapper {
 		position: relative;
 		pointer-events: none;
@@ -186,11 +186,11 @@
 	.state.interactive:hover .fill {
 		opacity: 0.5;
 	}
-	.ban {
+	/* .ban {
 		background: black;
 		opacity: 1;
 		visibility: visible;
-	}
+	} */
 
 	@media (max-width: 800px) {
 		.state {
