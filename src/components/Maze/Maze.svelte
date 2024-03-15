@@ -12,8 +12,9 @@
 	import mq from "$stores/mq.js";
 	import _ from "lodash";
 
+	export let availableSpace;
 	export let wallData;
-	export let size;
+	export let numCells;
 	export let playable;
 	export let animated;
 	export let intro = false;
@@ -23,8 +24,8 @@
 
 	const data = writable(wallData);
 	const solution = writable([]);
-	const availableWidth = writable(0);
-	const width = writable(0);
+	const spaceAvailable = writable(0);
+	const mazeSize = writable(0);
 	const dims = writable(0);
 	const cellSize = writable(0);
 	const wallWidth = writable(0);
@@ -43,8 +44,8 @@
 		getSolution: () => solution,
 		getCellSize: () => cellSize,
 		getWallWidth: () => wallWidth,
-		getAvailableWidth: () => availableWidth,
-		getWidth: () => width,
+		getSpaceAvailable: () => spaceAvailable,
+		getMazeSize: () => mazeSize,
 		getDims: () => dims,
 		getPadding: () => padding,
 		getLocation: () => location,
@@ -55,13 +56,14 @@
 	$: $globalGameState = $gameState;
 	$: $data = wallData;
 	$: $path = mazePath;
-	$: $dims = size;
+	$: $spaceAvailable = availableSpace;
+	$: $mazeSize = availableSpace - 100;
+	$: $dims = numCells;
 	$: mobile = $viewport.width < 600;
 	$: withPadding = mobile && intro;
-	$: $width = $availableWidth;
-	$: $wallWidth = $width / 50;
+	$: $wallWidth = $mazeSize / 50;
 	$: $padding = $wallWidth / 2;
-	$: $cellSize = $dims ? ($width - $padding * 2) / $dims : 0;
+	$: $cellSize = $dims ? ($mazeSize - $padding * 2) / $dims : 0;
 	$: $pathLength = $path.length - 1;
 	$: labelsVisible = $gameState === "mid" && !mobile;
 	$: $solution = _.orderBy(
@@ -77,13 +79,13 @@
 	}
 </script>
 
-<div class="container" bind:clientWidth={$availableWidth}>
-	{#if $width}
-		<svg
-			width={withPadding ? $width + mobilePadding : $width}
-			height={$width}
-			class:filled={intro}
-		>
+<div
+	class="container"
+	style:width={`${$spaceAvailable}px`}
+	style:height={`${$spaceAvailable}px`}
+>
+	{#if $mazeSize}
+		<svg width={$mazeSize} height={$mazeSize} class:filled={intro}>
 			{#if !loading}
 				<g
 					class="fade"
@@ -116,7 +118,7 @@
 			class="label"
 			class:visible={labelsVisible}
 			style:right={0}
-			style:top={`${$width}px`}
+			style:top={`${$mazeSize}px`}
 		>
 			finish
 		</div>
@@ -135,7 +137,7 @@
 		background: var(--upper-bg);
 	}
 	.container {
-		width: 100%;
+		margin: auto;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

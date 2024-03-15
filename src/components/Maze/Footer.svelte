@@ -63,10 +63,11 @@
 
 <style>
 	.footer {
+		height: 100px;
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
-		margin-top: 3rem;
+		/* margin-top: 3rem; */
 		opacity: 0.1;
 	}
 	.visible {

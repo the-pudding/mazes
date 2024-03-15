@@ -13,10 +13,10 @@
 
 	export let loading;
 
-	const { getGameState, getWidth, getLocation, getDims, getPath, getData } =
+	const { getGameState, getMazeSize, getLocation, getDims, getPath, getData } =
 		getContext("maze");
 	const gameState = getGameState();
-	const width = getWidth();
+	const mazeSize = getMazeSize();
 	const location = getLocation();
 	const dims = getDims();
 	const path = getPath();
@@ -51,16 +51,16 @@
 	$: visible = mobile || $gameState === "pre" || $gameState === "post";
 </script>
 
-<div class="overlay" style:height={`${$width}px`} class:visible>
+<div class="overlay" style:height={`${$mazeSize}px`} class:visible>
 	{#if $gameState === "pre"}
 		{#if loading}
-			<svg width={$width} height={$width}>
+			<svg width={$mazeSize} height={$mazeSize}>
 				<path
-					d="M 0 0 L {$width} 0 L {$width} {$width} L 0 {$width} Z"
+					d="M 0 0 L {$mazeSize} 0 L {$mazeSize} {$mazeSize} L 0 {$mazeSize} Z"
 					fill="none"
 					stroke="var(--color-pp-text-gray)"
 					stroke-width={10}
-					style={`--offset: ${$width * 4}`}
+					style={`--offset: ${$mazeSize * 4}`}
 				/>
 			</svg>
 			<div class="loading-text">Loading...</div>

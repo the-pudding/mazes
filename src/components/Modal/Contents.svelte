@@ -13,6 +13,8 @@
 
 	let data;
 	let width;
+	let height;
+	$: availableSpace = Math.min(height, width);
 	let loading = false;
 
 	const { modalNote } = copy;
@@ -41,7 +43,7 @@
 	$: guttmacherLink = stateData?.guttmacher;
 	$: score = stateData?.score;
 	$: level = scale(score);
-	$: size = data && data.length ? Math.sqrt(data.length) : 0;
+	$: numCells = data && data.length ? Math.sqrt(data.length) : 0;
 	$: if ($selectedState) getMazeData();
 
 	const getMazeData = async () => {
@@ -64,9 +66,16 @@
 	{/if}
 </div>
 
-<div class="maze" bind:clientWidth={width}>
+<div class="maze" bind:clientWidth={width} bind:clientHeight={height}>
 	{#key $selectedState}
-		<!-- <Maze wallData={data} {size} playable={true} animated={false} {loading} /> -->
+		<Maze
+			{availableSpace}
+			wallData={data}
+			{numCells}
+			playable={true}
+			animated={false}
+			{loading}
+		/>
 	{/key}
 </div>
 
@@ -78,11 +87,10 @@
 
 <style>
 	.maze {
-		width: 100%;
 		position: relative;
-		background: lightgreen;
 		flex: 1;
-		margin: 2rem 0;
+		width: 100%;
+		margin: 2rem auto;
 	}
 	.bottom {
 		color: var(--color-pp-text-gray);
