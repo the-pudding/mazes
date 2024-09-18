@@ -37,7 +37,7 @@
 		"node": ">= 18.12.0"
 	},
 	"browserslist": "> 0.5%, last 4 versions, not ie <= 11, not ie_mob <= 11",
-	"subdirectory": "planned-parenthood",
+	"subdirectory": "mazes",
 	"dependencies": {
 		"clipboard": "^2.0.11",
 		"feather-icons": "^4.29.0",
