@@ -6,10 +6,10 @@
 /* colors defined in variables.css */
 :root {
 	/* font */
-	--sans: "Avenir Next Regular", Avenir Next, -apple-system, BlinkMacSystemFont,
+	--sans: "National Regular", Avenir Next, -apple-system, BlinkMacSystemFont,
 		Helvetica, Arial, sans-serif;
 	--serif: "Tiempos Text Web", Iowan Old Style, Times New Roman, Times, serif;
-	--mono: Menlo, Consolas, Monaco, monospace;
+	--mono: "Avenir Next Regular", Menlo, Consolas, Monaco, monospace;
 
 	/* z-index */
 	--z-bottom: -100;
