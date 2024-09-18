@@ -95,7 +95,7 @@
 	}
 	.abbrev {
 		font-family: var(--sans);
-		color: #b0a380;
+		color: var(--color-dark-tan);
 		text-align: center;
 		pointer-events: none;
 		white-space: nowrap;

@@ -36,7 +36,12 @@
 	--color-input-fg: var(--color-gray-900);
 	--color-placeholder: var(--color-gray-500);
 
-	--upper-bg: #f9f7f4;
+	/* colors */
+	--color-tan: #e7e2d4;
+	--color-dark-tan: #b0a380;
+	--color-accent-orange: #f96501;
+	--color-accent-purple: #6b50dc;
+
 	--font-bold: "Avenir Next Bold", Avenir Next;
 	--font-heavy: "Avenir Next Heavy", Avenir Next;
 

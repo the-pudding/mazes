@@ -59,8 +59,8 @@
 
 <style>
 	.bar {
-		background: #e7e2d4;
-		color: #b0a380;
+		background: var(--color-tan);
+		color: var(--color-dark-tan);
 		display: flex;
 		justify-content: space-evenly;
 		padding: 1rem;
