@@ -1,7 +1,6 @@
 <script>
-	import Illinois from "$components/Dashboard/Illinois.svelte";
 	import { getContext } from "svelte";
-	import { selectedState, scrollStep, direction } from "$stores/misc.js";
+	import { selectedState } from "$stores/misc.js";
 	import _ from "lodash";
 	import states from "$data/states.csv";
 
@@ -9,13 +8,10 @@
 	export let label;
 	export let row;
 	export let col;
-	export let ban;
 
-	const { intro, getOrder, getColumnWidth, getIsZoomedIn } =
-		getContext("dashboard");
+	const { getOrder, getColumnWidth } = getContext("dashboard");
 	const order = getOrder();
 	const columnWidth = getColumnWidth();
-	const isZoomedIn = getIsZoomedIn();
 
 	const longNames = [
 		{ id: "dc", shortened: "D.C." },
@@ -35,49 +31,34 @@
 	let labelWidth;
 
 	$: geo = $order === "geo";
-	$: showAbbrevs = (intro && !$isZoomedIn) || !intro;
-	$: faded = visible && id !== "il" && intro && $isZoomedIn;
-	$: visible =
-		!intro ||
-		id === "il" ||
-		$scrollStep >= 0 ||
-		($scrollStep === undefined && $direction === "down");
 
 	const onClick = (e) => {
-		if (!intro) {
-			const id = e.target.id.replace("-state", "");
-			$selectedState = id;
-		}
+		const id = e.target.id.replace("-state", "");
+		$selectedState = id;
 	};
 	const onKeyDown = (e) => {
-		if (!intro) {
-			if (e.keyCode === 13 || e.keyCode === 32) {
-				const id = e.target.id.replace("-state", "");
-				$selectedState = id;
-			}
+		if (e.keyCode === 13 || e.keyCode === 32) {
+			const id = e.target.id.replace("-state", "");
+			$selectedState = id;
 		}
 	};
 </script>
 
 <div
 	class="state"
-	class:visible
 	class:geo
-	class:interactive={!intro}
-	class:intro
-	class:faded
-	id={intro ? `${id}-intro` : `${id}-state`}
+	{id}
 	style={row && col ? `--row: ${row}; --col: ${col}` : null}
 	on:click={onClick}
 	on:keydown={onKeyDown}
 	role="button"
-	tabindex={intro ? "-1" : "0"}
+	tabindex="0"
 >
 	{#if longNames.find((d) => d.id === id)}
 		<div
 			class="abbrev"
 			bind:clientWidth={labelWidth}
-			class:visible={showAbbrevs && labelWidth <= $columnWidth}
+			class:visible={labelWidth <= $columnWidth}
 		>
 			{label}
 
@@ -86,23 +67,16 @@
 			</div>
 		</div>
 	{:else}
-		<div class="abbrev" class:visible={showAbbrevs}>
+		<div class="abbrev visible">
 			{label}
 		</div>
 	{/if}
 
 	<div class="img-wrapper">
-		{#if intro && id === "il"}
-			<Illinois />
-		{:else}
-			<img
-				src={`assets/img/states/${id}.png`}
-				alt={`maze for ${states.find((d) => d.id === id).name}`}
-				class:hide={ban}
-			/>
-		{/if}
-
-		<div class="fill" class:ban />
+		<img
+			src={`assets/img/states/${id}.png`}
+			alt={`maze for ${states.find((d) => d.id === id).name}`}
+		/>
 	</div>
 </div>
 
@@ -114,45 +88,21 @@
 		grid-row: auto;
 		grid-column: auto;
 		padding: 0.25rem;
-		opacity: 0;
-		transition: all calc(var(--1s) * 0.3) ease-in-out;
-	}
-	.state.visible {
-		opacity: 1;
-	}
-	.state.faded {
-		opacity: 0.05;
 	}
 	.state.geo {
 		grid-row: var(--row);
 		grid-column: var(--col);
 	}
-	.state.interactive:hover {
-		cursor: pointer;
-	}
-	.state.interactive:focus {
-		outline: 3px solid var(--color-pp-magenta);
-		border-radius: 3px;
-	}
-	.state.interactive:focus .abbrev,
-	.state.interactive:hover .abbrev {
-		color: black;
-		font-family: var(--font-heavy);
-		font-weight: 900;
-		transition: all 0.2s ease-in;
-	}
 	.abbrev {
 		font-family: var(--sans);
-		color: var(--color-pp-text-gray);
+		color: #b0a380;
 		text-align: center;
 		pointer-events: none;
 		white-space: nowrap;
 		visibility: hidden;
-		transition: opacity calc(var(--1s) * 0.3) ease-in-out;
 	}
-	.intro .abbrev {
+	.abbrev.visible {
 		visibility: visible;
-		opacity: 0;
 	}
 	.shortened {
 		position: absolute;
@@ -160,47 +110,16 @@
 		left: 50%;
 		transform: translate(-50%, 0);
 	}
-	.abbrev.visible {
-		visibility: visible;
-	}
-	.intro .abbrev.visible {
-		opacity: 1;
-	}
-	/* img.hide {
-		visibility: hidden;
-	} */
 	.img-wrapper {
 		position: relative;
 		pointer-events: none;
 		width: 100%;
 	}
-	.fill {
-		position: absolute;
-		bottom: 0;
-		height: 100%;
-		width: 100%;
-		background: var(--color-pp-gray-1);
-		opacity: 0;
-		transition: opacity calc(var(--1s) * 0.1);
-	}
-	.state.interactive:hover .fill {
-		opacity: 0.5;
-	}
-	/* .ban {
-		background: black;
-		opacity: 1;
-		visibility: visible;
-	} */
 
 	@media (max-width: 800px) {
 		.state {
 			font-size: 0.8rem;
 			padding: 0.1rem;
-		}
-	}
-	@media (max-width: 600px) {
-		.intro .abbrev {
-			font-size: 0.5rem;
 		}
 	}
 </style>

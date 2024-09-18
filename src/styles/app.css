@@ -21,12 +21,12 @@
 	--border-radius: 2px;
 	--font-body: var(--sans);
 	--font-form: var(--sans);
-	--color-bg: var(--color-white);
-	--color-fg: var(--color-gray-900);
+	--color-bg: #fffdf8;
+	--color-fg: #1c1246;
 	--color-primary: var(--color-black);
 	--color-link: var(--color-black);
-	--color-focus: var(--color-pp-dark-purple);
-	--color-mark: var(--color-pp-magenta);
+	--color-focus: var(--color-purple);
+	--color-mark: var(--color-purple);
 	--color-selection: var(--color-gray-300);
 	--color-border: var(--color-gray-300);
 	--color-button-bg: var(--color-gray-300);

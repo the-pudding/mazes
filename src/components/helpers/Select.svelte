@@ -39,12 +39,12 @@
 	}
 	select {
 		width: 100%;
-		height: 50px;
+		height: 40px;
 		font-family: inherit;
 		font-size: 1em;
 		cursor: pointer;
-		background: var(--color-white);
-		color: var(--color-gray-900);
+		background: #fffdf8;
+		color: var(--color-fg);
 		border-radius: 4px;
 		padding: 0.5em 2rem 0.5em 0.5em;
 		appearance: none;

@@ -43,18 +43,18 @@
 		{#each regions as region}
 			{@const regionStates = sortedStates.filter((d) => d.region === region)}
 			<h3>{_.startCase(region)}</h3>
-			{#each regionStates as { id, name, ban }}
+			{#each regionStates as { id, name }}
 				{@const label = _.startCase(name)}
-				<State {id} {label} ban={ban === "true"} />
+				<State {id} {label} />
 			{/each}
 		{/each}
 	{:else}
 		{#if $order === "barriers"}
 			<h3>Fewest to most barriers</h3>
 		{/if}
-		{#each sortedStates as { id, name, row, col, ban }}
+		{#each sortedStates as { id, name, row, col }}
 			{@const label = geo ? id.toUpperCase() : _.startCase(name)}
-			<State {id} {label} {row} {col} ban={ban === "true"} />
+			<State {id} {label} {row} {col} />
 		{/each}
 	{/if}
 </figure>
@@ -62,6 +62,7 @@
 <style>
 	figure {
 		display: grid;
+		height: calc(100vh - 70px);
 		max-width: min(100%, 900px);
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 		gap: 1rem;

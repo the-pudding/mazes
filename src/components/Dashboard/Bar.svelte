@@ -10,10 +10,21 @@
 	const order = getOrder();
 
 	let selectState = "default";
+	let selectStory = "courtney";
+
 	const highlightOptions = [
 		{ label: "select state", value: "default" },
 		...states.map((d) => ({ label: _.startCase(d.name), value: d.id }))
 	];
+	const storyOptions = [
+		{ label: "Courtney", value: "courtney" },
+		{ label: "Margot", value: "margot" },
+		{ label: "Simone", value: "simone" },
+		{ label: "Billie", value: "billie" },
+		{ label: "Ava", value: "ava" },
+		{ label: "Lucia", value: "lucia" }
+	];
+
 	$: orderOptions = [
 		{ label: "Alphabetically", value: "alpha" },
 		{ label: "Geographically", value: "geo", disabled: mobile },
@@ -24,9 +35,9 @@
 	$: if (selectState && selectState !== "default") $selectedState = selectState;
 </script>
 
-<div class="top-bar">
+<div class="bar">
 	<div class="select">
-		<Select label="Order" options={orderOptions} bind:value={$order} />
+		<Select label="Order mazes" options={orderOptions} bind:value={$order} />
 	</div>
 
 	<div class="select">
@@ -36,17 +47,27 @@
 			bind:value={selectState}
 		/>
 	</div>
+
+	<div class="select">
+		<Select
+			label={"Pick a story"}
+			options={storyOptions}
+			bind:value={selectStory}
+		/>
+	</div>
 </div>
 
 <style>
-	.top-bar {
-		background: var(--color-pp-gray-1);
+	.bar {
+		background: #e7e2d4;
+		color: #b0a380;
 		display: flex;
 		justify-content: space-evenly;
 		padding: 1rem;
 		position: sticky;
 		top: 3rem;
 		z-index: 10;
+		height: 70px;
 		width: 100%;
 	}
 	.select {
@@ -54,7 +75,7 @@
 	}
 
 	@media (max-width: 600px) {
-		.top-bar {
+		.bar {
 			flex-direction: column;
 			align-items: center;
 			font-size: 0.8rem;
