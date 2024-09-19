@@ -99,7 +99,7 @@
 		background: white;
 		border: 1px solid var(--color-tan);
 		box-shadow: 0px 5px 10px rgba(232, 229, 225, 0.5);
-		padding: 2rem;
+		padding: 3rem;
 	}
 	.modal.open {
 		z-index: 1000;

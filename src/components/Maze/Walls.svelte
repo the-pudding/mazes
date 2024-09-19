@@ -2,7 +2,6 @@
 	import { getContext } from "svelte";
 	import { draw } from "svelte/transition";
 	import mq from "$stores/mq.js";
-	import { selectedState } from "$stores/misc.js";
 
 	const {
 		animated,
@@ -18,14 +17,9 @@
 	const wallWidth = getWallWidth();
 	const dims = getDims();
 	const padding = getPadding();
-	const gameState = getGameState();
 </script>
 
-<g
-	style:transform={`translate(${$padding}px, ${$padding}px)`}
-	class:faded={$selectedState &&
-		($gameState === "post" || $gameState === "pre")}
->
+<g style:transform={`translate(${$padding}px, ${$padding}px)`}>
 	{#each $data as { row, col, walls }}
 		{@const [top, right, bottom, left] = walls}
 		{@const movement = animated && !$mq.reducedMotion}
@@ -92,11 +86,5 @@
 	}
 	rect.finish {
 		opacity: 0.5;
-	}
-	g {
-		transition: opacity calc(var(--1s) * 0.5) ease-in-out;
-	}
-	g.faded {
-		opacity: 0.05;
 	}
 </style>

@@ -1,286 +1,49 @@
-id,name,thumb,text,julyCheck
-al,alabama,down,Completely bans abortion with very limited exceptions,X
-al,alabama,down,Explicitly excludes abortion in state constitution,X
-al,alabama,down,Does not mandate sex-ed,X
-al,alabama,down,"Has a materal mortality rate of 41.4 per 100,000 births",X
-al,alabama,up,55% of people Alabama want abortion to be legal,X
-ak,alaska,up,Abortion is not restricted by gestational age,X
-ak,alaska,up,Does not require minors to have parental consent,X
-ak,alaska,up,Does not have a waiting period,X
-ak,alaska,up,Does not have medically unnecessary regulations for abortion providers,X
-ak,alaska,down,86% of Alaska counties do not have an abortion provider,X
-ak,alaska,down,"Has the nation's highest rate of rape per 100,000 women",X
-az,arizona,down,Bans abortion at 15 weeks and later,X
-az,arizona,down,Requires at least 2 in-person counseling visits,X
-az,arizona,down,Requires minors to have parental consent,X
-az,arizona,down,Bans mailing of abortion pills,X
-az,arizona,up,62% of people in Arizona want abortion to be legal,X
-az,arizona,up,Has minimum wage above $12/hr,X
-ar,arkansas,down,Completely bans abortion with very limited exceptions,X
-ar,arkansas,down,Bans telehealth for medication abortion,X
-ar,arkansas,down,Has the nation's highest maternal mortality rate,X
-ar,arkansas,down,Has the nation's highest teen birth rate,X
-ar,arkansas,up,A bill to protect access to legal abortion was introduced in the state legislature,X
-ca,california,up,Bans abortion at viability,X
-ca,california,up,Explicitly protects abortion in state constitution,X
-ca,california,up,Requires private insurance to cover abortion,X
-ca,california,up,Has protections for abortion clinics,X
-ca,california,up,Has the nation's lowest maternal mortality rate,X
-ca,california,down,Allows individuals and religious institutions to refuse to provide abortion care,X
-co,colorado,up,Abortion is not restricted by gestational age,X
-co,colorado,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-co,colorado,up,"Has a ""shield law"" to protect patients and providers",X
-co,colorado,up,Requires sex-ed to be inclusive of sexual orientation,X
-co,colorado,down,Requires parents of minors to be notified,X
-co,colorado,down,Bans health insurance from covering abortion for public employees,X
-ct,connecticut,up,Bans abortion at viability,X
-ct,connecticut,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-ct,connecticut,up,Does not require minors to have parental consent,X
-ct,connecticut,up,Removes firearms from domestic violence abusers,X
-ct,connecticut,down,Has medically unnecessary regulations for abortion providers,X
-ct,connecticut,down,"Offers ""Choose Life"" license plate",X
-de,delaware,up,Bans abortion at viability,X
-de,delaware,up,"Has a ""shield law"" to protect patients and providers",X
-de,delaware,up,Does not have a waiting period,X
-de,delaware,down,Requires parents of minors to be notified,X
-de,delaware,down,"Offers ""Choose Life"" license plate funding anti-choice groups",X
-de,delaware,down,Bans most state Medicaid coverage of abortion,X
-dc,district of columbia,up,Abortion is not restricted by gestational age,X
-dc,district of columbia,up,Does not require minors to have parental consent,X
-dc,district of columbia,up,"Has a ""shield law"" to protect patients and providers",X
-dc,district of columbia,up,Has protections for abortion clinics,X
-dc,district of columbia,down,Has the nation's highest heath spending per capita,X
-dc,district of columbia,down,US Congress can impose unwanted laws on DC,X
-fl,florida,down,Bans abortion at 15 weeks and later,X
-fl,florida,down,Requires minors to have parental consent,X
-fl,florida,down,Requires at least 2 in-person counseling visits,X
-fl,florida,down,Has medically unnecessary regulations for abortion providers,X
-fl,florida,up,64% of people in Florida want abortion to be legal,X
-fl,florida,up,Requires confidentiality for minors' STI treatment,X
-ga,georgia,down,Bans abortion at 6 weeks and later,X
-ga,georgia,down,Has a 24-hour waiting period,X
-ga,georgia,down,Requires parents of minors to be notified,X
-ga,georgia,down,Pharmacists can refuse to dispense emergency contraception,X
-ga,georgia,up,57% of people in Georgia want abortion to be legal,X
-ga,georgia,up,Has ratified the Equal Rights Amendment,X
-hi,hawaii,up,Bans abortion at viability,X
-hi,hawaii,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-hi,hawaii,up,"Has a ""shield law"" to protect patients and providers",X
-hi,hawaii,up,Has the nation's lowest child care costs as a percentage of median income,X
-hi,hawaii,down,"Offers ""Choose Life"" license plate funding anti-choice groups",X
-hi,hawaii,down,Legislature introduced a bill to ban medication abortion,X
-id,idaho,down,Completely bans abortion with very limited exceptions,X
-id,idaho,down,Bans private health insurance from covering abortions in most cases,X
-id,idaho,down,"Offers ""Choose Life"" license plate funding anti-choice groups",X
-id,idaho,up,Enacted a law that expands telehealth,X
-il,illinois,up,Bans abortion at viability,X
-il,illinois,up,Requires private insurance to cover abortion,X
-il,illinois,up,"Has a ""shield law"" to protect patients and providers",X
-il,illinois,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-il,illinois,down,Allows individual and institutions to refuse to provide abortion care,X
-il,illinois,down,Does not mandate sex-ed,X
-in,indiana,down,Bans abortion at 22 weeks and later,X
-in,indiana,down,Requires at least 2 in-person counseling visits,X
-in,indiana,down,Bans private health insurance from covering abortions in most cases,X
-in,indiana,down,Has medically unnecessary regulations for abortion providers,X
-in,indiana,up,61% of people in Indiana want abortion to be legal,X
-in,indiana,up,Has ratified the Equal Rights Amendment,X
-ia,iowa,down,Bans abortion at 22 weeks and later,X
-ia,iowa,down,Requires at least 2 in-person counseling visits,X
-ia,iowa,down,Requires parents of minors to be notified,X
-ia,iowa,down,Bans abortion providers from receiving public funds,X
-ia,iowa,up,61% of people in Iowa want abortion to be legal,X
-ia,iowa,up,Has ratified the Equal Rights Amendment,X
-ks,kansas,down,Bans abortion at 22 weeks and later,X
-ks,kansas,down,Has a 24-hour waiting period,X
-ks,kansas,down,Requires minors to have parental consent,X
-ks,kansas,down,Bans private health insurance from covering abortions in most cases,X
-ks,kansas,up,Has protections for abortion clinics,X
-ks,kansas,up,Voters rejected a constitutional amendment that said there was no right to abortion ,X
-ky,kentucky,down,Completely bans abortion with very limited exceptions,X
-ky,kentucky,down,Bans telehealth for medication abortion,X
-ky,kentucky,up,Voters rejected a constitutional amendment to deny protections for abortions,X
-la,louisiana,down,Completely bans abortion with very limited exceptions,X
-la,louisiana,down,Explicitly excludes abortion in state constitution,X
-la,louisiana,down,Has the nation's highest rate of poverty,X
-la,louisiana,down,Bans telehealth for medication abortion,X
-me,maine,up,Bans abortion at viability,X
-me,maine,up,Requires private insurance to cover abortion,X
-me,maine,up,"Has a ""shield law"" to protect patients and providers",X
-me,maine,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-me,maine,down,"Allows individual providers to refuse abortion, contraception, and sterilization care",X
-me,maine,down,"Has the nation's highest number of ER visits per 1,000 people",X
-md,maryland,up,Bans abortion at viability,X
-md,maryland,up,Requires private insurance to cover abortion,X
-md,maryland,up,"Has a ""shield law"" to protect patients and providers",X
-md,maryland,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-md,maryland,down,Requires parents of minors to be notified,X
-md,maryland,down,Has medically unnecessary regulations for abortion providers,X
-ma,massachusetts,up,Bans abortion at 24 weeks and later,X
-ma,massachusetts,up,"Has a ""shield law"" to protect patients and providers",X
-ma,massachusetts,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-ma,massachusetts,up,Has the nation's lowest uninsured rate,X
-ma,massachusetts,down,Requires minors to have parental consent,X
-ma,massachusetts,down,"Offers ""Choose Life"" license plate funding anti-choice groups",X
-mi,michigan,up,Bans abortion at viability,X
-mi,michigan,up,Explicitly protects abortion in state constitution,X
-mi,michigan,up,"Has a ""shield law"" to protect patients and providers",X
-mi,michigan,down,Has a 24-hour waiting period,X
-mi,michigan,down,Bans private health insurance from covering abortions in most cases,X
-mi,michigan,down,Has medically unnecessary regulations for abortion providers,X
-mn,minnesota,up,Bans abortion at viability,X
-mn,minnesota,up,"Has a ""shield law"" to protect patients and providers",X
-mn,minnesota,up,Has protections for abortion clinics,X
-mn,minnesota,up,Removes firearms from domestic violence abusers,X
-mn,minnesota,down,Legislature introduced bills to restrict abortion coverage in Medicaid,X
-mn,minnesota,down,Allows individuals and private institutions to refuse to provide abortion care,X
-ms,mississippi,down,Completely bans abortion with very limited exceptions,X
-ms,mississippi,down,Bans mailing abortion pills,X
-ms,mississippi,up,Bills to repeal abortion restrictions were introduced in the state legislature,X
-mo,missouri,down,Completely bans abortion with very limited exceptions,X
-mo,missouri,down,Bans private health insurance from covering abortions in most cases,X
-mo,missouri,down,Bans mailing abortion pills,X
-mo,missouri,up,59% of people in Missouri want abortion to be legal,X
-mt,montana,up,Bans abortion at viability,X
-mt,montana,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-mt,montana,up,Has protections for abortion clinics,X
-mt,montana,down,Requires parents of minors to be notified,X
-mt,montana,down,A bill to ban abortion after 12 weeks was introduced by the state legislature,X
-mt,montana,down,"Offers ""Choose Life"" license plate funding anti-choice groups",X
-ne,nebraska,down,Bans abortion at 12 weeks and later,X
-ne,nebraska,down,Bans private health insurance from covering abortions in most cases,X
-ne,nebraska,down,Bans telehealth for medication abortion,X
-ne,nebraska,up,54% of people in Nebraska want abortion to be legal,X
-ne,nebraska,up,A bill to expand access to telehealth was introduced in the state legislature,X
-nv,nevada,up,Bans abortion at 24 weeks and later,X
-nv,nevada,up,Has protections for abortion clinics,X
-nv,nevada,up,"Has a ""shield law"" to protect patients and providers",X
-nv,nevada,down,Allows individuals and private institutions to refuse to provide abortion care,X
-nv,nevada,down,Does not require sex-ed to be inclusive of sexual orientation,X
-nv,nevada,down,88% of counties did not have an abortion provider in 2017,X
-nh,new hampshire,up,Bans abortion at 24 weeks and later,X
-nh,new hampshire,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-nh,new hampshire,up,Has the nation's lowest teen birth rate,X
-nh,new hampshire,down,Requires parents of minors to be notified,X
-nh,new hampshire,down,Bans abortion providers from receiving public funds,X
-nh,new hampshire,down,60% of counties did not have an abortion provider in 2017,X
-nj,new jersey,up,Abortion is not restricted by gestational age,X
-nj,new jersey,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-nj,new jersey,up,"Has a ""shield law"" to protect patients and providers",X
-nj,new jersey,up,Requires sex-ed to be inclusive of sexual orientation,X
-nj,new jersey,up,Does not have medically unnecessary regulations for abortion providers,X
-nj,new jersey,down,"Offers ""Choose Life"" license plate funding anti-choice groups",X
-nm,new mexico,up,Abortion is not restricted by gestational age,X
-nm,new mexico,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-nm,new mexico,up,"Has a ""shield law"" to protect patients and providers",X
-nm,new mexico,up,Mandates sex-ed,X
-nm,new mexico,up,Has unemployment benefits for domestic and sexual violence victims,X
-nm,new mexico,down,Has the nation's highest child poverty rate,X
-ny,new york,up,Bans abortion at viability,X
-ny,new york,up,Requires private insurance to cover abortion,X
-ny,new york,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-ny,new york,up,"Has a ""shield law"" to protect patients and providers",X
-ny,new york,up,Has protections for abortion clinics,X
-ny,new york,down,Allows individuals and institutions to refuse to provide abortion care,X
-nc,north carolina,down,Bans abortion at 12 weeks and later,X
-nc,north carolina,down,Has a 72-hour waiting period,X
-nc,north carolina,down,Bans telehealth for medication abortion,X
-nc,north carolina,down,Has medically unnecessary regulations for abortion providers,X
-nc,north carolina,up,"Has a ""shield law"" to protect patients and providers",X
-nc,north carolina,up,Has protections for abortion clinics,X
-nd,north dakota,down,Completely bans abortion with very limited exceptions,X
-nd,north dakota,down,Bans private health insurance from covering abortions in most cases,X
-nd,north dakota,down,Bans telehealth for medication abortion,X
-nd,north dakota,up,56% of people in North Dakota want abortion to be legal,X
-oh,ohio,down,Bans abortion at 22 weeks and later,X
-oh,ohio,down,Requires at least 2 in-person counseling visits,X
-oh,ohio,down,Requires minors to have parental consent,X
-oh,ohio,down,Has medically unnecessary regulations for abortion providers,X
-oh,ohio,up,66% of people in Ohio want abortion to be legal,X
-oh,ohio,up,Mandates sex-ed,X
-ok,oklahoma,down,Completely bans abortion with very limited exceptions,X
-ok,oklahoma,down,Bans private health insurance from covering abortions in most cases,X
-ok,oklahoma,down,Bans telehealth for medication abortion,X
-ok,oklahoma,up,Bills to repeal abortion restrictions were introduced in the state legislature,X
-or,oregon,up,Abortion is not restricted by gestational age,X
-or,oregon,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-or,oregon,up,Requires private insurance to cover abortion,X
-or,oregon,up,Has protections for abortion clinics,X
-or,oregon,up,Does not have medically unnecessary regulations for abortion providers,X
-or,oregon,up,Requires sex-ed to be inclusive of sexual orientation,X
-pa,pennsylvania,down,Bans abortion at 24 weeks and later,X
-pa,pennsylvania,down,Has a 24-hour waiting period,X
-pa,pennsylvania,down,Requires minors to have parental consent,X
-pa,pennsylvania,down,Has medically unnecessary regulations for abortion providers,X
-pa,pennsylvania,up,"Has a ""shield law"" to protect patients and providers",X
-pa,pennsylvania,up,61% of people in Pennsylvania want abortion to be legal,X
-ri,rhode island,up,Bans abortion at viability,X
-ri,rhode island,up,"Has a ""shield law"" to protect patients and providers",X
-ri,rhode island,up,Requires sex-ed to be inclusive of sexual orientation,X
-ri,rhode island,down,Requires minors to have parental consent,X
-ri,rhode island,down,Has medically unnecessary regulations for abortion providers,X
-ri,rhode island,down,60% of counties did not have an abortion provider in 2017,X
-sc,south carolina,down,Bans abortion at 22 weeks and later,X
-sc,south carolina,down,Has a 24-hour waiting period,X
-sc,south carolina,down,Bans telehealth for medication abortion,X
-sc,south carolina,down,Requires minors to have parental consent,X
-sc,south carolina,up,Requires sex-ed,X
-sc,south carolina,up,Bills to repeal abortion restrictions were introduced in the state legislature,X
-sd,south dakota,down,Completely bans abortion with very limited exceptions,X
-sd,south dakota,down,Bans telehealth for medication abortion,X
-sd,south dakota,up,Has law that protects all workers from sexual harassment,X
-sd,south dakota,up,84% of Medicare patients surveyed said their doctor listened carefully,X
-tn,tennessee,down,Completely bans abortion with very limited exceptions,X
-tn,tennessee,down,Explicitly excludes abortion in state constitution,X
-tn,tennessee,down,Requires at least 2 in-person counseling visits,X
-tn,tennessee,down,Bans telehealth for medication abortion,X
-tn,tennessee,down,Requires minors to have parental consent,X
-tn,tennessee,up,Removes firearms from domestic violence abusers,X
-tx,texas,down,Completely bans abortion with very limited exceptions,X
-tx,texas,down,Requires at least 2 in-person counseling visits,X
-tx,texas,down,Bans private health insurance from covering abortions in most cases,X
-tx,texas,down,Has nation's highest uninsured rate,X
-tx,texas,down,Requires minors to have parental consent,X
-tx,texas,up,57% of people in Texas want abortion to be legal,X
-ut,utah,down,Bans abortion at 18 weeks and later,X
-ut,utah,down,Requires at least 2 in-person counseling visits,X
-ut,utah,down,Bans private health insurance from covering abortions in most cases,X
-ut,utah,down,Has medically unnecessary regulations for abortion providers,X
-ut,utah,up,Has nation's lowest health spending per capita,X
-ut,utah,up,A law was enacted to expand access to telehealth,X
-vt,vermont,up,Abortion is not restricted by gestational age,X
-vt,vermont,up,Explicitly protects abortion in state constitution,X
-vt,vermont,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-vt,vermont,up,"Has a ""shield law"" to protect patients and providers",X
-vt,vermont,up,Has unemployment benefits for domestic and sexual violence victims,X
-vt,vermont,down,Has the nation's highest child care costs as a percentage of median income,X
-va,virginia,up,Bans abortion at the third trimester,X
-va,virginia,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-va,virginia,up,Has ratified the Equal Rights Amendment,X
-va,virginia,down,Requires minors to have parental consent,X
-va,virginia,down,"Offers ""Choose Life"" license plate funding anti-choice groups",X
-va,virginia,down,Does not mandate sex-ed,X
-wa,washington,up,Bans abortion at viability,X
-wa,washington,up,Requires private insurance to cover abortion,X
-wa,washington,up,Qualified health care professionals (in addition to doctors) can provide abortions,X
-wa,washington,up,"Has a ""shield law"" to protect patients and providers",X
-wa,washington,down,Allows individual and institutions to refuse to provide abortion care,X
-wa,washington,down,A bill that would criminalize abortion for women or providers was introduced in the state legislature,X
-wv,west virginia,down,Completely bans abortion with very limited exceptions,X
-wv,west virginia,down,Explicitly excludes abortion in state constitution,X
-wv,west virginia,down,Has a 24-hour waiting period,X
-wv,west virginia,down,Bans telehealth for medication abortion,X
-wv,west virginia,down,Requires parents of minors to be notified,X
-wv,west virginia,up,57% of people in West Virginia want abortion to be legal,X
-wi,wisconsin,down,Bans abortion at 22 weeks and later,X
-wi,wisconsin,down,Requires at least 2 in-person counseling visits,X
-wi,wisconsin,down,Bans telehealth for medication abortion,X
-wi,wisconsin,down,Has medically unnecessary regulations for abortion providers,X
-wi,wisconsin,up,Has protections for abortion clinics,X
-wi,wisconsin,up,64% of people in Wisconsin want abortion to be legal,X
-wy,wyoming,up,Bans abortion at viability,X
-wy,wyoming,up,Has ratified the Equal Rights Amendment,X
-wy,wyoming,up,55% of people in Wyoming want abortion to be legal,X
-wy,wyoming,down,Requires minors to have parental consent,X
-wy,wyoming,down,Has the nation's lowest rate for pay parity,X
-wy,wyoming,down,A judge has block a ban on medication abortion,X
+id,fact
+tn,NAME is a 32-year-old mother of four in Tennessee.
+tn,"Five months after the birth of her 3rd child, she was shocked to learn she was pregnant again despite taking birth control."
+tn,Her 8-month ultrasound showed that the embryo had become implanted in scar tissue from her recent cesarean section — an ectopic pregnancy. Her life was at risk.
+tn,"But in just hours, the state of Tennessee would ban abortion following the Supreme Court’s Dobbs ruling.  There was no exception in case of risk to the mother's life, and anyone who performed an abortion could be charged with a felony."
+tn,"NAME thought about traveling out of state for an abortion, but it was costly and she had other children to care for, plus other states had waiting period restrictions. So, she waited."
+tn,At 26 weeks she started bleeding and was rushed to the hospital. NAME had an emergency C-section where doctors pulled about a baby girl. They weren’t sure if either the baby or NAME would survive.
+tn,"At first, the baby girl had trouble breathing on her own — her lungs weren’t fully developed. NAME had a giant vertical gash that ran the length of her abdomen. There was so much damage, she would never have another child."
+tn,"After spending close to 2 months in the hospital, NAME took the baby girl home. They had made it through Tennessee’s abortion maze, but not without lasting scars."
+oh,NAME is a 9-year-old girl in Ohio.
+oh,She likes singing along to pop music and making beaded friendship bracelets with the sisters that live down the street.
+oh,"She lives with her mom and her mom’s live in boyfriend. Her mom is nice and funny, but the boyfriend makes NAME do things she doesn’t like to do."
+oh,"The first time this happened, she was scared so she didn’t tell anyone. After the second time, NAME started to feel funny, so she confided in her mom. Her mom gave her a name for what had happened: rape."
+oh,"NAME was just over 6 weeks pregnant. She needed an abortion. But her home state, Ohio, banned them after 6 weeks with no exceptions for rape so they were forced to drive out of state."
+oh,"It was all very scary for NAME. The procedure was painful, but everyone told her she was brave — even her mom, who’s eyes were wet with sadness."
+oh,"The doctor that performed her abortion, shared NAME’s story anonymously and soon it was all over the news. The doctor was under investigation too. Her mom’s old boyfriend was sentenced to jail."
+oh,"NAME couldn’t help but think all of this was her fault. But, it wasn’t. Not the rape. Not the abortion. Not Ohio’s abortion maze that she had to find a way through."
+mi,NAME is a 17-year-old girl in Michigan.
+mi,"She has been in the foster system since she was 3 and has been bounced around to 4 maybe 5 families. So, the idea of “love” — it’s pretty confusing."
+mi,But her boyfriend makes her feel like she has a home. They’ve had sex a few times.
+mi,"Her high school doesn’t mandate sex ed, so she’s picked up what she does know from friends and the internet. She’s been told that you should only have sex when you’re married and when you’re ready to start a family, but like “love,” “family” is hard to imagine for NAME."
+mi,"Right after school starts for her senior year, NAME notices that she hasn’t gotten her period. She tries to stay calm, but a week and two positive pregnancy tests later, she starts to panic. NAME and her boyfriend decide that getting an abortion is their best option."
+mi,"They make an appointment at the nearest clinic. While filling out all the paperwork, they realize they’re missing one important piece under Michigan law: parental consent. NAME hasn’t seen or heard from her parents in 14 years. How’s she supposed to get their consent?"
+mi,"NAME files a petition for a judicial waiver of the parental consent requirement. The judge rejects her first petition saying she “lacked sufficient maturity” and that the “waiver was not in her best interest.” NAME files an appeal, and it is granted."
+mi,"The next day NAME and her boyfriend return to the clinic. He holds her hand and cries with her. They know they are doing the right thing, but Michigan’s abortion maze doesn’t make it any easier."
+ca,NAME is a 25-year-old chef in California.
+ca,"They moved there right out of college and started working as a chef at a friend of a friend of a friend’s restaurant. Their second night on the job, they met their partner, one of the place’s extroverted and extravagant hosts. They’ve been together ever since. Going on 3 years."
+ca,"During year 2, NAME’s partner’s sister couldn’t take care of her twins anymore, so they suddenly went from uncles to dads. It was a big adjustment, but NAME quickly learned to love it."
+ca,"Growing up, they never envisioned having kids. Mostly because “having kids” meant doing it the natural way. And well, NAME, was transgender."
+ca,"After years of struggling with being out of place in their own body, they had finally started taking testosterone, and just last summer they had top surgery. But the joy of being in a body that felt right suddenly came to an abrupt halt. NAME got pregnant."
+ca,"NAME was happy with their life: their partner, their two adopted children, even their cramped apartment. They didn’t want to be pregnant. So, knowing that abortion was legal up to viability in California, they made their decision."
+ca,"NAME’s partner worked at a hospital, so they went there first. The receptionist kept misgendering NAME and then the doctors refused to prescribe abortion medication under an exception for religious health care institutions."
+ca,"Defeated, they went home and began to mindlessly scroll through their social feeds. Suddenly they saw an ad for LGBTQ+ telehealth abortion care. They could order the pills. NAME was relieved, but California’s abortion maze should have been simpler."
+tx,NAME is a 38-year-old lawyer in Texas.
+tx,"She never pictured herself having children, and when she finds herself pregnant, that just reaffirms her position. She wanted an abortion."
+tx,"NAME felt that trying to get pills through the mail was unnecessarily difficult and uncertain, especially with all of the lawsuits swirling in her home state. But Mexico was close."
+tx,"She didn’t tell any of her family because she didn’t think they would approve. NAME just picked a long weekend and started driving. It took her about 5 hours, including the delay at border crossing, to get to her destination."
+tx,"NAME had read up on “medical tourism” — where people cross the border for cheaper prescriptions and cheaper medical and dental care — and she knew where to go, a supermarket with a big pharmacy in the center."
+tx,She scrambled together a string of Spanish and asked the pharmacist for the medication. No questions asked. $25. And that was it.
+tx,"While at the market, NAME bought everything she would need for the next two days. Then she checked into her hotel. She was nervous only following instructions she found online, and nervous to be doing it alone, but she popped the pill under her tongue."
+tx,"The cramping and bleeding started about 4 hours later. NAME thought “unpleasant” was an understatement when describing it, but she felt so lucky to have the money and the ability to do this. The Texas abortion maze just made everything harder."
+fl,NAME is a 33-year-old woman in Florida.
+fl,"On the day before Thanksgiving, NAME, her husband, and their 8-year-old son went to her scheduled ultrasound appointment. She was 23 weeks pregnant and they were all excited about the possibly younger sibling."
+fl,"But, their excitement soon turned to fear when the technician saw something on the scan and suddenly left the room to get the doctor. NAME’s baby had no right kidney, had too little amniotic fluid, and had a swollen heart."
+fl,"She was told her baby was “incompatible with life” and that it would likely be stillborn or would die within minutes, or at most hours, after birth. NAME was also at risk of preeclampsia, a potentially deadly complication."
+fl,"NAME was well past Florida’s 15-week abortion limit and her doctor would not terminate the pregnancy because of the state’s other restrictions. She was advised to seek care out-of-state, but NAME and her husband didn’t have the money to travel."
+fl,"NAME carried her baby for 13 more weeks, knowing it would die. Those weeks were gut wrenching and NAME started experiencing extreme depression and anxiety for the first time in her life."
+fl,"At 37 weeks, doctors induced labor. NAME and her husband watched their baby take his first breath, and then 94 minutes later, watched it take his last."
+fl,"The experience shattered NAME’s family. Her 8-year-old son had his dreams of becoming a big brother ripped away, and her relationship with her husband became so strained they sought out counseling. Florida’s abortion maze created this trauma."

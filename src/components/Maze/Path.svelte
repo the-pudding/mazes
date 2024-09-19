@@ -151,7 +151,7 @@
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
-<g class="path" class:faded={$gameState === "post" || $gameState === "pre"}>
+<g class="path">
 	<circle cx={$circleX} cy={$circleY} r={$cellSize / 4} />
 
 	<path
@@ -183,11 +183,5 @@
 		stroke: var(--color-accent-purple);
 		stroke-width: var(--stroke-width);
 		fill: none;
-	}
-	g {
-		transition: opacity calc(var(--1s) * 0.5) ease-in-out;
-	}
-	g.faded {
-		opacity: 0.05;
 	}
 </style>

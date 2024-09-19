@@ -1,4 +1,5 @@
 <script>
+	import Info from "$components/Modal/Info.svelte";
 	import Maze from "$components/Maze/Maze.svelte";
 	import loadMazeData from "$utils/loadMazeData.js";
 	import { selectedState } from "$stores/misc.js";
@@ -24,7 +25,11 @@
 
 <div class="contents">
 	<div class="info">
-		{$selectedState}
+		{#if $selectedState}
+			<!-- {#key $selectedState} -->
+			<Info />
+			<!-- {/key} -->
+		{/if}
 	</div>
 	<div class="maze" bind:clientWidth={width} bind:clientHeight={height}>
 		{#key $selectedState}

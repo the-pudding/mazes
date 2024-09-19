@@ -4,10 +4,9 @@
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
 	import { pathLength, globalGameState } from "$stores/misc.js";
-	import { fade } from "svelte/transition";
 	import viewport from "$stores/viewport.js";
-	import mq from "$stores/mq.js";
 	import _ from "lodash";
+	import { tick } from "svelte";
 
 	export let availableSpace;
 	export let wallData;
@@ -45,6 +44,28 @@
 		getGameState: () => gameState
 	});
 
+	const start = () => {
+		$gameState = "mid";
+	};
+	const reset = () => {
+		$gameState = "mid";
+		$location = { row: 0, col: 0 };
+	};
+	const solve = async () => {
+		const solution = _.orderBy(
+			$data.filter((d) => d.solutionIndex !== null),
+			"solutionIndex",
+			"asc"
+		);
+		$path = solution;
+		$gameState = "post";
+		$location = { row: $dims - 1, col: $dims - 1 };
+
+		await tick();
+		const readMoreLink = document.getElementById("read-more");
+		readMoreLink.focus();
+	};
+
 	$: $globalGameState = $gameState;
 	$: $data = wallData;
 	$: $path = mazePath;
@@ -63,26 +84,23 @@
 		"solutionIndex",
 		"asc"
 	);
-
 	$: if ($location.row === $dims - 1 && $location.col === $dims - 1) {
 		$gameState = "post";
 	}
 </script>
 
 <div
-	class="container"
+	class="maze-container"
 	style:width={`${$spaceAvailable}px`}
 	style:height={`${$spaceAvailable}px`}
 >
-	{#if $mazeSize}
+	{#if $mazeSize && $mazeSize > 0}
 		<svg width={$mazeSize} height={$mazeSize}>
 			{#if !loading}
 				<g
-					class="fade"
 					style:transform={withPadding
 						? `translate(${mobilePadding / 2}px, 0)`
 						: null}
-					transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}
 				>
 					<Walls />
 					<Path />
@@ -108,12 +126,29 @@
 			finish
 		</div>
 	{/if}
+
+	<div class="below" style:width={`${$mazeSize}px`}>
+		<div class="buttons">
+			<button class="start" on:click={start}>start maze</button>
+			<button class="solve" on:click={solve}>Complete the maze</button>
+		</div>
+	</div>
 </div>
 
 <style>
-	.container {
+	.maze-container {
 		display: flex;
-		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+	}
+	.below {
+		margin-top: 1rem;
+		display: flex;
+	}
+	.buttons {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
 	}
 	.label {
 		position: absolute;
@@ -121,5 +156,21 @@
 	}
 	.visible {
 		visibility: visible;
+	}
+	button.start {
+		font-size: 1.2rem;
+		color: white;
+		background: var(--color-accent-orange);
+		text-transform: uppercase;
+		font-weight: bold;
+		font-family: "Avenir Next Bold";
+		padding: 0.9rem 0.75rem;
+	}
+	button.solve {
+		background: none;
+		padding: 0;
+		margin-top: 0.25rem;
+		font-size: 0.9rem;
+		color: var(--color-dark-tan);
 	}
 </style>
