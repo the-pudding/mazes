@@ -96,7 +96,7 @@
 		top: 0;
 		left: 50%;
 		transform: translate(-50%, 0);
-		background: white;
+		background: var(--color-bg);
 		border: 1px solid var(--color-tan);
 		box-shadow: 0px 5px 10px rgba(232, 229, 225, 0.5);
 		padding: 3rem;

@@ -2,9 +2,10 @@
 	import Select from "$components/helpers/Select.svelte";
 	import states from "$data/states.csv";
 	import { getContext } from "svelte";
-	import { selectedState } from "$stores/misc.js";
+	import { selectedState, revealMethods } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
 	import _ from "lodash";
+	import infoIcon from "$svg/info.svg";
 
 	const { getOrder } = getContext("dashboard");
 	const order = getOrder();
@@ -25,6 +26,12 @@
 		{ label: "Lucia", value: "lucia" }
 	];
 
+	const methodology = () => {
+		$revealMethods = true;
+		const el = document.getElementById("methodology");
+		el.classList.toggle("visible");
+	};
+
 	$: orderOptions = [
 		{ label: "Alphabetically", value: "alpha" },
 		{ label: "Geographically", value: "geo", disabled: mobile },
@@ -36,39 +43,64 @@
 </script>
 
 <div class="bar">
-	<div class="select">
-		<Select label="Order mazes" options={orderOptions} bind:value={$order} />
+	<div class="selects">
+		<div class="select">
+			<Select label="Order mazes" options={orderOptions} bind:value={$order} />
+		</div>
+
+		<div class="select">
+			<Select
+				label={mobile ? "Find" : "See state maze for"}
+				options={highlightOptions}
+				bind:value={selectState}
+			/>
+		</div>
+
+		<div class="select">
+			<Select
+				label={"Pick a story"}
+				options={storyOptions}
+				bind:value={selectStory}
+			/>
+		</div>
 	</div>
 
-	<div class="select">
-		<Select
-			label={mobile ? "Find" : "See state maze for"}
-			options={highlightOptions}
-			bind:value={selectState}
-		/>
-	</div>
-
-	<div class="select">
-		<Select
-			label={"Pick a story"}
-			options={storyOptions}
-			bind:value={selectStory}
-		/>
-	</div>
+	<button class="methods" on:click={methodology}>
+		Methodology <span>{@html infoIcon}</span>
+	</button>
 </div>
 
 <style>
 	.bar {
 		background: var(--color-tan);
 		color: var(--color-dark-tan);
+		font-size: 0.9rem;
 		display: flex;
-		justify-content: space-evenly;
+		justify-content: space-between;
 		padding: 1rem;
 		position: sticky;
 		top: 3rem;
 		z-index: 10;
 		height: 70px;
 		width: 100%;
+	}
+	.selects,
+	.methods {
+		display: flex;
+		align-items: center;
+	}
+	.methods {
+		background: none;
+		padding: 0;
+		color: var(--color-dark-tan);
+	}
+	.methods span {
+		display: flex;
+		width: 1.2rem;
+		margin-left: 0.5rem;
+	}
+	.selects {
+		gap: 1rem;
 	}
 	.select {
 		width: fit-content;

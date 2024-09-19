@@ -1,52 +1,52 @@
-id,name,score,region,row,col,ban,guttmacher
-ak,alaska,139.0927854,west,1,1,FALSE,https://states.guttmacher.org/policies/alaska/abortion-policies
-az,arizona,80.20255751,west,6,3,FALSE,https://states.guttmacher.org/policies/arizona/abortion-policies
-ca,california,168.1159263,west,5,2,FALSE,https://states.guttmacher.org/policies/california/abortion-policies
-co,colorado,152.5700763,west,5,4,FALSE,https://states.guttmacher.org/policies/colorado/abortion-policies
-ct,connecticut,152.0517104,northeast,4,11,FALSE,https://states.guttmacher.org/policies/connecticut/abortion-policies
-dc,district of columbia,161.9862339,south,6,11,FALSE,https://states.guttmacher.org/policies/dc/abortion-policies
-de,delaware,153.7132436,south,5,11,FALSE,https://states.guttmacher.org/policies/delaware/abortion-policies
-fl,florida,81.61535275,south,8,10,FALSE,https://states.guttmacher.org/policies/florida/abortion-policies
-ga,georgia,84.82321502,south,7,9,FALSE,https://states.guttmacher.org/policies/georgia/abortion-policies
-hi,hawaii,148.7456893,west,7,1,FALSE,https://states.guttmacher.org/policies/hawaii/abortion-policies
-il,illinois,147.8573832,midwest,5,6,FALSE,https://states.guttmacher.org/policies/illinois/abortion-policies
-in,indiana,83.3465587,midwest,5,7,FALSE,https://states.guttmacher.org/policies/indiana/abortion-policies
-ia,iowa,125.3977661,midwest,4,6,FALSE,https://states.guttmacher.org/policies/iowa/abortion-policies
-ks,kansas,107.0938368,midwest,6,5,FALSE,https://states.guttmacher.org/policies/kansas/abortion-policies
-me,maine,153.0616059,northeast,1,12,FALSE,https://states.guttmacher.org/policies/maine/abortion-policies
-md,maryland,154.4994578,south,5,10,FALSE,https://states.guttmacher.org/policies/maryland/abortion-policies
-ma,massachusetts,144.3161497,northeast,3,11,FALSE,https://states.guttmacher.org/policies/massachusetts/abortion-policies
-mi,michigan,114.8525414,midwest,3,8,FALSE,https://states.guttmacher.org/policies/michigan/abortion-policies
-mn,minnesota,150.3917466,midwest,3,6,FALSE,https://states.guttmacher.org/policies/minnesota/abortion-policies
-mt,montana,140.1240421,west,3,4,FALSE,https://states.guttmacher.org/policies/montana/abortion-policies
-ne,nebraska,86.58897739,midwest,5,5,FALSE,https://states.guttmacher.org/policies/nebraska/abortion-policies
-nv,nevada,141.6586698,west,5,3,FALSE,https://states.guttmacher.org/policies/nevada/abortion-policies
-nh,new hampshire,135.1502261,northeast,2,12,FALSE,https://states.guttmacher.org/policies/new-hampshire/abortion-policies
-nj,new jersey,165.8651335,northeast,4,10,FALSE,https://states.guttmacher.org/policies/new-jersey/abortion-policies
-nm,new mexico,149.5345599,west,6,4,FALSE,https://states.guttmacher.org/policies/new-mexico/abortion-policies
-ny,new york,153.4720442,northeast,3,10,FALSE,https://states.guttmacher.org/policies/new-york/abortion-policies
-nc,north carolina,109.3959427,south,6,10,FALSE,https://states.guttmacher.org/policies/north-carolina/abortion-policies
-oh,ohio,95.77119105,midwest,4,8,FALSE,https://states.guttmacher.org/policies/ohio/abortion-policies
-or,oregon,168.7914115,west,4,2,FALSE,https://states.guttmacher.org/policies/oregon/abortion-policies
-pa,pennsylvania,114.2757608,northeast,4,9,FALSE,https://states.guttmacher.org/policies/pennsylvania/abortion-policies
-ri,rhode island,140.1663252,northeast,3,12,FALSE,https://states.guttmacher.org/policies/rhode-island/abortion-policies
-sc,south carolina,100.2430024,south,6,9,FALSE,https://states.guttmacher.org/policies/south-carolina/abortion-policies
-ut,utah,86.43846828,west,4,3,FALSE,https://states.guttmacher.org/policies/utah/abortion-policies
-vt,vermont,156.6354867,northeast,2,11,FALSE,https://states.guttmacher.org/policies/vermont/abortion-policies
-va,virginia,132.8288249,south,5,9,FALSE,https://states.guttmacher.org/policies/virginia/abortion-policies
-wa,washington,162.5550033,west,3,2,FALSE,https://states.guttmacher.org/policies/washington/abortion-policies
-wi,wisconsin,102.5837197,midwest,4,7,FALSE,https://states.guttmacher.org/policies/wisconsin/abortion-policies
-wy,wyoming,126.4796495,west,4,4,FALSE,https://states.guttmacher.org/policies/wyoming/abortion-policies
-al,alabama,62.07141985,south,7,8,TRUE,https://states.guttmacher.org/policies/alabama/abortion-policies
-ar,arkansas,51.12228712,south,7,6,TRUE,https://states.guttmacher.org/policies/arkansas/abortion-policies
-id,idaho,81.84549846,west,3,3,TRUE,https://states.guttmacher.org/policies/idaho/abortion-policies
-ky,kentucky,73.91587601,south,6,7,TRUE,https://states.guttmacher.org/policies/kentucky/abortion-policies
-la,louisiana,56.57694653,south,7,5,TRUE,https://states.guttmacher.org/policies/louisiana/abortion-policies
-ms,mississippi,45.47731418,south,7,7,TRUE,https://states.guttmacher.org/policies/mississippi/abortion-policies
-mo,missouri,56.17786975,midwest,6,6,TRUE,https://states.guttmacher.org/policies/missouri/abortion-policies
-nd,north dakota,66.89261545,midwest,3,5,TRUE,https://states.guttmacher.org/policies/north-dakota/abortion-policies
-ok,oklahoma,54.50254493,south,7,4,TRUE,https://states.guttmacher.org/policies/oklahoma/abortion-policies
-sd,south dakota,62.59693122,midwest,4,5,TRUE,https://states.guttmacher.org/policies/south-dakota/abortion-policies
-tn,tennessee,72.4579756,south,6,8,TRUE,https://states.guttmacher.org/policies/tennessee/abortion-policies
-tx,texas,57.80296232,south,8,5,TRUE,https://states.guttmacher.org/policies/texas/abortion-policies
-wv,west virginia,87.15853915,south,5,8,TRUE,https://states.guttmacher.org/policies/west-virginia/abortion-policies
+id,name,story,score,region,row,col,ban,guttmacher
+ak,alaska,,139.0927854,west,1,1,FALSE,https://states.guttmacher.org/policies/alaska/abortion-policies
+al,alabama,,62.07141985,south,7,8,TRUE,https://states.guttmacher.org/policies/alabama/abortion-policies
+ar,arkansas,,51.12228712,south,7,6,TRUE,https://states.guttmacher.org/policies/arkansas/abortion-policies
+az,arizona,,80.20255751,west,6,3,FALSE,https://states.guttmacher.org/policies/arizona/abortion-policies
+ca,california,TRUE,168.1159263,west,5,2,FALSE,https://states.guttmacher.org/policies/california/abortion-policies
+co,colorado,,152.5700763,west,5,4,FALSE,https://states.guttmacher.org/policies/colorado/abortion-policies
+ct,connecticut,,152.0517104,northeast,4,11,FALSE,https://states.guttmacher.org/policies/connecticut/abortion-policies
+dc,district of columbia,,161.9862339,south,6,11,FALSE,https://states.guttmacher.org/policies/dc/abortion-policies
+de,delaware,,153.7132436,south,5,11,FALSE,https://states.guttmacher.org/policies/delaware/abortion-policies
+fl,florida,TRUE,81.61535275,south,8,10,FALSE,https://states.guttmacher.org/policies/florida/abortion-policies
+ga,georgia,,84.82321502,south,7,9,FALSE,https://states.guttmacher.org/policies/georgia/abortion-policies
+hi,hawaii,,148.7456893,west,7,1,FALSE,https://states.guttmacher.org/policies/hawaii/abortion-policies
+ia,iowa,,125.3977661,midwest,4,6,FALSE,https://states.guttmacher.org/policies/iowa/abortion-policies
+id,idaho,,81.84549846,west,3,3,TRUE,https://states.guttmacher.org/policies/idaho/abortion-policies
+il,illinois,,147.8573832,midwest,5,6,FALSE,https://states.guttmacher.org/policies/illinois/abortion-policies
+in,indiana,,83.3465587,midwest,5,7,FALSE,https://states.guttmacher.org/policies/indiana/abortion-policies
+ks,kansas,,107.0938368,midwest,6,5,FALSE,https://states.guttmacher.org/policies/kansas/abortion-policies
+ky,kentucky,,73.91587601,south,6,7,TRUE,https://states.guttmacher.org/policies/kentucky/abortion-policies
+la,louisiana,,56.57694653,south,7,5,TRUE,https://states.guttmacher.org/policies/louisiana/abortion-policies
+ma,massachusetts,,144.3161497,northeast,3,11,FALSE,https://states.guttmacher.org/policies/massachusetts/abortion-policies
+md,maryland,,154.4994578,south,5,10,FALSE,https://states.guttmacher.org/policies/maryland/abortion-policies
+me,maine,,153.0616059,northeast,1,12,FALSE,https://states.guttmacher.org/policies/maine/abortion-policies
+mi,michigan,TRUE,114.8525414,midwest,3,8,FALSE,https://states.guttmacher.org/policies/michigan/abortion-policies
+mn,minnesota,,150.3917466,midwest,3,6,FALSE,https://states.guttmacher.org/policies/minnesota/abortion-policies
+mo,missouri,,56.17786975,midwest,6,6,TRUE,https://states.guttmacher.org/policies/missouri/abortion-policies
+ms,mississippi,,45.47731418,south,7,7,TRUE,https://states.guttmacher.org/policies/mississippi/abortion-policies
+mt,montana,,140.1240421,west,3,4,FALSE,https://states.guttmacher.org/policies/montana/abortion-policies
+nc,north carolina,,109.3959427,south,6,10,FALSE,https://states.guttmacher.org/policies/north-carolina/abortion-policies
+nd,north dakota,,66.89261545,midwest,3,5,TRUE,https://states.guttmacher.org/policies/north-dakota/abortion-policies
+ne,nebraska,,86.58897739,midwest,5,5,FALSE,https://states.guttmacher.org/policies/nebraska/abortion-policies
+nh,new hampshire,,135.1502261,northeast,2,12,FALSE,https://states.guttmacher.org/policies/new-hampshire/abortion-policies
+nj,new jersey,,165.8651335,northeast,4,10,FALSE,https://states.guttmacher.org/policies/new-jersey/abortion-policies
+nm,new mexico,,149.5345599,west,6,4,FALSE,https://states.guttmacher.org/policies/new-mexico/abortion-policies
+nv,nevada,,141.6586698,west,5,3,FALSE,https://states.guttmacher.org/policies/nevada/abortion-policies
+ny,new york,,153.4720442,northeast,3,10,FALSE,https://states.guttmacher.org/policies/new-york/abortion-policies
+oh,ohio,TRUE,95.77119105,midwest,4,8,FALSE,https://states.guttmacher.org/policies/ohio/abortion-policies
+ok,oklahoma,,54.50254493,south,7,4,TRUE,https://states.guttmacher.org/policies/oklahoma/abortion-policies
+or,oregon,,168.7914115,west,4,2,FALSE,https://states.guttmacher.org/policies/oregon/abortion-policies
+pa,pennsylvania,,114.2757608,northeast,4,9,FALSE,https://states.guttmacher.org/policies/pennsylvania/abortion-policies
+ri,rhode island,,140.1663252,northeast,3,12,FALSE,https://states.guttmacher.org/policies/rhode-island/abortion-policies
+sc,south carolina,,100.2430024,south,6,9,FALSE,https://states.guttmacher.org/policies/south-carolina/abortion-policies
+sd,south dakota,,62.59693122,midwest,4,5,TRUE,https://states.guttmacher.org/policies/south-dakota/abortion-policies
+tn,tennessee,TRUE,72.4579756,south,6,8,TRUE,https://states.guttmacher.org/policies/tennessee/abortion-policies
+tx,texas,TRUE,57.80296232,south,8,5,TRUE,https://states.guttmacher.org/policies/texas/abortion-policies
+ut,utah,,86.43846828,west,4,3,FALSE,https://states.guttmacher.org/policies/utah/abortion-policies
+va,virginia,,132.8288249,south,5,9,FALSE,https://states.guttmacher.org/policies/virginia/abortion-policies
+vt,vermont,,156.6354867,northeast,2,11,FALSE,https://states.guttmacher.org/policies/vermont/abortion-policies
+wa,washington,,162.5550033,west,3,2,FALSE,https://states.guttmacher.org/policies/washington/abortion-policies
+wi,wisconsin,,102.5837197,midwest,4,7,FALSE,https://states.guttmacher.org/policies/wisconsin/abortion-policies
+wv,west virginia,,87.15853915,south,5,8,TRUE,https://states.guttmacher.org/policies/west-virginia/abortion-policies
+wy,wyoming,,126.4796495,west,4,4,FALSE,https://states.guttmacher.org/policies/wyoming/abortion-policies

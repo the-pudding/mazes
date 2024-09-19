@@ -26,13 +26,11 @@
 <div class="contents">
 	<div class="info">
 		{#if $selectedState}
-			<!-- {#key $selectedState} -->
 			<Info />
-			<!-- {/key} -->
 		{/if}
 	</div>
 	<div class="maze" bind:clientWidth={width} bind:clientHeight={height}>
-		{#key $selectedState}
+		{#if $selectedState}
 			<Maze
 				{availableSpace}
 				wallData={data}
@@ -40,7 +38,7 @@
 				animated={false}
 				{loading}
 			/>
-		{/key}
+		{/if}
 	</div>
 </div>
 
@@ -48,12 +46,14 @@
 	.contents {
 		display: flex;
 		height: 100%;
+		gap: 3rem;
 	}
 	.info {
-		flex-shrink: 0;
+		width: 50%;
 	}
-	.info,
 	.maze {
 		width: 50%;
+		display: flex;
+		align-items: center;
 	}
 </style>

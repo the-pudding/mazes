@@ -1,10 +1,11 @@
 <script>
+	import Footer from "$components/Footer.svelte";
 	import copy from "$data/copy.json";
 	import MicroCMS from "$components/helpers/MicroCMS.svelte";
 	import Scrollytelling from "$components/Scrollytelling.svelte";
 	import Pick from "$components/Pick.svelte";
 	import Dashboard from "$components/Dashboard/Dashboard.svelte";
-	import { selectedState } from "$stores/misc.js";
+	import { selectedState, revealMethods } from "$stores/misc.js";
 	import { onMount } from "svelte";
 	import urlParams from "$utils/urlParams.js";
 
@@ -28,8 +29,17 @@
 	<MicroCMS body={copy.body} {components} />
 </article>
 
+<div class="footer" class:visible={$revealMethods}>
+	<Footer />
+</div>
+
 <style>
-	:global(#methodology) {
+	:global(#methodology),
+	.footer {
 		display: none;
+	}
+	:global(#methodology.visible),
+	.footer.visible {
+		display: block;
 	}
 </style>

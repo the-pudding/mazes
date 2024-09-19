@@ -38,7 +38,7 @@
 		text-align: right;
 	}
 	select {
-		width: 100%;
+		/* width: 100%; */
 		height: 40px;
 		font-family: inherit;
 		font-size: 1em;
@@ -51,9 +51,9 @@
 		line-height: 1.4;
 		text-transform: uppercase;
 	}
-	select:nth-of-type(1) {
+	/* select:nth-of-type(1) {
 		width: 13.5rem;
-	}
+	} */
 	select::-ms-expand {
 		display: none;
 	}

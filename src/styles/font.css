@@ -1,5 +1,5 @@
 @font-face {
-	font-family: "Avenir Next Regular";
+	font-family: "Avenir Next";
 	src: url("https://pudding.cool/assets/fonts/avenir/AvenirNextLTPro-Regular.woff2")
 		format("woff2");
 	font-weight: 400;
@@ -9,7 +9,7 @@
 }
 
 @font-face {
-	font-family: "Avenir Next Bold";
+	font-family: "Avenir Next";
 	src: url("https://pudding.cool/assets/fonts/avenir/AvenirNextLTPro-Bold.woff2")
 		format("woff2");
 	font-weight: 700;
@@ -19,7 +19,7 @@
 }
 
 @font-face {
-	font-family: "Avenir Next Heavy";
+	font-family: "Avenir Next";
 	src: url("https://pudding.cool/assets/fonts/avenir/AvenirNextLTPro-Heavy.woff2")
 		format("woff2");
 	font-weight: 900;
@@ -29,7 +29,7 @@
 }
 
 @font-face {
-	font-family: "Tiempos Text Regular";
+	font-family: "Tiempos Text";
 	src: url("https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff2")
 		format("woff2");
 	font-weight: 400;
@@ -39,7 +39,7 @@
 }
 
 @font-face {
-	font-family: "Tiempos Text Bold";
+	font-family: "Tiempos Text";
 	src: url("https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff2")
 		format("woff2");
 	font-weight: 700;
@@ -49,7 +49,7 @@
 }
 
 @font-face {
-	font-family: "National Regular";
+	font-family: "National";
 	src: url("https://pudding.cool/assets/fonts/national/National2Web-Regular.woff2")
 		format("woff2");
 	font-weight: 400;
@@ -58,7 +58,7 @@
 	font-display: swap;
 }
 @font-face {
-	font-family: "National Bold";
+	font-family: "National";
 	src: url("https://pudding.cool/assets/fonts/national/National2Web-Bold.woff2")
 		format("woff2");
 	font-weight: 700;

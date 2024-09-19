@@ -3,7 +3,7 @@
 	import Path from "$components/Maze/Path.svelte";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
-	import { pathLength, globalGameState } from "$stores/misc.js";
+	import { pathLength, globalGameState, selectedState } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
 	import _ from "lodash";
 	import { tick } from "svelte";
@@ -70,7 +70,7 @@
 	$: $data = wallData;
 	$: $path = mazePath;
 	$: $spaceAvailable = availableSpace;
-	$: $mazeSize = availableSpace - 100;
+	$: $mazeSize = availableSpace;
 	$: $dims = numCells;
 	$: mobile = $viewport.width < 600;
 	$: withPadding = mobile;
@@ -89,11 +89,7 @@
 	}
 </script>
 
-<div
-	class="maze-container"
-	style:width={`${$spaceAvailable}px`}
-	style:height={`${$spaceAvailable}px`}
->
+<div class="maze-container" style:width={`${$spaceAvailable}px`}>
 	{#if $mazeSize && $mazeSize > 0}
 		<svg width={$mazeSize} height={$mazeSize}>
 			{#if !loading}
@@ -163,7 +159,7 @@
 		background: var(--color-accent-orange);
 		text-transform: uppercase;
 		font-weight: bold;
-		font-family: "Avenir Next Bold";
+		font-family: var(--mono);
 		padding: 0.9rem 0.75rem;
 	}
 	button.solve {
@@ -171,6 +167,7 @@
 		padding: 0;
 		margin-top: 0.25rem;
 		font-size: 0.9rem;
+		font-family: var(--mono);
 		color: var(--color-dark-tan);
 	}
 </style>
