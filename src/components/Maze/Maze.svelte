@@ -1,9 +1,6 @@
 <script>
 	import Walls from "$components/Maze/Walls.svelte";
 	import Path from "$components/Maze/Path.svelte";
-	import IntroPaths from "$components/Maze/Intro.Paths.svelte";
-	import Footer from "$components/Maze/Footer.svelte";
-	import Overlay from "$components/Maze/Overlay.svelte";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
 	import { pathLength, globalGameState } from "$stores/misc.js";
@@ -15,12 +12,9 @@
 	export let availableSpace;
 	export let wallData;
 	export let numCells;
-	export let playable;
 	export let animated;
-	export let intro = false;
 	export let loading = false;
 	export let mazePath = [{ row: 0, col: 0 }];
-	export let simple;
 
 	const data = writable(wallData);
 	const solution = writable([]);
@@ -37,9 +31,7 @@
 
 	setContext("maze", {
 		wallWidth,
-		playable,
 		animated,
-		intro,
 		getData: () => data,
 		getSolution: () => solution,
 		getCellSize: () => cellSize,
@@ -60,16 +52,14 @@
 	$: $mazeSize = availableSpace - 100;
 	$: $dims = numCells;
 	$: mobile = $viewport.width < 600;
-	$: withPadding = mobile && intro;
+	$: withPadding = mobile;
 	$: $wallWidth = $mazeSize / 50;
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = $dims ? ($mazeSize - $padding * 2) / $dims : 0;
 	$: $pathLength = $path.length - 1;
 	$: labelsVisible = $gameState === "mid" && !mobile;
 	$: $solution = _.orderBy(
-		_.flatten(intro ? simple : wallData).filter(
-			(d) => d.solutionIndex !== null
-		),
+		_.flatten(wallData).filter((d) => d.solutionIndex !== null),
 		"solutionIndex",
 		"asc"
 	);
@@ -85,7 +75,7 @@
 	style:height={`${$spaceAvailable}px`}
 >
 	{#if $mazeSize}
-		<svg width={$mazeSize} height={$mazeSize} class:filled={intro}>
+		<svg width={$mazeSize} height={$mazeSize}>
 			{#if !loading}
 				<g
 					class="fade"
@@ -95,12 +85,7 @@
 					transition:fade={{ duration: $mq.reducedMotion ? 0 : 500 }}
 				>
 					<Walls />
-
-					{#if playable}
-						<Path />
-					{:else if intro}
-						<IntroPaths />
-					{/if}
+					<Path />
 				</g>
 			{/if}
 		</svg>
@@ -122,30 +107,17 @@
 		>
 			finish
 		</div>
-
-		{#if playable}
-			<Overlay {loading} />
-			{#if !mobile}
-				<Footer />
-			{/if}
-		{/if}
 	{/if}
 </div>
 
 <style>
-	svg.filled {
-		background: var(--upper-bg);
-	}
 	.container {
-		margin: auto;
 		display: flex;
-		flex-direction: column;
-		align-items: center;
+		justify-content: center;
 	}
 	.label {
 		position: absolute;
 		visibility: hidden;
-		color: var(--color-pp-text-gray);
 	}
 	.visible {
 		visibility: visible;

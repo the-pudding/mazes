@@ -89,6 +89,9 @@
 		grid-column: auto;
 		padding: 0.25rem;
 	}
+	.state:hover {
+		cursor: pointer;
+	}
 	.state.geo {
 		grid-row: var(--row);
 		grid-column: var(--col);

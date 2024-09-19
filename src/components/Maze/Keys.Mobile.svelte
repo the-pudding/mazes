@@ -63,7 +63,6 @@
 	}
 	button {
 		position: absolute;
-		background: var(--color-pp-light-purple);
 		color: white;
 		display: flex;
 		align-items: center;

@@ -1,11 +1,7 @@
 <script>
 	import Contents from "$components/Modal/Contents.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
-	import {
-		selectedState,
-		dashboardInView,
-		globalGameState
-	} from "$stores/misc.js";
+	import { selectedState, globalGameState } from "$stores/misc.js";
 	import { browser } from "$app/environment";
 	import { tick } from "svelte";
 	import states from "$data/states.csv";
@@ -23,7 +19,7 @@
 		states.find((d) => d.id === $selectedState).ban === "true";
 	$: if (browser) document.body.classList.toggle("noscroll", open);
 	$: if (open && modalEl) focusModal();
-	$: if (!open && $dashboardInView && stateEl) focusState();
+	$: if (!open && stateEl) focusState();
 	$: mobile = $viewport.width < 600;
 	$: mobile, $globalGameState, getFocusable();
 
@@ -31,8 +27,7 @@
 		await tick();
 		await getFocusable();
 		modalEl.focus();
-		if ($dashboardInView)
-			stateEl = document.querySelector(`.state#${$selectedState}-state`);
+		stateEl = document.querySelector(`.state#${$selectedState}-state`);
 	};
 	const focusState = () => {
 		stateEl.focus();
@@ -96,13 +91,13 @@
 		position: fixed;
 		width: 90%;
 		max-width: 1000px;
-		height: calc(100vh - 5.5rem);
-		margin: 1.5rem 0 4rem 0;
+		height: calc(100vh - 6rem);
+		margin: 3rem 0 3rem 0;
 		top: 0;
 		left: 50%;
 		transform: translate(-50%, 0);
 		background: white;
-		border: 1px solid var(--color-pp-gray-1);
+		border: 1px solid var(--color-tan);
 		box-shadow: 0px 5px 10px rgba(232, 229, 225, 0.5);
 		padding: 2rem;
 	}
@@ -114,14 +109,14 @@
 	.close {
 		display: flex;
 		border-radius: 100%;
-		background: var(--color-pp-gray-1);
+		background: var(--color-tan);
 		position: absolute;
 		top: 0;
 		right: 0;
 		transform: translate(50%, -50%);
 	}
 	.close:hover {
-		background: var(--color-pp-gray-2);
+		background: var(--color-dark-tan);
 	}
 
 	@media (max-width: 600px) {

@@ -24,7 +24,7 @@
 		align-items: center;
 	}
 	.text {
-		color: var(--color-pp-dark);
+		color: var(--color-dark-tan);
 		font-size: 0.9rem;
 		margin-top: 4px;
 		text-align: center;
@@ -37,7 +37,7 @@
 		gap: 4px;
 	}
 	.key {
-		background: var(--color-pp-gray-1);
+		background: var(--color-tan);
 		display: flex;
 		align-items: center;
 		justify-content: center;

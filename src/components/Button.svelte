@@ -11,17 +11,11 @@
 
 <style>
 	button {
-		background: var(--color-pp-magenta);
 		color: white;
 		font-family: var(--font-bold);
 		padding: 1rem 2rem;
 		border-radius: 100px;
 		font-size: 0.8rem;
-	}
-	button:hover {
-		background: #ce097f;
-		transform: translateY(-0.125rem);
-		transition: all .2s ease-in;
 	}
 
 	@media (max-width: 600px) {

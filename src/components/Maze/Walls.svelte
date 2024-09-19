@@ -2,11 +2,10 @@
 	import { getContext } from "svelte";
 	import { draw } from "svelte/transition";
 	import mq from "$stores/mq.js";
-	import { selectedState, scrollStep } from "$stores/misc.js";
+	import { selectedState } from "$stores/misc.js";
 
 	const {
 		animated,
-		intro,
 		getData,
 		getCellSize,
 		getWallWidth,
@@ -29,8 +28,7 @@
 >
 	{#each $data as { row, col, walls }}
 		{@const [top, right, bottom, left] = walls}
-		{@const movement =
-			(animated || (intro && $scrollStep === 6)) && !$mq.reducedMotion}
+		{@const movement = animated && !$mq.reducedMotion}
 		{@const lineDraw = {
 			duration: movement ? 800 : 0,
 			delay: movement ? Math.random() * 400 : 0
@@ -90,11 +88,9 @@
 		stroke: none;
 	}
 	rect.start {
-		fill: var(--color-pp-magenta);
 		opacity: 0.2;
 	}
 	rect.finish {
-		fill: var(--color-pp-magenta);
 		opacity: 0.5;
 	}
 	g {

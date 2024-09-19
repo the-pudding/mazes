@@ -1,6 +1,7 @@
 <script>
 	import Grid from "$components/Dashboard/Grid.svelte";
 	import Bar from "$components/Dashboard/Bar.svelte";
+	import Modal from "$components/Modal/Modal.svelte";
 	import { setContext } from "svelte";
 	import { writable } from "svelte/store";
 
@@ -13,13 +14,6 @@
 	const columnWidth = writable(0);
 </script>
 
-<section id="dashboard">
-	<Grid />
-	<Bar />
-</section>
-
-<style>
-	section {
-		position: relative;
-	}
-</style>
+<Grid />
+<Bar />
+<Modal />

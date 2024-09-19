@@ -172,15 +172,15 @@
 
 <style>
 	circle {
-		fill: var(--color-pp-magenta);
+		fill: var(--color-accent-purple);
 	}
 	path.full {
-		stroke: var(--color-pp-magenta);
+		stroke: var(--color-accent-purple);
 		stroke-width: var(--stroke-width);
 		fill: none;
 	}
 	path.animated {
-		stroke: var(--color-pp-magenta);
+		stroke: var(--color-accent-purple);
 		stroke-width: var(--stroke-width);
 		fill: none;
 	}

@@ -29,4 +29,7 @@
 </article>
 
 <style>
+	:global(#methodology) {
+		display: none;
+	}
 </style>
