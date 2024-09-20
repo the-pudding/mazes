@@ -11,19 +11,21 @@
 	const order = getOrder();
 
 	let selectState = "default";
-	let selectStory = "courtney";
+	let selectStory = "default";
+	// TODO: when we exit the modal, we need to set these back to default
 
 	const highlightOptions = [
 		{ label: "select state", value: "default" },
 		...states.map((d) => ({ label: _.startCase(d.name), value: d.id }))
 	];
 	const storyOptions = [
-		{ label: "Courtney", value: "courtney" },
-		{ label: "Margot", value: "margot" },
-		{ label: "Simone", value: "simone" },
-		{ label: "Billie", value: "billie" },
-		{ label: "Ava", value: "ava" },
-		{ label: "Lucia", value: "lucia" }
+		{ label: "select story", value: "default" },
+		...states
+			.filter((d) => d.story)
+			.map((d) => ({
+				label: _.startCase(d.story),
+				value: d.id
+			}))
 	];
 
 	const methodology = () => {
@@ -40,6 +42,7 @@
 	];
 	$: mobile = $viewport.width < 600;
 	$: if (selectState && selectState !== "default") $selectedState = selectState;
+	$: if (selectStory && selectStory !== "default") $selectedState = selectStory;
 </script>
 
 <div class="bar">

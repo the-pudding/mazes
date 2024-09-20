@@ -113,7 +113,7 @@
 	};
 
 	const onKeyDown = async (e) => {
-		if ($gameState === "post") return;
+		if ($gameState === "post" || $gameState === "pre") return;
 		if (inProgress.x || inProgress.y) {
 			circleX.set(currentCenterX, { duration: 0 });
 			circleY.set(currentCenterY, { duration: 0 });

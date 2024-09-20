@@ -3,7 +3,7 @@
 	import Path from "$components/Maze/Path.svelte";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
-	import { pathLength, globalGameState, selectedState } from "$stores/misc.js";
+	import { pathLength, globalGameState } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
 	import _ from "lodash";
 	import { tick } from "svelte";
@@ -78,7 +78,6 @@
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = $dims ? ($mazeSize - $padding * 2) / $dims : 0;
 	$: $pathLength = $path.length - 1;
-	$: labelsVisible = $gameState === "mid" && !mobile;
 	$: $solution = _.orderBy(
 		_.flatten(wallData).filter((d) => d.solutionIndex !== null),
 		"solutionIndex",
@@ -103,30 +102,13 @@
 				</g>
 			{/if}
 		</svg>
-
-		<div
-			class="label"
-			class:visible={labelsVisible}
-			style:top={0}
-			style:left={0}
-			style:transform={`translate(0, -100%)`}
-		>
-			start
-		</div>
-		<div
-			class="label"
-			class:visible={labelsVisible}
-			style:right={0}
-			style:top={`${$mazeSize}px`}
-		>
-			finish
-		</div>
 	{/if}
 
 	<div class="below" style:width={`${$mazeSize}px`}>
 		<div class="buttons">
 			<button class="start" on:click={start}>start maze</button>
 			<button class="solve" on:click={solve}>Complete the maze</button>
+			<button class="reset" on:click={reset}>Reset</button>
 		</div>
 	</div>
 </div>
@@ -146,13 +128,7 @@
 		flex-direction: column;
 		align-items: start;
 	}
-	.label {
-		position: absolute;
-		visibility: hidden;
-	}
-	.visible {
-		visibility: visible;
-	}
+
 	button.start {
 		font-size: 1.2rem;
 		color: white;
@@ -167,6 +143,14 @@
 		padding: 0;
 		margin-top: 0.25rem;
 		font-size: 0.9rem;
+		font-family: var(--mono);
+		color: var(--color-dark-tan);
+	}
+	button.reset {
+		background: none;
+		padding: 0;
+		font-size: 0.9rem;
+		margin-top: 0.25rem;
 		font-family: var(--mono);
 		color: var(--color-dark-tan);
 	}

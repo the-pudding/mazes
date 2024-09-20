@@ -17,9 +17,13 @@
 	const wallWidth = getWallWidth();
 	const dims = getDims();
 	const padding = getPadding();
+	const gameState = getGameState();
 </script>
 
-<g style:transform={`translate(${$padding}px, ${$padding}px)`}>
+<g
+	style:transform={`translate(${$padding}px, ${$padding}px)`}
+	class:fade={$gameState !== "mid"}
+>
 	{#each $data as { row, col, walls }}
 		{@const [top, right, bottom, left] = walls}
 		{@const movement = animated && !$mq.reducedMotion}
@@ -74,6 +78,12 @@
 </g>
 
 <style>
+	g {
+		transition: opacity 0.5s;
+	}
+	g.fade {
+		opacity: 0.2;
+	}
 	line {
 		stroke: black;
 	}

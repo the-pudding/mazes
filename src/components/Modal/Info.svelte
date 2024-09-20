@@ -9,12 +9,15 @@
 	const sampleFacts = factsData.filter((d) => d.id === "tn");
 
 	$: name = _.startCase(stateData.find((d) => d.id === $selectedState).name);
-	$: story = stateData.find((d) => d.id === $selectedState).story === "TRUE";
+	$: story = stateData.find((d) => d.id === $selectedState).story;
 	$: guttmacherLink = stateData.find((d) => d.id === $selectedState).guttmacher;
-	$: facts =
-		factsData.filter((d) => d.id === $selectedState).length > 0
-			? factsData.filter((d) => d.id === $selectedState)
-			: sampleFacts;
+	$: facts = story
+		? factsData
+				.filter((d) => d.id === $selectedState)
+				.map((d) => ({ fact: d.fact.replaceAll("NAME", _.startCase(story)) }))
+		: factsData.filter((d) => d.id === $selectedState).length > 0
+		? factsData.filter((d) => d.id === $selectedState)
+		: sampleFacts;
 </script>
 
 <div class="info">
@@ -23,7 +26,8 @@
 			<h2>{name}</h2>
 			{#if story}
 				<div class="story">
-					NAME's story <span class="icon">{@html checkIcon}</span>
+					{_.startCase(story)}'s story
+					<span class="icon">{@html checkIcon}</span>
 				</div>
 			{/if}
 		</div>
@@ -37,7 +41,7 @@
 
 	<div class="facts">
 		{#each facts as { fact }, i}
-			{@const top = i * 40}
+			{@const top = i * 50}
 			<div class="fact" style:top={`${top}px`}>{@html fact}</div>
 		{/each}
 	</div>
@@ -101,7 +105,7 @@
 		align-items: baseline;
 		color: var(--color-dark-tan);
 		font-size: 0.9rem;
-		width: 150%; /* TODO: weird */
+		width: 520px;
 	}
 	.share {
 		display: flex;
