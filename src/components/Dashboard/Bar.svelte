@@ -12,7 +12,6 @@
 
 	let selectState = "default";
 	let selectStory = "default";
-	// TODO: when we exit the modal, we need to set these back to default
 
 	const highlightOptions = [
 		{ label: "select state", value: "default" },
@@ -33,6 +32,10 @@
 		const el = document.getElementById("methodology");
 		el.classList.toggle("visible");
 	};
+	const resetInputs = () => {
+		selectState = "default";
+		selectStory = "default";
+	};
 
 	$: orderOptions = [
 		{ label: "Alphabetically", value: "alpha" },
@@ -43,6 +46,7 @@
 	$: mobile = $viewport.width < 600;
 	$: if (selectState && selectState !== "default") $selectedState = selectState;
 	$: if (selectStory && selectStory !== "default") $selectedState = selectStory;
+	$: if (!$selectedState) resetInputs();
 </script>
 
 <div class="bar">
@@ -82,7 +86,7 @@
 		justify-content: space-between;
 		padding: 1rem;
 		position: sticky;
-		top: 3rem;
+		bottom: 0;
 		z-index: 10;
 		height: 70px;
 		width: 100%;

@@ -52,9 +52,9 @@
 		{#if $order === "barriers"}
 			<h3>Fewest to most barriers</h3>
 		{/if}
-		{#each sortedStates as { id, name, row, col }}
+		{#each sortedStates as { id, name, row, col, story }}
 			{@const label = geo ? id.toUpperCase() : _.startCase(name)}
-			<State {id} {label} {row} {col} />
+			<State {id} {label} {row} {col} {story} />
 		{/each}
 	{/if}
 </figure>
@@ -62,7 +62,7 @@
 <style>
 	figure {
 		display: grid;
-		height: calc(100vh - 70px);
+		height: auto;
 		max-width: min(100%, 900px);
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 		gap: 1rem;
@@ -74,6 +74,7 @@
 		height: 100%;
 	}
 	figure.geo {
+		height: calc(100vh - 70px);
 		grid-template-columns: repeat(12, minmax(0, 1fr));
 		grid-template-rows: repeat(8, minmax(0, 1fr));
 		gap: 0;

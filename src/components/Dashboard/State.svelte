@@ -3,11 +3,13 @@
 	import { selectedState } from "$stores/misc.js";
 	import _ from "lodash";
 	import states from "$data/states.csv";
+	import plusIcon from "$svg/plus.svg";
 
 	export let id;
 	export let label;
 	export let row;
 	export let col;
+	export let story;
 
 	const { getOrder, getColumnWidth } = getContext("dashboard");
 	const order = getOrder();
@@ -26,9 +28,12 @@
 		{ id: "pa", shortened: "Penn." },
 		{ id: "ri", shortened: "Rhode I." },
 		{ id: "ct", shortened: "Conn." },
-		{ id: "wa", shortened: "Wash." }
+		{ id: "wa", shortened: "Wash." },
+		{ id: "tn", shortened: "Tenn." }
 	];
 	let labelWidth;
+
+	$: if (id === "dc") console.log({ labelWidth }, $columnWidth);
 
 	$: geo = $order === "geo";
 
@@ -54,23 +59,26 @@
 	role="button"
 	tabindex="0"
 >
-	{#if longNames.find((d) => d.id === id)}
-		<div
-			class="abbrev"
-			bind:clientWidth={labelWidth}
-			class:visible={labelWidth <= $columnWidth}
-		>
-			{label}
-
-			<div class="shortened abbrev" class:visible={labelWidth > $columnWidth}>
+	<div class="abbrev">
+		{#if longNames.find((d) => d.id === id)}
+			<div
+				class="text"
+				bind:clientWidth={labelWidth}
+				class:visible={labelWidth <= $columnWidth}
+			>
+				{label}
+			</div>
+			<div class="shortened text" class:visible={labelWidth > $columnWidth}>
 				{longNames.find((d) => d.id === id).shortened}
 			</div>
-		</div>
-	{:else}
-		<div class="abbrev visible">
-			{label}
-		</div>
-	{/if}
+		{:else}
+			<div class="text visible">{label}</div>
+		{/if}
+
+		{#if story}
+			<span class="icon">{@html plusIcon}</span>
+		{/if}
+	</div>
 
 	<div class="img-wrapper">
 		<img
@@ -91,20 +99,42 @@
 	}
 	.state:hover {
 		cursor: pointer;
+		outline: 3px solid var(--color-accent-orange);
+		border-radius: 5px;
+	}
+	.state:hover .abbrev {
+		font-weight: bold;
+		color: var(--color-fg);
 	}
 	.state.geo {
 		grid-row: var(--row);
 		grid-column: var(--col);
 	}
 	.abbrev {
+		position: relative;
 		font-family: var(--sans);
 		color: var(--color-dark-tan);
 		text-align: center;
 		pointer-events: none;
 		white-space: nowrap;
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		width: 100%;
+	}
+	.text {
+		grid-column: 2;
+		text-align: center;
 		visibility: hidden;
 	}
-	.abbrev.visible {
+	.icon {
+		height: 14px;
+		width: 14px;
+		display: grid;
+		grid-column: 3;
+		justify-self: end;
+	}
+	.visible {
 		visibility: visible;
 	}
 	.shortened {
