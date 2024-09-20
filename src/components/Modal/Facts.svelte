@@ -1,15 +1,17 @@
 <script>
 	import _ from "lodash";
 	import { scaleLinear } from "d3-scale";
-	import { globalGameState, pathLength } from "$stores/misc.js";
+	import {
+		globalGameState,
+		pathLength,
+		currentMazeSize
+	} from "$stores/misc.js";
 
 	export let facts;
 
 	let containerHeight;
 	let factEls = [];
 	let currentFact = 0;
-
-	const steps = 5;
 
 	const onClick = (i) => {
 		currentFact = i;
@@ -26,6 +28,8 @@
 
 	$: if ($globalGameState === "mid" && $pathLength % steps === steps - 1)
 		cycleFact();
+	$: if ($globalGameState === "pre" || $pathLength === 0) currentFact = 0;
+	$: steps = $currentMazeSize <= 10 ? 2 : 5;
 	$: heights = factEls.map((d) => d.getBoundingClientRect().height);
 	$: combinedFactHeight = _.sum(heights);
 	$: topScale = scaleLinear()
