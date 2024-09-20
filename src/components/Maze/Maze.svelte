@@ -1,6 +1,7 @@
 <script>
 	import Walls from "$components/Maze/Walls.svelte";
 	import Path from "$components/Maze/Path.svelte";
+	import Keys from "$components/Maze/Keys.Desktop.svelte";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
 	import { pathLength, globalGameState } from "$stores/misc.js";
@@ -106,10 +107,14 @@
 
 	<div class="below" style:width={`${$mazeSize}px`}>
 		<div class="buttons">
-			<button class="start" on:click={start}>start maze</button>
+			<button class="start" on:click={$gameState === "pre" ? start : reset}>
+				{$gameState === "pre" ? "start" : "restart"} maze
+			</button>
 			<button class="solve" on:click={solve}>Complete the maze</button>
-			<button class="reset" on:click={reset}>Reset</button>
+			<!-- <button class="reset" on:click={reset}>Reset</button> -->
 		</div>
+
+		<Keys />
 	</div>
 </div>
 
@@ -122,6 +127,7 @@
 	.below {
 		margin-top: 1rem;
 		display: flex;
+		justify-content: space-between;
 	}
 	.buttons {
 		display: flex;

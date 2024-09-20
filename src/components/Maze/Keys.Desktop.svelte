@@ -24,6 +24,7 @@
 		align-items: center;
 	}
 	.text {
+		font-family: var(--mono);
 		color: var(--color-dark-tan);
 		font-size: 0.9rem;
 		margin-top: 4px;
@@ -38,6 +39,7 @@
 	}
 	.key {
 		background: var(--color-tan);
+		color: #34373e;
 		display: flex;
 		align-items: center;
 		justify-content: center;

@@ -33,8 +33,6 @@
 	];
 	let labelWidth;
 
-	$: if (id === "dc") console.log({ labelWidth }, $columnWidth);
-
 	$: geo = $order === "geo";
 
 	const onClick = (e) => {

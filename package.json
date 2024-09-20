@@ -41,6 +41,7 @@
 	"dependencies": {
 		"clipboard": "^2.0.11",
 		"feather-icons": "^4.29.0",
-		"roughjs": "^4.5.2"
+		"roughjs": "^4.5.2",
+		"swiper": "^11.1.14"
 	}
 }
