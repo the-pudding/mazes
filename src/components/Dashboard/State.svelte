@@ -3,6 +3,7 @@
 	import { selectedState } from "$stores/misc.js";
 	import _ from "lodash";
 	import states from "$data/states.csv";
+	import checkIcon from "$svg/check-orange.svg";
 	import plusIcon from "$svg/plus.svg";
 
 	export let id;
@@ -10,6 +11,7 @@
 	export let row;
 	export let col;
 	export let story;
+	export let solved;
 
 	const { getOrder, getColumnWidth } = getContext("dashboard");
 	const order = getOrder();
@@ -83,6 +85,8 @@
 			src={`assets/img/states/${id}.png`}
 			alt={`maze for ${states.find((d) => d.id === id).name}`}
 		/>
+
+		<span class="check" class:visible={solved}>{@html checkIcon}</span>
 	</div>
 </div>
 
@@ -99,6 +103,9 @@
 		cursor: pointer;
 		outline: 3px solid var(--color-accent-orange);
 		border-radius: 5px;
+	}
+	.state:hover img {
+		opacity: 1;
 	}
 	.state:hover .abbrev {
 		font-weight: bold;
@@ -145,6 +152,22 @@
 		position: relative;
 		pointer-events: none;
 		width: 100%;
+	}
+	img {
+		opacity: 0.5;
+	}
+	.check {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: 20px;
+		width: 20px;
+		background: var(--color-bg);
+		visibility: hidden;
+	}
+	.check.visible {
+		visibility: visible;
 	}
 
 	@media (max-width: 800px) {

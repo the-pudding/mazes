@@ -4,10 +4,10 @@
 	import Keys from "$components/Maze/Keys.Desktop.svelte";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
-	import { pathLength, globalGameState } from "$stores/misc.js";
+	import { pathLength, globalGameState, selectedState } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
 	import _ from "lodash";
-	import { tick } from "svelte";
+	import localStorage from "$utils/localStorage.js";
 
 	export let availableSpace;
 	export let wallData;
@@ -28,6 +28,8 @@
 	const path = writable(mazePath);
 	const gameState = writable("pre");
 	const mobilePadding = 3;
+
+	let userSolved = true;
 
 	setContext("maze", {
 		wallWidth,
@@ -51,8 +53,10 @@
 	const reset = () => {
 		$gameState = "mid";
 		$location = { row: 0, col: 0 };
+		userSolved = true;
 	};
 	const solve = async () => {
+		userSolved = false;
 		const solution = _.orderBy(
 			$data.filter((d) => d.solutionIndex !== null),
 			"solutionIndex",
@@ -61,10 +65,11 @@
 		$path = solution;
 		$gameState = "post";
 		$location = { row: $dims - 1, col: $dims - 1 };
-
-		await tick();
-		const readMoreLink = document.getElementById("read-more");
-		readMoreLink.focus();
+	};
+	const logSolve = () => {
+		const current = localStorage.get("mazes");
+		if (!current) localStorage.set("mazes", [$selectedState]);
+		else localStorage.set("mazes", [...current, $selectedState]);
 	};
 
 	$: $globalGameState = $gameState;
@@ -85,6 +90,7 @@
 		"asc"
 	);
 	$: if ($location.row === $dims - 1 && $location.col === $dims - 1) {
+		if (userSolved) logSolve();
 		$gameState = "post";
 	}
 </script>

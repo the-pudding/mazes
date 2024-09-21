@@ -45,6 +45,8 @@
 			bind:this={factEls[i]}
 			on:click={() => onClick(i)}
 			class="fact"
+			class:above={i < currentFact}
+			class:below={i > currentFact}
 			class:fade={$globalGameState === "pre" || i !== currentFact}
 			style:top={`${top}px`}
 			style:z-index={getZIndex(i, currentFact)}
@@ -67,13 +69,20 @@
 		border: 1px solid var(--color-dark-tan);
 		border-radius: 5px;
 		padding: 1rem;
-	}
-	.fact:hover {
-		cursor: pointer;
-		color: rgba(28, 18, 70, 0.7);
+		transition: transform calc(var(--1s) * 0.3), color calc(var(--1s) * 0.3),
+			border calc(var(--1s) * 0.3);
 	}
 	.fade {
 		color: rgba(28, 18, 70, 0.1);
 		border: 1px solid rgba(176, 163, 128, 0.3);
+	}
+	.fade:hover {
+		cursor: pointer;
+	}
+	.fade.above:hover {
+		transform: translateY(-5px);
+	}
+	.fade.below:hover {
+		transform: translateY(5px);
 	}
 </style>

@@ -4,6 +4,7 @@
 	import viewport from "$stores/viewport.js";
 	import { onMount, tick, getContext } from "svelte";
 	import _ from "lodash";
+	import localStorage from "$utils/localStorage.js";
 
 	const { intro, getOrder, getColumnWidth } = getContext("dashboard");
 	const order = getOrder();
@@ -20,6 +21,7 @@
 		}
 	};
 
+	$: mazesSolved = localStorage.get("mazes") || [];
 	$: sortedStates = _.orderBy(
 		states,
 		sortFns[$order],
@@ -45,7 +47,7 @@
 			<h3>{_.startCase(region)}</h3>
 			{#each regionStates as { id, name }}
 				{@const label = _.startCase(name)}
-				<State {id} {label} />
+				<State {id} {label} solved={mazesSolved.includes(id)} />
 			{/each}
 		{/each}
 	{:else}
@@ -54,7 +56,14 @@
 		{/if}
 		{#each sortedStates as { id, name, row, col, story }}
 			{@const label = geo ? id.toUpperCase() : _.startCase(name)}
-			<State {id} {label} {row} {col} {story} />
+			<State
+				{id}
+				{label}
+				{row}
+				{col}
+				{story}
+				solved={mazesSolved.includes(id)}
+			/>
 		{/each}
 	{/if}
 </figure>

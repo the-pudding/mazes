@@ -42,4 +42,7 @@
 	.footer.visible {
 		display: block;
 	}
+	:global(#dashboard) {
+		position: relative;
+	}
 </style>

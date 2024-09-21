@@ -80,6 +80,7 @@
 		font-weight: bold;
 		display: flex;
 		align-items: center;
+		white-space: nowrap;
 	}
 	.learn {
 		display: flex;

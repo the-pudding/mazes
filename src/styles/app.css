@@ -56,6 +56,9 @@ strong {
 a {
 	font-weight: bold;
 }
+a:hover {
+	color: var(--color-fg);
+}
 
 /* dark theme */
 /* this is a starting place for dark mode - test before deploying */
