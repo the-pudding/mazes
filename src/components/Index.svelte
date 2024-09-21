@@ -34,6 +34,10 @@
 </div>
 
 <style>
+	article {
+		padding: 0 2rem;
+	}
+
 	:global(#methodology),
 	.footer {
 		display: none;
@@ -41,8 +45,5 @@
 	:global(#methodology.visible),
 	.footer.visible {
 		display: block;
-	}
-	:global(#dashboard) {
-		position: relative;
 	}
 </style>

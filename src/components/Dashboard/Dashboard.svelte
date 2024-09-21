@@ -4,7 +4,6 @@
 	import Modal from "$components/Modal/Modal.svelte";
 	import { setContext } from "svelte";
 	import { writable } from "svelte/store";
-	import localStorage from "$utils/localStorage.js";
 
 	export let doneMessage;
 
@@ -20,3 +19,9 @@
 <Grid {doneMessage} />
 <Bar />
 <Modal />
+
+<style>
+	:global(#dashboard) {
+		position: relative;
+	}
+</style>

@@ -87,7 +87,11 @@
 		overflow: hidden;
 	}
 	.modal {
-		display: none;
+		opacity: 0;
+		z-index: -1000;
+		transition: opacity calc(var(--1s) * 0.3);
+		display: flex;
+		flex-direction: column;
 		position: fixed;
 		width: 90%;
 		max-width: 1000px;
@@ -103,8 +107,7 @@
 	}
 	.modal.open {
 		z-index: 1000;
-		display: flex;
-		flex-direction: column;
+		opacity: 1;
 	}
 	.close {
 		display: flex;
