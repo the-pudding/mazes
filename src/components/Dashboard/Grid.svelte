@@ -6,6 +6,8 @@
 	import _ from "lodash";
 	import localStorage from "$utils/localStorage.js";
 
+	export let doneMessage;
+
 	const { intro, getOrder, getColumnWidth } = getContext("dashboard");
 	const order = getOrder();
 	const columnWidth = getColumnWidth();
@@ -66,6 +68,16 @@
 			/>
 		{/each}
 	{/if}
+
+	<div class="tracker">
+		You've completed {mazesSolved === 50 ? "all " : `${mazesSolved.length}/`}50
+		mazes.
+		{#if mazesSolved === 50}
+			<span class="done">
+				{@html doneMessage}
+			</span>
+		{/if}
+	</div>
 </figure>
 
 <style>
@@ -91,6 +103,25 @@
 	h3 {
 		grid-column: 1/-1;
 		margin-bottom: 0;
+	}
+	.tracker {
+		color: var(--color-accent-orange);
+		font-weight: bold;
+		grid-column: 1 / -1;
+		grid-row: 1;
+		text-align: center;
+		position: sticky;
+		top: 0;
+		background: var(--color-bg);
+	}
+	.geo .tracker {
+		grid-row: 1 / 3;
+		grid-column: 3 / 11;
+		margin: 0 1rem;
+	}
+	.done {
+		font-weight: normal;
+		display: block;
 	}
 
 	@media (max-width: 600px) {

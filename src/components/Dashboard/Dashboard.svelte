@@ -15,31 +15,8 @@
 
 	const order = writable("geo");
 	const columnWidth = writable(0);
-
-	// TODO: maybe move all this to Grid
-	$: mazesSolved = localStorage.get("mazes") || [];
 </script>
 
-<Grid />
+<Grid {doneMessage} />
 <Bar />
 <Modal />
-
-<div class="tracker">
-	You've completed {mazesSolved === 50 ? "all " : `${mazesSolved.length}/`}50
-	mazes.
-	{#if mazesSolved === 50}
-		{@html doneMessage}
-	{/if}
-</div>
-
-<style>
-	.tracker {
-		position: absolute;
-		bottom: 80px;
-		right: 1rem;
-		max-width: 300px;
-		text-align: right;
-		color: var(--color-accent-orange);
-		font-weight: bold;
-	}
-</style>
