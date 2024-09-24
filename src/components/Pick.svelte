@@ -43,7 +43,7 @@
 	:global(#pick) {
 		max-width: 800px;
 		margin: 0 auto;
-		height: 100vh;
+		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -54,6 +54,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		margin-bottom: 2rem;
 	}
 	h2 {
 		font-family: var(--serif);
@@ -96,5 +97,12 @@
 		width: 17px;
 		margin-left: 4px;
 		display: flex;
+	}
+
+	@media (max-width: 600px) {
+		.stories {
+			grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+			grid-gap: 1.5rem;
+		}
 	}
 </style>
