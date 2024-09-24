@@ -34,7 +34,7 @@
 </div>
 
 <style>
-	article {
+	:global(section:not(#dashboard)) {
 		padding: 0 2rem;
 	}
 

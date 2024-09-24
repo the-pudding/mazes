@@ -1,5 +1,6 @@
 <script>
 	import { selectedState } from "$stores/misc.js";
+	import arrowDownIcon from "$svg/arrow-down.svg";
 
 	export let hed;
 	export let sub;
@@ -12,11 +13,17 @@
 			$selectedState = id;
 		}, 800);
 	};
+	const seeAll = () => {
+		document.getElementById("dashboard").scrollIntoView({ behavior: "smooth" });
+	};
 </script>
 
 <div class="title">
 	<h2>{hed}</h2>
-	<div class="sub">{sub}</div>
+	<button class="sub" on:click={seeAll}>
+		<span class="text">{sub}</span>
+		<span class="icon">{@html arrowDownIcon}</span>
+	</button>
 </div>
 
 <div class="stories">
@@ -34,7 +41,7 @@
 
 <style>
 	:global(#pick) {
-		max-width: 750px;
+		max-width: 800px;
 		margin: 0 auto;
 		height: 100vh;
 		display: flex;
@@ -44,6 +51,9 @@
 	}
 	.title {
 		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	h2 {
 		font-family: var(--serif);
@@ -59,6 +69,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		padding: 0.5rem;
 	}
 	.story:hover {
 		cursor: pointer;
@@ -68,5 +79,22 @@
 	.name {
 		font-family: var(--serif);
 		font-size: 2rem;
+	}
+	.sub {
+		color: var(--color-fg);
+		padding: 0;
+		background: none;
+		border-radius: 0;
+		display: flex;
+		align-items: center;
+	}
+	.text {
+		text-decoration: underline;
+	}
+	.icon {
+		height: 17px;
+		width: 17px;
+		margin-left: 4px;
+		display: flex;
 	}
 </style>
