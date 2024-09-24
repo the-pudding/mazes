@@ -5,6 +5,7 @@
 	import Scrollytelling from "$components/Scrollytelling.svelte";
 	import Pick from "$components/Pick.svelte";
 	import Dashboard from "$components/Dashboard/Dashboard.svelte";
+	import Methodology from "$components/Methodology.svelte";
 	import { selectedState, revealMethods } from "$stores/misc.js";
 	import { onMount } from "svelte";
 	import urlParams from "$utils/urlParams.js";
@@ -12,7 +13,8 @@
 	const components = {
 		Scrollytelling: Scrollytelling,
 		Pick: Pick,
-		Dashboard: Dashboard
+		Dashboard: Dashboard,
+		Methodology: Methodology
 	};
 
 	onMount(() => {
@@ -34,16 +36,21 @@
 </div>
 
 <style>
+	article {
+		display: flex;
+		flex-direction: column;
+	}
 	:global(section:not(#dashboard)) {
 		padding: 0 2rem;
 	}
-
-	:global(#methodology),
+	/* :global(#methodology),
 	.footer {
 		display: none;
+	} */
+	:global(#methodology.visible) {
+		display: flex;
 	}
-	:global(#methodology.visible),
-	.footer.visible {
+	:global(.footer.visible) {
 		display: block;
 	}
 </style>
