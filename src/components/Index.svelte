@@ -43,10 +43,10 @@
 	:global(section:not(#dashboard)) {
 		padding: 0 2rem;
 	}
-	/* :global(#methodology),
+	:global(#methodology),
 	.footer {
 		display: none;
-	} */
+	}
 	:global(#methodology.visible) {
 		display: flex;
 	}

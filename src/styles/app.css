@@ -49,12 +49,9 @@
 	--1s: 1ms;
 }
 
-strong {
-	font-family: var(--font-bold);
-}
-
 a {
 	font-weight: bold;
+	border-bottom: 2px solid currentColor;
 }
 a:hover {
 	color: var(--color-fg);
