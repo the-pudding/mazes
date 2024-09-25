@@ -30,7 +30,9 @@
 	const methodology = () => {
 		$revealMethods = true;
 		const el = document.getElementById("methodology");
+		if (!el) return;
 		el.classList.toggle("visible");
+		el.scrollIntoView({ behavior: "smooth", block: "start" });
 	};
 	const resetInputs = () => {
 		selectState = "default";

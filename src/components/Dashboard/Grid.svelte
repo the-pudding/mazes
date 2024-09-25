@@ -115,6 +115,7 @@
 		background: var(--color-bg);
 	}
 	.geo .tracker {
+		position: static;
 		grid-row: 1 / 3;
 		grid-column: 3 / 11;
 		margin: 0 1rem 1rem 1rem;

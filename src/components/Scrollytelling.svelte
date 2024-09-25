@@ -1,40 +1,17 @@
 <script>
+	import IntroMaze from "$components/IntroMaze.svelte";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import copy from "$data/copy.json";
 	import logo from "$svg/wordmark-plain.svg";
-	import maze from "$svg/intro-maze.svg";
-	import { onMount } from "svelte";
 
 	export let steps;
 
-	let mounted = false;
 	let value;
 
-	const stepChange = () => {
-		if (!mounted) return;
-		const svgEl = document.querySelector("#intro-maze");
-		if (!svgEl) return;
-
-		if (value === 0) {
-			svgEl.setAttribute("viewBox", "0 -600 257.5 872");
-			const titleEls = svgEl.querySelectorAll("#of, #the");
-			titleEls.forEach((el) => {
-				el.setAttribute("opacity", 0);
-			});
-		} else if (value === 1) {
-			svgEl.setAttribute("viewBox", "0 0 1030 872");
-		}
-	};
-
-	$: visible = value === 0;
-	$: value, stepChange();
-
-	onMount(() => {
-		mounted = true;
-	});
+	$: bylineVisible = value === 0;
 </script>
 
-<div class="byline" class:visible>
+<div class="byline" class:visible={bylineVisible}>
 	<span class="logo">
 		<a href="https://pudding.cool" aria-label="The Pudding" target="_self">
 			{@html logo}
@@ -53,19 +30,15 @@
 	</Scrolly>
 </div>
 
-<!-- TODO: make this its own component with the svg inside -->
 <div class="sticky">
-	<div class="maze">
-		{@html maze}
-	</div>
+	<IntroMaze step={value} />
 </div>
 
 <style>
 	:global(#intro) {
 		display: flex;
-	}
-	:global(#intro-maze) {
-		height: auto;
+		gap: 1rem;
+		padding-right: 0 !important;
 	}
 	.sticky {
 		position: sticky;
@@ -74,12 +47,8 @@
 		height: fit-content;
 		height: 100vh;
 		display: flex;
-		align-items: flex-end;
+		align-items: center;
 	}
-	.maze {
-		width: 100%;
-	}
-
 	.logo {
 		max-width: 14em;
 	}
@@ -88,7 +57,6 @@
 		display: block;
 	}
 	.logo a:hover :global(path#logo) {
-		transition: fill 0.3s;
 		fill: var(--color-fg);
 	}
 	.byline {
@@ -98,7 +66,7 @@
 		bottom: 4rem;
 		left: 2rem;
 	}
-	.visible {
+	.byline.visible {
 		opacity: 1;
 	}
 	.text {

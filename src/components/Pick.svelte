@@ -54,7 +54,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin-bottom: 2rem;
 	}
 	h2 {
 		font-family: var(--serif);
@@ -63,7 +62,7 @@
 	.stories {
 		width: 100%;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
 		grid-gap: 3rem;
 	}
 	.story {
@@ -101,8 +100,11 @@
 
 	@media (max-width: 600px) {
 		.stories {
-			grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+			grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 			grid-gap: 1.5rem;
+		}
+		.title {
+			margin-bottom: 2rem;
 		}
 	}
 </style>
