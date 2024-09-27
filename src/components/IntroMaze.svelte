@@ -16,17 +16,16 @@
 	let strokeOffset;
 
 	const viewBox = tweened([fullW - w, 0, w / 5, h / 5], {
-		duration: 1000,
+		duration: 1800,
 		easing: cubicIn
 	});
+	const zooms = [0.2, 0.2, 0.28, 0.4, 0.6, 1];
+	const pathPcts = [0, 0.12, 0.18, 0.25, 0.35, 1];
 
 	const stepChange = () => {
-		strokeOffset = -1 * pathLength * (1 - step / 5);
-		if (step === 0 || step === 1) {
-			$viewBox = [fullW - w, 0, w / 5, h / 5];
-		} else {
-			$viewBox = [fullW - w, 0, w / (6 - step), h / (6 - step)];
-		}
+		if (step === undefined) return;
+		$viewBox = [fullW - w, 0, w * zooms[step], h * zooms[step]];
+		strokeOffset = -1 * pathLength * (1 - pathPcts[step]);
 	};
 
 	$: step, stepChange();
@@ -1823,7 +1822,7 @@
 		height: 100%;
 	}
 	#path {
-		transition: stroke-dashoffset var(--1s) ease;
+		transition: stroke-dashoffset calc(var(--1s) * 2) ease;
 	}
 	#of,
 	#the {
