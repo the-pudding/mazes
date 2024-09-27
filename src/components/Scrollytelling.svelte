@@ -20,6 +20,10 @@
 	<span class="text">{@html copy.byline}</span>
 </div>
 
+<div class="sticky">
+	<IntroMaze step={value} />
+</div>
+
 <div class="steps">
 	<Scrolly bind:value>
 		{#each steps as { value }, i}
@@ -30,13 +34,10 @@
 	</Scrolly>
 </div>
 
-<div class="sticky">
-	<IntroMaze step={value} />
-</div>
-
 <style>
 	:global(#intro) {
 		display: flex;
+		flex-direction: row-reverse;
 		gap: 1rem;
 		padding-right: 0 !important;
 	}
@@ -50,6 +51,7 @@
 		align-items: center;
 	}
 	.logo {
+		display: flex;
 		max-width: 14em;
 	}
 	.logo a {
@@ -65,6 +67,7 @@
 		position: fixed;
 		bottom: 4rem;
 		left: 2rem;
+		width: 350px;
 	}
 	.byline.visible {
 		opacity: 1;
@@ -72,6 +75,9 @@
 	.text {
 		display: block;
 		color: var(--color-dark-tan);
+	}
+	:global(#intro .text a) {
+		white-space: nowrap;
 	}
 	.steps {
 		width: 350px;
@@ -83,5 +89,37 @@
 	}
 	.step:first-of-type {
 		margin-top: 12rem;
+	}
+
+	@media (max-width: 800px) {
+		.steps,
+		.byline {
+			width: 200px;
+		}
+	}
+
+	@media (max-width: 600px) {
+		:global(#intro) {
+			flex-direction: column;
+			gap: 0;
+			align-items: center;
+			padding: 0 !important;
+		}
+		.sticky {
+			width: 100%;
+			height: auto;
+			top: 50%;
+			transform: translate(0, -50%);
+		}
+		.steps {
+			z-index: 100;
+			width: 100%;
+			padding: 0 2rem;
+		}
+		.step {
+			padding: 0.5rem 1.5rem;
+			background: var(--color-bg);
+			border: 1px solid var(--color-fg);
+		}
 	}
 </style>

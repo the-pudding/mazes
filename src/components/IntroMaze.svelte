@@ -1833,4 +1833,10 @@
 	#the.visible {
 		opacity: 1;
 	}
+
+	@media (max-width: 600px) {
+		.maze {
+			height: 100vh;
+		}
+	}
 </style>
