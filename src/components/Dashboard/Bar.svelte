@@ -41,10 +41,10 @@
 
 	$: orderOptions = [
 		{ label: "Alphabetically", value: "alpha" },
-		{ label: "Geographically", value: "geo", disabled: mobile },
+		{ label: "Geographically", value: "geo" },
 		{ label: "Regionally", value: "region" },
 		{ label: "By barriers", value: "barriers" }
-	];
+	].filter((d) => (mobile ? d.value !== "geo" : d));
 	$: mobile = $viewport.width < 600;
 	$: if (selectState && selectState !== "default") $selectedState = selectState;
 	$: if (selectStory && selectStory !== "default") $selectedState = selectStory;
@@ -123,6 +123,9 @@
 		}
 		.select:first-of-type {
 			margin-bottom: 1rem;
+		}
+		.selects {
+			flex-direction: column;
 		}
 	}
 </style>
