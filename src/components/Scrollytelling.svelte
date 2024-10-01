@@ -8,6 +8,8 @@
 
 	let value;
 
+	// TODO: 900px, switch to steps on top
+
 	$: bylineVisible = value === 0;
 </script>
 

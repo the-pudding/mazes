@@ -7,18 +7,19 @@
 	import shareIcon from "$svg/share.svg";
 	import checkIcon from "$svg/check.svg";
 
-	const sampleFacts = factsData.filter((d) => d.id === "tn");
-
-	$: name = _.startCase(stateData.find((d) => d.id === $selectedState).name);
-	$: story = stateData.find((d) => d.id === $selectedState).story;
-	$: guttmacherLink = stateData.find((d) => d.id === $selectedState).guttmacher;
-	$: facts = story
-		? factsData
-				.filter((d) => d.id === $selectedState)
-				.map((d) => ({ fact: d.fact.replaceAll("NAME", _.startCase(story)) }))
-		: factsData.filter((d) => d.id === $selectedState).length > 0
-		? factsData.filter((d) => d.id === $selectedState)
-		: sampleFacts;
+	$: state = stateData.find((d) => d.id === $selectedState);
+	$: name = _.startCase(state.name);
+	$: story = state.story;
+	$: guttmacherLink = state.guttmacher;
+	$: facts = factsData
+		.filter((d) => d.id === $selectedState)
+		.map((d) => {
+			if (!story) return d;
+			return {
+				...d,
+				fact: d.fact.replace("NAME", _.startCase(story))
+			};
+		});
 </script>
 
 <div class="info">

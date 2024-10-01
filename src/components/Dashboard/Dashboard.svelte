@@ -17,7 +17,7 @@
 </script>
 
 <Grid {doneMessage} />
-<!-- <Bar /> -->
+<Bar />
 <Modal />
 
 <style>
