@@ -4,7 +4,12 @@
 	import Keys from "$components/Maze/Keys.Desktop.svelte";
 	import { writable } from "svelte/store";
 	import { setContext } from "svelte";
-	import { pathLength, globalGameState, selectedState } from "$stores/misc.js";
+	import {
+		pathLength,
+		globalGameState,
+		selectedState,
+		nSolvedTemp
+	} from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
 	import _ from "lodash";
 	import localStorage from "$utils/localStorage.js";
@@ -67,9 +72,13 @@
 		$location = { row: $dims - 1, col: $dims - 1 };
 	};
 	const logSolve = () => {
+		$nSolvedTemp += 1;
 		const current = localStorage.get("mazes");
-		if (!current) localStorage.set("mazes", [$selectedState]);
-		else localStorage.set("mazes", [...current, $selectedState]);
+		if (!current) {
+			localStorage.set("mazes", [$selectedState]);
+		} else if (!current.includes($selectedState)) {
+			localStorage.set("mazes", [...current, $selectedState]);
+		}
 	};
 
 	$: $globalGameState = $gameState;

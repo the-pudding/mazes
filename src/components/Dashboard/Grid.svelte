@@ -3,6 +3,7 @@
 	import states from "$data/states.csv";
 	import viewport from "$stores/viewport.js";
 	import { onMount, tick, getContext } from "svelte";
+	import { nSolvedTemp } from "$stores/misc.js";
 	import _ from "lodash";
 	import localStorage from "$utils/localStorage.js";
 
@@ -23,7 +24,11 @@
 		}
 	};
 
-	$: mazesSolved = localStorage.get("mazes") || [];
+	let mazesSolved = [];
+
+	$: if ($nSolvedTemp !== undefined) {
+		mazesSolved = localStorage.get("mazes") || [];
+	}
 	$: sortedStates = _.orderBy(
 		states,
 		sortFns[$order],
@@ -39,6 +44,9 @@
 
 	onMount(() => {
 		measure();
+
+		// clear local storage
+		// localStorage.remove("mazes");
 	});
 </script>
 

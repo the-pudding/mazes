@@ -5,6 +5,7 @@ export const selectedState = writable(undefined);
 export const pathLength = writable(0);
 export const globalGameState = writable("pre");
 export const revealMethods = writable(false);
+export const nSolvedTemp = writable(0);
 
 export const currentMazeSize = derived(
 	[mazeData, selectedState],
