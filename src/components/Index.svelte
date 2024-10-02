@@ -18,12 +18,12 @@
 	};
 
 	onMount(() => {
-		// const state = urlParams.get("state");
-		// if (state !== "") {
-		// 	const dashboardEl = document.getElementById("dashboard");
-		// 	dashboardEl.scrollIntoView({ behavior: "instant", alignToTop: true });
-		// 	$selectedState = state;
-		// }
+		const state = urlParams.get("state");
+		if (state !== "") {
+			const dashboardEl = document.getElementById("dashboard");
+			dashboardEl.scrollIntoView({ behavior: "instant", alignToTop: true });
+			$selectedState = state;
+		}
 	});
 </script>
 

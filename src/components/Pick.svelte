@@ -1,6 +1,8 @@
 <script>
+	import stateData from "$data/states.csv";
 	import { selectedState } from "$stores/misc.js";
 	import arrowDownIcon from "$svg/arrow-down.svg";
+	import _ from "lodash";
 
 	export let hed;
 	export let sub;
@@ -27,7 +29,9 @@
 </div>
 
 <div class="stories">
-	{#each stories as { name, state, id, age }}
+	{#each stories as { id, age }}
+		{@const state = _.startCase(stateData.find((d) => d.id === id).name)}
+		{@const name = _.startCase(stateData.find((d) => d.id === id).story)}
 		<div class="story" on:click={() => onClick(id)}>
 			<img
 				src={`assets/img/states/${id}.png`}

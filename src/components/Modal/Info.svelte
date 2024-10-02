@@ -7,6 +7,26 @@
 	import shareIcon from "$svg/share.svg";
 	import checkIcon from "$svg/check.svg";
 
+	let t;
+	let copySuccess = false;
+
+	const share = () => {
+		const baseUrl = window.location.origin + window.location.pathname;
+		const shareUrl = `${baseUrl}?state=${encodeURIComponent($selectedState)}`;
+
+		navigator.clipboard
+			.writeText(shareUrl)
+			.then(() => {
+				clearTimeout(t);
+				copySuccess = true;
+
+				t = setTimeout(() => {
+					copySuccess = false;
+				}, 2000);
+			})
+			.catch((err) => {});
+	};
+
 	$: state = stateData.find((d) => d.id === $selectedState);
 	$: name = _.startCase(state.name);
 	$: story = state.story;
@@ -48,8 +68,12 @@
 		<a href={guttmacherLink} target="_blank">state’s abortion policies</a>
 		and
 		<span class="share">
-			<a href="/">share this state’s maze</a>
+			<a href="#" on:click|preventDefault={share}>share this state’s maze</a>
 			<span class="icon">{@html shareIcon}</span>
+
+			<span class="clipboard" class:visible={copySuccess}
+				>Copied to clipboard!</span
+			>
 		</span>
 	</div>
 </div>
@@ -95,6 +119,7 @@
 	.share {
 		display: flex;
 		align-items: center;
+		position: relative;
 	}
 	.share .icon {
 		display: flex;
@@ -114,5 +139,20 @@
 	span,
 	a {
 		white-space: nowrap;
+	}
+	.clipboard {
+		position: absolute;
+		top: 0;
+		opacity: 0;
+		transform: translate(0, 0);
+		z-index: -1000;
+		width: 100%;
+		text-align: center;
+		background: var(--color-bg);
+		transition: transform calc(var(--1s) * 0.3), opacity calc(var(--1s) * 0.15);
+	}
+	.clipboard.visible {
+		transform: translate(0, -120%);
+		opacity: 1;
 	}
 </style>
