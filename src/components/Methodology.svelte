@@ -28,4 +28,10 @@
 	p {
 		color: var(--color-dark-tan);
 	}
+
+	@media (max-width: 600px) {
+		:global(#methodology) {
+			height: auto;
+		}
+	}
 </style>

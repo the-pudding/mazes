@@ -13,22 +13,20 @@
 	let factEls = [];
 	let currentFact = 0;
 
-	const onClick = (i) => {
-		currentFact = i;
-	};
 	const getZIndex = (i, currentFact) => {
 		const distance = Math.abs(i - currentFact);
 		return facts.length - distance;
 	};
 	const cycleFact = () => {
 		if (currentFact < facts.length - 1) {
-			currentFact++;
+			currentFact = currentFact + 1;
 		}
 	};
 
+	$: if ($globalGameState === "pre" || $pathLength === 0) currentFact = 0;
 	$: if ($globalGameState === "mid" && $pathLength % steps === steps - 1)
 		cycleFact();
-	$: if ($globalGameState === "pre" || $pathLength === 0) currentFact = 0;
+	$: if ($globalGameState === "post") currentFact = facts.length - 1;
 	$: steps = $currentMazeSize <= 10 ? 2 : 5;
 	$: heights = factEls.map((d) => d.getBoundingClientRect().height);
 	$: combinedFactHeight = _.sum(heights);
@@ -39,15 +37,27 @@
 
 <div class="facts" bind:clientHeight={containerHeight}>
 	{#each facts as { fact }, i}
-		{@const top = i === 0 ? 0 : topScale(_.sum(_.slice(heights, 0, i)))}
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		{@const plentyOfRoom = containerHeight > combinedFactHeight}
+		{@const heightAbove = _.sum(
+			_.slice(
+				factEls.map((d) => d.clientHeight),
+				0,
+				i
+			)
+		)}
+		{@const top =
+			i === 0
+				? 0
+				: plentyOfRoom
+				? heightAbove - 20
+				: topScale(_.sum(_.slice(heights, 0, i)))}
 		<div
 			bind:this={factEls[i]}
-			on:click={() => onClick(i)}
 			class="fact"
 			class:above={i < currentFact}
 			class:below={i > currentFact}
-			class:fade={$globalGameState === "pre" || i !== currentFact}
+			class:fade={$globalGameState === "pre" || currentFact !== i}
+			class:visible={currentFact >= i}
 			style:top={`${top}px`}
 			style:z-index={getZIndex(i, currentFact)}
 		>
@@ -69,15 +79,23 @@
 		border: 1px solid var(--color-dark-tan);
 		border-radius: 5px;
 		padding: 1rem;
+		opacity: 0;
+		transform: translateY(20px);
 		transition: transform calc(var(--1s) * 0.3), color calc(var(--1s) * 0.3),
-			border calc(var(--1s) * 0.3);
+			border calc(var(--1s) * 0.3), opacity calc(var(--1s) * 0.3);
 	}
+	.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	.fact:hover {
+		color: var(--color-fg);
+		border: 1px solid rgba(176, 163, 128, 0.5);
+	}
+
 	.fade {
 		color: rgba(28, 18, 70, 0.1);
 		border: 1px solid rgba(176, 163, 128, 0.3);
-	}
-	.fade:hover {
-		cursor: pointer;
 	}
 	.fade.above:hover {
 		transform: translateY(-5px);

@@ -96,14 +96,14 @@
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 		gap: 1rem;
 		margin: auto;
-		padding: 3rem 1rem;
+		padding: 4rem 1rem;
 	}
 	figure.intro {
 		padding: 0;
 		height: 100%;
 	}
 	figure.geo {
-		height: calc(100vh - 70px);
+		max-height: calc(100vh - 70px);
 		grid-template-columns: repeat(12, minmax(0, 1fr));
 		grid-template-rows: repeat(8, minmax(0, 1fr));
 		gap: 0;
@@ -121,6 +121,7 @@
 		position: sticky;
 		top: 0;
 		background: var(--color-bg);
+		padding: 4px 0;
 	}
 	.geo .tracker {
 		position: static;

@@ -28,6 +28,7 @@
 	];
 
 	const methodology = () => {
+		if ($revealMethods) return;
 		$revealMethods = true;
 		const el = document.getElementById("methodology");
 		if (!el) return;
@@ -46,6 +47,7 @@
 		{ label: "By barriers", value: "barriers" }
 	].filter((d) => (mobile ? d.value !== "geo" : d));
 	$: mobile = $viewport.width < 600;
+	$: bigScreen = $viewport.width > 1000;
 	$: if (selectState && selectState !== "default") $selectedState = selectState;
 	$: if (selectStory && selectStory !== "default") $selectedState = selectStory;
 	$: if (!$selectedState) resetInputs();
@@ -54,12 +56,16 @@
 <div class="bar">
 	<div class="selects">
 		<div class="select">
-			<Select label="Order mazes" options={orderOptions} bind:value={$order} />
+			<Select
+				label={bigScreen || mobile ? "Order mazes" : ""}
+				options={orderOptions}
+				bind:value={$order}
+			/>
 		</div>
 
 		<div class="select">
 			<Select
-				label={mobile ? "Find" : "See state maze for"}
+				label={bigScreen || mobile ? "See state maze for" : ""}
 				options={highlightOptions}
 				bind:value={selectState}
 			/>
@@ -67,7 +73,7 @@
 
 		<div class="select">
 			<Select
-				label={"Pick a story"}
+				label={bigScreen || mobile ? "Pick a story" : ""}
 				options={storyOptions}
 				bind:value={selectStory}
 			/>
@@ -75,7 +81,8 @@
 	</div>
 
 	<button class="methods" on:click={methodology}>
-		Methodology <span>{@html infoIcon}</span>
+		{$viewport.width < 680 && !mobile ? "" : "Methodology"}
+		<span>{@html infoIcon}</span>
 	</button>
 </div>
 
@@ -103,6 +110,9 @@
 		padding: 0;
 		color: var(--color-dark-tan);
 	}
+	.methods:hover {
+		color: var(--color-fg);
+	}
 	.methods span {
 		display: flex;
 		width: 1.2rem;
@@ -117,15 +127,19 @@
 
 	@media (max-width: 600px) {
 		.bar {
+			height: auto;
 			flex-direction: column;
 			align-items: center;
 			font-size: 0.8rem;
 		}
-		.select:first-of-type {
-			margin-bottom: 1rem;
-		}
 		.selects {
 			flex-direction: column;
+			align-items: end;
+			gap: 0.5rem;
+			margin-bottom: 0.5rem;
+		}
+		.methods {
+			align-self: flex-end;
 		}
 	}
 </style>
