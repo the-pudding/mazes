@@ -7,6 +7,8 @@
 	import states from "$data/states.csv";
 	import viewport from "$stores/viewport.js";
 
+	export let sentences;
+
 	let modalEl;
 	let stateEl;
 	let numFocusable;
@@ -79,7 +81,7 @@
 	on:keydown={trapFocus}
 >
 	<button class="close" on:click={close}><Icon name="x" /></button>
-	<Contents />
+	<Contents {sentences} />
 </div>
 
 <style>

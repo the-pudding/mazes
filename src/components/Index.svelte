@@ -11,8 +11,8 @@
 	import urlParams from "$utils/urlParams.js";
 
 	const components = {
-		Scrollytelling: Scrollytelling,
-		Pick: Pick,
+		// Scrollytelling: Scrollytelling,
+		// Pick: Pick,
 		Dashboard: Dashboard,
 		Methodology: Methodology
 	};

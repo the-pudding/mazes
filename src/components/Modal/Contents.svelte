@@ -6,6 +6,8 @@
 	import _ from "lodash";
 	import { tick } from "svelte";
 
+	export let sentences;
+
 	let data;
 	let width;
 	let height;
@@ -26,7 +28,7 @@
 <div class="contents">
 	<div class="info">
 		{#if $selectedState}
-			<Info />
+			<Info {sentences} />
 		{/if}
 	</div>
 	<div class="maze" bind:clientWidth={width} bind:clientHeight={height}>

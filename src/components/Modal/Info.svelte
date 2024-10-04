@@ -7,6 +7,10 @@
 	import shareIcon from "$svg/share.svg";
 	import checkIcon from "$svg/check.svg";
 
+	export let sentences;
+
+	const { complexitySentences, banSentences } = sentences;
+
 	let t;
 	let copySuccess = false;
 
@@ -30,6 +34,18 @@
 	$: state = stateData.find((d) => d.id === $selectedState);
 	$: name = _.startCase(state.name);
 	$: story = state.story;
+	$: complexity = state.complexity;
+	$: complexityText =
+		complexity === "most" || complexity === "least"
+			? complexitySentences[0].value.replace("[COMPLEXITY]", complexity)
+			: complexitySentences[1].value.replace("[COMPLEXITY]", complexity);
+	$: ban = state.ban;
+	$: banText =
+		ban === "no restriction"
+			? banSentences[0].value
+			: ban === "banned"
+			? banSentences[2].value
+			: banSentences[1].value.replace("[LIMIT]", ban);
 	$: guttmacherLink = state.guttmacher;
 	$: facts = factsData
 		.filter((d) => d.id === $selectedState)
@@ -55,9 +71,8 @@
 		</div>
 
 		<div class="classification">
-			... is one of the <strong>least complex</strong> states for navigating abortion
-			access and other related policies. The state does not restrict abortion based
-			on gestational duration.
+			{@html complexityText}
+			{@html banText}
 		</div>
 	</div>
 

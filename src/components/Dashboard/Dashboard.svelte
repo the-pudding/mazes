@@ -7,6 +7,10 @@
 	import viewport from "$stores/viewport.js";
 
 	export let doneMessage;
+	export let complexitySentences;
+	export let banSentences;
+
+	const sentences = { complexitySentences, banSentences };
 
 	setContext("dashboard", {
 		getOrder: () => order,
@@ -22,7 +26,7 @@
 
 <Grid {doneMessage} />
 <Bar />
-<Modal />
+<Modal {sentences} />
 
 <style>
 	:global(#dashboard) {
