@@ -33,10 +33,19 @@
 		{@const state = _.startCase(stateData.find((d) => d.id === id).name)}
 		{@const name = _.startCase(stateData.find((d) => d.id === id).story)}
 		<div class="story" on:click={() => onClick(id)}>
-			<img
-				src={`assets/img/states/${id}.png`}
-				alt={`maze representing abortion restrictions in ${state}`}
-			/>
+			<div class="img-wrapper">
+				<div class="img-absolute img-bg"></div>
+				<img
+					class="img-absolute img-maze"
+					src={`assets/img/states/${id}.png`}
+					alt={`maze representing abortion restrictions in ${state}`}
+				/>
+				<img
+					class="img-absolute img-person"
+					src={`assets/img/stories/${name.toLowerCase()}.png`}
+					alt={`a line art illustration of ${name}, a ${age}-year-olf from ${state}`}
+				/>
+			</div>
 			<div class="name">{name}</div>
 			<div class="info">{state}, {age}</div>
 		</div>
@@ -67,7 +76,7 @@
 		width: 100%;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-		grid-gap: 3rem;
+		grid-gap: 1rem;
 	}
 	.story {
 		display: flex;
@@ -79,6 +88,36 @@
 		cursor: pointer;
 		outline: 3px solid var(--color-accent-orange);
 		border-radius: 5px;
+	}
+	.img-wrapper {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 1;
+	}
+	.img-absolute {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
+	.img-bg {
+		width: 80%;
+		aspect-ratio: 1;
+		left: 50%;
+		transform: translate(-50%, 0);
+		background-color: #DFD8FF;
+	}
+	.img-maze {
+		width: 80%;
+		left: 50%;
+		bottom: 0;
+		transform: translate(-50%, 0);
+	}
+	.img-person {
+		width: 100%;
+		max-width: none;
+		left: 50%;
+		bottom: -10.5%;
+		transform: translate(-50%, 0);
 	}
 	.name {
 		font-family: var(--serif);
