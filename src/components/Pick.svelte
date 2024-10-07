@@ -10,7 +10,6 @@
 
 	const onClick = async (id) => {
 		document.getElementById("dashboard").scrollIntoView({ behavior: "smooth" });
-
 		setTimeout(() => {
 			$selectedState = id;
 		}, 800);
@@ -34,7 +33,7 @@
 		{@const name = _.startCase(stateData.find((d) => d.id === id).story)}
 		<div class="story" on:click={() => onClick(id)}>
 			<div class="img-wrapper">
-				<div class="img-absolute img-bg"></div>
+				<div class="img-absolute img-bg" />
 				<img
 					class="img-absolute img-maze"
 					src={`assets/img/states/${id}.png`}
@@ -86,8 +85,6 @@
 	}
 	.story:hover {
 		cursor: pointer;
-		outline: 3px solid var(--color-accent-orange);
-		border-radius: 5px;
 	}
 	.img-wrapper {
 		position: relative;
@@ -104,7 +101,12 @@
 		aspect-ratio: 1;
 		left: 50%;
 		transform: translate(-50%, 0);
-		background-color: #DFD8FF;
+		background-color: #dfd8ff;
+		transition: background-color calc(var(--1s) * 0.3);
+	}
+	.story:hover .img-bg {
+		cursor: pointer;
+		background-color: #9181d4;
 	}
 	.img-maze {
 		width: 80%;

@@ -11,20 +11,10 @@
 	const order = getOrder();
 
 	let selectState = "default";
-	let selectStory = "default";
 
 	const highlightOptions = [
 		{ label: "select state", value: "default" },
 		...states.map((d) => ({ label: _.startCase(d.name), value: d.id }))
-	];
-	const storyOptions = [
-		{ label: "select story", value: "default" },
-		...states
-			.filter((d) => d.story)
-			.map((d) => ({
-				label: _.startCase(d.story),
-				value: d.id
-			}))
 	];
 
 	const methodology = () => {
@@ -37,7 +27,6 @@
 	};
 	const resetInputs = () => {
 		selectState = "default";
-		selectStory = "default";
 	};
 
 	$: orderOptions = [
@@ -47,41 +36,27 @@
 		{ label: "By barriers", value: "barriers" }
 	].filter((d) => (mobile ? d.value !== "geo" : d));
 	$: mobile = $viewport.width < 600;
-	$: bigScreen = $viewport.width > 1000;
 	$: if (selectState && selectState !== "default") $selectedState = selectState;
-	$: if (selectStory && selectStory !== "default") $selectedState = selectStory;
 	$: if (!$selectedState) resetInputs();
 </script>
 
 <div class="bar">
 	<div class="selects">
 		<div class="select">
-			<Select
-				label={bigScreen || mobile ? "Order mazes" : ""}
-				options={orderOptions}
-				bind:value={$order}
-			/>
+			<Select label={"Sort"} options={orderOptions} bind:value={$order} />
 		</div>
 
 		<div class="select">
 			<Select
-				label={bigScreen || mobile ? "See state maze for" : ""}
+				label={"Go to"}
 				options={highlightOptions}
 				bind:value={selectState}
-			/>
-		</div>
-
-		<div class="select">
-			<Select
-				label={bigScreen || mobile ? "Pick a story" : ""}
-				options={storyOptions}
-				bind:value={selectStory}
 			/>
 		</div>
 	</div>
 
 	<button class="methods" on:click={methodology}>
-		{$viewport.width < 680 && !mobile ? "" : "Methodology"}
+		{$viewport.width < 620 && !mobile ? "" : "Methodology"}
 		<span>{@html infoIcon}</span>
 	</button>
 </div>
@@ -134,12 +109,9 @@
 		}
 		.selects {
 			flex-direction: column;
-			align-items: end;
+			align-items: center;
 			gap: 0.5rem;
 			margin-bottom: 0.5rem;
-		}
-		.methods {
-			align-self: flex-end;
 		}
 	}
 </style>
