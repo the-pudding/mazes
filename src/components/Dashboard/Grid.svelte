@@ -3,7 +3,7 @@
 	import states from "$data/states.csv";
 	import viewport from "$stores/viewport.js";
 	import { onMount, tick, getContext } from "svelte";
-	import { nSolvedTemp } from "$stores/misc.js";
+	import { nSolvedTemp, selectedState } from "$stores/misc.js";
 	import _ from "lodash";
 	import localStorage from "$utils/localStorage.js";
 
@@ -50,7 +50,7 @@
 	});
 </script>
 
-<figure class:geo class:intro>
+<figure id="grid" class:geo class:intro class:fade={$selectedState}>
 	{#if $order === "region"}
 		{#each regions as region}
 			{@const regionStates = sortedStates.filter((d) => d.region === region)}
@@ -97,6 +97,11 @@
 		gap: 1rem;
 		margin: auto;
 		padding: 4rem 1rem;
+		transition: opacity 0.3s;
+	}
+	figure.fade {
+		opacity: 0;
+		pointer-events: none;
 	}
 	figure.intro {
 		padding: 0;

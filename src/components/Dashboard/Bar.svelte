@@ -40,7 +40,7 @@
 	$: if (!$selectedState) resetInputs();
 </script>
 
-<div class="bar">
+<div class="bar" class:fade={$selectedState}>
 	<div class="selects">
 		<div class="select">
 			<Select label={"Sort"} options={orderOptions} bind:value={$order} />
@@ -74,6 +74,10 @@
 		z-index: 10;
 		height: 70px;
 		width: 100%;
+		transition: opacity 0.3s;
+	}
+	.bar.fade {
+		opacity: 0.2;
 	}
 	.selects,
 	.methods {

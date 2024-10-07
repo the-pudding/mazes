@@ -19,7 +19,7 @@
 	};
 </script>
 
-<div class="title">
+<div class="title" class:fade={$selectedState}>
 	<h2>{hed}</h2>
 	<button class="sub" on:click={seeAll}>
 		<span class="text">{sub}</span>
@@ -27,7 +27,7 @@
 	</button>
 </div>
 
-<div class="stories">
+<div class="stories" class:fade={$selectedState}>
 	{#each stories as { id, age }}
 		{@const state = _.startCase(stateData.find((d) => d.id === id).name)}
 		{@const name = _.startCase(stateData.find((d) => d.id === id).story)}
@@ -60,6 +60,13 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-evenly;
+	}
+	.title,
+	.stories {
+		transition: opacity calc(var(--1s) * 0.3);
+	}
+	.fade {
+		opacity: 0.2;
 	}
 	.title {
 		text-align: center;

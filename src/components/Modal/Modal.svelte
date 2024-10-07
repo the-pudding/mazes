@@ -70,7 +70,7 @@
 	};
 </script>
 
-<svelte:body class:modal-open={true} />
+<!-- <svelte:body class:modal-open={true} /> -->
 
 <div
 	class="modal"
