@@ -160,13 +160,15 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%) scale(0);
 		height: 20px;
 		width: 20px;
 		background: var(--color-bg);
 		visibility: hidden;
+		transition: transform 0.5s 1s ease-in-out;
 	}
 	.check.visible {
+		transform: translate(-50%, -50%) scale(1);
 		visibility: visible;
 	}
 

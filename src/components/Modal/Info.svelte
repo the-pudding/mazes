@@ -5,7 +5,7 @@
 	import factsData from "$data/facts.csv";
 	import _ from "lodash";
 	import shareIcon from "$svg/share.svg";
-	import checkIcon from "$svg/check.svg";
+	import plusIcon from "$svg/plus-light.svg";
 
 	export let sentences;
 
@@ -64,8 +64,8 @@
 			<h2>{name}</h2>
 			{#if story}
 				<div class="story">
+					<span class="icon">{@html plusIcon}</span>
 					{_.startCase(story)}'s story
-					<span class="icon">{@html checkIcon}</span>
 				</div>
 			{/if}
 		</div>
@@ -146,7 +146,8 @@
 		display: flex;
 		height: 16px;
 		width: 16px;
-		margin-left: 6px;
+		color: red;
+		margin-right: 6px;
 	}
 	a {
 		line-height: 1;

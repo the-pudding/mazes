@@ -3,16 +3,12 @@
 	import Path from "$components/Maze/Path.svelte";
 	import Keys from "$components/Maze/Keys.Desktop.svelte";
 	import { writable } from "svelte/store";
-	import { setContext } from "svelte";
-	import {
-		pathLength,
-		globalGameState,
-		selectedState,
-		nSolvedTemp
-	} from "$stores/misc.js";
+	import { onMount, setContext } from "svelte";
+	import { pathLength, globalGameState, selectedState } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
 	import _ from "lodash";
 	import localStorage from "$utils/localStorage.js";
+	import checkIcon from "$svg/check-orange.svg";
 
 	export let availableSpace;
 	export let wallData;
@@ -35,6 +31,7 @@
 	const mobilePadding = 3;
 
 	let userSolved = true;
+	let started = false;
 
 	setContext("maze", {
 		wallWidth,
@@ -53,6 +50,7 @@
 	});
 
 	const start = () => {
+		started = true;
 		$gameState = "mid";
 	};
 	const reset = () => {
@@ -72,12 +70,14 @@
 		$location = { row: $dims - 1, col: $dims - 1 };
 	};
 	const logSolve = () => {
-		$nSolvedTemp += 1;
 		const current = localStorage.get("mazes");
 		if (!current) {
-			localStorage.set("mazes", [$selectedState]);
-		} else if (!current.includes($selectedState)) {
-			localStorage.set("mazes", [...current, $selectedState]);
+			localStorage.set("mazes", [{ id: $selectedState, path: $path }]);
+		} else {
+			localStorage.set("mazes", [
+				...current.filter((d) => d.id !== $selectedState),
+				{ id: $selectedState, path: $path }
+			]);
 		}
 	};
 
@@ -102,6 +102,18 @@
 		if (userSolved) logSolve();
 		$gameState = "post";
 	}
+
+	onMount(() => {
+		const mazesSolved = localStorage.get("mazes");
+		const alreadySolved =
+			mazesSolved && mazesSolved.find((d) => d.id === $selectedState);
+		if (alreadySolved) {
+			$path = alreadySolved.path;
+			$location = { row: $dims - 1, col: $dims - 1 };
+			started = true;
+			$gameState = "post";
+		}
+	});
 </script>
 
 <div class="maze-container" style:width={`${$spaceAvailable}px`}>
@@ -120,13 +132,27 @@
 		</svg>
 	{/if}
 
+	<div
+		class="overlay"
+		style:height={`${$mazeSize}px`}
+		class:visible={$gameState === "post"}
+	>
+		{#if userSolved}<span class="icon">{@html checkIcon}</span>{/if}
+		<button class="return" on:click={() => ($selectedState = undefined)}
+			>Return to full map</button
+		>
+	</div>
+
 	<div class="below" style:width={`${$mazeSize}px`}>
 		<div class="buttons">
-			<button class="start" on:click={$gameState === "pre" ? start : reset}>
+			<button
+				class="start"
+				class:bounce={!started}
+				on:click={$gameState === "pre" ? start : reset}
+			>
 				{$gameState === "pre" ? "start" : "restart"} maze
 			</button>
 			<button class="solve" on:click={solve}>Complete the maze</button>
-			<!-- <button class="reset" on:click={reset}>Reset</button> -->
 		</div>
 
 		<Keys />
@@ -138,6 +164,27 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		position: relative;
+	}
+	.overlay {
+		width: 100%;
+
+		position: absolute;
+		top: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+	.overlay.visible {
+		opacity: 1;
+	}
+	.icon {
+		display: flex;
+		height: 40px;
+		width: 40px;
 	}
 	.below {
 		margin-top: 1rem;
@@ -149,7 +196,6 @@
 		flex-direction: column;
 		align-items: start;
 	}
-
 	button.start {
 		font-size: 1.2rem;
 		color: white;
@@ -174,5 +220,28 @@
 		margin-top: 0.25rem;
 		font-family: var(--mono);
 		color: var(--color-dark-tan);
+	}
+	button.return {
+		background: none;
+		color: var(--color-fg);
+		padding: 0;
+		margin: 0.5rem 0;
+		font-weight: bold;
+		font-size: 1.6rem;
+		text-align: center;
+	}
+	.bounce {
+		animation: bounce 0.7s ease-in-out infinite;
+	}
+	@keyframes bounce {
+		0% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-5px);
+		}
+		100% {
+			transform: translateY(0);
+		}
 	}
 </style>

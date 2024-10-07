@@ -3,7 +3,7 @@
 	import states from "$data/states.csv";
 	import viewport from "$stores/viewport.js";
 	import { onMount, tick, getContext } from "svelte";
-	import { nSolvedTemp, selectedState } from "$stores/misc.js";
+	import { selectedState } from "$stores/misc.js";
 	import _ from "lodash";
 	import localStorage from "$utils/localStorage.js";
 
@@ -26,28 +26,30 @@
 
 	let mazesSolved = [];
 
-	$: if ($nSolvedTemp !== undefined) {
+	const measure = async () => {
+		await tick();
+		$columnWidth = document.querySelector("figure .state")?.clientWidth;
+	};
+	const loadSolved = () => {
 		mazesSolved = localStorage.get("mazes") || [];
-	}
+	};
+
+	onMount(() => {
+		measure();
+		loadSolved();
+
+		// clear local storage
+		// localStorage.remove("mazes");
+	});
+
 	$: sortedStates = _.orderBy(
 		states,
 		sortFns[$order],
 		$order === "barriers" ? "desc" : "asc"
 	);
 	$: geo = $order === "geo";
+	$: if (!$selectedState) loadSolved();
 	$: if ($viewport.width && $order) measure();
-
-	const measure = async () => {
-		await tick();
-		$columnWidth = document.querySelector("figure .state")?.clientWidth;
-	};
-
-	onMount(() => {
-		measure();
-
-		// clear local storage
-		// localStorage.remove("mazes");
-	});
 </script>
 
 <figure id="grid" class:geo class:intro class:fade={$selectedState}>
@@ -57,7 +59,7 @@
 			<h3>{_.startCase(region)}</h3>
 			{#each regionStates as { id, name }}
 				{@const label = _.startCase(name)}
-				<State {id} {label} solved={mazesSolved.includes(id)} />
+				<State {id} {label} solved={mazesSolved.find((d) => d.id === id)} />
 			{/each}
 		{/each}
 	{:else}
@@ -72,15 +74,16 @@
 				{row}
 				{col}
 				{story}
-				solved={mazesSolved.includes(id)}
+				solved={mazesSolved.find((d) => d.id === id)}
 			/>
 		{/each}
 	{/if}
 
 	<div class="tracker">
-		You've completed {mazesSolved === 50 ? "all " : `${mazesSolved.length}/`}50
-		mazes.
-		{#if mazesSolved === 50}
+		You've completed {mazesSolved.length === 50
+			? "all "
+			: `${mazesSolved.length}/`}50 mazes.
+		{#if mazesSolved.length === 50}
 			<span class="done">
 				{@html doneMessage}
 			</span>

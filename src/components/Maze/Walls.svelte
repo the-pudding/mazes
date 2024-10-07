@@ -82,7 +82,7 @@
 		transition: opacity 0.5s;
 	}
 	g.fade {
-		opacity: 0.2;
+		opacity: 0.05;
 	}
 	line {
 		stroke: black;
