@@ -134,26 +134,26 @@
 		</svg>
 	{/if}
 
-	<Overlay />
+	<Overlay {start} {reset} {solve} />
 
-	<div class="below" style:width={`${$mazeSize}px`}>
-		<div class="buttons">
-			<button
-				class="start"
-				class:bounce={!$started}
-				on:click={$gameState === "pre" ? start : reset}
-			>
-				{$gameState === "pre" ? "start" : "restart"} maze
-			</button>
-			<button class="solve" on:click={solve}>Complete the maze</button>
-		</div>
+	{#if mobile}
+		<KeysMobile />
+	{:else}
+		<div class="below" style:width={`${$mazeSize}px`}>
+			<div class="buttons">
+				<button
+					class="start"
+					class:bounce={!$started}
+					on:click={$gameState === "pre" ? start : reset}
+				>
+					{$gameState === "pre" ? "start" : "restart"} maze
+				</button>
+				<button class="solve" on:click={solve}>Complete the maze</button>
+			</div>
 
-		{#if mobile}
-			<KeysMobile />
-		{:else}
 			<KeysDesktop />
-		{/if}
-	</div>
+		</div>
+	{/if}
 </div>
 
 <style>

@@ -69,6 +69,7 @@
 			width: 100%;
 		}
 		.maze {
+			flex: 1;
 			max-width: 80%;
 		}
 	}
