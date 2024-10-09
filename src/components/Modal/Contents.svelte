@@ -63,6 +63,7 @@
 		.contents {
 			flex-direction: column;
 			align-items: center;
+			gap: 1.25rem;
 		}
 		.info,
 		.maze {

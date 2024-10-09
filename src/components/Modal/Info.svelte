@@ -76,7 +76,7 @@
 		</div>
 	</div>
 
-	<!-- <Facts {facts} /> -->
+	<Facts {facts} />
 
 	<!-- <div class="learn">
 		<span>Learn more about this</span>
@@ -184,6 +184,9 @@
 		}
 		.classification {
 			font-size: 0.9rem;
+		}
+		.info {
+			gap: 0.5rem;
 		}
 	}
 </style>

@@ -6,6 +6,7 @@
 		pathLength,
 		currentMazeSize
 	} from "$stores/misc.js";
+	import viewport from "$stores/viewport.js";
 
 	export let facts;
 
@@ -27,15 +28,21 @@
 	$: if ($globalGameState === "mid" && $pathLength % steps === steps - 1)
 		cycleFact();
 	$: if ($globalGameState === "post") currentFact = facts.length - 1;
+	$: mobile = $viewport.width < 600;
 	$: steps = $currentMazeSize <= 10 ? 2 : 5;
 	$: heights = factEls.map((d) => d.getBoundingClientRect().height);
+	$: maxFactHeight = _.max(heights);
 	$: combinedFactHeight = _.sum(heights);
 	$: topScale = scaleLinear()
 		.domain([0, combinedFactHeight - heights[heights.length - 1]])
 		.range([0, containerHeight - heights[heights.length - 1]]);
 </script>
 
-<div class="facts" bind:clientHeight={containerHeight}>
+<div
+	class="facts"
+	style:height={mobile ? `${maxFactHeight}px` : null}
+	bind:clientHeight={containerHeight}
+>
 	{#each facts as { fact }, i}
 		{@const plentyOfRoom = containerHeight > combinedFactHeight}
 		{@const heightAbove = _.sum(
@@ -92,7 +99,6 @@
 		color: var(--color-fg);
 		border: 1px solid rgba(176, 163, 128, 0.5);
 	}
-
 	.fade {
 		color: rgba(28, 18, 70, 0.1);
 		border: 1px solid rgba(176, 163, 128, 0.3);
@@ -102,5 +108,12 @@
 	}
 	.fade.below:hover {
 		transform: translateY(5px);
+	}
+
+	@media (max-width: 600px) {
+		.fact {
+			padding: 0.5rem;
+			font-size: 0.9rem;
+		}
 	}
 </style>
