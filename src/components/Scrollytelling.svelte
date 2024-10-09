@@ -93,14 +93,13 @@
 		margin-top: 12rem;
 	}
 
-	@media (max-width: 800px) {
-		.steps,
-		.byline {
-			width: 200px;
+	@media (min-width: 1200px) {
+		.step:last-of-type {
+			font-size: 4.5rem;
 		}
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 900px) {
 		:global(#intro) {
 			flex-direction: column;
 			gap: 0;
@@ -122,6 +121,10 @@
 			padding: 0.5rem 1.5rem;
 			background: var(--color-bg);
 			border: 1px solid var(--color-fg);
+		}
+		.steps,
+		.byline {
+			width: 200px;
 		}
 	}
 </style>

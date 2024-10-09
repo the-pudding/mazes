@@ -53,7 +53,8 @@
 
 <style>
 	:global(#pick) {
-		max-width: 800px;
+		width: 100%;
+		max-width: 780px;
 		margin: 0 auto;
 		min-height: 100vh;
 		display: flex;
@@ -109,7 +110,7 @@
 		left: 50%;
 		transform: translate(-50%, 0);
 		background-color: #dfd8ff;
-		transition: background-color calc(var(--1s) * 0.3);
+		transition: background-color calc(var(--1s) * 0.2);
 	}
 	.story:hover .img-bg {
 		cursor: pointer;
