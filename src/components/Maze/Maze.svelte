@@ -198,4 +198,18 @@
 		font-family: var(--mono);
 		color: var(--color-dark-tan);
 	}
+	.bounce {
+		animation: bounce 0.7s ease-in-out infinite;
+	}
+	@keyframes bounce {
+		0% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-5px);
+		}
+		100% {
+			transform: translateY(0);
+		}
+	}
 </style>

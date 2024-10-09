@@ -80,7 +80,9 @@
 	tabindex="-1"
 	on:keydown={trapFocus}
 >
-	<button class="close" on:click={close}><Icon name="x" /></button>
+	<button class="close" on:click={close} aria-label="close"
+		><Icon name="x" /></button
+	>
 	<Contents {sentences} />
 </div>
 

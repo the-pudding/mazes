@@ -98,13 +98,10 @@
 			and
 			<span class="share">
 				<a href="#" on:click|preventDefault={share}>share this state’s maze</a>
-				<span class="icon"
-					>{@html shareIcon}
-
-					<span class="clipboard" class:visible={copySuccess}
-						>Copied to clipboard!</span
-					>
-				</span>
+				<span class="icon">{@html shareIcon} </span>
+				<span class="clipboard" class:visible={copySuccess}
+					>Copied to clipboard!</span
+				>
 			</span>
 		</div>
 	{/if}
@@ -212,6 +209,9 @@
 			height: 32px;
 			width: 32px;
 			margin-left: 0.5rem;
+		}
+		h2 .icon:hover {
+			cursor: pointer;
 		}
 		.classification {
 			font-size: 0.9rem;

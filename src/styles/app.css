@@ -25,7 +25,7 @@
 	--color-fg: #1c1246;
 	--color-primary: var(--color-black);
 	--color-link: var(--color-dark-tan);
-	--color-focus: var(--color-purple);
+	--color-focus: var(--color-accent-purple);
 	--color-mark: var(--color-purple);
 	--color-selection: var(--color-gray-300);
 	--color-border: var(--color-gray-300);

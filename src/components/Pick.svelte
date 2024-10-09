@@ -31,7 +31,7 @@
 	{#each stories as { id, age }}
 		{@const state = _.startCase(stateData.find((d) => d.id === id).name)}
 		{@const name = _.startCase(stateData.find((d) => d.id === id).story)}
-		<div class="story" on:click={() => onClick(id)}>
+		<button class="story" on:click={() => onClick(id)}>
 			<div class="img-wrapper">
 				<div class="img-absolute img-bg" />
 				<img
@@ -47,7 +47,7 @@
 			</div>
 			<div class="name">{name}</div>
 			<div class="info">{state}, {age}</div>
-		</div>
+		</button>
 	{/each}
 </div>
 
@@ -86,6 +86,7 @@
 		grid-gap: 1rem;
 	}
 	.story {
+		background: none;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
