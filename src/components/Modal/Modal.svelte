@@ -70,8 +70,6 @@
 	};
 </script>
 
-<!-- <svelte:body class:modal-open={true} /> -->
-
 <div
 	class="modal"
 	class:open
