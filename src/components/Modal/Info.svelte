@@ -6,6 +6,7 @@
 	import _ from "lodash";
 	import shareIcon from "$svg/share.svg";
 	import plusIcon from "$svg/plus-light.svg";
+	import viewport from "$stores/viewport.js";
 
 	export let sentences;
 
@@ -31,6 +32,7 @@
 			.catch((err) => {});
 	};
 
+	$: mobile = $viewport.width < 600;
 	$: state = stateData.find((d) => d.id === $selectedState);
 	$: name = _.startCase(state.name);
 	$: story = state.story;
@@ -61,7 +63,18 @@
 <div class="info">
 	<div class="header">
 		<div class="title">
-			<h2>{name}</h2>
+			<h2>
+				{name}
+				{#if mobile}
+					<span class="icon" on:click|preventDefault={share}
+						>{@html shareIcon}
+
+						<span class="clipboard" class:visible={copySuccess}
+							>Copied to clipboard!</span
+						>
+					</span>
+				{/if}
+			</h2>
 			{#if story}
 				<div class="story">
 					<span class="icon">{@html plusIcon}</span>
@@ -78,19 +91,23 @@
 
 	<Facts {facts} />
 
-	<!-- <div class="learn">
-		<span>Learn more about this</span>
-		<a href={guttmacherLink} target="_blank">state’s abortion policies</a>
-		and
-		<span class="share">
-			<a href="#" on:click|preventDefault={share}>share this state’s maze</a>
-			<span class="icon">{@html shareIcon}</span>
+	{#if !mobile}
+		<div class="learn">
+			<span>Learn more about this</span>
+			<a href={guttmacherLink} target="_blank">state’s abortion policies</a>
+			and
+			<span class="share">
+				<a href="#" on:click|preventDefault={share}>share this state’s maze</a>
+				<span class="icon"
+					>{@html shareIcon}
 
-			<span class="clipboard" class:visible={copySuccess}
-				>Copied to clipboard!</span
-			>
-		</span>
-	</div> -->
+					<span class="clipboard" class:visible={copySuccess}
+						>Copied to clipboard!</span
+					>
+				</span>
+			</span>
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -111,6 +128,8 @@
 		font-family: var(--serif);
 		font-weight: bold;
 		font-size: 3rem;
+		display: flex;
+		align-items: center;
 	}
 	.story {
 		background: var(--color-accent-purple);
@@ -156,6 +175,9 @@
 		white-space: nowrap;
 	}
 	.clipboard {
+		font-size: 1rem;
+		font-family: var(--sans);
+		font-weight: normal;
 		position: absolute;
 		top: 0;
 		opacity: 0;
@@ -174,6 +196,8 @@
 	@media (max-width: 600px) {
 		h2 {
 			font-size: 2rem;
+			margin: 0;
+			margin-bottom: 0.5rem;
 		}
 		.story {
 			font-size: 0.8rem;
@@ -182,11 +206,27 @@
 			height: 12px;
 			width: 12px;
 		}
+		h2 .icon {
+			position: relative;
+			display: flex;
+			height: 32px;
+			width: 32px;
+			margin-left: 0.5rem;
+		}
 		.classification {
 			font-size: 0.9rem;
 		}
 		.info {
 			gap: 0.5rem;
+		}
+		.clipboard {
+			font-size: 0.8rem;
+			width: auto;
+			transform: translate(-50%, 0);
+		}
+		.clipboard.visible {
+			transform: translate(-50%, -100%);
+			opacity: 1;
 		}
 	}
 </style>
