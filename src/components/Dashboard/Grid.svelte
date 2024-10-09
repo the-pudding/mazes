@@ -111,7 +111,6 @@
 		height: 100%;
 	}
 	figure.geo {
-		max-height: calc(100vh - 70px);
 		grid-template-columns: repeat(12, minmax(0, 1fr));
 		grid-template-rows: repeat(8, minmax(0, 1fr));
 		gap: 0;
