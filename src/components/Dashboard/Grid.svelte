@@ -100,7 +100,7 @@
 		gap: 1rem;
 		margin: auto;
 		padding: 4rem 1rem;
-		transition: opacity 0.3s;
+		transition: opacity calc(var(--1s) * 0.3);
 	}
 	figure.fade {
 		opacity: 0;

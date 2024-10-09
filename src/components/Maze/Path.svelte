@@ -178,7 +178,7 @@
 		stroke: var(--color-accent-purple);
 		stroke-width: var(--stroke-width);
 		fill: none;
-		transition: opacity 0.3s;
+		transition: opacity calc(var(--1s) * 0.3);
 	}
 	.path.fade {
 		opacity: 0.05;

@@ -4,6 +4,7 @@
 	import { getContext } from "svelte";
 	import { selectedState, revealMethods } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
+	import mq from "$stores/mq.js";
 	import _ from "lodash";
 	import infoIcon from "$svg/info.svg";
 
@@ -23,7 +24,10 @@
 		const el = document.getElementById("methodology");
 		if (!el) return;
 		el.classList.toggle("visible");
-		el.scrollIntoView({ behavior: "smooth", block: "start" });
+		el.scrollIntoView({
+			behavior: $mq.reducedMotion ? "instant" : "smooth",
+			block: "start"
+		});
 	};
 	const resetInputs = () => {
 		selectState = "default";
@@ -74,7 +78,7 @@
 		z-index: 10;
 		height: 70px;
 		width: 100%;
-		transition: opacity 0.3s;
+		transition: opacity calc(var(--1s) * 0.3);
 	}
 	.bar.fade {
 		opacity: 0.2;

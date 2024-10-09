@@ -3,19 +3,24 @@
 	import { selectedState } from "$stores/misc.js";
 	import arrowDownIcon from "$svg/arrow-down.svg";
 	import _ from "lodash";
+	import mq from "$stores/mq.js";
 
 	export let hed;
 	export let sub;
 	export let stories;
 
 	const onClick = async (id) => {
-		document.getElementById("dashboard").scrollIntoView({ behavior: "smooth" });
+		document
+			.getElementById("dashboard")
+			.scrollIntoView({ behavior: $mq.reducedMotion ? "instant" : "smooth" });
 		setTimeout(() => {
 			$selectedState = id;
 		}, 800);
 	};
 	const seeAll = () => {
-		document.getElementById("dashboard").scrollIntoView({ behavior: "smooth" });
+		document
+			.getElementById("dashboard")
+			.scrollIntoView({ behavior: $mq.reducedMotion ? "instant" : "smooth" });
 	};
 </script>
 

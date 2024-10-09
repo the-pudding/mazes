@@ -60,7 +60,7 @@
 		align-items: center;
 		justify-content: center;
 		opacity: 0;
-		transition: opacity 0.3s;
+		transition: opacity calc(var(--1s) * 0.3);
 	}
 	.overlay.visible {
 		opacity: 1;
@@ -123,20 +123,6 @@
 	}
 	.link:hover {
 		color: var(--color-dark-tan);
-	}
-	.bounce {
-		animation: bounce 0.7s ease-in-out infinite;
-	}
-	@keyframes bounce {
-		0% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(-5px);
-		}
-		100% {
-			transform: translateY(0);
-		}
 	}
 
 	@media (max-width: 600px) {

@@ -8,6 +8,7 @@
 	import { onMount, setContext } from "svelte";
 	import { pathLength, globalGameState, selectedState } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
+	import mq from "$stores/mq.js";
 	import _ from "lodash";
 	import localStorage from "$utils/localStorage.js";
 
@@ -143,7 +144,7 @@
 			<div class="buttons">
 				<button
 					class="start"
-					class:bounce={!$started}
+					class:bounce={!$started && !$mq.reducedMotion}
 					on:click={$gameState === "pre" ? start : reset}
 				>
 					{$gameState === "pre" ? "start" : "restart"} maze

@@ -79,7 +79,7 @@
 
 <style>
 	g {
-		transition: opacity 0.5s;
+		transition: opacity calc(var(--1s) * 0.5);
 	}
 	g.fade {
 		opacity: 0.05;

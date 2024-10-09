@@ -165,7 +165,7 @@
 		width: 20px;
 		background: var(--color-bg);
 		visibility: hidden;
-		transition: transform 0.5s 1s ease-in-out;
+		transition: transform calc(var(--1s) * 0.5) var(--1s) ease-in-out;
 	}
 	.check.visible {
 		transform: translate(-50%, -50%) scale(1);

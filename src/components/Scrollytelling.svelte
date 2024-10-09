@@ -65,7 +65,7 @@
 	}
 	.byline {
 		opacity: 0;
-		transition: opacity 0.5s;
+		transition: opacity calc(var(--1s) * 0.5);
 		position: fixed;
 		bottom: 4rem;
 		left: 2rem;
