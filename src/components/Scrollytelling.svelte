@@ -92,6 +92,9 @@
 	.step:first-of-type {
 		margin-top: 12rem;
 	}
+	.step:last-of-type {
+		margin-bottom: 120vh;
+	}
 
 	@media (min-width: 1200px) {
 		.step:last-of-type {
@@ -118,13 +121,10 @@
 			padding: 0 2rem;
 		}
 		.step {
+			font-size: 1.25rem;
 			padding: 0.5rem 1.5rem;
 			background: var(--color-bg);
-			border: 1px solid var(--color-fg);
-		}
-		.steps,
-		.byline {
-			width: 200px;
+			border: 1px solid var(--color-dark-tan);
 		}
 	}
 </style>

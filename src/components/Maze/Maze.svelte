@@ -1,14 +1,15 @@
 <script>
 	import Walls from "$components/Maze/Walls.svelte";
 	import Path from "$components/Maze/Path.svelte";
-	import Keys from "$components/Maze/Keys.Desktop.svelte";
+	import Overlay from "$components/Maze/Overlay.svelte";
+	import KeysDesktop from "$components/Maze/Keys.Desktop.svelte";
+	import KeysMobile from "$components/Maze/Keys.Mobile.svelte";
 	import { writable } from "svelte/store";
 	import { onMount, setContext } from "svelte";
 	import { pathLength, globalGameState, selectedState } from "$stores/misc.js";
 	import viewport from "$stores/viewport.js";
 	import _ from "lodash";
 	import localStorage from "$utils/localStorage.js";
-	import checkIcon from "$svg/check-orange.svg";
 
 	export let availableSpace;
 	export let wallData;
@@ -28,10 +29,9 @@
 	const location = writable({ row: 0, col: 0 });
 	const path = writable(mazePath);
 	const gameState = writable("pre");
+	const userSolved = writable(true);
+	const started = writable(false);
 	const mobilePadding = 3;
-
-	let userSolved = true;
-	let started = false;
 
 	setContext("maze", {
 		wallWidth,
@@ -46,20 +46,22 @@
 		getPadding: () => padding,
 		getLocation: () => location,
 		getPath: () => path,
-		getGameState: () => gameState
+		getGameState: () => gameState,
+		getUserSolved: () => userSolved,
+		getStarted: () => started
 	});
 
 	const start = () => {
-		started = true;
+		$started = true;
 		$gameState = "mid";
 	};
 	const reset = () => {
 		$gameState = "mid";
 		$location = { row: 0, col: 0 };
-		userSolved = true;
+		$userSolved = true;
 	};
 	const solve = async () => {
-		userSolved = false;
+		$userSolved = false;
 		const solution = _.orderBy(
 			$data.filter((d) => d.solutionIndex !== null),
 			"solutionIndex",
@@ -99,7 +101,7 @@
 		"asc"
 	);
 	$: if ($location.row === $dims - 1 && $location.col === $dims - 1) {
-		if (userSolved) logSolve();
+		if ($userSolved) logSolve();
 		$gameState = "post";
 	}
 
@@ -110,7 +112,7 @@
 		if (alreadySolved) {
 			$path = alreadySolved.path;
 			$location = { row: $dims - 1, col: $dims - 1 };
-			started = true;
+			$started = true;
 			$gameState = "post";
 		}
 	});
@@ -132,22 +134,13 @@
 		</svg>
 	{/if}
 
-	<div
-		class="overlay"
-		style:height={`${$mazeSize}px`}
-		class:visible={$gameState === "post"}
-	>
-		{#if userSolved}<span class="icon">{@html checkIcon}</span>{/if}
-		<button class="return" on:click={() => ($selectedState = undefined)}
-			>Return to full map</button
-		>
-	</div>
+	<Overlay />
 
 	<div class="below" style:width={`${$mazeSize}px`}>
 		<div class="buttons">
 			<button
 				class="start"
-				class:bounce={!started}
+				class:bounce={!$started}
 				on:click={$gameState === "pre" ? start : reset}
 			>
 				{$gameState === "pre" ? "start" : "restart"} maze
@@ -155,7 +148,11 @@
 			<button class="solve" on:click={solve}>Complete the maze</button>
 		</div>
 
-		<Keys />
+		{#if mobile}
+			<KeysMobile />
+		{:else}
+			<KeysDesktop />
+		{/if}
 	</div>
 </div>
 
@@ -165,26 +162,6 @@
 		flex-direction: column;
 		align-items: center;
 		position: relative;
-	}
-	.overlay {
-		width: 100%;
-
-		position: absolute;
-		top: 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		opacity: 0;
-		transition: opacity 0.3s;
-	}
-	.overlay.visible {
-		opacity: 1;
-	}
-	.icon {
-		display: flex;
-		height: 40px;
-		width: 40px;
 	}
 	.below {
 		margin-top: 1rem;
@@ -220,28 +197,5 @@
 		margin-top: 0.25rem;
 		font-family: var(--mono);
 		color: var(--color-dark-tan);
-	}
-	button.return {
-		background: none;
-		color: var(--color-fg);
-		padding: 0;
-		margin: 0.5rem 0;
-		font-weight: bold;
-		font-size: 1.6rem;
-		text-align: center;
-	}
-	.bounce {
-		animation: bounce 0.7s ease-in-out infinite;
-	}
-	@keyframes bounce {
-		0% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(-5px);
-		}
-		100% {
-			transform: translateY(0);
-		}
 	}
 </style>

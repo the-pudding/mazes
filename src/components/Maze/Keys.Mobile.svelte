@@ -2,11 +2,11 @@
 	import Icon from "$components/helpers/Icon.svelte";
 	import { getContext } from "svelte";
 
-	const { getData, getGameState, getAvailableWidth, getPath, getLocation } =
+	const { getData, getGameState, getSpaceAvailable, getPath, getLocation } =
 		getContext("maze");
 	const data = getData();
 	const gameState = getGameState();
-	const availableWidth = getAvailableWidth();
+	const spaceAvailable = getSpaceAvailable();
 	const path = getPath();
 	const location = getLocation();
 
@@ -38,8 +38,8 @@
 
 <div
 	class="mobile-controls"
-	style:width={`${$availableWidth}px`}
-	style:height={`${$availableWidth}px`}
+	style:width={`${$spaceAvailable}px`}
+	style:height={`${$spaceAvailable}px`}
 	class:active={$gameState === "mid"}
 >
 	{#each ["up", "right", "down", "left"] as direction}
@@ -63,7 +63,8 @@
 	}
 	button {
 		position: absolute;
-		color: white;
+		color: var(--color-bg);
+		background: var(--color-dark-tan);
 		display: flex;
 		align-items: center;
 		justify-content: center;

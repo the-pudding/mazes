@@ -98,7 +98,7 @@
 		width: 90%;
 		max-width: 1000px;
 		height: calc(100vh - 6rem);
-		margin: 3rem 0 3rem 0;
+		margin: 3rem 0;
 		top: 0;
 		left: 50%;
 		transform: translate(-50%, 0);
@@ -127,6 +127,8 @@
 	@media (max-width: 600px) {
 		.modal {
 			padding: 1.5rem;
+			margin: 1.5rem 0;
+			height: calc(100vh - 3rem);
 		}
 		.modal.open {
 			display: flex;

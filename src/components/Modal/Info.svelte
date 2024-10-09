@@ -76,9 +76,9 @@
 		</div>
 	</div>
 
-	<Facts {facts} />
+	<!-- <Facts {facts} /> -->
 
-	<div class="learn">
+	<!-- <div class="learn">
 		<span>Learn more about this</span>
 		<a href={guttmacherLink} target="_blank">state’s abortion policies</a>
 		and
@@ -90,7 +90,7 @@
 				>Copied to clipboard!</span
 			>
 		</span>
-	</div>
+	</div> -->
 </div>
 
 <style>
@@ -146,7 +146,6 @@
 		display: flex;
 		height: 16px;
 		width: 16px;
-		color: red;
 		margin-right: 6px;
 	}
 	a {
@@ -170,5 +169,21 @@
 	.clipboard.visible {
 		transform: translate(0, -120%);
 		opacity: 1;
+	}
+
+	@media (max-width: 600px) {
+		h2 {
+			font-size: 2rem;
+		}
+		.story {
+			font-size: 0.8rem;
+		}
+		.story .icon {
+			height: 12px;
+			width: 12px;
+		}
+		.classification {
+			font-size: 0.9rem;
+		}
 	}
 </style>

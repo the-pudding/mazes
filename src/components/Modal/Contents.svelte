@@ -58,4 +58,18 @@
 		display: flex;
 		align-items: center;
 	}
+
+	@media (max-width: 600px) {
+		.contents {
+			flex-direction: column;
+			align-items: center;
+		}
+		.info,
+		.maze {
+			width: 100%;
+		}
+		.maze {
+			max-width: 80%;
+		}
+	}
 </style>
