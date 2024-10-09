@@ -89,7 +89,7 @@
 	$: $dims = numCells;
 	$: mobile = $viewport.width < 600;
 	$: withPadding = mobile;
-	$: $wallWidth = $mazeSize / 50;
+	$: $wallWidth = $dims >= 16 ? $mazeSize / 100 : $mazeSize / 50;
 	$: $padding = $wallWidth / 2;
 	$: $cellSize = $dims ? ($mazeSize - $padding * 2) / $dims : 0;
 	$: $pathLength = $path.length - 1;
