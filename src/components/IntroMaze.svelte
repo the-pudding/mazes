@@ -47,6 +47,7 @@
 	>
 		<circle id="circle" cx="1536.04" cy="860.942" r="10.2581" fill="#6B50DC" />
 		<path
+			class:visible={step > 0}
 			bind:this={pathEl}
 			style:stroke-dasharray={pathLength}
 			style:stroke-dashoffset={strokeOffset}
@@ -1822,7 +1823,11 @@
 		height: 100%;
 	}
 	#path {
-		transition: stroke-dashoffset calc(var(--1s) * 2) ease;
+		opacity: 0;
+		transition: stroke-dashoffset calc(var(--1s) * 2) ease, opacity var(--1s);
+	}
+	#path.visible {
+		opacity: 1;
 	}
 	#of,
 	#the {
