@@ -3,6 +3,8 @@
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import copy from "$data/copy.json";
 	import logo from "$svg/wordmark-plain.svg";
+	import { tweened } from "svelte/motion";
+	import { cubicIn } from "svelte/easing";
 
 	export let steps;
 
@@ -26,31 +28,42 @@
 	<IntroMaze step={value} />
 </div>
 
-<div class="steps">
-	<Scrolly bind:value>
-		{#each steps as { value }, i}
-			<div class="step">
-				<p>{@html value}</p>
-			</div>
-		{/each}
-	</Scrolly>
-</div>
+<Scrolly bind:value>
+	{#each steps as { value }, i}
+		<div class="step">
+			<p>{@html value}</p>
+		</div>
+	{/each}
+</Scrolly>
+<div class="spacer" />
 
 <style>
 	:global(#intro) {
-		display: flex;
-		flex-direction: row-reverse;
-		gap: 1rem;
-		padding-right: 0 !important;
+		position: relative;
+	}
+	#fake-line {
+		position: fixed;
+		background: var(--color-accent-purple);
+		left: 0;
+		width: 0;
+		height: 32px;
+		opacity: 1;
+		transition: top 1800ms cubic-bezier(0.55, 0.06, 0.68, 0.19), 
+                height 1800ms cubic-bezier(0.55, 0.06, 0.68, 0.19);
+	}
+	#fake-line.visible {
+		opacity: 1;
 	}
 	.sticky {
+		width: 100%;
+        height: 100svh;
 		position: sticky;
+        display: flex;
+        flex-direction: column;
 		top: 0;
-		flex: 1;
-		height: fit-content;
-		height: 100vh;
-		display: flex;
-		align-items: center;
+		transition: all 1s;
+        z-index: 1;
+        overflow: hidden;
 	}
 	.logo {
 		display: flex;
@@ -81,16 +94,25 @@
 	:global(#intro .text a) {
 		white-space: nowrap;
 	}
-	.steps {
-		width: 350px;
+	.spacer {
+		height: 75vh;
 	}
 	.step {
+		height: 100vh;
+		text-align: left;
+        z-index: 1000;
+        width: 350px;
+        margin: 0;
+		padding: 0 0 0 1.5rem;
+	}
+	.step p {
 		font-family: var(--serif);
-		font-size: 2rem;
-		margin: 80vh 0;
+		padding: 0 2rem 0 0;
+		font-size: var(--32px);
+		background: green;
 	}
 	.step:first-of-type {
-		margin-top: 12rem;
+		margin-top: -80vh;
 	}
 	.step:last-of-type {
 		margin-bottom: 120vh;
@@ -121,6 +143,7 @@
 			padding: 0 2rem;
 		}
 		.step {
+			width: 250px;
 			font-size: 1.25rem;
 			padding: 0.5rem 1.5rem;
 			background: var(--color-bg);

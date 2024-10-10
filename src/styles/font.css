@@ -1,64 +1,4 @@
 @font-face {
-	font-family: "Avenir Next";
-	src: url("https://pudding.cool/assets/fonts/avenir/AvenirNextLTPro-Regular.woff2")
-		format("woff2");
-	font-weight: 400;
-	font-style: normal;
-	font-stretch: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir Next";
-	src: url("https://pudding.cool/assets/fonts/avenir/AvenirNextLTPro-Bold.woff2")
-		format("woff2");
-	font-weight: 700;
-	font-style: normal;
-	font-stretch: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Avenir Next";
-	src: url("https://pudding.cool/assets/fonts/avenir/AvenirNextLTPro-Heavy.woff2")
-		format("woff2");
-	font-weight: 900;
-	font-style: normal;
-	font-stretch: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Tiempos Text";
-	src: url("https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff2")
-		format("woff2");
-	font-weight: 400;
-	font-style: normal;
-	font-stretch: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Tiempos Text";
-	src: url("https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff2")
-		format("woff2");
-	font-weight: 700;
-	font-style: normal;
-	font-stretch: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Tiempos Headline";
-	src: url("https://pudding.cool/assets/fonts/tiempos/TiemposHeadlineWeb-Regular.woff2")
-		format("woff2");
-	font-weight: 400;
-	font-style: normal;
-	font-stretch: normal;
-	font-display: swap;
-}
-
-@font-face {
 	font-family: "National";
 	src: url("https://pudding.cool/assets/fonts/national/National2Web-Regular.woff2")
 		format("woff2");
@@ -67,9 +7,30 @@
 	font-stretch: normal;
 	font-display: swap;
 }
+
 @font-face {
 	font-family: "National";
 	src: url("https://pudding.cool/assets/fonts/national/National2Web-Bold.woff2")
+		format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Canela";
+	src: url("https://pudding.cool/assets/fonts/canela/Canela-Light-Web.woff2")
+		format("woff2");
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Canela";
+	src: url("https://pudding.cool/assets/fonts/canela/Canela-Bold-Web.woff2")
 		format("woff2");
 	font-weight: 700;
 	font-style: normal;

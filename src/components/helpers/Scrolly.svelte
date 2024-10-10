@@ -78,3 +78,10 @@
 <div bind:this={container}>
 	<slot />
 </div>
+
+<style>
+	div {
+		position: relative;
+		z-index: 1000;
+	}
+</style>
