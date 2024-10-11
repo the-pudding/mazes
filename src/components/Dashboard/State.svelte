@@ -102,10 +102,10 @@
 	.state:hover {
 		cursor: pointer;
 		outline: 3px solid var(--color-accent-orange);
-		border-radius: 5px;
+		border-radius: 3px;
 	}
 	.state:hover img {
-		opacity: 1;
+		opacity: 0.8;
 	}
 	.state:hover .abbrev {
 		font-weight: bold;
@@ -163,6 +163,8 @@
 		transform: translate(-50%, -50%) scale(0);
 		height: 20px;
 		width: 20px;
+		border-radius: 50%;
+		outline: 2px solid var(--color-bg);
 		background: var(--color-bg);
 		visibility: hidden;
 		transition: transform calc(var(--1s) * 0.5) var(--1s) ease-in-out;
@@ -175,7 +177,7 @@
 	@media (max-width: 800px) {
 		.state {
 			font-size: 0.8rem;
-			padding: 0.1rem;
+			line-height: 1.25;
 		}
 	}
 </style>

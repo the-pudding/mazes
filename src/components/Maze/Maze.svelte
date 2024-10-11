@@ -149,7 +149,7 @@
 				>
 					{$gameState === "pre" ? "start" : "restart"} maze
 				</button>
-				<button class="solve" on:click={solve}>Complete the maze</button>
+				<button class="solve" on:click={solve}>Complete maze</button>
 			</div>
 
 			<KeysDesktop />
@@ -160,6 +160,7 @@
 <style>
 	.maze-container {
 		display: flex;
+		width: 100%;
 		flex-direction: column;
 		align-items: center;
 		position: relative;
@@ -177,27 +178,36 @@
 	button.start {
 		font-size: 1.2rem;
 		color: white;
-		background: var(--color-accent-orange);
+		background-color: var(--color-accent-orange);
 		text-transform: uppercase;
 		font-weight: bold;
-		font-family: var(--mono);
+		font-family: var(--sans);
 		padding: 0.9rem 0.75rem;
+		transition: translate 0.5s linear;
+	}
+	button.start:hover {
+		transform: translate(0, -2px);
 	}
 	button.solve {
 		background: none;
 		padding: 0;
-		margin-top: 0.25rem;
+		margin-top: 0.5rem;
 		font-size: 0.9rem;
-		font-family: var(--mono);
+		font-family: var(--sans);
 		color: var(--color-dark-tan);
+		transition: translate 0.5s linear;
+	}
+	button.solve:hover {
+		border-bottom: 2px solid var(--color-dark-tan);
 	}
 	button.reset {
-		background: none;
+		background: var(--color-accent-orange);
 		padding: 0;
 		font-size: 0.9rem;
 		margin-top: 0.25rem;
 		font-family: var(--mono);
 		color: var(--color-dark-tan);
+		transition: translate 0.5s linear;
 	}
 	.bounce {
 		animation: bounce 0.7s ease-in-out infinite;
@@ -207,10 +217,23 @@
 			transform: translateY(0);
 		}
 		50% {
-			transform: translateY(-5px);
+			transform: translateY(-3px);
 		}
 		100% {
 			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 700px) {
+		.maze-container {
+			max-width: 350px;
+		}
+		button.start {
+			font-size: var(--14px);
+			padding: 0.75rem 0.5rem;
+		}
+		button.solve {
+			font-size: var(--12px);
 		}
 	}
 </style>

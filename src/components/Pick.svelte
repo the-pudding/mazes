@@ -2,14 +2,15 @@
 	import stateData from "$data/states.csv";
 	import { selectedState } from "$stores/misc.js";
 	import arrowDownIcon from "$svg/arrow-down.svg";
-	import touchIcon from "$svg/touch.svg";
+	import plusIcon from "$svg/plus.svg";
 	import _ from "lodash";
 	import mq from "$stores/mq.js";
 
 	export let hed;
 	export let sub;
 	export let stories;
-	export let directions;
+	export let directionsA;
+	export let directionsB;
 
 	const onClick = async (id) => {
 		document
@@ -31,11 +32,12 @@
 	<p class="desc">{@html sub}</p>
 	<div class="directions">
 		<p>
-			<span>Select a story</span>
-			<span class="icon">{@html touchIcon}</span>
+			<span>{directionsA}</span>
+			<span class="icon">{@html plusIcon}</span>
 		</p>
+		<p class="or">OR</p>
 		<button class="sub" on:click={seeAll}>
-			<span class="text">{directions}</span>
+			<span class="text">{directionsB}</span>
 			<span class="icon">{@html arrowDownIcon}</span>
 		</button>
 	</div>
@@ -47,7 +49,7 @@
 		{@const name = _.startCase(stateData.find((d) => d.id === id).story)}
 		<button class="story" on:click={() => onClick(id)}>
 			<div class="img-wrapper">
-				<div class="img-absolute img-bg" />
+				<div class="img-absolute img-bg"></div>
 				<img
 					class="img-absolute img-maze"
 					src={`assets/img/states/${id}.png`}
@@ -58,6 +60,9 @@
 					src={`assets/img/stories/${name.toLowerCase()}.png`}
 					alt={`a line art illustration of ${name}, a ${age}-year-olf from ${state}`}
 				/>
+				<div class="plus-add">
+					{@html plusIcon}
+				</div>
 			</div>
 			<div class="name">{name}</div>
 			<div class="info">{state}, {age}</div>
@@ -68,17 +73,20 @@
 <style>
 	:global(#pick) {
 		width: 100%;
-		max-width: 780px;
-		margin: 0 auto;
-		min-height: 100vh;
+		padding: 4rem 1rem;
+		/* min-height: 100vh; */
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: space-evenly;
+		justify-content: center;
+		border-top: 1px solid var(--color-tan);
+		border-bottom: 1px solid var(--color-tan);
+		margin-bottom: 8rem;
 	}
 	.title,
 	.stories {
 		transition: opacity calc(var(--1s) * 0.3);
+		max-width: 780px;
 	}
 	.fade {
 		opacity: 0.2;
@@ -92,6 +100,7 @@
 	h2 {
 		font-family: var(--serif);
 		font-weight: 300;
+		font-size: var(--36px);
 		max-width: 40rem;
 	}
 	.desc {
@@ -112,18 +121,27 @@
 		align-items: center;
 		font-size: var(--20px);
 	}
+	.directions .or {
+		font-weight: 700;
+		margin: 0 0.5rem;
+		font-size: var(--14px);
+	}
 	.stories {
 		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-		grid-gap: 1rem;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 1rem;
+		align-items: center;
+		justify-content: center;
 	}
 	.story {
+		width: calc(33.33% - 1rem);
+		max-width: 200px;
 		background: none;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 0.5rem;
 	}
 	.story:hover {
 		cursor: pointer;
@@ -132,6 +150,20 @@
 		position: relative;
 		width: 100%;
 		aspect-ratio: 1;
+		margin-bottom: 0.5rem;
+	}
+	.plus-add {
+		position: absolute;
+		top: calc(20% - 1rem);
+		right: calc(10% - 1rem);
+		height: 1.75rem;
+		width: 1.75rem;
+		border-radius: 50%;
+		border: 2px solid var(--color-bg);
+		z-index: 1000;
+		background: var(--color-bg);
+		opacity: 0;
+		transition: opacity calc(var(--1s) * 0.2);
 	}
 	.img-absolute {
 		position: absolute;
@@ -146,9 +178,16 @@
 		background-color: #dfd8ff;
 		transition: background-color calc(var(--1s) * 0.2);
 	}
+	/* .story:hover {
+		outline: 3px solid var(--color-accent-orange);
+		border-radius: 5px;
+	} */
 	.story:hover .img-bg {
 		cursor: pointer;
 		background-color: #9181d4;
+	}
+	.story:hover .plus-add {
+		opacity: 1;
 	}
 	.img-maze {
 		width: 80%;
@@ -176,11 +215,21 @@
 		align-items: center;
 		font-size: var(--20px);
 	}
+	.sub:hover .text {
+		color: var(--color-accent-purple);
+	}
+	:global(.sub:hover .icon svg path) {
+		fill: var(--color-accent-purple);
+	}
+	:global(.sub:hover .icon) {
+		transform: translateY(2px);
+		transition: transform 100ms ease-out;
+	}
 	.text {
 		text-decoration: underline;
 	}
 	.icon {
-		height: 17px;
+		height: 20px;
 		width: 17px;
 		margin-left: 4px;
 		display: flex;
@@ -189,13 +238,22 @@
 		fill: var(--color-fg);
 	}
 
-	@media (max-width: 600px) {
-		.stories {
-			grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-			grid-gap: 1.5rem;
+	@media (max-width: 700px) {
+		h2 {
+			font-size: var(--24px);
 		}
-		.title {
-			margin-bottom: 2rem;
+		.desc {
+			font-size: var(--12px);
+		}
+		.directions p, .sub {
+			font-size: var(--16px);
+		}
+		.stories {
+			gap: 0;
+		}
+		.story {
+			width: 50%;
+			padding: 0;
 		}
 	}
 </style>

@@ -33,12 +33,12 @@
 			<p>{@html value}</p>
 			{#if i == 0}
 				<div class="icon-wrapper">
-					<Icon name="arrow-down-circle" width="2.5rem" height="2.5rem" stroke="#b0a380" strokeWidth="1.5" />
+					<Icon name="arrow-down-circle" width="2.5rem" height="2.5rem" stroke="#726D68" strokeWidth="1" />
 					<p>Scroll</p>
 				</div>
 			{:else if i == steps.length-1}
 				<div class="icon-wrapper">
-					<Icon name="arrow-down-circle" width="2.5rem" height="2.5rem" stroke="#b0a380" strokeWidth="1.5" />
+					<Icon name="arrow-down-circle" width="2.5rem" height="2.5rem" stroke="#726D68" strokeWidth="1" />
 					<p>Scroll</p>
 				</div>
 			{/if}
@@ -132,7 +132,7 @@
 		display: flex;
 		align-items: center;
 		transform: translateY(0);
-		animation: bounceUp 1s ease-in-out infinite;
+		animation: bounce 0.7s ease-in-out infinite;
 	}
 	.icon-wrapper p {
 		font-family: var(--sans);
@@ -154,12 +154,16 @@
 		font-size: var(--56px);
 	}
 
-	@keyframes bounceUp {
-		0%		  { transform: translateY(0); }
-		25%       { transform: translateY(2px); }
-		50%       { transform: translateY(4px); }
-		75%       { transform: translateY(2px); }
-		100%      { transform: translateY(0); }
+	@keyframes bounce {
+		0% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-3px);
+		}
+		100% {
+			transform: translateY(0);
+		}
 	}
 
 	@media (min-width: 1200px) {

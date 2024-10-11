@@ -24,6 +24,18 @@
 		}
 	};
 
+	function onFactMouse(event, currZIndex, visible) {
+		if(visible) {
+			event.target.style.zIndex = 100;
+		}
+	}
+
+	function onFactLeave(event, currZIndex, visible) {
+		if(visible) {
+			event.target.style.zIndex = currZIndex;
+		}
+	}
+
 	$: if ($globalGameState === "pre" || $pathLength === 0) currentFact = 0;
 	$: if ($globalGameState === "mid" && $pathLength % steps === steps - 1)
 		cycleFact();
@@ -60,9 +72,12 @@
 				: topScale(_.sum(_.slice(heights, 0, i)))}
 		<div
 			bind:this={factEls[i]}
+			on:mouseover={(e) => onFactMouse(e, getZIndex(i, currentFact), currentFact >= i)}
+			on:mouseleave={(e) => onFactLeave(e, getZIndex(i, currentFact), currentFact >= i)}
 			class="fact"
 			class:above={i < currentFact}
 			class:below={i > currentFact}
+			class:disabled={$globalGameState === "pre"}
 			class:fade={$globalGameState === "pre" || currentFact !== i}
 			class:visible={currentFact >= i}
 			style:top={`${top}px`}
@@ -84,12 +99,13 @@
 		width: 100%;
 		background: var(--color-bg);
 		border: 1px solid var(--color-dark-tan);
-		border-radius: 5px;
+		border-radius: 3px;
 		padding: 1rem;
 		opacity: 0;
+		cursor: pointer;
 		transform: translateY(20px);
 		transition: transform calc(var(--1s) * 0.3), color calc(var(--1s) * 0.3),
-			border calc(var(--1s) * 0.3), opacity calc(var(--1s) * 0.3);
+			border calc(var(--1s) * 0.3), opacity calc(var(--1s) * 0.3), z-index calc(var(--1s) * 0.3);
 	}
 	.visible {
 		opacity: 1;
@@ -97,7 +113,7 @@
 	}
 	.fact:hover {
 		color: var(--color-fg);
-		border: 1px solid rgba(176, 163, 128, 0.5);
+		border: 1px solid var(--color-dark-tan);
 	}
 	.fade {
 		color: rgba(28, 18, 70, 0.1);
@@ -109,8 +125,15 @@
 	.fade.below:hover {
 		transform: translateY(5px);
 	}
+	.fact.disabled {
+		pointer-events: none;
+	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 700px) {
+		.facts {
+			min-height: 200px;
+			padding-bottom: 2rem;
+		}
 		.fact {
 			padding: 0.5rem;
 			font-size: 0.9rem;

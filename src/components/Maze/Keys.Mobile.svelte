@@ -64,7 +64,7 @@
 	button {
 		position: absolute;
 		color: var(--color-bg);
-		background: var(--color-dark-tan);
+		background: var(--color-medium-tan);
 		display: flex;
 		align-items: center;
 		justify-content: center;

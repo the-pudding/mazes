@@ -33,23 +33,23 @@
 		display: inline-block;
 		font-family: inherit;
 		font-weight: inherit;
-		font-size: 1em;
+		font-size: var(--12px);
 		margin-right: 0.75em;
 		text-align: right;
+		text-transform: uppercase;
 	}
 	select {
 		/* width: 100%; */
 		height: 40px;
 		font-family: inherit;
-		font-size: 1em;
+		font-size: var(--14px);
 		cursor: pointer;
-		background: #fffdf8;
+		background: var(--color-bg);
 		color: var(--color-fg);
-		border-radius: 4px;
+		border-radius: 3px;
 		padding: 0.5em 2rem 0.5em 0.5em;
 		appearance: none;
 		line-height: 1.4;
-		text-transform: uppercase;
 	}
 	/* select:nth-of-type(1) {
 		width: 13.5rem;
@@ -64,19 +64,19 @@
 		position: absolute;
 		bottom: 1.25em;
 		right: 0.75em;
-		width: 1em;
-		height: 1em;
+		width: 0.75em;
+		height: 0.75em;
 		z-index: 1;
-		background: var(--color-gray-900);
+		background: var(--color-fg);
 		clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
-		border-radius: 4px;
+		border-radius: 1px;
 		transform-origin: center center;
 		transform: rotate(-45deg);
 		pointer-events: none;
 	}
 
 	select:hover {
-		background: var(--color-gray-100);
+		outline: 1px solid var(--color-focus);
 	}
 
 	select:focus {
@@ -97,6 +97,13 @@
 			width: 0.75em;
 			height: 0.75em;
 			border-radius: 2px;
+		}
+	}
+
+	@media (max-width: 500px) {
+		label {
+			width: 2.5rem;
+			text-align: right;
 		}
 	}
 </style>

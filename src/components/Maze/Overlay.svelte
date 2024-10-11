@@ -32,21 +32,27 @@
 	{:else if $gameState === "post"}
 		{#if $userSolved}
 			<div class="complete">
-				Maze completed!
 				<span class="icon">{@html checkIcon}</span>
+				<span class="text">Maze completed!</span>
 			</div>
 		{/if}
-		<a href={guttmacherLink} target="_blank" class="link"
-			>Read more about {stateName}'s abortion policies</a
-		>
-		<button class="link" on:click={() => ($selectedState = undefined)}
-			>Return to full map</button
+		{#if stateName == "District Of Columbia"}
+			<p>Read more about the 
+				<a href={guttmacherLink} target="_blank" class="link">District of Columbia's</a>
+			abortion policies</p>
+		{:else}
+			<p>Read more about
+				<a href={guttmacherLink} target="_blank" class="link">{stateName}'s</a>
+			abortion policies</p>
+		{/if}
+		<button class="link link-sm" on:click={() => ($selectedState = undefined)}
+			>Return to all mazes</button
 		>
 	{/if}
 
 	{#if mobile && $gameState !== "pre"}
 		<button class="reset" on:click={reset}>restart</button>
-		<button class="solve" on:click={solve}>complete</button>
+		<button class="solve" on:click={solve}>Complete</button>
 	{/if}
 </div>
 
@@ -65,10 +71,15 @@
 	.overlay.visible {
 		opacity: 1;
 	}
+	.overlay p {
+		text-align: center;
+	}
 	.icon {
 		display: flex;
-		height: 32px;
-		width: 32px;
+		height: 50px;
+		width: 50px;
+		border-radius: 50%;
+		background-color: var(--color-bg);
 	}
 	.instruction {
 		margin-top: 0.5rem;
@@ -87,26 +98,40 @@
 	button.solve {
 		position: absolute;
 		background: none;
-		border: 1px solid var(--color-dark-tan);
+		border: 1px solid var(--color-tan);
 		color: var(--color-dark-tan);
-		text-transform: uppercase;
 		font-size: 0.8rem;
 	}
 	button.reset {
 		top: 0;
 		left: 0;
 		transform: translate(0, -120%);
+		background: var(--color-accent-orange);
+		border: none;
+		color: var(--color-bg);
+		font-weight: 700;
+		text-transform: uppercase;
 	}
 	button.solve {
 		bottom: 0;
 		right: 0;
 		transform: translate(0, 120%);
 	}
+	button.reset:hover {
+		transform: translate(0, -123%);
+	}
+	button.solve:hover {
+		transform: translate(0, 117%);
+	}
+	button.start:hover {
+		transform: translate(0, -2px);
+	}
 	.complete {
-		font-size: 1.6rem;
+		font-size: var(--28px);
 		font-weight: bold;
 		text-align: center;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		gap: 0.5rem;
 	}
@@ -121,20 +146,20 @@
 		text-decoration: underline;
 		border-bottom: none;
 	}
+	.link-sm {
+		font-size: var(--14px);
+	}
 	.link:hover {
 		color: var(--color-dark-tan);
 	}
 
-	@media (max-width: 600px) {
-		.link {
-			font-size: 1rem;
-		}
-		.complete {
-			font-size: 1.5rem;
+	@media (max-width: 700px) {
+		.link-sm {
+			font-size: var(--12px);
 		}
 		.icon {
-			height: 20px;
-			width: 20px;
+			height: 36px;
+			width: 36px;
 		}
 	}
 </style>

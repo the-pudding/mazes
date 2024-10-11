@@ -7,6 +7,7 @@
 	import shareIcon from "$svg/share.svg";
 	import plusIcon from "$svg/plus-light.svg";
 	import viewport from "$stores/viewport.js";
+	import Icon from "$components/helpers/Icon.svelte";
 
 	export let sentences;
 
@@ -67,10 +68,10 @@
 				{name}
 				{#if mobile}
 					<span class="icon" on:click|preventDefault={share}
-						>{@html shareIcon}
+						><Icon name="share" stroke="#726D68" width="1.25rem" />
 
 						<span class="clipboard" class:visible={copySuccess}
-							>Copied to clipboard!</span
+							>Link copied!</span
 						>
 					</span>
 				{/if}
@@ -90,21 +91,6 @@
 	</div>
 
 	<Facts {facts} />
-
-	{#if !mobile}
-		<div class="learn">
-			<span>Learn more about this</span>
-			<a href={guttmacherLink} target="_blank">state’s abortion policies</a>
-			and
-			<span class="share">
-				<a href="#" on:click|preventDefault={share}>share this state’s maze</a>
-				<span class="icon">{@html shareIcon} </span>
-				<span class="clipboard" class:visible={copySuccess}
-					>Copied to clipboard!</span
-				>
-			</span>
-		</div>
-	{/if}
 </div>
 
 <style>
@@ -112,7 +98,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: start;
-		justify-content: space-between;
 		gap: 1.5rem;
 		height: 100%;
 	}
@@ -127,11 +112,12 @@
 		font-size: 3rem;
 		display: flex;
 		align-items: center;
+		margin: 0;
 	}
 	.story {
 		background: var(--color-accent-purple);
 		color: var(--color-bg);
-		border-radius: 5px;
+		border-radius: 3px;
 		padding: 6px 8px;
 		font-weight: bold;
 		display: flex;
@@ -145,24 +131,32 @@
 		align-items: baseline;
 		color: var(--color-dark-tan);
 		font-size: 0.9rem;
-		width: 520px;
+		z-index: 1000;
 	}
 	.share {
 		display: flex;
 		align-items: center;
 		position: relative;
 	}
-	.share .icon {
+	h2 .icon {
 		display: flex;
+		align-items: center;
+		justify-content: center;
 		height: 20px;
 		width: 20px;
 		margin-left: 6px;
+	}
+	:global(h2 .icon:hover svg path, h2 .icon:hover svg polyline, h2 .icon:hover svg line) {
+		stroke: var(--color-fg)
 	}
 	.story .icon {
 		display: flex;
 		height: 16px;
 		width: 16px;
 		margin-right: 6px;
+	}
+	:global(.share:hover .icon svg path, .share:hover .icon svg polyline, .share:hover .icon svg line) {
+		stroke: var(--color-fg);
 	}
 	a {
 		line-height: 1;
@@ -172,25 +166,30 @@
 		white-space: nowrap;
 	}
 	.clipboard {
-		font-size: 1rem;
+		font-size: var(--12px);
 		font-family: var(--sans);
-		font-weight: normal;
+		font-weight: 600;
 		position: absolute;
 		top: 0;
+		left: 50%;
+		width: 100px;
 		opacity: 0;
-		transform: translate(0, 0);
+		transform: translate(-52.75%, 0);
 		z-index: -1000;
-		width: 100%;
 		text-align: center;
 		background: var(--color-bg);
+		border: 1px solid var(--color-dark-tan);
+		color: var(--color-fg);
+		padding: 0.25rem;
+		border-radius: 3px;
 		transition: transform calc(var(--1s) * 0.3), opacity calc(var(--1s) * 0.15);
 	}
 	.clipboard.visible {
-		transform: translate(0, -120%);
+		transform: translate(-52.75%, -120%);
 		opacity: 1;
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 700px) {
 		h2 {
 			font-size: 2rem;
 			margin: 0;
@@ -202,13 +201,6 @@
 		.story .icon {
 			height: 12px;
 			width: 12px;
-		}
-		h2 .icon {
-			position: relative;
-			display: flex;
-			height: 32px;
-			width: 32px;
-			margin-left: 0.5rem;
 		}
 		h2 .icon:hover {
 			cursor: pointer;

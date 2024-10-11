@@ -85,7 +85,7 @@
 		opacity: 0.05;
 	}
 	line {
-		stroke: black;
+		stroke: var(--color-dark-tan);
 	}
 	rect {
 		fill: none;

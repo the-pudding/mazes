@@ -37,10 +37,11 @@
 	--color-placeholder: var(--color-gray-500);
 
 	/* colors */
-	--color-tan: #e7e2d4;
-	--color-dark-tan: #817451;
-	--color-medium-tan: #b0a380;
-	--color-accent-orange: #f96501;
+	--color-tan: #DDD3CB;
+	--color-dark-tan: #726D68;
+	--color-medium-tan: #B9B1AA;
+	--color-accent-orange: #F46201;
+	--color-accent-dark-orange: #e45b00;
 	--color-accent-purple: #6b50dc;
 
 	--font-bold: "Avenir Next Bold", Avenir Next;

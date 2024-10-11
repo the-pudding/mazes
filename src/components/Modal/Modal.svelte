@@ -97,11 +97,11 @@
 		position: fixed;
 		width: 90%;
 		max-width: 1000px;
-		height: calc(100vh - 6rem);
-		margin: 3rem 0;
-		top: 0;
+		max-height: 90vh;
+		margin: auto 1rem;
+		top: 50%;
 		left: 50%;
-		transform: translate(-50%, 0);
+		transform: translate(-50%, -50%);
 		background: var(--color-bg);
 		border: 1px solid var(--color-dark-tan);
 		box-shadow: 0px 5px 10px rgba(232, 229, 225, 0.5);
@@ -124,11 +124,24 @@
 		background: var(--color-dark-tan);
 	}
 
+	@media (max-width: 800px) {
+		.modal {
+			padding: 2rem;
+		}
+	}
+
+	@media (max-width: 700px) {
+		.modal {
+			width: calc(100% - 3rem);
+			margin: 1rem;
+			max-width: 500px;
+		}
+	}
+
 	@media (max-width: 600px) {
 		.modal {
 			padding: 1.5rem;
 			margin: 1.5rem 0;
-			height: calc(100vh - 3rem);
 		}
 		.modal.open {
 			display: flex;

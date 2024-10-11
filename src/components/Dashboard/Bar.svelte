@@ -14,7 +14,7 @@
 	let selectState = "default";
 
 	const highlightOptions = [
-		{ label: "select state", value: "default" },
+		{ label: "Select state", value: "default" },
 		...states.map((d) => ({ label: _.startCase(d.name), value: d.id }))
 	];
 
@@ -60,7 +60,9 @@
 	</div>
 
 	<button class="methods" on:click={methodology}>
-		{$viewport.width < 620 && !mobile ? "" : "Methodology"}
+		<span class="text-only">
+			{$viewport.width < 700 ? "" : "Methodology"}
+		</span>
 		<span>{@html infoIcon}</span>
 	</button>
 </div>
@@ -68,7 +70,7 @@
 <style>
 	.bar {
 		background: var(--color-tan);
-		color: var(--color-dark-tan);
+		color: var(--color-fg);
 		font-size: 0.9rem;
 		display: flex;
 		justify-content: space-between;
@@ -91,15 +93,23 @@
 	.methods {
 		background: none;
 		padding: 0;
+		color: var(--color-fg);
+	}
+	.methods:hover .text-only {
 		color: var(--color-dark-tan);
 	}
-	.methods:hover {
-		color: var(--color-fg);
+	:global(.methods:hover span svg path) {
+		fill: var(--color-dark-tan);
 	}
 	.methods span {
 		display: flex;
 		width: 1.2rem;
 		margin-left: 0.5rem;
+	}
+	.methods .text-only {
+		display: flex;
+		margin: 0;
+		width: auto;
 	}
 	.selects {
 		gap: 1rem;
@@ -108,7 +118,20 @@
 		width: fit-content;
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 500px) {
+		.bar {
+			height: auto;
+			padding: 0.5rem;
+			align-items: start;
+		}
+		.selects {
+			flex-direction: column;
+			align-items: start;
+			gap: 0.5rem;
+		}
+	}
+
+	/* @media (max-width: 600px) {
 		.bar {
 			height: auto;
 			flex-direction: column;
@@ -121,5 +144,5 @@
 			gap: 0.5rem;
 			margin-bottom: 0.5rem;
 		}
-	}
+	} */
 </style>

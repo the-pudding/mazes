@@ -24,7 +24,7 @@
 		align-items: center;
 	}
 	.text {
-		font-family: var(--mono);
+		font-family: var(--sans);
 		color: var(--color-dark-tan);
 		font-size: 0.9rem;
 		margin-top: 4px;
@@ -44,7 +44,7 @@
 		align-items: center;
 		justify-content: center;
 		padding: 4px;
-		border-radius: 4px;
+		border-radius: 3px;
 		font-size: 0.7rem;
 	}
 	span.up {
@@ -62,5 +62,16 @@
 	span.right {
 		grid-row: 2;
 		grid-column: 3;
+	}
+
+	@media(max-width: 700px) {
+		.keys {
+			grid-template-rows: 18px 18px;
+			grid-template-columns: 18px 18px 18px;
+			gap: 2px;
+		}
+		.text {
+			font-size: var(--12px);
+		}
 	}
 </style>

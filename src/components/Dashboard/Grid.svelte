@@ -6,6 +6,8 @@
 	import { selectedState } from "$stores/misc.js";
 	import _ from "lodash";
 	import localStorage from "$utils/localStorage.js";
+	import plusIcon from "$svg/plus.svg";
+	import checkIcon from "$svg/check-orange.svg";
 
 	export let doneMessage;
 
@@ -52,54 +54,66 @@
 	$: if ($viewport.width && $order) measure();
 </script>
 
-<figure id="grid" class:geo class:intro class:fade={$selectedState}>
-	{#if $order === "region"}
-		{#each regions as region}
-			{@const regionStates = sortedStates.filter((d) => d.region === region)}
-			<h3>{_.startCase(region)}</h3>
-			{#each regionStates as { id, name }}
-				{@const label = _.startCase(name)}
-				<State {id} {label} solved={mazesSolved.find((d) => d.id === id)} />
-			{/each}
-		{/each}
-	{:else}
-		{#if $order === "barriers"}
-			<h3>Fewest to most barriers</h3>
-		{/if}
-		{#each sortedStates as { id, name, row, col, story }}
-			{@const label = geo ? id.toUpperCase() : _.startCase(name)}
-			<State
-				{id}
-				{label}
-				{row}
-				{col}
-				{story}
-				solved={mazesSolved.find((d) => d.id === id)}
-			/>
-		{/each}
-	{/if}
-
-	<div class="tracker">
-		You've completed {mazesSolved.length === 50
-			? "all "
-			: `${mazesSolved.length}/`}50 mazes.
-		{#if mazesSolved.length === 50}
-			<span class="done">
-				{@html doneMessage}
-			</span>
+<div class="grid-wrapper">
+	<div class="tracker" class:hasBorder={!geo}>
+		<p class="tracker-sentence">
+			You've completed {mazesSolved.length === 50
+				? "all "
+				: `${mazesSolved.length}/`}50 mazes.
+			{#if mazesSolved.length === 50}
+				<span class="done">
+					{@html doneMessage}
+				</span>
+			{/if}
+		</p>
+		{#if mazesSolved.length !== 50}
+		<div class="maze-directions">
+			<p>Select a state maze to try to solve it. States with <span class="icon">{@html plusIcon}</span> plus signs have personal stories.</p>
+		</div>
 		{/if}
 	</div>
-</figure>
+	<figure id="grid" class:geo class:intro class:fade={$selectedState}>
+		{#if $order === "region"}
+			{#each regions as region}
+				{@const regionStates = sortedStates.filter((d) => d.region === region)}
+				<h3>{_.startCase(region)}</h3>
+				{#each regionStates as { id, name }}
+					{@const label = _.startCase(name)}
+					<State {id} {label} solved={mazesSolved.find((d) => d.id === id)} />
+				{/each}
+			{/each}
+		{:else}
+			{#if $order === "barriers"}
+				<h3>Most to fewest barriers</h3>
+			{/if}
+			{#each sortedStates as { id, name, row, col, story }}
+				{@const label = geo ? id.toUpperCase() : _.startCase(name)}
+				<State
+					{id}
+					{label}
+					{row}
+					{col}
+					{story}
+					solved={mazesSolved.find((d) => d.id === id)}
+				/>
+			{/each}
+		{/if}
+	</figure>
+</div>
 
 <style>
+	.grid-wrapper {
+		width: 100%;
+		padding: 4rem 0 8rem 0;
+	}
 	figure {
 		display: grid;
 		height: auto;
 		max-width: min(100%, 900px);
 		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 		gap: 1rem;
+		padding: 1.5rem 1rem;
 		margin: auto;
-		padding: 4rem 1rem;
 		transition: opacity calc(var(--1s) * 0.3);
 	}
 	figure.fade {
@@ -116,34 +130,89 @@
 		gap: 0;
 	}
 	h3 {
+		font-family: var(--serif);
 		grid-column: 1/-1;
-		margin-bottom: 0;
+		margin: 2rem 0 0 0;
+		font-size: var(--24px);
+		font-weight: 700;
+		padding: 0 0 0 0.25rem;
 	}
 	.tracker {
 		color: var(--color-accent-orange);
 		font-weight: bold;
+		font-size: var(--18px);
 		grid-column: 1 / -1;
 		grid-row: 1;
 		text-align: center;
 		position: sticky;
 		top: 0;
-		background: var(--color-bg);
-		padding: 4px 0;
+		background: rgba(255, 253, 248, 0.95);
+		padding: 1rem;
+		z-index: 1000;
+		height: 0;
+	}
+	.tracker.hasBorder {
+		border-bottom: 1px solid var(--color-tan);
+		height: auto;
 	}
 	.geo .tracker {
 		position: static;
 		grid-row: 1 / 3;
 		grid-column: 3 / 11;
 		margin: 0 1rem 1rem 1rem;
+		border-bottom: none;
 	}
 	.done {
 		font-weight: normal;
 		display: block;
 	}
+	.tracker-sentence {
+		margin: 0 0 1rem 0;
+	}
+	.maze-directions {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		max-width: 360px;
+		margin: 0 auto;
+	}
+	.maze-directions p {
+		color: var(--color-fg);
+		font-weight: 500;
+		font-size: var(--14px);
+		margin: 0;
+		font-style: italic;
+	}
+	span.icon {
+		height: 17px;
+		width: 17px;
+		display: inline-block;
+		margin: 0 1px 0 2px;
+		position: relative;
+		top: 3px;
+	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 700px) {
 		figure {
-			padding: 1.5em 1em;
+			padding: 1.5rem 1rem;
+		}
+		.tracker {
+			border-bottom: 1px solid var(--color-tan);
+		}
+		.maze-directions p {
+			font-size: var(--12px);
+			line-height: 1;
+		}
+		span.icon {
+			margin: 0 0 0 0;
+			top: 4px;
+		}
+	}
+
+	@media (max-width: 500px) {
+		.tracker {
+			padding: 0.5rem;
 		}
 	}
 </style>
