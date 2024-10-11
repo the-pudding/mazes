@@ -2,12 +2,14 @@
 	import stateData from "$data/states.csv";
 	import { selectedState } from "$stores/misc.js";
 	import arrowDownIcon from "$svg/arrow-down.svg";
+	import touchIcon from "$svg/touch.svg";
 	import _ from "lodash";
 	import mq from "$stores/mq.js";
 
 	export let hed;
 	export let sub;
 	export let stories;
+	export let directions;
 
 	const onClick = async (id) => {
 		document
@@ -25,11 +27,18 @@
 </script>
 
 <div class="title" class:fade={$selectedState}>
-	<h2>{hed}</h2>
-	<button class="sub" on:click={seeAll}>
-		<span class="text">{sub}</span>
-		<span class="icon">{@html arrowDownIcon}</span>
-	</button>
+	<h2>{@html hed}</h2>
+	<p class="desc">{@html sub}</p>
+	<div class="directions">
+		<p>
+			<span>Select a story</span>
+			<span class="icon">{@html touchIcon}</span>
+		</p>
+		<button class="sub" on:click={seeAll}>
+			<span class="text">{directions}</span>
+			<span class="icon">{@html arrowDownIcon}</span>
+		</button>
+	</div>
 </div>
 
 <div class="stories" class:fade={$selectedState}>
@@ -82,7 +91,26 @@
 	}
 	h2 {
 		font-family: var(--serif);
-		font-weight: bold;
+		font-weight: 300;
+		max-width: 40rem;
+	}
+	.desc {
+		max-width: 30rem;
+		font-size: var(--14px);
+		margin: 0;
+		font-style: italic;
+	}
+	.directions {
+		display: flex;
+		flex-direction: row;
+		margin: 1rem 0;
+		gap: 0.5rem;
+	}
+	.directions p {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		font-size: var(--20px);
 	}
 	.stories {
 		width: 100%;
@@ -146,6 +174,7 @@
 		border-radius: 0;
 		display: flex;
 		align-items: center;
+		font-size: var(--20px);
 	}
 	.text {
 		text-decoration: underline;
@@ -155,6 +184,9 @@
 		width: 17px;
 		margin-left: 4px;
 		display: flex;
+	}
+	:global(.sub .icon svg path) {
+		fill: var(--color-fg);
 	}
 
 	@media (max-width: 600px) {

@@ -40,7 +40,7 @@
 		easing: cubicIn
 	});
 
-	const fakeLength = tweened(380, {
+	const fakeLength = tweened(0, {
 		duration: 1800,
 		easing: cubicIn
 	});
@@ -54,7 +54,7 @@
 
 		setTimeout(() => {
 			strokeOffset = pathLength * (1 - pathPcts[step]);
-		},1600)
+		},800)
 	};
 
 	$: step, stepChange();
@@ -84,6 +84,7 @@
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<path 
+				class:visible={step > 0}
 				id="path" 
 				bind:this={pathEl}
 				style:stroke-dasharray={pathLength}
@@ -573,7 +574,7 @@
 		left: -350px;
 	}
 	#path {
-		opacity: 1;
+		opacity: 0;
 		transition: stroke-dashoffset calc(var(--1s) * 2) ease;
 	}
 	#path.visible {

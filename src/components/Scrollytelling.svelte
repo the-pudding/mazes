@@ -34,6 +34,12 @@
 			{#if i == 0}
 				<div class="icon-wrapper">
 					<Icon name="arrow-down-circle" width="2.5rem" height="2.5rem" stroke="#b0a380" strokeWidth="1.5" />
+					<p>Scroll</p>
+				</div>
+			{:else if i == steps.length-1}
+				<div class="icon-wrapper">
+					<Icon name="arrow-down-circle" width="2.5rem" height="2.5rem" stroke="#b0a380" strokeWidth="1.5" />
+					<p>Scroll</p>
 				</div>
 			{/if}
 		</div>
@@ -123,16 +129,24 @@
 		position: relative;
 	}
 	.icon-wrapper {
-		width: 2rem;
-		height: 2.5rem;
+		display: flex;
+		align-items: center;
 		transform: translateY(0);
 		animation: bounceUp 1s ease-in-out infinite;
+	}
+	.icon-wrapper p {
+		font-family: var(--sans);
+		font-size: var(--12px) !important;
+		font-weight: 500 !important;
+		text-transform: uppercase;
+		color: var(--color-dark-tan);
+		padding: 0 0 0 0.5rem;
 	}
 	.step:first-of-type {
 		margin-top: -80vh;
 	}
 	.step:last-of-type {
-		margin-bottom: 120vh;
+		margin-bottom: 20vh;
 	}
 
 	.step:last-of-type p {
