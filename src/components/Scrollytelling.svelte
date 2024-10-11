@@ -1,10 +1,9 @@
 <script>
 	import IntroMaze from "$components/IntroMaze.svelte";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
+	import Icon from "$components/helpers/Icon.svelte";
 	import copy from "$data/copy.json";
 	import logo from "$svg/wordmark-plain.svg";
-	import { tweened } from "svelte/motion";
-	import { cubicIn } from "svelte/easing";
 
 	export let steps;
 
@@ -32,10 +31,14 @@
 	{#each steps as { value }, i}
 		<div class="step">
 			<p>{@html value}</p>
+			{#if i == 0}
+				<div class="icon-wrapper">
+					<Icon name="arrow-down-circle" width="2.5rem" height="2.5rem" stroke="#b0a380" strokeWidth="1.5" />
+				</div>
+			{/if}
 		</div>
 	{/each}
 </Scrolly>
-<div class="spacer" />
 
 <style>
 	:global(#intro) {
@@ -64,17 +67,18 @@
 		transition: all 1s;
         z-index: 1;
         overflow: hidden;
+		pointer-events: none;
 	}
 	.logo {
 		display: flex;
-		max-width: 14em;
+		max-width: 10em;
 	}
 	.logo a {
 		border: none;
 		display: block;
 	}
-	.logo a:hover :global(path#logo) {
-		fill: var(--color-fg);
+	.logo a:hover {
+		transform: rotate(-2deg);
 	}
 	.byline {
 		opacity: 0;
@@ -89,10 +93,15 @@
 	}
 	.text {
 		display: block;
-		color: var(--color-dark-tan);
+		color: var(--color-fg);
 	}
 	:global(#intro .text a) {
 		white-space: nowrap;
+		color: var(--color-fg);
+	}
+
+	:global(#intro .text a:hover) {
+		color: var(--color-accent-purple);
 	}
 	.spacer {
 		height: 75vh;
@@ -104,18 +113,39 @@
         width: 350px;
         margin: 0;
 		padding: 0 0 0 1.5rem;
+		pointer-events: none;
 	}
 	.step p {
 		font-family: var(--serif);
 		padding: 0 2rem 0 0;
 		font-size: var(--32px);
-		background: green;
+		pointer-events: auto;
+		position: relative;
+	}
+	.icon-wrapper {
+		width: 2rem;
+		height: 2.5rem;
+		transform: translateY(0);
+		animation: bounceUp 1s ease-in-out infinite;
 	}
 	.step:first-of-type {
 		margin-top: -80vh;
 	}
 	.step:last-of-type {
 		margin-bottom: 120vh;
+	}
+
+	.step:last-of-type p {
+		font-weight: 700;
+		font-size: var(--56px);
+	}
+
+	@keyframes bounceUp {
+		0%		  { transform: translateY(0); }
+		25%       { transform: translateY(2px); }
+		50%       { transform: translateY(4px); }
+		75%       { transform: translateY(2px); }
+		100%      { transform: translateY(0); }
 	}
 
 	@media (min-width: 1200px) {
