@@ -1,8 +1,11 @@
 <script>
 	import sources from "$data/sources.csv";
+	import viewport from "$stores/viewport.js";
 
 	export let title;
 	export let content;
+
+	$: mobile = $viewport.width < 600;
 </script>
 
 <div class="inner">
@@ -26,8 +29,11 @@
 			<tbody>
 				{#each sources as { source, metric, lastUpdated, link }, i}
 					<tr>
-						<td><span>{i+1}</span><a href={link} target="_blank">{metric}</a></td>
-						<td>{lastUpdated}</td>
+						<td
+							><span>{i + 1}</span><a href={link} target="_blank">{metric}</a
+							></td
+						>
+						<td>{mobile ? "Last updated: " : ""}{lastUpdated}</td>
 					</tr>
 				{/each}
 			</tbody>
@@ -101,7 +107,7 @@
 		white-space: nowrap;
 	}
 
-	@media (max-width: 700px) {
+	@media (max-width: 600px) {
 		thead {
 			display: none;
 		}
