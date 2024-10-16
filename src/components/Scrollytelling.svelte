@@ -4,17 +4,17 @@
 	import Icon from "$components/helpers/Icon.svelte";
 	import copy from "$data/copy.json";
 	import logo from "$svg/wordmark-plain.svg";
+	import viewport from "$stores/viewport.js";
 
 	export let steps;
 
 	let value;
 
-	// TODO: 900px, switch to steps on top
-
 	$: bylineVisible = value === 0;
+	$: mobile = $viewport.width < 900;
 </script>
 
-<div class="byline" class:visible={bylineVisible}>
+<div class="byline" class:visible={bylineVisible} class:mobile>
 	<span class="logo">
 		<a href="https://pudding.cool" aria-label="The Pudding" target="_self">
 			{@html logo}
@@ -26,37 +26,38 @@
 <div class="sticky">
 	<IntroMaze step={value} />
 </div>
-
-<Scrolly bind:value>
-	{#each steps as { value }, i}
-		<div class="step">
-			<p>{@html value}</p>
-			{#if i == 0}
-				<div class="icon-wrapper">
-					<Icon
-						name="arrow-down-circle"
-						width="2.5rem"
-						height="2.5rem"
-						stroke="#726D68"
-						strokeWidth="1"
-					/>
-					<p>Scroll</p>
-				</div>
-			{:else if i == steps.length - 1}
-				<div class="icon-wrapper">
-					<Icon
-						name="arrow-down-circle"
-						width="2.5rem"
-						height="2.5rem"
-						stroke="#726D68"
-						strokeWidth="1"
-					/>
-					<p>Scroll</p>
-				</div>
-			{/if}
-		</div>
-	{/each}
-</Scrolly>
+<div class="steps">
+	<Scrolly bind:value>
+		{#each steps as { value }, i}
+			<div class="step">
+				<p>{@html value}</p>
+				{#if i == 0}
+					<div class="icon-wrapper">
+						<Icon
+							name="arrow-down-circle"
+							width="2.5rem"
+							height="2.5rem"
+							stroke="#726D68"
+							strokeWidth="1"
+						/>
+						<p>Scroll</p>
+					</div>
+				{:else if i == steps.length - 1}
+					<div class="icon-wrapper">
+						<Icon
+							name="arrow-down-circle"
+							width="2.5rem"
+							height="2.5rem"
+							stroke="#726D68"
+							strokeWidth="1"
+						/>
+						<p>Scroll</p>
+					</div>
+				{/if}
+			</div>
+		{/each}
+	</Scrolly>
+</div>
 
 <style>
 	:global(#intro) {
@@ -100,11 +101,21 @@
 		display: block;
 		color: var(--color-fg);
 	}
-	:global(#intro .text a) {
+	.mobile .text {
+		display: none;
+	}
+	.byline.mobile {
+		position: fixed;
+		top: 1rem;
+		left: 50%;
+		transform: translate(-50%, 0);
+		width: fit-content;
+	}
+
+	:global(#intro .text a, #intro .authors-mobile a) {
 		white-space: nowrap;
 		color: var(--color-fg);
 	}
-
 	:global(#intro .text a:hover) {
 		color: var(--color-accent-purple);
 	}
@@ -145,9 +156,8 @@
 		margin-top: -80vh;
 	}
 	.step:last-of-type {
-		margin-bottom: 20vh;
+		margin-bottom: 120vh;
 	}
-
 	.step:last-of-type p {
 		font-weight: 700;
 		font-size: var(--56px);
@@ -180,9 +190,6 @@
 		}
 		.sticky {
 			width: 100%;
-			height: auto;
-			top: 50%;
-			transform: translate(0, -50%);
 		}
 		.steps {
 			z-index: 100;
@@ -190,11 +197,20 @@
 			padding: 0 2rem;
 		}
 		.step {
-			width: 250px;
+			margin: 80vh auto;
+			max-width: 600px;
+			width: auto;
+			height: auto;
 			font-size: 1.25rem;
 			padding: 0.5rem 1.5rem;
 			background: var(--color-bg);
 			border: 1px solid var(--color-dark-tan);
+		}
+	}
+
+	@media (max-width: 600px) {
+		.steps {
+			padding: 0 1rem;
 		}
 	}
 </style>

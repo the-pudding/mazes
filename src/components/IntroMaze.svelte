@@ -3,7 +3,9 @@
 	import { cubicIn, quintOut } from "svelte/easing";
 	import { draw } from "svelte/transition";
 	import { onMount } from "svelte";
+	import viewport from "$stores/viewport.js";
 	import scrollY from "$stores/scrollY.js";
+	import copy from "$data/copy.json";
 
 	export let step;
 
@@ -36,6 +38,7 @@
 
 	$: step, stepChange();
 	$: if ($scrollY > 0) firstLoad = false;
+	$: mobile = $viewport.width < 900;
 
 	onMount(() => {
 		pathLength = pathEl.getTotalLength();
@@ -73,7 +76,7 @@
 			height="100%"
 			viewBox={$viewBox.join(" ")}
 			fill="none"
-			preserveAspectRatio="xMinYMin"
+			preserveAspectRatio={mobile ? "xMinYMid" : "xMinYMin"}
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<path
@@ -86,7 +89,10 @@
 				stroke="var(--color-accent-purple)"
 				stroke-width="5"
 			/>
-			<g id="title-fill" class:visible={step === 6}>
+			<g
+				id="title-fill"
+				class:visible={(step === 6 || step === undefined) && !firstLoad}
+			>
 				<path
 					id="Vector_181"
 					d="M325.282 238.815C323.624 242.744 321.276 246.105 318.207 248.914C315.137 251.723 311.438 253.902 307.11 255.483C302.782 257.048 297.962 257.831 292.667 257.831C287.372 257.831 282.461 257.048 278.163 255.483C273.866 253.917 270.228 251.723 267.235 248.914C264.242 246.105 261.94 242.744 260.329 238.815C258.717 234.886 257.919 230.527 257.919 225.754V164.714H281.217V209.177C281.217 211.342 281.709 222.914 282.077 224.909C282.875 229.13 284.563 235.116 292.775 235.116C300.986 235.116 302.997 229.406 303.718 224.909C304.04 222.914 304.516 211.357 304.516 209.177V164.714H327.753V225.754C327.753 230.542 326.924 234.901 325.282 238.815Z"
@@ -1675,7 +1681,7 @@
 					stroke-miterlimit="10"
 				/>
 			</g>
-			{#if step === 6}
+			{#if (step === 6 || step === undefined) && !firstLoad}
 				<g id="title-bold">
 					<path
 						transition:draw={drawParams}
@@ -1903,7 +1909,10 @@
 					/>
 				</g>
 			{/if}
-			<g id="of" class:visible={step === 6}>
+			<g
+				id="of"
+				class:visible={(step === 6 || step === undefined) && !firstLoad}
+			>
 				<path
 					id="Vector_237"
 					d="M811.527 433.445C834.804 433.445 853.673 414.576 853.673 391.299C853.673 368.023 834.804 349.153 811.527 349.153C788.251 349.153 769.381 368.023 769.381 391.299C769.381 414.576 788.251 433.445 811.527 433.445Z"
@@ -1920,7 +1929,10 @@
 					fill="white"
 				/>
 			</g>
-			<g id="the" class:visible={step === 6}>
+			<g
+				id="the"
+				class:visible={(step === 6 || step === undefined) && !firstLoad}
+			>
 				<path
 					id="Vector_240"
 					d="M211.184 183.101C240.631 183.101 264.503 159.229 264.503 129.782C264.503 100.334 240.631 76.4624 211.184 76.4624C181.736 76.4624 157.864 100.334 157.864 129.782C157.864 159.229 181.736 183.101 211.184 183.101Z"
@@ -1944,6 +1956,12 @@
 			</g>
 		</svg>
 	</div>
+</div>
+<div
+	class="authors-mobile"
+	class:visible={(step === 6 || step === undefined) && !firstLoad}
+>
+	{@html copy.byline}
 </div>
 
 <style>
@@ -1990,10 +2008,28 @@
 	#title-fill.visible {
 		opacity: 1;
 	}
+	.authors-mobile {
+		display: none;
+	}
 
-	@media (max-width: 600px) {
-		.maze {
-			height: 100vh;
+	@media (max-width: 900px) {
+		.svg-wrapper-left {
+			width: 0;
+		}
+		.svg-wrapper-right {
+			width: 100%;
+		}
+		.authors-mobile {
+			display: block;
+			position: absolute;
+			bottom: 3rem;
+			left: 1rem;
+			opacity: 0;
+			transition: opacity calc(var(--1s) * 0.3) calc(var(--1s) * 0.3);
+		}
+		.authors-mobile.visible {
+			transition: opacity calc(var(--1s) * 0.3) calc(var(--1s) * 2);
+			opacity: 1;
 		}
 	}
 </style>
