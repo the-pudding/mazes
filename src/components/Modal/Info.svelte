@@ -33,7 +33,7 @@
 			.catch((err) => {});
 	};
 
-	$: mobile = $viewport.width < 600;
+	$: mobile = $viewport.width < 700;
 	$: state = stateData.find((d) => d.id === $selectedState);
 	$: name = _.startCase(state.name);
 	$: story = state.story;
@@ -146,8 +146,12 @@
 		width: 20px;
 		margin-left: 6px;
 	}
-	:global(h2 .icon:hover svg path, h2 .icon:hover svg polyline, h2 .icon:hover svg line) {
-		stroke: var(--color-fg)
+	:global(
+			h2 .icon:hover svg path,
+			h2 .icon:hover svg polyline,
+			h2 .icon:hover svg line
+		) {
+		stroke: var(--color-fg);
 	}
 	.story .icon {
 		display: flex;
@@ -155,7 +159,11 @@
 		width: 16px;
 		margin-right: 6px;
 	}
-	:global(.share:hover .icon svg path, .share:hover .icon svg polyline, .share:hover .icon svg line) {
+	:global(
+			.share:hover .icon svg path,
+			.share:hover .icon svg polyline,
+			.share:hover .icon svg line
+		) {
 		stroke: var(--color-fg);
 	}
 	a {
@@ -201,6 +209,9 @@
 		.story .icon {
 			height: 12px;
 			width: 12px;
+		}
+		.title .icon {
+			position: relative;
 		}
 		h2 .icon:hover {
 			cursor: pointer;

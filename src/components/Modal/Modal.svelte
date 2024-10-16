@@ -124,6 +124,15 @@
 		background: var(--color-dark-tan);
 	}
 
+	@media (max-height: 830px) {
+		.modal {
+			overflow: scroll;
+		}
+		.close {
+			transform: translate(-8px, 8px);
+		}
+	}
+
 	@media (max-width: 800px) {
 		.modal {
 			padding: 2rem;
@@ -140,21 +149,14 @@
 
 	@media (max-width: 600px) {
 		.modal {
-			padding: 1.5rem;
-			margin: 1.5rem 0;
+			padding: 1.25rem;
+			margin: 0;
+			height: 95vh;
 		}
 		.modal.open {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-		}
-	}
-	@media (max-height: 830px) {
-		.modal {
-			overflow: scroll;
-		}
-		.close {
-			transform: translate(-8px, 8px);
 		}
 	}
 </style>

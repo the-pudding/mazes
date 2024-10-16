@@ -78,9 +78,7 @@
 			<span class="share">
 				<a href="#" on:click|preventDefault={share}>share this state’s maze</a>
 				<span class="icon"><Icon name="share" /></span>
-				<span class="clipboard" class:visible={copySuccess}
-					>Link copied!</span
-				>
+				<span class="clipboard" class:visible={copySuccess}>Link copied!</span>
 			</span>
 		</div>
 	{/if}
@@ -134,7 +132,11 @@
 		margin-left: 6px;
 	}
 
-	:global(.share:hover .icon svg path, .share:hover .icon svg polyline, .share:hover .icon svg line) {
+	:global(
+			.share:hover .icon svg path,
+			.share:hover .icon svg polyline,
+			.share:hover .icon svg line
+		) {
 		stroke: var(--color-fg);
 	}
 
@@ -170,7 +172,8 @@
 			flex-direction: column;
 			align-items: center;
 		}
-		.info, .maze {
+		.info,
+		.maze {
 			width: 100%;
 		}
 		.maze {
@@ -195,6 +198,9 @@
 		.maze {
 			flex: 1;
 			max-width: 80%;
+		}
+		.top-wrapper {
+			height: 100%;
 		}
 	}
 </style>

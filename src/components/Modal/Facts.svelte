@@ -25,13 +25,13 @@
 	};
 
 	function onFactMouse(event, currZIndex, visible) {
-		if(visible) {
+		if (visible) {
 			event.target.style.zIndex = 100;
 		}
 	}
 
 	function onFactLeave(event, currZIndex, visible) {
-		if(visible) {
+		if (visible) {
 			event.target.style.zIndex = currZIndex;
 		}
 	}
@@ -40,7 +40,7 @@
 	$: if ($globalGameState === "mid" && $pathLength % steps === steps - 1)
 		cycleFact();
 	$: if ($globalGameState === "post") currentFact = facts.length - 1;
-	$: mobile = $viewport.width < 600;
+	$: mobile = $viewport.width < 700;
 	$: steps = $currentMazeSize <= 10 ? 2 : 5;
 	$: heights = factEls.map((d) => d.getBoundingClientRect().height);
 	$: maxFactHeight = _.max(heights);
@@ -48,6 +48,8 @@
 	$: topScale = scaleLinear()
 		.domain([0, combinedFactHeight - heights[heights.length - 1]])
 		.range([0, containerHeight - heights[heights.length - 1]]);
+
+	$: console.log(topScale.domain(), topScale.range());
 </script>
 
 <div
@@ -72,8 +74,10 @@
 				: topScale(_.sum(_.slice(heights, 0, i)))}
 		<div
 			bind:this={factEls[i]}
-			on:mouseover={(e) => onFactMouse(e, getZIndex(i, currentFact), currentFact >= i)}
-			on:mouseleave={(e) => onFactLeave(e, getZIndex(i, currentFact), currentFact >= i)}
+			on:mouseover={(e) =>
+				onFactMouse(e, getZIndex(i, currentFact), currentFact >= i)}
+			on:mouseleave={(e) =>
+				onFactLeave(e, getZIndex(i, currentFact), currentFact >= i)}
 			class="fact"
 			class:above={i < currentFact}
 			class:below={i > currentFact}
@@ -105,7 +109,8 @@
 		cursor: pointer;
 		transform: translateY(20px);
 		transition: transform calc(var(--1s) * 0.3), color calc(var(--1s) * 0.3),
-			border calc(var(--1s) * 0.3), opacity calc(var(--1s) * 0.3), z-index calc(var(--1s) * 0.3);
+			border calc(var(--1s) * 0.3), opacity calc(var(--1s) * 0.3),
+			z-index calc(var(--1s) * 0.3);
 	}
 	.visible {
 		opacity: 1;
@@ -131,8 +136,8 @@
 
 	@media (max-width: 700px) {
 		.facts {
-			min-height: 200px;
-			padding-bottom: 2rem;
+			/* min-height: 200px; */
+			/* padding-bottom: 2rem; */
 		}
 		.fact {
 			padding: 0.5rem;
