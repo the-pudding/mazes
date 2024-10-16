@@ -49,7 +49,7 @@
 		{@const name = _.startCase(stateData.find((d) => d.id === id).story)}
 		<button class="story" on:click={() => onClick(id)}>
 			<div class="img-wrapper">
-				<div class="img-absolute img-bg"></div>
+				<div class="img-absolute img-bg" />
 				<img
 					class="img-absolute img-maze"
 					src={`assets/img/states/${id}.png`}
@@ -74,7 +74,6 @@
 	:global(#pick) {
 		width: 100%;
 		padding: 4rem 1rem;
-		/* min-height: 100vh; */
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -178,10 +177,6 @@
 		background-color: #dfd8ff;
 		transition: background-color calc(var(--1s) * 0.2);
 	}
-	/* .story:hover {
-		outline: 3px solid var(--color-accent-orange);
-		border-radius: 5px;
-	} */
 	.story:hover .img-bg {
 		cursor: pointer;
 		background-color: #9181d4;
@@ -239,13 +234,17 @@
 	}
 
 	@media (max-width: 700px) {
+		:global(#pick) {
+			margin-bottom: 2rem;
+		}
 		h2 {
 			font-size: var(--24px);
 		}
 		.desc {
 			font-size: var(--12px);
 		}
-		.directions p, .sub {
+		.directions p,
+		.sub {
 			font-size: var(--16px);
 		}
 		.stories {

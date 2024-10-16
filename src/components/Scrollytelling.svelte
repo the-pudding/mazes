@@ -33,12 +33,24 @@
 			<p>{@html value}</p>
 			{#if i == 0}
 				<div class="icon-wrapper">
-					<Icon name="arrow-down-circle" width="2.5rem" height="2.5rem" stroke="#726D68" strokeWidth="1" />
+					<Icon
+						name="arrow-down-circle"
+						width="2.5rem"
+						height="2.5rem"
+						stroke="#726D68"
+						strokeWidth="1"
+					/>
 					<p>Scroll</p>
 				</div>
-			{:else if i == steps.length-1}
+			{:else if i == steps.length - 1}
 				<div class="icon-wrapper">
-					<Icon name="arrow-down-circle" width="2.5rem" height="2.5rem" stroke="#726D68" strokeWidth="1" />
+					<Icon
+						name="arrow-down-circle"
+						width="2.5rem"
+						height="2.5rem"
+						stroke="#726D68"
+						strokeWidth="1"
+					/>
 					<p>Scroll</p>
 				</div>
 			{/if}
@@ -50,29 +62,16 @@
 	:global(#intro) {
 		position: relative;
 	}
-	#fake-line {
-		position: fixed;
-		background: var(--color-accent-purple);
-		left: 0;
-		width: 0;
-		height: 32px;
-		opacity: 1;
-		transition: top 1800ms cubic-bezier(0.55, 0.06, 0.68, 0.19), 
-                height 1800ms cubic-bezier(0.55, 0.06, 0.68, 0.19);
-	}
-	#fake-line.visible {
-		opacity: 1;
-	}
 	.sticky {
 		width: 100%;
-        height: 100svh;
+		height: 100svh;
 		position: sticky;
-        display: flex;
-        flex-direction: column;
+		display: flex;
+		flex-direction: column;
 		top: 0;
 		transition: all 1s;
-        z-index: 1;
-        overflow: hidden;
+		z-index: 1;
+		overflow: hidden;
 		pointer-events: none;
 	}
 	.logo {
@@ -115,9 +114,9 @@
 	.step {
 		height: 100vh;
 		text-align: left;
-        z-index: 1000;
-        width: 350px;
-        margin: 0;
+		z-index: 1000;
+		width: 350px;
+		margin: 0;
 		padding: 0 0 0 1.5rem;
 		pointer-events: none;
 	}

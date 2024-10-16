@@ -67,9 +67,13 @@
 			{/if}
 		</p>
 		{#if mazesSolved.length !== 50}
-		<div class="maze-directions">
-			<p>Select a state maze to try to solve it. States with <span class="icon">{@html plusIcon}</span> plus signs have personal stories.</p>
-		</div>
+			<div class="maze-directions">
+				<p>
+					Select a state maze to try to solve it. States with <span class="icon"
+						>{@html plusIcon}</span
+					> plus signs have personal stories.
+				</p>
+			</div>
 		{/if}
 	</div>
 	<figure id="grid" class:geo class:intro class:fade={$selectedState}>
@@ -104,7 +108,6 @@
 <style>
 	.grid-wrapper {
 		width: 100%;
-		padding: 4rem 0 8rem 0;
 	}
 	figure {
 		display: grid;
