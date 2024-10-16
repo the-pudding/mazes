@@ -18,7 +18,7 @@
 	const h = 842;
 	const drawParams = { duration: 2500, delay: 1600, easing: cubicIn };
 	const zooms = [0.2, 0.2, 0.28, 0.4, 0.6, 0.75, 1];
-	const pathPcts = [0, 0.13, 0.21, 0.28, 0.37, 0.47, 1];
+	const pathPcts = [0, 0.13, 0.21, 0.28, 0.37, 0.47, 0.73];
 
 	const viewBox = tweened([0, 0, w / 5, h / 5], {
 		duration: 1800,
@@ -27,6 +27,10 @@
 
 	const stepChange = () => {
 		if (step === undefined) return;
+		if (step === 7) {
+			strokeOffset = 0;
+			return;
+		}
 
 		$viewBox = [0, 0, w * zooms[step], h * zooms[step]];
 
@@ -37,6 +41,7 @@
 
 	$: step, stepChange();
 	$: if ($scrollY > 0) firstLoad = false;
+	$: endOfIntro = (step >= 6 || step === undefined) && !firstLoad;
 
 	onMount(() => {
 		pathLength = pathEl.getTotalLength();
@@ -50,19 +55,20 @@
 		{#if svgRightWidth}
 			<svg
 				id="fake-line"
+				class:first-load={firstLoad}
 				width={svgRightWidth}
 				height="100%"
 				preserveAspectRatio="xMinYMid"
 				viewBox={$viewBox.join(" ")}
 			>
 				<line
+					class:fade={step === 0}
 					x1={0}
 					x2={600}
 					y1={13.5659}
 					y2={13.5659}
 					stroke="var(--color-accent-purple)"
 					stroke-width={5}
-					opacity={step === 0 ? 0.2 : 1}
 					in:draw={{ duration: 20000, easing: quintOut }}
 				/>
 			</svg>
@@ -89,12 +95,8 @@
 					d="M 0 13.5659 H13.7349 13.7349V151.537H81.6946V83.3208H107.34V106.914H198.124V245.398H59.2895V267.368H129.695V295.201V386.019V407.903H107.34V455.039H81.6946V479.026V522.452H107.34V570.323H81.6946V592.548H152.947V685.555H175.514V803.864H59.2895V829.168H315.708V781.297H385.463V735.477H455.85V826.432H596.095V781.297H664.482V759.413H732.869V781.297H757.489V829.168H782.108V781.297H802.624V759.413H828.611V781.297H898.366V829.168H991.373V2000"
 					stroke="var(--color-accent-purple)"
 					stroke-width="5"
-					opacity={step === 0 ? 0.2 : 1}
 				/>
-				<g
-					id="title-fill"
-					class:visible={(step === 6 || step === undefined) && !firstLoad}
-				>
+				<g id="title-fill" class:visible={endOfIntro}>
 					<path
 						id="Vector_181"
 						d="M325.282 238.815C323.624 242.744 321.276 246.105 318.207 248.914C315.137 251.723 311.438 253.902 307.11 255.483C302.782 257.048 297.962 257.831 292.667 257.831C287.372 257.831 282.461 257.048 278.163 255.483C273.866 253.917 270.228 251.723 267.235 248.914C264.242 246.105 261.94 242.744 260.329 238.815C258.717 234.886 257.919 230.527 257.919 225.754V164.714H281.217V209.177C281.217 211.342 281.709 222.914 282.077 224.909C282.875 229.13 284.563 235.116 292.775 235.116C300.986 235.116 302.997 229.406 303.718 224.909C304.04 222.914 304.516 211.357 304.516 209.177V164.714H327.753V225.754C327.753 230.542 326.924 234.901 325.282 238.815Z"
@@ -1683,7 +1685,7 @@
 						stroke-miterlimit="10"
 					/>
 				</g>
-				{#if (step === 6 || step === undefined) && !firstLoad}
+				{#if endOfIntro}
 					<g id="title-bold">
 						<path
 							transition:draw={drawParams}
@@ -1911,10 +1913,7 @@
 						/>
 					</g>
 				{/if}
-				<g
-					id="of"
-					class:visible={(step === 6 || step === undefined) && !firstLoad}
-				>
+				<g id="of" class:visible={endOfIntro}>
 					<path
 						id="Vector_237"
 						d="M811.527 433.445C834.804 433.445 853.673 414.576 853.673 391.299C853.673 368.023 834.804 349.153 811.527 349.153C788.251 349.153 769.381 368.023 769.381 391.299C769.381 414.576 788.251 433.445 811.527 433.445Z"
@@ -1931,10 +1930,7 @@
 						fill="white"
 					/>
 				</g>
-				<g
-					id="the"
-					class:visible={(step === 6 || step === undefined) && !firstLoad}
-				>
+				<g id="the" class:visible={endOfIntro}>
 					<path
 						id="Vector_240"
 						d="M211.184 183.101C240.631 183.101 264.503 159.229 264.503 129.782C264.503 100.334 240.631 76.4624 211.184 76.4624C181.736 76.4624 157.864 100.334 157.864 129.782C157.864 159.229 181.736 183.101 211.184 183.101Z"
@@ -1960,10 +1956,7 @@
 		{/if}
 	</div>
 </div>
-<div
-	class="authors-mobile"
-	class:visible={(step === 6 || step === undefined) && !firstLoad}
->
+<div class="authors-mobile" class:visible={endOfIntro}>
 	{@html copy.byline}
 </div>
 
@@ -1988,9 +1981,21 @@
 		position: relative;
 		pointer-events: none;
 	}
+	#fake-line line {
+		transition: opacity calc(var(--1s) * 0.3) 0s;
+	}
 	#path {
 		transition: stroke-dashoffset calc(var(--1s) * 2.5) ease,
 			opacity calc(var(--1s) * 0.3);
+	}
+	.fade {
+		opacity: 0.2;
+	}
+	#fake-line line.fade {
+		transition: opacity calc(var(--1s) * 0.3) calc(var(--1s) * 3.5);
+	}
+	#fake-line.first-load line.fade {
+		transition: opacity 0s 0s;
 	}
 	#path.hide {
 		opacity: 0;
@@ -2014,9 +2019,6 @@
 	}
 	.authors-mobile {
 		display: none;
-	}
-	#fake-line line {
-		transition: opacity calc(var(--1s) * 0.3);
 	}
 
 	@media (max-width: 900px) {

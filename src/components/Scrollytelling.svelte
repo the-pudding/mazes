@@ -56,6 +56,8 @@
 				{/if}
 			</div>
 		{/each}
+
+		<div class="extra step" />
 	</Scrolly>
 </div>
 
@@ -138,6 +140,10 @@
 		pointer-events: auto;
 		position: relative;
 	}
+	.extra {
+		visibility: hidden;
+		height: 50vh;
+	}
 	.icon-wrapper {
 		display: flex;
 		align-items: center;
@@ -155,10 +161,7 @@
 	.step:first-of-type {
 		margin-top: -80vh;
 	}
-	.step:last-of-type {
-		margin-bottom: 60vh;
-	}
-	.step:last-of-type p {
+	.step:nth-last-of-type(2) p {
 		font-weight: 700;
 		font-size: var(--56px);
 	}
@@ -206,7 +209,7 @@
 			background: var(--color-bg);
 			border: 1px solid var(--color-dark-tan);
 		}
-		.step:last-of-type {
+		.step:nth-last-of-type(2) {
 			margin-bottom: 120vh;
 		}
 	}
@@ -214,6 +217,9 @@
 	@media (max-width: 600px) {
 		.steps {
 			padding: 0 1rem;
+		}
+		.step {
+			margin: 40vh auto;
 		}
 	}
 </style>
