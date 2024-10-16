@@ -156,7 +156,7 @@
 		margin-top: -80vh;
 	}
 	.step:last-of-type {
-		margin-bottom: 120vh;
+		margin-bottom: 60vh;
 	}
 	.step:last-of-type p {
 		font-weight: 700;
@@ -205,6 +205,9 @@
 			padding: 0.5rem 1.5rem;
 			background: var(--color-bg);
 			border: 1px solid var(--color-dark-tan);
+		}
+		.step:last-of-type {
+			margin-bottom: 120vh;
 		}
 	}
 
