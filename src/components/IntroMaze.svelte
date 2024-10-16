@@ -3,7 +3,6 @@
 	import { cubicIn, quintOut } from "svelte/easing";
 	import { draw, fade } from "svelte/transition";
 	import { onMount } from "svelte";
-	import viewport from "$stores/viewport.js";
 	import scrollY from "$stores/scrollY.js";
 	import copy from "$data/copy.json";
 
@@ -21,7 +20,7 @@
 	const zooms = [0.2, 0.2, 0.28, 0.4, 0.6, 0.75, 1];
 	const pathPcts = [0, 0.13, 0.21, 0.28, 0.37, 0.47, 1];
 
-	const viewBox = tweened([0, 1, w / 5, h / 5], {
+	const viewBox = tweened([0, 0, w / 5, h / 5], {
 		duration: 1800,
 		easing: cubicIn
 	});
@@ -29,7 +28,7 @@
 	const stepChange = () => {
 		if (step === undefined) return;
 
-		$viewBox = [0, 1, w * zooms[step], h * zooms[step]];
+		$viewBox = [0, 0, w * zooms[step], h * zooms[step]];
 
 		setTimeout(() => {
 			strokeOffset = pathLength * (1 - pathPcts[step]);
@@ -38,7 +37,6 @@
 
 	$: step, stepChange();
 	$: if ($scrollY > 0) firstLoad = false;
-	$: mobile = $viewport.width < 900;
 
 	onMount(() => {
 		pathLength = pathEl.getTotalLength();
@@ -54,7 +52,7 @@
 				id="fake-line"
 				width={svgRightWidth}
 				height="100%"
-				preserveAspectRatio="xMinYMin"
+				preserveAspectRatio="xMinYMid"
 				viewBox={$viewBox.join(" ")}
 			>
 				<line
@@ -64,6 +62,7 @@
 					y2={13.5659}
 					stroke="var(--color-accent-purple)"
 					stroke-width={5}
+					opacity={step === 0 ? 0.2 : 1}
 					in:draw={{ duration: 20000, easing: quintOut }}
 				/>
 			</svg>
@@ -78,7 +77,7 @@
 				height="100%"
 				viewBox={$viewBox.join(" ")}
 				fill="none"
-				preserveAspectRatio={mobile ? "xMinYMid" : "xMinYMin"}
+				preserveAspectRatio={"xMinYMid"}
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<path
@@ -90,6 +89,7 @@
 					d="M 0 13.5659 H13.7349 13.7349V151.537H81.6946V83.3208H107.34V106.914H198.124V245.398H59.2895V267.368H129.695V295.201V386.019V407.903H107.34V455.039H81.6946V479.026V522.452H107.34V570.323H81.6946V592.548H152.947V685.555H175.514V803.864H59.2895V829.168H315.708V781.297H385.463V735.477H455.85V826.432H596.095V781.297H664.482V759.413H732.869V781.297H757.489V829.168H782.108V781.297H802.624V759.413H828.611V781.297H898.366V829.168H991.373V2000"
 					stroke="var(--color-accent-purple)"
 					stroke-width="5"
+					opacity={step === 0 ? 0.2 : 1}
 				/>
 				<g
 					id="title-fill"
@@ -1989,7 +1989,8 @@
 		pointer-events: none;
 	}
 	#path {
-		transition: stroke-dashoffset calc(var(--1s) * 2.5) ease;
+		transition: stroke-dashoffset calc(var(--1s) * 2.5) ease,
+			opacity calc(var(--1s) * 0.3);
 	}
 	#path.hide {
 		opacity: 0;
@@ -2013,6 +2014,9 @@
 	}
 	.authors-mobile {
 		display: none;
+	}
+	#fake-line line {
+		transition: opacity calc(var(--1s) * 0.3);
 	}
 
 	@media (max-width: 900px) {
