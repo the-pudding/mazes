@@ -48,8 +48,6 @@
 	$: topScale = scaleLinear()
 		.domain([0, combinedFactHeight - heights[heights.length - 1]])
 		.range([0, containerHeight - heights[heights.length - 1]]);
-
-	$: console.log(topScale.domain(), topScale.range());
 </script>
 
 <div

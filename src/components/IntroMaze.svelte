@@ -2,7 +2,7 @@
 	import { tweened } from "svelte/motion";
 	import { cubicIn, quintOut } from "svelte/easing";
 	import { draw, fade } from "svelte/transition";
-	import { onMount } from "svelte";
+	import { onMount, tick } from "svelte";
 	import scrollY from "$stores/scrollY.js";
 	import copy from "$data/copy.json";
 
@@ -60,7 +60,8 @@
 	$: if ($scrollY > 0) firstLoad = false;
 	$: endOfIntro = (step >= 6 || step === undefined) && !firstLoad;
 
-	onMount(() => {
+	onMount(async () => {
+		await tick();
 		pathLength = pathEl.getTotalLength();
 		strokeOffset = pathLength;
 		stepChange();

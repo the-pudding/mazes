@@ -218,9 +218,8 @@
 			margin: 70vh auto;
 		}
 		.step p {
-			font-size: var(--24px);
+			font-size: var(--28px);
 		}
-
 		.step:nth-last-of-type(2) p {
 			font-size: var(--48px);
 		}
@@ -229,9 +228,6 @@
 	@media (max-width: 400px) {
 		.step {
 			padding: 0.5rem 1rem;
-		}
-		.step p {
-			font-size: var(--18px);
 		}
 		.step:nth-last-of-type(2) p {
 			font-size: var(--36px);
