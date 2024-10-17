@@ -62,15 +62,6 @@
 </script>
 
 <div class="info">
-	{#if mobile}
-		<span class="icon" on:click|preventDefault={share}
-			><Icon name="share" stroke="#726D68" width="1.25rem" />
-
-			<span class="clipboard" class:visible={copySuccess}
-				>Link copied!</span
-			>
-		</span>
-	{/if}
 	<div class="header">
 		<div class="title">
 			<h2>
@@ -78,9 +69,17 @@
 			</h2>
 			{#if story}
 				<div class="story">
-					<span class="icon">{@html plusIcon}</span>
+					<span class="plus-icon">{@html plusIcon}</span>
 					{_.startCase(story)}'s story
 				</div>
+			{/if}
+
+			{#if mobile}
+				<span class="share-icon" on:click|preventDefault={share}
+					><Icon name="share" stroke="#726D68" width="1.25rem" />
+					<span class="clipboard" class:visible={copySuccess}>Link copied!</span
+					>
+				</span>
 			{/if}
 		</div>
 
@@ -138,7 +137,7 @@
 		align-items: center;
 		position: relative;
 	}
-	h2 .icon {
+	.share-icon {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -146,25 +145,11 @@
 		width: 20px;
 		margin-left: 6px;
 	}
-	:global(
-			h2 .icon:hover svg path,
-			h2 .icon:hover svg polyline,
-			h2 .icon:hover svg line
-		) {
-		stroke: var(--color-fg);
-	}
-	.story .icon {
+	.plus-icon {
 		display: flex;
 		height: 16px;
 		width: 16px;
 		margin-right: 6px;
-	}
-	:global(
-			.share:hover .icon svg path,
-			.share:hover .icon svg polyline,
-			.share:hover .icon svg line
-		) {
-		stroke: var(--color-fg);
 	}
 	a {
 		line-height: 1;
@@ -196,42 +181,55 @@
 		transform: translate(-52.75%, -120%);
 		opacity: 1;
 	}
+	:global(
+			h2 .icon:hover svg path,
+			h2 .icon:hover svg polyline,
+			h2 .icon:hover svg line
+		) {
+		stroke: var(--color-fg);
+	}
+	:global(
+			.share:hover .icon svg path,
+			.share:hover .icon svg polyline,
+			.share:hover .icon svg line
+		) {
+		stroke: var(--color-fg);
+	}
 
 	@media (max-width: 700px) {
 		.header {
 			width: calc(100% - 2rem);
 		}
+		.title {
+			margin-bottom: 0.5rem;
+		}
 		h2 {
 			font-size: 2rem;
 			margin: 0;
-			margin-bottom: 0.5rem;
 		}
 		.story {
 			font-size: 0.8rem;
 		}
-		.story .icon {
+		.plus-icon {
 			height: 12px;
 			width: 12px;
 		}
-		.info .icon {
+		.share-icon {
 			background: var(--color-tan);
 			width: 36px;
 			height: 36px;
 			border-radius: 50%;
-			position: absolute;
-			right: 8px;
-			top: 3.25rem;
 			display: flex;
-			align-items: center;
-			justify-content: center;
 		}
-		:global(.info .icon svg path, .info .icon svg polyline, .info .icon svg line) {
+		:global(
+				.share-icon svg path,
+				.share-icon svg polyline,
+				.share-icon svg line
+			) {
 			stroke: var(--color-fg);
 		}
-		.info .icon:hover {
+		.share-icon:hover {
 			background: var(--color-dark-tan);
-		}
-		h2 .icon:hover {
 			cursor: pointer;
 		}
 		.classification {

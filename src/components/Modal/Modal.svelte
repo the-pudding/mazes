@@ -97,7 +97,7 @@
 		position: fixed;
 		width: 90%;
 		max-width: 1000px;
-		max-height: 90vh;
+		max-height: 90%;
 		margin: auto;
 		top: 50%;
 		left: 50%;
@@ -121,8 +121,8 @@
 		transform: translate(50%, -50%);
 	}
 	:global(.close svg line) {
-			stroke: var(--color-fg);
-		}
+		stroke: var(--color-fg);
+	}
 	.close:hover {
 		background: var(--color-dark-tan);
 	}
@@ -155,7 +155,7 @@
 			padding: 1.25rem;
 			margin: 0;
 			height: calc(100vh - 2rem);
-			max-height: 98vh;
+			max-height: 98%;
 		}
 		.modal.open {
 			display: flex;

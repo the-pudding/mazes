@@ -203,7 +203,7 @@
 			margin-bottom: 120vh;
 		}
 		.step p {
-			padding: 0 
+			padding: 0;
 		}
 		.icon-wrapper p {
 			padding: 0 0 0 0.125rem;
@@ -215,7 +215,7 @@
 			padding: 0 1rem;
 		}
 		.step {
-			margin: 40vh auto;
+			margin: 70vh auto;
 		}
 		.step p {
 			font-size: var(--24px);
@@ -233,7 +233,6 @@
 		.step p {
 			font-size: var(--18px);
 		}
-
 		.step:nth-last-of-type(2) p {
 			font-size: var(--36px);
 		}

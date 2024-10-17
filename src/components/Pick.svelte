@@ -58,7 +58,7 @@
 				<img
 					class="img-absolute img-person"
 					src={`assets/img/stories/${name.toLowerCase()}.png`}
-					alt={`a line art illustration of ${name}, a ${age}-year-olf from ${state}`}
+					alt={`a line art illustration of ${name}, a ${age}-year-old from ${state}`}
 				/>
 				<div class="plus-add">
 					{@html plusIcon}

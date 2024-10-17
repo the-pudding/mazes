@@ -73,6 +73,7 @@
 <style>
 	.bar {
 		background: var(--color-tan);
+		border-bottom: 1px solid var(--color-dark-tan);
 		color: var(--color-fg);
 		font-size: 0.9rem;
 		display: flex;
