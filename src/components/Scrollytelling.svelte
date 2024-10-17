@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from "svelte";
 	import IntroMaze from "$components/IntroMaze.svelte";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
@@ -29,25 +30,14 @@
 <div class="steps">
 	<Scrolly bind:value>
 		{#each steps as { value }, i}
-			<div class="step">
+			<div class="step" id="step-{i}">
 				<p>{@html value}</p>
-				{#if i == 0}
+				{#if i == 0 || i == steps.length - 1}
 					<div class="icon-wrapper">
 						<Icon
 							name="arrow-down-circle"
-							width="2.5rem"
-							height="2.5rem"
-							stroke="#726D68"
-							strokeWidth="1"
-						/>
-						<p>Scroll</p>
-					</div>
-				{:else if i == steps.length - 1}
-					<div class="icon-wrapper">
-						<Icon
-							name="arrow-down-circle"
-							width="2.5rem"
-							height="2.5rem"
+							width={mobile ? "2rem" : "2.5rem"}
+							height={mobile ? "2rem" : "2.5rem"}
 							stroke="#726D68"
 							strokeWidth="1"
 						/>
@@ -212,6 +202,12 @@
 		.step:nth-last-of-type(2) {
 			margin-bottom: 120vh;
 		}
+		.step p {
+			padding: 0 
+		}
+		.icon-wrapper p {
+			padding: 0 0 0 0.125rem;
+		}
 	}
 
 	@media (max-width: 600px) {
@@ -220,6 +216,26 @@
 		}
 		.step {
 			margin: 40vh auto;
+		}
+		.step p {
+			font-size: var(--24px);
+		}
+
+		.step:nth-last-of-type(2) p {
+			font-size: var(--48px);
+		}
+	}
+
+	@media (max-width: 400px) {
+		.step {
+			padding: 0.5rem 1rem;
+		}
+		.step p {
+			font-size: var(--18px);
+		}
+
+		.step:nth-last-of-type(2) p {
+			font-size: var(--36px);
 		}
 	}
 </style>

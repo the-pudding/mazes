@@ -98,7 +98,7 @@
 		width: 90%;
 		max-width: 1000px;
 		max-height: 90vh;
-		margin: auto 1rem;
+		margin: auto;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
@@ -120,6 +120,9 @@
 		right: 0;
 		transform: translate(50%, -50%);
 	}
+	:global(.close svg line) {
+			stroke: var(--color-fg);
+		}
 	.close:hover {
 		background: var(--color-dark-tan);
 	}
@@ -141,7 +144,7 @@
 
 	@media (max-width: 700px) {
 		.modal {
-			width: calc(100% - 3rem);
+			width: calc(100% - 2rem);
 			margin: 1rem;
 			max-width: 500px;
 		}
@@ -151,7 +154,8 @@
 		.modal {
 			padding: 1.25rem;
 			margin: 0;
-			height: 95vh;
+			height: calc(100vh - 2rem);
+			max-height: 98vh;
 		}
 		.modal.open {
 			display: flex;

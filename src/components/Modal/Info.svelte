@@ -62,19 +62,19 @@
 </script>
 
 <div class="info">
+	{#if mobile}
+		<span class="icon" on:click|preventDefault={share}
+			><Icon name="share" stroke="#726D68" width="1.25rem" />
+
+			<span class="clipboard" class:visible={copySuccess}
+				>Link copied!</span
+			>
+		</span>
+	{/if}
 	<div class="header">
 		<div class="title">
 			<h2>
 				{name}
-				{#if mobile}
-					<span class="icon" on:click|preventDefault={share}
-						><Icon name="share" stroke="#726D68" width="1.25rem" />
-
-						<span class="clipboard" class:visible={copySuccess}
-							>Link copied!</span
-						>
-					</span>
-				{/if}
 			</h2>
 			{#if story}
 				<div class="story">
@@ -129,7 +129,7 @@
 		flex-wrap: wrap;
 		gap: 0 4px;
 		align-items: baseline;
-		color: var(--color-dark-tan);
+		color: var(--color-tan);
 		font-size: 0.9rem;
 		z-index: 1000;
 	}
@@ -198,6 +198,9 @@
 	}
 
 	@media (max-width: 700px) {
+		.header {
+			width: calc(100% - 2rem);
+		}
 		h2 {
 			font-size: 2rem;
 			margin: 0;
@@ -210,8 +213,23 @@
 			height: 12px;
 			width: 12px;
 		}
-		.title .icon {
-			position: relative;
+		.info .icon {
+			background: var(--color-tan);
+			width: 36px;
+			height: 36px;
+			border-radius: 50%;
+			position: absolute;
+			right: 8px;
+			top: 3.25rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		:global(.info .icon svg path, .info .icon svg polyline, .info .icon svg line) {
+			stroke: var(--color-fg);
+		}
+		.info .icon:hover {
+			background: var(--color-dark-tan);
 		}
 		h2 .icon:hover {
 			cursor: pointer;
@@ -230,6 +248,12 @@
 		.clipboard.visible {
 			transform: translate(-50%, -100%);
 			opacity: 1;
+		}
+	}
+
+	@media (max-width: 500px) {
+		h2 {
+			font-size: 1.75rem;
 		}
 	}
 </style>

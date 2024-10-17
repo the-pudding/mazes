@@ -1,8 +1,8 @@
 <script>
-	export let title = "Title TK";
-	export let description = "Description TK";
-	export let url = "https://pudding.cool";
-	export let keywords = "";
+	export let title = "The United States of Abortion Mazes";
+	export let description = "To illustrate how difficult it is to get abortion care in the United States, we built a maze for each state where the difficulty is calculated by the state’s abortion policies.";
+	export let url = "https://pudding.cool/2024/10/abortion-maze";
+	export let keywords = "abortion, maze, health, health care, reproductive rights, womens rights, bodily autonomy, roe v. wade, dobbs, supreme court, pregancy";
 	export let preloadFont = [];
 </script>
 
@@ -19,7 +19,7 @@
 	<meta property="og:type" content="article" />
 	<meta property="og:locale" content="en_US" />
 
-	<meta property="og:image" content="{url}/assets/social-facebook.jpg" />
+	<meta property="og:image" content="{url}/assets/img/social/social-facebook.jpg" />
 	<meta property="og:image:type" content="image/jpeg" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="628" />
@@ -29,7 +29,7 @@
 	<meta name="twitter:creator" content="@puddingviz" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
-	<meta name="twitter:image:src" content="{url}/assets/social-twitter.jpg" />
+	<meta name="twitter:image:src" content="{url}/assets/img/social/social-twitter.jpg" />
 
 	<meta name="robots" content="max-image-preview:large" />
 

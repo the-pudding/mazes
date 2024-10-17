@@ -84,5 +84,6 @@
 		position: relative;
 		z-index: 1000;
 		pointer-events: none;
+		margin-top: 5vh;
 	}
 </style>

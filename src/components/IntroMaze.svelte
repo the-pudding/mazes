@@ -13,6 +13,9 @@
 	let strokeOffset;
 	let svgRightWidth;
 	let firstLoad = true;
+	let svgPath;
+	let stepDiv;
+	$: intersectingStatus = false;
 
 	const w = 1028;
 	const h = 842;
@@ -39,6 +42,20 @@
 		}, 800);
 	};
 
+	function checkIntersect() {
+		const pathRect = svgPath.getBoundingClientRect();
+    	const divRect = stepDiv.getBoundingClientRect();
+
+		const isIntersecting = !(
+			pathRect.right < divRect.left ||
+			pathRect.left > divRect.right ||
+			pathRect.bottom < divRect.top ||
+			pathRect.top > divRect.bottom
+		);
+
+		intersectingStatus = isIntersecting ? true : false;
+	}
+
 	$: step, stepChange();
 	$: if ($scrollY > 0) firstLoad = false;
 	$: endOfIntro = (step >= 6 || step === undefined) && !firstLoad;
@@ -47,7 +64,13 @@
 		pathLength = pathEl.getTotalLength();
 		strokeOffset = pathLength;
 		stepChange();
+
+		svgPath = document.querySelector('#fake-line line');
+		stepDiv = document.querySelector('#step-0');
+		checkIntersect();
 	});
+
+	$: console.log({intersectingStatus})
 </script>
 
 <div class="maze">
@@ -62,7 +85,7 @@
 				viewBox={$viewBox.join(" ")}
 			>
 				<line
-					class:fade={step === 0}
+					class:fade={intersectingStatus}
 					x1={0}
 					x2={600}
 					y1={13.5659}
