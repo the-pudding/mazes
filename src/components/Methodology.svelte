@@ -1,9 +1,14 @@
 <script>
 	import sources from "$data/sources.csv";
 	import viewport from "$stores/viewport.js";
+	import activityBook from "$svg/activity-book.svg";
 
 	export let title;
 	export let content;
+
+	const downloadPdf = () => {
+		document.getElementById("pdf-link").click();
+	};
 
 	$: mobile = $viewport.width < 600;
 </script>
@@ -39,6 +44,17 @@
 			</tbody>
 		</table>
 	</details>
+
+	<button class="activity" on:click={downloadPdf}>
+		{@html activityBook}
+		<div>Download an activity book of all the state mazes.</div>
+		<a
+			href={"/assets/activity_book.pdf"}
+			download
+			id="pdf-link"
+			style="display:none">download pdf</a
+		>
+	</button>
 </div>
 
 <style>
@@ -47,6 +63,7 @@
 		background: var(--color-tan);
 		min-height: 100vh;
 		padding: 0 1rem;
+		position: relative;
 	}
 	.inner {
 		max-width: 700px;
@@ -67,10 +84,37 @@
 	summary {
 		cursor: pointer;
 	}
+	details {
+		margin-bottom: 2rem;
+	}
 	p {
 		color: var(--color-fg);
 		line-height: 1.5;
 		font-size: var(--16px);
+	}
+	.activity {
+		position: absolute;
+		bottom: 2rem;
+		left: 2rem;
+		background: none;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		transform: translateY(0);
+		transition: transform calc(var(--1s) * 0.2) ease-out;
+	}
+	.activity div {
+		color: var(--color-fg);
+		text-align: left;
+		font-weight: bold;
+		max-width: 200px;
+	}
+	.activity:hover {
+		transform: translateY(-5px);
+	}
+	.activity:hover div {
+		color: var(--color-accent-purple);
 	}
 	:global(#methodology a) {
 		color: var(--color-fg);

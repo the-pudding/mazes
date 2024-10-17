@@ -44,7 +44,7 @@
 
 	function checkIntersect() {
 		const pathRect = svgPath.getBoundingClientRect();
-    	const divRect = stepDiv.getBoundingClientRect();
+		const divRect = stepDiv.getBoundingClientRect();
 
 		const isIntersecting = !(
 			pathRect.right < divRect.left ||
@@ -65,12 +65,10 @@
 		strokeOffset = pathLength;
 		stepChange();
 
-		svgPath = document.querySelector('#fake-line line');
-		stepDiv = document.querySelector('#step-0');
+		svgPath = document.querySelector("#fake-line line");
+		stepDiv = document.querySelector("#step-0");
 		checkIntersect();
 	});
-
-	$: console.log({intersectingStatus})
 </script>
 
 <div class="maze">

@@ -40,9 +40,6 @@
 		display: flex;
 		flex-direction: column;
 	}
-	/* :global(section:not(#dashboard)) {
-		padding: 0 2rem;
-	} */
 	:global(#methodology),
 	.footer {
 		display: none;
