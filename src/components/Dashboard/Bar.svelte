@@ -15,7 +15,10 @@
 
 	const highlightOptions = [
 		{ label: "Select state", value: "default" },
-		...states.map((d) => ({ label: _.startCase(d.name), value: d.id }))
+		..._.orderBy(
+			states.map((d) => ({ label: _.startCase(d.name), value: d.id })),
+			"label"
+		)
 	];
 
 	const methodology = () => {
