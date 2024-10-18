@@ -2,6 +2,7 @@
 	import sources from "$data/sources.csv";
 	import viewport from "$stores/viewport.js";
 	import activityBook from "$svg/activity-book.svg";
+	import { base } from "$app/paths";
 
 	export let title;
 	export let content;
@@ -49,7 +50,7 @@
 		{@html activityBook}
 		<div>Download an activity book of all the state mazes.</div>
 		<a
-			href={"/assets/activity_book.pdf"}
+			href={`${base}/assets/activity_book.pdf`}
 			download
 			id="pdf-link"
 			style="display:none">download pdf</a
