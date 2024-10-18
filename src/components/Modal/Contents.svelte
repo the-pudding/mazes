@@ -19,7 +19,7 @@
 	$: availableSpace = Math.min(height, width);
 	$: numCells = data && data.length ? Math.sqrt(data.length) : 0;
 	$: if ($selectedState) getMazeData();
-	$: mobile = $viewport.width < 600;
+	$: mobile = $viewport.width < 700;
 	$: state = stateData.find((d) => d.id === $selectedState);
 	$: guttmacherLink = state?.guttmacher;
 
@@ -179,9 +179,6 @@
 		.maze {
 			margin-top: 1rem;
 			align-items: center;
-		}
-		.learn {
-			display: none;
 		}
 	}
 

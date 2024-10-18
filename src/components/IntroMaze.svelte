@@ -15,7 +15,7 @@
 	let firstLoad = true;
 	let svgPath;
 	let stepDiv;
-	$: intersectingStatus = false;
+	let intersectingStatus = false;
 
 	const w = 1028;
 	const h = 842;
@@ -42,7 +42,7 @@
 		}, 800);
 	};
 
-	function checkIntersect() {
+	const checkIntersect = () => {
 		const pathRect = svgPath.getBoundingClientRect();
 		const divRect = stepDiv.getBoundingClientRect();
 
@@ -54,7 +54,7 @@
 		);
 
 		intersectingStatus = isIntersecting ? true : false;
-	}
+	};
 
 	$: step, stepChange();
 	$: if ($scrollY > 0) firstLoad = false;

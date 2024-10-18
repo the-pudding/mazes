@@ -49,7 +49,6 @@
 			: ban === "banned"
 			? banSentences[2].value
 			: banSentences[1].value.replace("[LIMIT]", ban);
-	$: guttmacherLink = state.guttmacher;
 	$: facts = factsData
 		.filter((d) => d.id === $selectedState)
 		.map((d) => {
@@ -138,6 +137,7 @@
 		position: relative;
 	}
 	.share-icon {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -167,7 +167,7 @@
 		left: 50%;
 		width: 100px;
 		opacity: 0;
-		transform: translate(-52.75%, 0);
+		transform: translate(-50%, 0);
 		z-index: -1000;
 		text-align: center;
 		background: var(--color-bg);
@@ -178,9 +178,10 @@
 		transition: transform calc(var(--1s) * 0.3), opacity calc(var(--1s) * 0.15);
 	}
 	.clipboard.visible {
-		transform: translate(-52.75%, -120%);
+		transform: translate(-50%, -110%);
 		opacity: 1;
 	}
+
 	:global(
 			h2 .icon:hover svg path,
 			h2 .icon:hover svg polyline,
@@ -238,14 +239,12 @@
 		.info {
 			gap: 0.5rem;
 		}
-		.clipboard {
-			font-size: 0.8rem;
-			width: auto;
-			transform: translate(-50%, 0);
-		}
+	}
+
+	@media (max-width: 600px) {
 		.clipboard.visible {
-			transform: translate(-50%, -100%);
-			opacity: 1;
+			transform: translate(-50%, -50%);
+			z-index: 100;
 		}
 	}
 
