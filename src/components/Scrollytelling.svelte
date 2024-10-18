@@ -115,11 +115,10 @@
 		height: 75vh;
 	}
 	.step {
-		height: 100vh;
 		text-align: left;
 		z-index: 1000;
 		width: 350px;
-		margin: 0;
+		margin: 60vh 0;
 		padding: 0 0 0 1.5rem;
 		pointer-events: none;
 	}
@@ -133,6 +132,7 @@
 	.extra {
 		visibility: hidden;
 		height: 50vh;
+		margin: 0;
 	}
 	.icon-wrapper {
 		display: flex;
@@ -183,9 +183,10 @@
 		}
 		.sticky {
 			width: 100%;
+			pointer-events: all;
 		}
 		.steps {
-			z-index: 100;
+			pointer-events: none;
 			width: 100%;
 			padding: 0 2rem;
 		}
