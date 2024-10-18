@@ -7,7 +7,6 @@
 	import _ from "lodash";
 	import localStorage from "$utils/localStorage.js";
 	import plusIcon from "$svg/plus.svg";
-	import checkIcon from "$svg/check-orange.svg";
 
 	export let doneMessage;
 
@@ -55,28 +54,29 @@
 </script>
 
 <div class="grid-wrapper">
-	<div class="tracker" class:hasBorder={!geo}>
-		<p class="tracker-sentence">
-			You've completed {mazesSolved.length === 50
-				? "all "
-				: `${mazesSolved.length}/`}50 mazes.
-			{#if mazesSolved.length === 50}
-				<span class="done">
-					{@html doneMessage}
-				</span>
-			{/if}
-		</p>
-		{#if mazesSolved.length !== 50}
-			<div class="maze-directions">
-				<p>
-					Select a state maze to try to solve it. States with <span class="icon"
-						>{@html plusIcon}</span
-					> plus signs have personal stories.
-				</p>
-			</div>
-		{/if}
-	</div>
 	<figure id="grid" class:geo class:intro class:fade={$selectedState}>
+		<div class="tracker" class:hasBorder={!geo}>
+			<p class="tracker-sentence">
+				You've completed {mazesSolved.length === 50
+					? "all "
+					: `${mazesSolved.length}/`}50 mazes.
+				{#if mazesSolved.length === 50}
+					<span class="done">
+						{@html doneMessage}
+					</span>
+				{/if}
+			</p>
+			{#if mazesSolved.length !== 50}
+				<div class="maze-directions">
+					<p>
+						Select a state maze to try to solve it. States with <span
+							class="icon">{@html plusIcon}</span
+						> plus signs have personal stories.
+					</p>
+				</div>
+			{/if}
+		</div>
+
 		{#if $order === "region"}
 			{#each regions as region}
 				{@const regionStates = sortedStates.filter((d) => d.region === region)}
@@ -150,19 +150,20 @@
 		position: sticky;
 		top: 0;
 		background: rgba(255, 253, 248, 0.95);
-		padding: 1rem;
 		z-index: 1000;
-		height: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	.tracker.hasBorder {
 		border-bottom: 1px solid var(--color-tan);
 		height: auto;
+		padding: 0.5rem 0;
 	}
 	.geo .tracker {
 		position: static;
 		grid-row: 1 / 3;
 		grid-column: 3 / 11;
-		margin: 0 1rem 1rem 1rem;
 		border-bottom: none;
 	}
 	.done {
@@ -170,7 +171,8 @@
 		display: block;
 	}
 	.tracker-sentence {
-		margin: 0 0 1rem 0;
+		font-size: var(--14px);
+		margin: 0;
 	}
 	.maze-directions {
 		display: flex;
@@ -178,7 +180,6 @@
 		align-items: center;
 		justify-content: center;
 		max-width: 360px;
-		margin: 0 auto;
 	}
 	.maze-directions p {
 		color: var(--color-fg);
@@ -210,6 +211,9 @@
 		span.icon {
 			margin: 0 0 0 0;
 			top: 4px;
+		}
+		.tracker-sentence {
+			font-size: var(--12px);
 		}
 	}
 

@@ -81,7 +81,7 @@
 		padding: 1rem;
 		position: sticky;
 		bottom: 0;
-		z-index: 10;
+		z-index: 1001;
 		height: 70px;
 		width: 100%;
 		transition: opacity calc(var(--1s) * 0.3);
