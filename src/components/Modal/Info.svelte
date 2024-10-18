@@ -55,7 +55,7 @@
 			if (!story) return d;
 			return {
 				...d,
-				fact: d.fact.replace("NAME", _.startCase(story))
+				fact: d.fact.replaceAll("NAME", _.startCase(story))
 			};
 		});
 </script>
