@@ -84,7 +84,7 @@
 				viewBox={$viewBox.join(" ")}
 			>
 				<line
-					class:fade={intersectingStatus}
+					class:fade={intersectingStatus && step === 0}
 					x1={0}
 					x2={600}
 					y1={13.5659}
