@@ -165,6 +165,7 @@
 		grid-row: 1 / 3;
 		grid-column: 3 / 11;
 		border-bottom: none;
+		background: none;
 	}
 	.done {
 		font-weight: normal;

@@ -108,7 +108,7 @@
 		padding: 3rem;
 	}
 	.modal.open {
-		z-index: 1000;
+		z-index: 1002;
 		opacity: 1;
 	}
 	.close {

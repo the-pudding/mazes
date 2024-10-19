@@ -102,6 +102,9 @@
 		left: 50%;
 		transform: translate(-50%, 0);
 		width: fit-content;
+		height: fit-content;
+		pointer-events: all;
+		z-index: 100;
 	}
 
 	:global(#intro .text a, #intro .authors-mobile a) {

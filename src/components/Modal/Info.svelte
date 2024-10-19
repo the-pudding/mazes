@@ -35,7 +35,7 @@
 
 	$: mobile = $viewport.width < 700;
 	$: state = stateData.find((d) => d.id === $selectedState);
-	$: name = _.startCase(state.name);
+	$: name = mobile && state.id === "dc" ? "D.C." : _.startCase(state.name);
 	$: story = state.story;
 	$: complexity = state.complexity;
 	$: complexityText =
@@ -139,6 +139,7 @@
 	.share-icon {
 		position: relative;
 		display: flex;
+		flex-shrink: 0;
 		align-items: center;
 		justify-content: center;
 		height: 20px;
