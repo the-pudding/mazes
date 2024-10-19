@@ -15,6 +15,17 @@
 </script>
 
 <div class="inner">
+	<button class="activity" on:click={downloadPdf}>
+		<img class="book-img" src="{base}/assets/activity_book.jpg" alt="the front cover of the abortion maze activity book" />
+		<div>Download an activity book of all the state mazes.</div>
+		<a
+			href={`${base}/assets/AbortionMazeBook_ThePudding.pdf`}
+			download
+			id="pdf-link"
+			style="display:none">download pdf</a
+		>
+	</button>
+
 	<h4>{title}</h4>
 	{#each content as { type, value }}
 		<p>{@html value}</p>
@@ -45,17 +56,6 @@
 			</tbody>
 		</table>
 	</details>
-
-	<button class="activity" on:click={downloadPdf}>
-		{@html activityBook}
-		<div>Download an activity book of all the state mazes.</div>
-		<a
-			href={`${base}/assets/activity_book.pdf`}
-			download
-			id="pdf-link"
-			style="display:none">download pdf</a
-		>
-	</button>
 </div>
 
 <style>
@@ -69,7 +69,7 @@
 	.inner {
 		max-width: 700px;
 		margin: 8rem auto;
-		padding: 2rem 0;
+		padding: 0 0 2rem 0;
 	}
 	h4 {
 		font-family: var(--serif);
@@ -94,28 +94,43 @@
 		font-size: var(--16px);
 	}
 	.activity {
-		position: absolute;
-		bottom: 2rem;
-		left: 2rem;
-		background: none;
-		padding: 0;
+		background: #dfd8ff;
+		margin: 0 auto 5rem auto;
+		padding: 1rem;
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+		width: 320px;
 		transform: translateY(0);
+		transition: transform calc(var(--1s) * 0.2) ease-out;
+		border-radius: 3px;
+		position: relative;
+	}
+	.book-img {
+		width: 80px;
+		position: absolute;
+		left: -0.35rem;
+		transform: rotate(-2deg);
+		border: 1px solid var(--color-accent-purple);
+		border-radius: 3px;
 		transition: transform calc(var(--1s) * 0.2) ease-out;
 	}
 	.activity div {
 		color: var(--color-fg);
 		text-align: left;
 		font-weight: bold;
-		max-width: 200px;
+		padding-left: 75px;
 	}
 	.activity:hover {
 		transform: translateY(-5px);
 	}
 	.activity:hover div {
 		color: var(--color-accent-purple);
+	}
+
+	.activity:hover .book-img {
+		color: var(--color-accent-purple);
+		transform: rotate(2deg);
 	}
 	:global(#methodology a) {
 		color: var(--color-fg);
@@ -153,6 +168,10 @@
 	}
 
 	@media (max-width: 600px) {
+		:global(#methodology) {
+			height: auto;
+		}
+
 		thead {
 			display: none;
 		}
@@ -179,9 +198,15 @@
 		}
 	}
 
-	@media (max-width: 600px) {
-		:global(#methodology) {
-			height: auto;
+	@media (max-width: 400px) {
+		.activity {
+			width: 260px;
+		}
+		.activity div {
+			font-size: var(--12px);
+		}
+		.activity .book-img {
+			width: 70px;
 		}
 	}
 </style>
