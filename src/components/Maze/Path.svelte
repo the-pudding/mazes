@@ -113,6 +113,15 @@
 	};
 
 	const onKeyDown = async (e) => {
+		if (
+			$gameState === "mid" &&
+			(e.keyCode === 37 ||
+				e.keyCode === 38 ||
+				e.keyCode === 39 ||
+				e.keyCode === 40)
+		)
+			e.preventDefault(); // Prevent modal from scrolling
+
 		if ($gameState === "post" || $gameState === "pre") return;
 		if (inProgress.x || inProgress.y) {
 			circleX.set(currentCenterX, { duration: 0 });
