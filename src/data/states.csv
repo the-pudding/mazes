@@ -1,52 +1,52 @@
 id,name,story,score,complexity,ban,region,row,col,guttmacher,checked
-ar,arkansas,,52.96863547,most,banned,south,7,6,https://states.guttmacher.org/policies/arkansas/abortion-policies,X
-tx,texas,ava,51.50086619,most,banned,south,8,5,https://states.guttmacher.org/policies/texas/abortion-policies,X
-mo,missouri,,51.44950778,most,banned,midwest,6,6,https://states.guttmacher.org/policies/missouri/abortion-policies,X
-ok,oklahoma,,51.41840156,most,banned,south,7,4,https://states.guttmacher.org/policies/oklahoma/abortion-policies,X
-ms,mississippi,,50.53878442,most,banned,south,7,7,https://states.guttmacher.org/policies/mississippi/abortion-policies,X
-sd,south dakota,,50.31404485,most,banned,midwest,4,5,https://states.guttmacher.org/policies/south-dakota/abortion-policies,X
-la,louisiana,,48.61659813,most,banned,south,7,5,https://states.guttmacher.org/policies/louisiana/abortion-policies,X
-tn,tennessee,courtney,47.73443818,most,banned,south,6,8,https://states.guttmacher.org/policies/tennessee/abortion-policies,X
-in,indiana,,47.51156832,most,banned,midwest,5,7,https://states.guttmacher.org/policies/indiana/abortion-policies,X
 al,alabama,,46.96634298,most,banned,south,7,8,https://states.guttmacher.org/policies/alabama/abortion-policies,X
-id,idaho,,45.8327163,most,banned,west,3,3,https://states.guttmacher.org/policies/idaho/abortion-policies,X
-ky,kentucky,,45.10828353,most,banned,south,6,7,https://states.guttmacher.org/policies/kentucky/abortion-policies,X
-wv,west virginia,,43.12165476,most,banned,south,5,8,https://states.guttmacher.org/policies/west-virginia/abortion-policies,X
-az,arizona,,42.19781445,very,15 weeks,west,6,3,https://states.guttmacher.org/policies/arizona/abortion-policies,X
-sc,south carolina,,41.32554828,very,6 weeks,south,6,9,https://states.guttmacher.org/policies/south-carolina/abortion-policies,X
-ia,iowa,,41.11944223,very,6 weeks,midwest,4,6,https://states.guttmacher.org/policies/iowa/abortion-policies,X
-ne,nebraska,,40.67254407,very,12 weeks,midwest,5,5,https://states.guttmacher.org/policies/nebraska/abortion-policies,X
-fl,florida,nicki,39.36766797,very,6 weeks,south,8,10,https://states.guttmacher.org/policies/florida/abortion-policies,X
-ks,kansas,,38.54671875,very,22 weeks,midwest,6,5,https://states.guttmacher.org/policies/kansas/abortion-policies,X
-nc,north carolina,,38.48388857,very,12 weeks,south,6,10,https://states.guttmacher.org/policies/north-carolina/abortion-policies,X
-ga,georgia,,37.83568906,very,6 weeks,south,7,9,https://states.guttmacher.org/policies/georgia/abortion-policies,X
-ut,utah,,36.66412344,very,18 weeks,west,4,3,https://states.guttmacher.org/policies/utah/abortion-policies,X
-oh,ohio,margot,35.93899511,moderately,20 weeks,midwest,4,8,https://states.guttmacher.org/policies/ohio/abortion-policies,X
-wi,wisconsin,,33.63107107,moderately,20 weeks,midwest,4,7,https://states.guttmacher.org/policies/wisconsin/abortion-policies,X
-nd,north dakota,,29.96574075,moderately,fetal viability (generally between 24–26 weeks),midwest,3,5,https://states.guttmacher.org/policies/north-dakota/abortion-policies,X
-pa,pennsylvania,,29.37445396,moderately,24 weeks,northeast,4,9,https://states.guttmacher.org/policies/pennsylvania/abortion-policies,X
-mi,michigan,simone,28.03113279,moderately,no restriction,midwest,3,8,https://states.guttmacher.org/policies/michigan/abortion-policies,X
-wy,wyoming,,27.72423333,moderately,fetal viability (generally between 24–26 weeks),west,4,4,https://states.guttmacher.org/policies/wyoming/abortion-policies,X
-va,virginia,,27.48239948,moderately,the third trimester (around 28 weeks),south,5,9,https://states.guttmacher.org/policies/virginia/abortion-policies,X
-nh,new hampshire,,25.78356506,moderately,24 weeks,northeast,2,12,https://states.guttmacher.org/policies/new-hampshire/abortion-policies,X
-mt,montana,,25.58573108,somewhat,fetal viability (generally between 24–26 weeks),west,3,4,https://states.guttmacher.org/policies/montana/abortion-policies,X
 ak,alaska,,24.34793337,somewhat,no restriction,west,1,1,https://states.guttmacher.org/policies/alaska/abortion-policies,X
-ri,rhode island,,23.86485838,somewhat,fetal viability (generally between 24–26 weeks),northeast,3,12,https://states.guttmacher.org/policies/rhode-island/abortion-policies,X
-nv,nevada,,22.79895471,somewhat,24 weeks,west,5,3,https://states.guttmacher.org/policies/nevada/abortion-policies,X
-nm,new mexico,,22.37881611,somewhat,no restriction,west,6,4,https://states.guttmacher.org/policies/new-mexico/abortion-policies,X
-hi,hawaii,,21.80544393,somewhat,fetal viability (generally between 24–26 weeks),west,7,1,https://states.guttmacher.org/policies/hawaii/abortion-policies,X
-me,maine,,21.28197585,somewhat,fetal viability (generally between 24–26 weeks),northeast,1,12,https://states.guttmacher.org/policies/maine/abortion-policies,X
-ct,connecticut,,21.1464138,somewhat,fetal viability (generally between 24–26 weeks),northeast,4,11,https://states.guttmacher.org/policies/connecticut/abortion-policies,X
-il,illinois,,20.74674437,somewhat,fetal viability (generally between 24–26 weeks),midwest,5,6,https://states.guttmacher.org/policies/illinois/abortion-policies,X
-de,delaware,,20.22774077,somewhat,fetal viability (generally between 24–26 weeks),south,5,11,https://states.guttmacher.org/policies/delaware/abortion-policies,X
-ma,massachusetts,,19.89905528,least,24 weeks,northeast,3,11,https://states.guttmacher.org/policies/massachusetts/abortion-policies,X
-md,maryland,,19.86717218,least,no restriction,south,5,10,https://states.guttmacher.org/policies/maryland/abortion-policies,X
-co,colorado,,19.09428716,least,no restriction,west,5,4,https://states.guttmacher.org/policies/colorado/abortion-policies,X
-mn,minnesota,,18.97251966,least,no restriction,midwest,3,6,https://states.guttmacher.org/policies/minnesota/abortion-policies,X
-nj,new jersey,,18.0287371,least,no restriction,northeast,4,10,https://states.guttmacher.org/policies/new-jersey/abortion-policies,X
-or,oregon,,17.41697946,least,no restriction,west,4,2,https://states.guttmacher.org/policies/oregon/abortion-policies,X
-vt,vermont,,17.31269944,least,no restriction,northeast,2,11,https://states.guttmacher.org/policies/vermont/abortion-policies,X
-ny,new york,,16.77594727,least,fetal viability (generally between 24–26 weeks),northeast,3,10,https://states.guttmacher.org/policies/new-york/abortion-policies,X
-wa,washington,,15.7451374,least,fetal viability (generally between 24–26 weeks),west,3,2,https://states.guttmacher.org/policies/washington/abortion-policies,X
+az,arizona,,42.19781445,very,15 weeks,west,6,3,https://states.guttmacher.org/policies/arizona/abortion-policies,X
+ar,arkansas,,52.96863547,most,banned,south,7,6,https://states.guttmacher.org/policies/arkansas/abortion-policies,X
 ca,california,billie,15.25174472,least,fetal viability (generally between 24–26 weeks),west,5,2,https://states.guttmacher.org/policies/california/abortion-policies,X
+co,colorado,,19.09428716,least,no restriction,west,5,4,https://states.guttmacher.org/policies/colorado/abortion-policies,X
+ct,connecticut,,21.1464138,somewhat,fetal viability (generally between 24–26 weeks),northeast,4,11,https://states.guttmacher.org/policies/connecticut/abortion-policies,X
+de,delaware,,20.22774077,somewhat,fetal viability (generally between 24–26 weeks),south,5,11,https://states.guttmacher.org/policies/delaware/abortion-policies,X
 dc,district of columbia,,15.13449718,least,no restriction,south,6,11,https://states.guttmacher.org/policies/dc/abortion-policies,X
+fl,florida,nicki,39.36766797,very,6 weeks,south,8,10,https://states.guttmacher.org/policies/florida/abortion-policies,X
+ga,georgia,,37.83568906,very,6 weeks,south,7,9,https://states.guttmacher.org/policies/georgia/abortion-policies,X
+hi,hawaii,,21.80544393,somewhat,fetal viability (generally between 24–26 weeks),west,7,1,https://states.guttmacher.org/policies/hawaii/abortion-policies,X
+id,idaho,,45.8327163,most,banned,west,3,3,https://states.guttmacher.org/policies/idaho/abortion-policies,X
+il,illinois,,20.74674437,somewhat,fetal viability (generally between 24–26 weeks),midwest,5,6,https://states.guttmacher.org/policies/illinois/abortion-policies,X
+in,indiana,,47.51156832,most,banned,midwest,5,7,https://states.guttmacher.org/policies/indiana/abortion-policies,X
+ia,iowa,,41.11944223,very,6 weeks,midwest,4,6,https://states.guttmacher.org/policies/iowa/abortion-policies,X
+ks,kansas,,38.54671875,very,22 weeks,midwest,6,5,https://states.guttmacher.org/policies/kansas/abortion-policies,X
+ky,kentucky,,45.10828353,most,banned,south,6,7,https://states.guttmacher.org/policies/kentucky/abortion-policies,X
+la,louisiana,,48.61659813,most,banned,south,7,5,https://states.guttmacher.org/policies/louisiana/abortion-policies,X
+me,maine,,21.28197585,somewhat,fetal viability (generally between 24–26 weeks),northeast,1,12,https://states.guttmacher.org/policies/maine/abortion-policies,X
+md,maryland,,19.86717218,least,no restriction,south,5,10,https://states.guttmacher.org/policies/maryland/abortion-policies,X
+ma,massachusetts,,19.89905528,least,24 weeks,northeast,3,11,https://states.guttmacher.org/policies/massachusetts/abortion-policies,X
+mi,michigan,simone,28.03113279,moderately,no restriction,midwest,3,8,https://states.guttmacher.org/policies/michigan/abortion-policies,X
+mn,minnesota,,18.97251966,least,no restriction,midwest,3,6,https://states.guttmacher.org/policies/minnesota/abortion-policies,X
+ms,mississippi,,50.53878442,most,banned,south,7,7,https://states.guttmacher.org/policies/mississippi/abortion-policies,X
+mo,missouri,,51.44950778,most,banned,midwest,6,6,https://states.guttmacher.org/policies/missouri/abortion-policies,X
+mt,montana,,25.58573108,somewhat,fetal viability (generally between 24–26 weeks),west,3,4,https://states.guttmacher.org/policies/montana/abortion-policies,X
+ne,nebraska,,40.67254407,very,12 weeks,midwest,5,5,https://states.guttmacher.org/policies/nebraska/abortion-policies,X
+nv,nevada,,22.79895471,somewhat,24 weeks,west,5,3,https://states.guttmacher.org/policies/nevada/abortion-policies,X
+nh,new hampshire,,25.78356506,moderately,24 weeks,northeast,2,12,https://states.guttmacher.org/policies/new-hampshire/abortion-policies,X
+nj,new jersey,,18.0287371,least,no restriction,northeast,4,10,https://states.guttmacher.org/policies/new-jersey/abortion-policies,X
+nm,new mexico,,22.37881611,somewhat,no restriction,west,6,4,https://states.guttmacher.org/policies/new-mexico/abortion-policies,X
+ny,new york,,16.77594727,least,fetal viability (generally between 24–26 weeks),northeast,3,10,https://states.guttmacher.org/policies/new-york/abortion-policies,X
+nc,north carolina,,38.48388857,very,12 weeks,south,6,10,https://states.guttmacher.org/policies/north-carolina/abortion-policies,X
+nd,north dakota,,29.96574075,moderately,fetal viability (generally between 24–26 weeks),midwest,3,5,https://states.guttmacher.org/policies/north-dakota/abortion-policies,X
+oh,ohio,margot,35.93899511,moderately,20 weeks,midwest,4,8,https://states.guttmacher.org/policies/ohio/abortion-policies,X
+ok,oklahoma,,51.41840156,most,banned,south,7,4,https://states.guttmacher.org/policies/oklahoma/abortion-policies,X
+or,oregon,,17.41697946,least,no restriction,west,4,2,https://states.guttmacher.org/policies/oregon/abortion-policies,X
+pa,pennsylvania,,29.37445396,moderately,24 weeks,northeast,4,9,https://states.guttmacher.org/policies/pennsylvania/abortion-policies,X
+ri,rhode island,,23.86485838,somewhat,fetal viability (generally between 24–26 weeks),northeast,3,12,https://states.guttmacher.org/policies/rhode-island/abortion-policies,X
+sc,south carolina,,41.32554828,very,6 weeks,south,6,9,https://states.guttmacher.org/policies/south-carolina/abortion-policies,X
+sd,south dakota,,50.31404485,most,banned,midwest,4,5,https://states.guttmacher.org/policies/south-dakota/abortion-policies,X
+tn,tennessee,courtney,47.73443818,most,banned,south,6,8,https://states.guttmacher.org/policies/tennessee/abortion-policies,X
+tx,texas,ava,51.50086619,most,banned,south,8,5,https://states.guttmacher.org/policies/texas/abortion-policies,X
+ut,utah,,36.66412344,very,18 weeks,west,4,3,https://states.guttmacher.org/policies/utah/abortion-policies,X
+vt,vermont,,17.31269944,least,no restriction,northeast,2,11,https://states.guttmacher.org/policies/vermont/abortion-policies,X
+va,virginia,,27.48239948,moderately,the third trimester (around 28 weeks),south,5,9,https://states.guttmacher.org/policies/virginia/abortion-policies,X
+wa,washington,,15.7451374,least,fetal viability (generally between 24–26 weeks),west,3,2,https://states.guttmacher.org/policies/washington/abortion-policies,X
+wv,west virginia,,43.12165476,most,banned,south,5,8,https://states.guttmacher.org/policies/west-virginia/abortion-policies,X
+wi,wisconsin,,33.63107107,moderately,20 weeks,midwest,4,7,https://states.guttmacher.org/policies/wisconsin/abortion-policies,X
+wy,wyoming,,27.72423333,moderately,fetal viability (generally between 24–26 weeks),west,4,4,https://states.guttmacher.org/policies/wyoming/abortion-policies,X
