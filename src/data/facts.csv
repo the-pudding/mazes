@@ -8,17 +8,17 @@ al,0,Abortion rights are explicitly excluded in the state constitution.
 al,1,Patients must attend counseling 48 hours before obtaining an abortion.
 al,2,Patients must get an ultrasound even if it is medically unnecessary.
 al,3,Patients must obtain medication abortion in person.
-al,4,Parental consent is require for minors seeking abortions.
+al,4,Parental consent is required for minors seeking abortions.
 ar,0,Patients must attend in-person counseling 72 hours before obtaining an abortion.
 ar,1,Patients must get an ultrasound even if it is medically unnecessary.
 ar,2,Medicaid coverage of abortion is banned with very little exceptions.
-ar,3,Parental consent is require for minors seeking abortions.
+ar,3,Parental consent is requiredd for minors seeking abortions.
 ar,4,Only physicians can provide abortions.
 az,0,Patients must attend in-person counseling 24 hours before obtaining an abortion.
 az,1,Patients must get an ultrasound even if it is medically unnecessary.
 az,2,Patients must obtain medication abortion in person.
 az,3,Mailing abortion pills is banned.
-az,4,Parental consent is require for minors seeking abortions.
+az,4,Parental consent is requiredd for minors seeking abortions.
 ca,0,NAME is a 25-year-old chef in California.
 ca,1,They moved there right out of college and started working as a chef at a friend of a friend of a friend’s restaurant.
 ca,2,"Their second night on the job, they met their partner. They’ve been together ever since. Going on 3 years."
@@ -77,7 +77,7 @@ ia,4,Only physicians can provide abortions.
 id,0,Patients must attend counseling 24 hours before obtaining an abortion.
 id,1,Medicaid coverage of abortion is banned with very little exceptions.
 id,2,Private health coverage of abortion is banned with very little exceptions.
-id,3,Parental consent is require for minors seeking abortions.
+id,3,Parental consent is required for minors seeking abortions.
 id,4,Only physicians can provide abortions.
 il,0,Abortions are covered by state Medicaid funds.
 il,1,Abortions must be covered by private health insurance.
@@ -88,10 +88,10 @@ in,0,Patients must attend in-person counseling 18 hours before obtaining an abor
 in,1,Medicaid coverage of abortion is banned with very little exceptions.
 in,2,Private health coverage of abortion is banned with very little exceptions.
 in,3,Patients must obtain medication abortion in person.
-in,4,Parental consent is require for minors seeking abortions.
+in,4,Parental consent is required for minors seeking abortions.
 ks,0,Medicaid coverage of abortion is banned with very little exceptions.
 ks,1,Private health coverage of abortion is banned with very little exceptions.
-ks,2,Parental consent is require for minors seeking abortions.
+ks,2,Parental consent is required for minors seeking abortions.
 ks,3,Only physicians can provide abortions.
 ks,4,Individual providers may refuse to perform abortions.
 ky,0,Patients must attend in-person counseling 24 hours before obtaining an abortion.
@@ -104,7 +104,7 @@ la,1,Patients must attend in-person counseling 24 hours before obtaining an abor
 la,2,Patients must get an ultrasound even if it is medically unnecessary.
 la,3,Medicaid coverage of abortion is banned with very little exceptions.
 la,4,Patients must obtain medication abortion in person.
-ma,0,Parental consent is require for minors seeking abortions.
+ma,0,Parental consent is required for minors seeking abortions.
 ma,1,Abortions are covered by state Medicaid funds.
 ma,2,Abortions must be covered by private health insurance.
 ma,3,All qualified health care professionals can perform abortions.
@@ -138,12 +138,12 @@ mo,0,Patients must attend in-person counseling 72 hours before obtaining an abor
 mo,1,Medicaid coverage of abortion is banned with very little exceptions.
 mo,2,Private health coverage of abortion is banned with very little exceptions.
 mo,3,Patients must obtain medication abortion in person.
-mo,4,Parental consent is require for minors seeking abortions.
+mo,4,Parental consent is required for minors seeking abortions.
 ms,0,Patients must attend in-person counseling 24 hours before obtaining an abortion.
 ms,1,Patients must get an ultrasound even if it is medically unnecessary.
 ms,2,Medicaid coverage of abortion is banned with very little exceptions.
 ms,3,Patients must obtain medication abortion in person.
-ms,4,Parental consent is require for minors seeking abortions.
+ms,4,Parental consent is required for minors seeking abortions.
 mt,0,Parental notification is require for minors seeking abortions.
 mt,1,Abortions are covered by state Medicaid funds.
 mt,2,All qualified health care professionals can perform abortions.
@@ -151,19 +151,19 @@ mt,3,Individual providers may refuse to perform abortions.
 mt,4,Private institutions may refuse to perform abortions.
 nc,0,Patients must attend in-person counseling 72 hours before obtaining an abortion.
 nc,1,Medicaid coverage of abortion is banned with very little exceptions.
-nc,2,Parental consent is require for minors seeking abortions.
+nc,2,Parental consent is required for minors seeking abortions.
 nc,3,All qualified health care professionals can perform abortions.
 nc,4,Abortion clinics face unnecessary regulations without basis in medical standards.
 nd,0,Patients must attend counseling 24 hours before obtaining an abortion.
 nd,1,Medicaid coverage of abortion is banned with very little exceptions.
 nd,2,Private health coverage of abortion is banned with very little exceptions.
 nd,3,Patients must obtain medication abortion in person.
-nd,4,Parental consent is require for minors seeking abortions.
+nd,4,Parental consent is required for minors seeking abortions.
 ne,0,Patients must attend counseling 24 hours before obtaining an abortion.
 ne,1,Medicaid coverage of abortion is banned with very little exceptions.
 ne,2,Private health coverage of abortion is banned with very little exceptions.
 ne,3,Patients must obtain medication abortion in person.
-ne,4,Parental consent is require for minors seeking abortions.
+ne,4,Parental consent is required for minors seeking abortions.
 nh,0,Medicaid coverage of abortion is banned with very little exceptions.
 nh,1,Parental notification is require for minors seeking abortions.
 nh,2,All qualified health care professionals can perform abortions.
@@ -203,7 +203,7 @@ ok,0,Patients must attend counseling 72 hours before obtaining an abortion.
 ok,1,Medicaid coverage of abortion is banned with very little exceptions.
 ok,2,Private health coverage of abortion is banned with very little exceptions.
 ok,3,Patients must obtain medication abortion in person.
-ok,4,Parental consent is require for minors seeking abortions.
+ok,4,Parental consent is required for minors seeking abortions.
 or,0,Abortion rights are explicitly protected in the state constitution.
 or,1,Abortions are covered by state Medicaid funds.
 or,2,Abortions must be covered by private health insurance.
@@ -211,11 +211,11 @@ or,3,All qualified health care professionals can perform abortions.
 or,4,State fund helps patients pay for abortion care.
 pa,0,Patients must attend counseling 24 hours before obtaining an abortion.
 pa,1,Medicaid coverage of abortion is banned with very little exceptions.
-pa,2,Parental consent is require for minors seeking abortions.
+pa,2,Parental consent is required for minors seeking abortions.
 pa,3,Only physicians can provide abortions.
 pa,4,Abortion clinics face unnecessary regulations without basis in medical standards.
 ri,0,Abortions are covered by state Medicaid funds.
-ri,1,Parental consent is require for minors seeking abortions.
+ri,1,Parental consent is required for minors seeking abortions.
 ri,2,Abortion clinics face unnecessary regulations without basis in medical standards.
 ri,3,All qualified health care professionals can perform abortions.
 ri,4,Abortion providers are protected by a shield law.
@@ -223,7 +223,7 @@ sc,0,Patients must attend counseling 24 hours before obtaining an abortion.
 sc,1,Patients must get an ultrasound even if it is medically unnecessary.
 sc,2,Medicaid coverage of abortion is banned with very little exceptions.
 sc,3,Patients must obtain medication abortion in person.
-sc,4,Parental consent is require for minors seeking abortions.
+sc,4,Parental consent is required for minors seeking abortions.
 sd,0,Patients must attend in-person counseling 72 hours before obtaining an abortion.
 sd,1,Medicaid coverage of abortion is banned with very little exceptions.
 sd,2,Patients must obtain medication abortion in person.
@@ -253,9 +253,9 @@ ut,0,Patients must attend counseling 72 hours before obtaining an abortion.
 ut,1,Medicaid coverage of abortion is banned with very little exceptions.
 ut,2,Private health coverage of abortion is banned with very little exceptions.
 ut,3,Patients must obtain medication abortion in person.
-ut,4,Parental consent is require for minors seeking abortions.
+ut,4,Parental consent is required for minors seeking abortions.
 va,0,Medicaid coverage of abortion is banned with very little exceptions.
-va,1,Parental consent is require for minors seeking abortions.
+va,1,Parental consent is required for minors seeking abortions.
 va,2,All qualified health care professionals can perform abortions.
 va,3,Individual providers may refuse to perform abortions.
 va,4,Institutions may refuse to perform abortions.
@@ -273,14 +273,14 @@ wi,0,Patients must attend in-person counseling 24 hours before obtaining an abor
 wi,1,Patients must get an ultrasound even if it is medically unnecessary.
 wi,2,Medicaid coverage of abortion is banned with very little exceptions.
 wi,3,Patients must obtain medication abortion in person.
-wi,4,Parental consent is require for minors seeking abortions.
+wi,4,Parental consent is required for minors seeking abortions.
 wv,0,Abortion rights are explicitly excluded in the state constitution.
 wv,1,Patients must attend counseling 24 hours before obtaining an abortion.
 wv,2,Medicaid coverage of abortion is banned with very little exceptions.
 wv,3,Patients must obtain medication abortion in person.
 wv,4,Parental notification is require for minors seeking abortions.
 wy,0,Medicaid coverage of abortion is banned with very little exceptions.
-wy,1,Parental consent is require for minors seeking abortions.
+wy,1,Parental consent is required for minors seeking abortions.
 wy,2,Only physicians can provide abortions.
 wy,3,Individual providers may refuse to perform abortions.
 wy,4,Private institutions may refuse to perform abortions.
