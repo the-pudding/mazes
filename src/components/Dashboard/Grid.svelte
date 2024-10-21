@@ -57,16 +57,16 @@
 	<figure id="grid" class:geo class:intro class:fade={$selectedState}>
 		<div class="tracker" class:hasBorder={!geo}>
 			<p class="tracker-sentence">
-				You've completed {mazesSolved.length === 50
+				You've completed {mazesSolved.length === 51
 					? "all "
-					: `${mazesSolved.length}/`}50 mazes.
-				{#if mazesSolved.length === 50}
+					: `${mazesSolved.length}/`}51 mazes.
+				{#if mazesSolved.length === 51}
 					<span class="done">
 						{@html doneMessage}
 					</span>
 				{/if}
 			</p>
-			{#if mazesSolved.length !== 50}
+			{#if mazesSolved.length !== 51}
 				<div class="maze-directions">
 					<p>
 						Select a state maze to try to solve it. States with <span
